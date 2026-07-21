@@ -1,0 +1,1224 @@
+[
+  {
+    "module_number": 7,
+    "module_path": "crypto_platform/module7.py",
+    "function_name": "__init__",
+    "start_line": 254,
+    "end_line": 264,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 7,
+    "module_path": "crypto_platform/module7.py",
+    "function_name": "modeling_frame",
+    "start_line": 277,
+    "end_line": 294,
+    "matched_categories": [
+      "benchmarks"
+    ]
+  },
+  {
+    "module_number": 7,
+    "module_path": "crypto_platform/module7.py",
+    "function_name": "score_bins",
+    "start_line": 296,
+    "end_line": 326,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "calibration"
+    ]
+  },
+  {
+    "module_number": 7,
+    "module_path": "crypto_platform/module7.py",
+    "function_name": "learned_thresholds",
+    "start_line": 328,
+    "end_line": 408,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "calibration"
+    ]
+  },
+  {
+    "module_number": 7,
+    "module_path": "crypto_platform/module7.py",
+    "function_name": "feature_importance",
+    "start_line": 410,
+    "end_line": 468,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 7,
+    "module_path": "crypto_platform/module7.py",
+    "function_name": "walk_forward",
+    "start_line": 470,
+    "end_line": 572,
+    "matched_categories": [
+      "audit",
+      "walk_forward"
+    ]
+  },
+  {
+    "module_number": 7,
+    "module_path": "crypto_platform/module7.py",
+    "function_name": "valuation_validation",
+    "start_line": 574,
+    "end_line": 624,
+    "matched_categories": [
+      "audit",
+      "benchmarks"
+    ]
+  },
+  {
+    "module_number": 7,
+    "module_path": "crypto_platform/module7.py",
+    "function_name": "calibrated_reliability",
+    "start_line": 626,
+    "end_line": 671,
+    "matched_categories": [
+      "audit",
+      "benchmarks"
+    ]
+  },
+  {
+    "module_number": 7,
+    "module_path": "crypto_platform/module7.py",
+    "function_name": "run",
+    "start_line": 673,
+    "end_line": 730,
+    "matched_categories": [
+      "audit",
+      "calibration",
+      "walk_forward"
+    ]
+  },
+  {
+    "module_number": 15,
+    "module_path": "crypto_platform/module15.py",
+    "function_name": "annual_metrics",
+    "start_line": 168,
+    "end_line": 191,
+    "matched_categories": [
+      "risk"
+    ]
+  },
+  {
+    "module_number": 15,
+    "module_path": "crypto_platform/module15.py",
+    "function_name": "__init__",
+    "start_line": 194,
+    "end_line": 207,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 15,
+    "module_path": "crypto_platform/module15.py",
+    "function_name": "rebalance_dates",
+    "start_line": 251,
+    "end_line": 270,
+    "matched_categories": [
+      "benchmarks"
+    ]
+  },
+  {
+    "module_number": 15,
+    "module_path": "crypto_platform/module15.py",
+    "function_name": "features_at",
+    "start_line": 272,
+    "end_line": 364,
+    "matched_categories": [
+      "benchmarks",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 15,
+    "module_path": "crypto_platform/module15.py",
+    "function_name": "variant_scores",
+    "start_line": 366,
+    "end_line": 409,
+    "matched_categories": [
+      "benchmarks",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 15,
+    "module_path": "crypto_platform/module15.py",
+    "function_name": "allocate",
+    "start_line": 411,
+    "end_line": 449,
+    "matched_categories": [
+      "risk"
+    ]
+  },
+  {
+    "module_number": 15,
+    "module_path": "crypto_platform/module15.py",
+    "function_name": "simulate",
+    "start_line": 461,
+    "end_line": 533,
+    "matched_categories": [
+      "benchmarks",
+      "costs"
+    ]
+  },
+  {
+    "module_number": 15,
+    "module_path": "crypto_platform/module15.py",
+    "function_name": "objective_score",
+    "start_line": 535,
+    "end_line": 558,
+    "matched_categories": [
+      "benchmarks",
+      "costs",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 15,
+    "module_path": "crypto_platform/module15.py",
+    "function_name": "evaluate",
+    "start_line": 560,
+    "end_line": 614,
+    "matched_categories": [
+      "benchmarks",
+      "costs",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 15,
+    "module_path": "crypto_platform/module15.py",
+    "function_name": "result_row",
+    "start_line": 616,
+    "end_line": 648,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "costs",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 15,
+    "module_path": "crypto_platform/module15.py",
+    "function_name": "benchmarks",
+    "start_line": 650,
+    "end_line": 699,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 15,
+    "module_path": "crypto_platform/module15.py",
+    "function_name": "walk_forward_windows",
+    "start_line": 701,
+    "end_line": 728,
+    "matched_categories": [
+      "walk_forward"
+    ]
+  },
+  {
+    "module_number": 15,
+    "module_path": "crypto_platform/module15.py",
+    "function_name": "aggregate_oos",
+    "start_line": 730,
+    "end_line": 757,
+    "matched_categories": [
+      "benchmarks",
+      "risk",
+      "walk_forward"
+    ]
+  },
+  {
+    "module_number": 15,
+    "module_path": "crypto_platform/module15.py",
+    "function_name": "run",
+    "start_line": 759,
+    "end_line": 1019,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "promotion",
+      "risk",
+      "walk_forward"
+    ]
+  },
+  {
+    "module_number": 23,
+    "module_path": "crypto_platform/module23.py",
+    "function_name": "__init__",
+    "start_line": 115,
+    "end_line": 121,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 23,
+    "module_path": "crypto_platform/module23.py",
+    "function_name": "finding",
+    "start_line": 126,
+    "end_line": 127,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 23,
+    "module_path": "crypto_platform/module23.py",
+    "function_name": "source_periods",
+    "start_line": 128,
+    "end_line": 131,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 23,
+    "module_path": "crypto_platform/module23.py",
+    "function_name": "verify",
+    "start_line": 135,
+    "end_line": 156,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "costs",
+      "leakage_protection",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 23,
+    "module_path": "crypto_platform/module23.py",
+    "function_name": "benchmarks",
+    "start_line": 157,
+    "end_line": 161,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 23,
+    "module_path": "crypto_platform/module23.py",
+    "function_name": "attribution",
+    "start_line": 162,
+    "end_line": 166,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "costs"
+    ]
+  },
+  {
+    "module_number": 23,
+    "module_path": "crypto_platform/module23.py",
+    "function_name": "labels",
+    "start_line": 167,
+    "end_line": 175,
+    "matched_categories": [
+      "audit",
+      "calibration",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 23,
+    "module_path": "crypto_platform/module23.py",
+    "function_name": "bootstrap",
+    "start_line": 176,
+    "end_line": 180,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "calibration"
+    ]
+  },
+  {
+    "module_number": 23,
+    "module_path": "crypto_platform/module23.py",
+    "function_name": "summary",
+    "start_line": 181,
+    "end_line": 190,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "calibration",
+      "costs",
+      "promotion",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 23,
+    "module_path": "crypto_platform/module23.py",
+    "function_name": "run",
+    "start_line": 191,
+    "end_line": 205,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "calibration",
+      "leakage_protection",
+      "promotion",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 24,
+    "module_path": "crypto_platform/module24.py",
+    "function_name": "annual_metrics",
+    "start_line": 226,
+    "end_line": 236,
+    "matched_categories": [
+      "risk"
+    ]
+  },
+  {
+    "module_number": 24,
+    "module_path": "crypto_platform/module24.py",
+    "function_name": "__init__",
+    "start_line": 240,
+    "end_line": 247,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 24,
+    "module_path": "crypto_platform/module24.py",
+    "function_name": "build_factors",
+    "start_line": 285,
+    "end_line": 326,
+    "matched_categories": [
+      "risk"
+    ]
+  },
+  {
+    "module_number": 24,
+    "module_path": "crypto_platform/module24.py",
+    "function_name": "generate_candidates",
+    "start_line": 328,
+    "end_line": 357,
+    "matched_categories": [
+      "audit",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 24,
+    "module_path": "crypto_platform/module24.py",
+    "function_name": "allocate",
+    "start_line": 373,
+    "end_line": 424,
+    "matched_categories": [
+      "risk"
+    ]
+  },
+  {
+    "module_number": 24,
+    "module_path": "crypto_platform/module24.py",
+    "function_name": "simulate",
+    "start_line": 426,
+    "end_line": 483,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "costs",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 24,
+    "module_path": "crypto_platform/module24.py",
+    "function_name": "evaluate",
+    "start_line": 485,
+    "end_line": 503,
+    "matched_categories": [
+      "benchmarks",
+      "costs",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 24,
+    "module_path": "crypto_platform/module24.py",
+    "function_name": "windows",
+    "start_line": 505,
+    "end_line": 514,
+    "matched_categories": [
+      "walk_forward"
+    ]
+  },
+  {
+    "module_number": 24,
+    "module_path": "crypto_platform/module24.py",
+    "function_name": "walk_forward",
+    "start_line": 516,
+    "end_line": 564,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "costs",
+      "risk",
+      "walk_forward"
+    ]
+  },
+  {
+    "module_number": 24,
+    "module_path": "crypto_platform/module24.py",
+    "function_name": "validate_labels",
+    "start_line": 566,
+    "end_line": 608,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "calibration",
+      "leakage_protection",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 24,
+    "module_path": "crypto_platform/module24.py",
+    "function_name": "aggregate_periods",
+    "start_line": 610,
+    "end_line": 622,
+    "matched_categories": [
+      "benchmarks",
+      "costs",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 24,
+    "module_path": "crypto_platform/module24.py",
+    "function_name": "bootstrap",
+    "start_line": 624,
+    "end_line": 646,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "calibration"
+    ]
+  },
+  {
+    "module_number": 24,
+    "module_path": "crypto_platform/module24.py",
+    "function_name": "summarize",
+    "start_line": 648,
+    "end_line": 712,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "calibration",
+      "costs",
+      "promotion",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 24,
+    "module_path": "crypto_platform/module24.py",
+    "function_name": "run",
+    "start_line": 714,
+    "end_line": 767,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "calibration",
+      "promotion",
+      "walk_forward"
+    ]
+  },
+  {
+    "module_number": 30,
+    "module_path": "crypto_platform/module30.py",
+    "function_name": "confidence_level",
+    "start_line": 274,
+    "end_line": 285,
+    "matched_categories": [
+      "calibration",
+      "drift"
+    ]
+  },
+  {
+    "module_number": 30,
+    "module_path": "crypto_platform/module30.py",
+    "function_name": "__init__",
+    "start_line": 289,
+    "end_line": 328,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 30,
+    "module_path": "crypto_platform/module30.py",
+    "function_name": "data",
+    "start_line": 341,
+    "end_line": 380,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 30,
+    "module_path": "crypto_platform/module30.py",
+    "function_name": "walk_forward",
+    "start_line": 382,
+    "end_line": 567,
+    "matched_categories": [
+      "audit",
+      "calibration",
+      "walk_forward"
+    ]
+  },
+  {
+    "module_number": 30,
+    "module_path": "crypto_platform/module30.py",
+    "function_name": "current_model",
+    "start_line": 569,
+    "end_line": 685,
+    "matched_categories": [
+      "calibration",
+      "drift",
+      "walk_forward"
+    ]
+  },
+  {
+    "module_number": 30,
+    "module_path": "crypto_platform/module30.py",
+    "function_name": "run",
+    "start_line": 687,
+    "end_line": 1055,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "calibration",
+      "drift",
+      "leakage_protection",
+      "promotion",
+      "walk_forward"
+    ]
+  },
+  {
+    "module_number": 32,
+    "module_path": "crypto_platform/module32.py",
+    "function_name": "__init__",
+    "start_line": 309,
+    "end_line": 335,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 32,
+    "module_path": "crypto_platform/module32.py",
+    "function_name": "feature_label_data",
+    "start_line": 348,
+    "end_line": 364,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 32,
+    "module_path": "crypto_platform/module32.py",
+    "function_name": "clean_history",
+    "start_line": 366,
+    "end_line": 381,
+    "matched_categories": [
+      "audit",
+      "calibration"
+    ]
+  },
+  {
+    "module_number": 32,
+    "module_path": "crypto_platform/module32.py",
+    "function_name": "feature_stability",
+    "start_line": 392,
+    "end_line": 463,
+    "matched_categories": [
+      "audit",
+      "drift"
+    ]
+  },
+  {
+    "module_number": 32,
+    "module_path": "crypto_platform/module32.py",
+    "function_name": "probability_drift",
+    "start_line": 465,
+    "end_line": 500,
+    "matched_categories": [
+      "audit",
+      "calibration",
+      "drift"
+    ]
+  },
+  {
+    "module_number": 32,
+    "module_path": "crypto_platform/module32.py",
+    "function_name": "retraining_policies",
+    "start_line": 502,
+    "end_line": 555,
+    "matched_categories": [
+      "audit",
+      "calibration"
+    ]
+  },
+  {
+    "module_number": 32,
+    "module_path": "crypto_platform/module32.py",
+    "function_name": "historical_stress",
+    "start_line": 557,
+    "end_line": 613,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "leakage_protection",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 32,
+    "module_path": "crypto_platform/module32.py",
+    "function_name": "synthetic_stress",
+    "start_line": 615,
+    "end_line": 659,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "calibration",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 32,
+    "module_path": "crypto_platform/module32.py",
+    "function_name": "benchmark",
+    "start_line": 661,
+    "end_line": 751,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "calibration",
+      "costs",
+      "leakage_protection",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 32,
+    "module_path": "crypto_platform/module32.py",
+    "function_name": "run",
+    "start_line": 753,
+    "end_line": 836,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "calibration",
+      "drift",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 33,
+    "module_path": "crypto_platform/module33.py",
+    "function_name": "regularize_probabilities",
+    "start_line": 266,
+    "end_line": 274,
+    "matched_categories": [
+      "calibration"
+    ]
+  },
+  {
+    "module_number": 33,
+    "module_path": "crypto_platform/module33.py",
+    "function_name": "population_stability_index",
+    "start_line": 277,
+    "end_line": 305,
+    "matched_categories": [
+      "drift"
+    ]
+  },
+  {
+    "module_number": 33,
+    "module_path": "crypto_platform/module33.py",
+    "function_name": "performance_metrics",
+    "start_line": 308,
+    "end_line": 365,
+    "matched_categories": [
+      "costs",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 33,
+    "module_path": "crypto_platform/module33.py",
+    "function_name": "__init__",
+    "start_line": 369,
+    "end_line": 394,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 33,
+    "module_path": "crypto_platform/module33.py",
+    "function_name": "probabilities",
+    "start_line": 407,
+    "end_line": 429,
+    "matched_categories": [
+      "audit",
+      "calibration"
+    ]
+  },
+  {
+    "module_number": 33,
+    "module_path": "crypto_platform/module33.py",
+    "function_name": "disagreement",
+    "start_line": 431,
+    "end_line": 446,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 33,
+    "module_path": "crypto_platform/module33.py",
+    "function_name": "adjusted_drift",
+    "start_line": 470,
+    "end_line": 562,
+    "matched_categories": [
+      "audit",
+      "calibration",
+      "drift",
+      "leakage_protection"
+    ]
+  },
+  {
+    "module_number": 33,
+    "module_path": "crypto_platform/module33.py",
+    "function_name": "decision_path",
+    "start_line": 564,
+    "end_line": 690,
+    "matched_categories": [
+      "calibration",
+      "costs",
+      "leakage_protection"
+    ]
+  },
+  {
+    "module_number": 33,
+    "module_path": "crypto_platform/module33.py",
+    "function_name": "candidate_search",
+    "start_line": 692,
+    "end_line": 795,
+    "matched_categories": [
+      "audit",
+      "calibration",
+      "costs",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 33,
+    "module_path": "crypto_platform/module33.py",
+    "function_name": "benchmark_rows",
+    "start_line": 797,
+    "end_line": 869,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "costs",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 33,
+    "module_path": "crypto_platform/module33.py",
+    "function_name": "cost_sensitivity",
+    "start_line": 871,
+    "end_line": 920,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "costs",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 33,
+    "module_path": "crypto_platform/module33.py",
+    "function_name": "run",
+    "start_line": 922,
+    "end_line": 1272,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "calibration",
+      "costs",
+      "drift",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 38,
+    "module_path": "crypto_platform/module38.py",
+    "function_name": "__init__",
+    "start_line": 252,
+    "end_line": 287,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 38,
+    "module_path": "crypto_platform/module38.py",
+    "function_name": "regime_history",
+    "start_line": 346,
+    "end_line": 359,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 38,
+    "module_path": "crypto_platform/module38.py",
+    "function_name": "current_regime",
+    "start_line": 361,
+    "end_line": 373,
+    "matched_categories": [
+      "audit",
+      "calibration"
+    ]
+  },
+  {
+    "module_number": 38,
+    "module_path": "crypto_platform/module38.py",
+    "function_name": "optimizer_expected_returns",
+    "start_line": 375,
+    "end_line": 387,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 38,
+    "module_path": "crypto_platform/module38.py",
+    "function_name": "optimizer_allocations",
+    "start_line": 389,
+    "end_line": 401,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 38,
+    "module_path": "crypto_platform/module38.py",
+    "function_name": "build_features",
+    "start_line": 403,
+    "end_line": 462,
+    "matched_categories": [
+      "leakage_protection",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 38,
+    "module_path": "crypto_platform/module38.py",
+    "function_name": "model_suite",
+    "start_line": 464,
+    "end_line": 487,
+    "matched_categories": [
+      "walk_forward"
+    ]
+  },
+  {
+    "module_number": 38,
+    "module_path": "crypto_platform/module38.py",
+    "function_name": "train_forecast",
+    "start_line": 489,
+    "end_line": 748,
+    "matched_categories": [
+      "audit",
+      "calibration",
+      "leakage_protection"
+    ]
+  },
+  {
+    "module_number": 38,
+    "module_path": "crypto_platform/module38.py",
+    "function_name": "attribution_rows",
+    "start_line": 779,
+    "end_line": 846,
+    "matched_categories": [
+      "audit",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 38,
+    "module_path": "crypto_platform/module38.py",
+    "function_name": "run",
+    "start_line": 848,
+    "end_line": 1552,
+    "matched_categories": [
+      "audit",
+      "calibration",
+      "costs",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 40,
+    "module_path": "crypto_platform/module40.py",
+    "function_name": "__init__",
+    "start_line": 291,
+    "end_line": 324,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 40,
+    "module_path": "crypto_platform/module40.py",
+    "function_name": "upsert",
+    "start_line": 326,
+    "end_line": 450,
+    "matched_categories": [
+      "audit",
+      "calibration"
+    ]
+  },
+  {
+    "module_number": 40,
+    "module_path": "crypto_platform/module40.py",
+    "function_name": "validate_memory_consistency",
+    "start_line": 452,
+    "end_line": 541,
+    "matched_categories": [
+      "audit",
+      "calibration"
+    ]
+  },
+  {
+    "module_number": 40,
+    "module_path": "crypto_platform/module40.py",
+    "function_name": "recover_interrupted_runs",
+    "start_line": 543,
+    "end_line": 559,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 40,
+    "module_path": "crypto_platform/module40.py",
+    "function_name": "ingest_forecasts",
+    "start_line": 561,
+    "end_line": 717,
+    "matched_categories": [
+      "audit",
+      "calibration"
+    ]
+  },
+  {
+    "module_number": 40,
+    "module_path": "crypto_platform/module40.py",
+    "function_name": "ingest_models",
+    "start_line": 719,
+    "end_line": 770,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 40,
+    "module_path": "crypto_platform/module40.py",
+    "function_name": "ingest_attributions",
+    "start_line": 772,
+    "end_line": 822,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 40,
+    "module_path": "crypto_platform/module40.py",
+    "function_name": "mature_outcomes",
+    "start_line": 824,
+    "end_line": 921,
+    "matched_categories": [
+      "calibration"
+    ]
+  },
+  {
+    "module_number": 40,
+    "module_path": "crypto_platform/module40.py",
+    "function_name": "learning_summaries",
+    "start_line": 923,
+    "end_line": 1136,
+    "matched_categories": [
+      "audit",
+      "calibration",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 40,
+    "module_path": "crypto_platform/module40.py",
+    "function_name": "calibration_curves",
+    "start_line": 1138,
+    "end_line": 1215,
+    "matched_categories": [
+      "audit",
+      "calibration"
+    ]
+  },
+  {
+    "module_number": 40,
+    "module_path": "crypto_platform/module40.py",
+    "function_name": "model_leaderboard",
+    "start_line": 1217,
+    "end_line": 1332,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 40,
+    "module_path": "crypto_platform/module40.py",
+    "function_name": "retraining_recommendations",
+    "start_line": 1334,
+    "end_line": 1448,
+    "matched_categories": [
+      "audit",
+      "calibration",
+      "drift"
+    ]
+  },
+  {
+    "module_number": 40,
+    "module_path": "crypto_platform/module40.py",
+    "function_name": "run",
+    "start_line": 1450,
+    "end_line": 1724,
+    "matched_categories": [
+      "audit",
+      "calibration",
+      "promotion"
+    ]
+  },
+  {
+    "module_number": 44,
+    "module_path": "crypto_platform/module44.py",
+    "function_name": "__init__",
+    "start_line": 232,
+    "end_line": 251,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 44,
+    "module_path": "crypto_platform/module44.py",
+    "function_name": "recommendations",
+    "start_line": 263,
+    "end_line": 267,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 44,
+    "module_path": "crypto_platform/module44.py",
+    "function_name": "outcomes",
+    "start_line": 280,
+    "end_line": 342,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 44,
+    "module_path": "crypto_platform/module44.py",
+    "function_name": "action_value",
+    "start_line": 344,
+    "end_line": 382,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 44,
+    "module_path": "crypto_platform/module44.py",
+    "function_name": "benchmark_comparison",
+    "start_line": 384,
+    "end_line": 421,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 44,
+    "module_path": "crypto_platform/module44.py",
+    "function_name": "horizon_value",
+    "start_line": 423,
+    "end_line": 454,
+    "matched_categories": [
+      "audit",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 44,
+    "module_path": "crypto_platform/module44.py",
+    "function_name": "timing_value",
+    "start_line": 456,
+    "end_line": 502,
+    "matched_categories": [
+      "audit"
+    ]
+  },
+  {
+    "module_number": 44,
+    "module_path": "crypto_platform/module44.py",
+    "function_name": "portfolio_value",
+    "start_line": 504,
+    "end_line": 534,
+    "matched_categories": [
+      "audit",
+      "benchmarks",
+      "risk"
+    ]
+  },
+  {
+    "module_number": 44,
+    "module_path": "crypto_platform/module44.py",
+    "function_name": "run",
+    "start_line": 536,
+    "end_line": 623,
+    "matched_categories": [
+      "audit",
+      "benchmarks"
+    ]
+  }
+]
