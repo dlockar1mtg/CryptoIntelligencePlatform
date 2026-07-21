@@ -40,6 +40,16 @@ _RISK_LEVEL_MAP = {
     "EXTREME": "extreme",
 }
 
+_RISK_SCORE_MAP = {
+    "LOW": 25.0,
+    "MODERATE": 50.0,
+    "MEDIUM": 50.0,
+    "ELEVATED": 75.0,
+    "HIGH": 75.0,
+    "SEVERE": 95.0,
+    "EXTREME": 95.0,
+}
+
 
 def normalize_platform_asset_id(
     value: str,
@@ -129,6 +139,21 @@ def normalize_risk_level(
     except KeyError as exc:
         raise ValueError(
             f"Unsupported risk level: {value!r}"
+        ) from exc
+
+
+def risk_status_to_score(
+    value: str,
+) -> float:
+    normalized = value.strip().upper()
+
+    try:
+        return _RISK_SCORE_MAP[normalized]
+
+    except KeyError as exc:
+        raise ValueError(
+            "Unsupported risk status for score: "
+            f"{value!r}"
         ) from exc
 
 

@@ -152,3 +152,34 @@ def test_horizon_days_to_months(
 def test_invalid_horizon_fails() -> None:
     with pytest.raises(ValueError):
         horizon_days_to_months(0)
+
+@pytest.mark.parametrize(
+    ("status", "score"),
+    [
+        ("LOW", 25.0),
+        ("MODERATE", 50.0),
+        ("MEDIUM", 50.0),
+        ("ELEVATED", 75.0),
+        ("HIGH", 75.0),
+        ("SEVERE", 95.0),
+        ("EXTREME", 95.0),
+    ],
+)
+def test_risk_status_to_score(
+    status: str,
+    score: float,
+) -> None:
+    from crypto_platform.integration.universal.normalization import (
+        risk_status_to_score,
+    )
+
+    assert risk_status_to_score(status) == score
+
+
+def test_unknown_risk_status_score_fails() -> None:
+    from crypto_platform.integration.universal.normalization import (
+        risk_status_to_score,
+    )
+
+    with pytest.raises(ValueError):
+        risk_status_to_score("UNKNOWN")
