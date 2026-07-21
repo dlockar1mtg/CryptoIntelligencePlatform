@@ -639,9 +639,9 @@
   {
     "module_number": 32,
     "module_path": "crypto_platform/module32.py",
-    "function_count": 17,
+    "function_count": 18,
     "class_count": 1,
-    "table_count": 32,
+    "table_count": 35,
     "detected_capabilities": [
       "auditability",
       "benchmark_comparison",
@@ -650,7 +650,9 @@
       "feature_drift",
       "forecast_calibration",
       "lookahead_protection",
+      "performance_drift",
       "prediction_drift",
+      "promotion_guardrails",
       "regime_validation",
       "risk_adjusted_metrics",
       "sensitivity_testing",

@@ -19,7 +19,7 @@ before integration with the Universal Investment Platform.
 | Benchmark comparison present | PASS |
 | Forecast calibration present | PASS |
 | Feature-selection leakage protection | PASS — REMEDIATED |
-| Performance-drift monitoring | NOT IMPLEMENTED |
+| Performance-drift monitoring | PASS — IMPLEMENTED |
 | Universal integration certification | BLOCKED |
 
 ## Overall status
@@ -119,16 +119,18 @@ The remediation is protected by:
 
 **CRYPTO-ROBUST-001: PASS — REMEDIATED**
 
-The crypto platform remains **RESEARCH ONLY** because
-CRYPTO-ROBUST-002, performance-drift monitoring, remains open.
+The crypto platform remains **RESEARCH ONLY** because additional
+integration-certification requirements remain outstanding, including
+clean historical replay, deterministic replay certification, and
+Universal export-contract validation.
 
-## Blocking Finding CRYPTO-ROBUST-002
+## Implemented Finding CRYPTO-ROBUST-002
 
 ### Modules affected
 
 - Platform-wide model monitoring
 
-### Severity
+### Original severity
 
 **High**
 
@@ -138,12 +140,13 @@ Performance drift
 
 ### Description
 
-Feature drift and prediction drift capabilities were detected, but no
-explicit performance-drift capability was detected.
+Feature drift and prediction drift capabilities were previously
+present, but explicit realized-performance drift monitoring had not
+yet been implemented.
 
-### Required remediation
+### Required remediation — completed
 
-Implement rolling realized-performance monitoring for at least:
+Rolling realized-performance monitoring now includes:
 
 - Directional accuracy
 - Brier score
@@ -157,12 +160,37 @@ Implement rolling realized-performance monitoring for at least:
 The monitoring layer must generate warning, retraining, rollback, or
 research-only statuses when degradation thresholds are crossed.
 
+
+### Implementation evidence
+
+The performance-drift monitoring layer now:
+
+1. Aligns cost-adjusted strategy and benchmark returns by observation date.
+2. Combines realized returns with model probabilities and realized regimes.
+3. Creates chronological, non-overlapping reference and current windows.
+4. Calculates directional accuracy, Brier score, calibration error,
+   benchmark excess return, maximum drawdown, Sharpe ratio, decision hit
+   rate, and performance by market regime.
+5. Detects warning and critical deterioration across monitored metrics.
+6. Produces `NONE`, `MONITOR`, `RETRAIN`, or `ROLLBACK` governance actions.
+7. Persists evaluation, window, and regime-level evidence.
+8. Prevents Module 32 advancement when retraining or rollback is required.
+
+### Verification evidence
+
+The capability is protected by engine, adapter, persistence, and Module 32
+integration tests.
+
+### Implementation result
+
+**CRYPTO-ROBUST-002: PASS — IMPLEMENTED**
+
 ## Certification rule
 
 The crypto platform remains **RESEARCH ONLY** until:
 
 - CRYPTO-ROBUST-001 remains remediated and continuously tested.
-- CRYPTO-ROBUST-002 is implemented and tested.
+- CRYPTO-ROBUST-002 remains implemented and continuously tested.
 - Historical validation is rerun from clean inputs.
 - Cost-adjusted benchmark results are reproduced.
 - Promotion decisions use only unseen validation results.
