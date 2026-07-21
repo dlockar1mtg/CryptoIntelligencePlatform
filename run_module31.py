@@ -1,0 +1,20 @@
+from crypto_platform.module31 import run_module31
+
+def main():
+    print('Crypto Intelligence Platform — Module 31 v31.2')
+    print('Research Validation & Investment Usefulness\n')
+    r=run_module31()
+    print('Module 31 summary')
+    print('-----------------')
+    print(f"Selected calibration:          {r['selected_calibration']}")
+    print(f"Selected persistence method:   {r['selected_persistence_method']}")
+    print(f"Selected accuracy:             {r['selected_accuracy_pct']:.2f}%")
+    print(f"Selected log loss:             {r['selected_log_loss']:.4f}")
+    print(f"Selected Brier score:          {r['selected_brier_score']:.4f}")
+    print(f"Clean economic separation:     {r['clean_economic_separation']:.4f}")
+    print(f"Legacy economic separation:    {r['legacy_economic_separation']:.4f}")
+    print(f"Disagreement information value:{r['disagreement_information_value']:.4f}")
+    print(f"Investment value score:        {r['investment_value_score']:.2f}")
+    print(f"Validation status:             {r['validation_status']}")
+    print(f"Recommendation:                {r['advancement_recommendation']}")
+if __name__=='__main__': main()

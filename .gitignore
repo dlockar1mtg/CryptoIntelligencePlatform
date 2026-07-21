@@ -1,0 +1,164 @@
+﻿# ============================================================
+# Crypto Intelligence Platform
+# Git exclusions
+# ============================================================
+
+# ------------------------------------------------------------
+# Python environments and caches
+# ------------------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+
+# ------------------------------------------------------------
+# IDE and operating-system files
+# ------------------------------------------------------------
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ------------------------------------------------------------
+# Secrets and local environment configuration
+# ------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+config/local*
+config/*secret*
+config/*credential*
+config/*api_key*
+config/*apikey*
+
+# ------------------------------------------------------------
+# Databases and database sidecar files
+# ------------------------------------------------------------
+*.duckdb
+*.duckdb.*
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.wal
+*.shm
+
+# ------------------------------------------------------------
+# Runtime data
+# ------------------------------------------------------------
+data/raw/
+data/cache/
+data/downloads/
+data/runtime/
+data/temp/
+data/tmp/
+data/staging/
+cache/
+tmp/
+temp/
+
+# ------------------------------------------------------------
+# Generated outputs and exports
+# ------------------------------------------------------------
+output/
+outputs/
+exports/
+reports/generated/
+artifacts/
+build/
+dist/
+*.parquet
+*.feather
+*.arrow
+
+# ------------------------------------------------------------
+# Logs and run-state files
+# ------------------------------------------------------------
+logs/
+*.log
+*.pid
+*.lock
+
+# ------------------------------------------------------------
+# Model artifacts
+# ------------------------------------------------------------
+models/
+model_artifacts/
+checkpoints/
+*.joblib
+*.pkl
+*.pickle
+*.onnx
+*.h5
+*.keras
+*.pt
+*.pth
+
+# ------------------------------------------------------------
+# Package manager and build metadata
+# ------------------------------------------------------------
+*.egg-info/
+pip-wheel-metadata/
+
+# ------------------------------------------------------------
+# Temporary backups and generated copies
+# ------------------------------------------------------------
+*.bak
+*.backup
+*.old
+*.orig
+*.tmp
+*.temp
+*~
+~$*
+*_before_*.yaml
+*_before_*.yml
+*_before_*.json
+*_before_*.py
+*_backup_*.yaml
+*_backup_*.yml
+*_backup_*.json
+*_backup_*.py
+
+# ------------------------------------------------------------
+# Archives
+# ------------------------------------------------------------
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tgz
+
+# ------------------------------------------------------------
+# Local audit packages
+# ------------------------------------------------------------
+crypto_source_audit_*/
+crypto_source_audit_*.zip
+
+# ------------------------------------------------------------
+# Universal Platform exchange output
+# The adapter source will be tracked, generated packages will not.
+# ------------------------------------------------------------
+exchange/crypto/latest/
+exchange/crypto/staging/
+exchange/crypto/archive/

@@ -1,0 +1,15 @@
+from crypto_platform.module13 import run_module13
+def main():
+    print("Crypto Intelligence Platform — Module 13 v13.0")
+    print("Market structure, risk-adjusted analytics, and investment recommendations\n")
+    r=run_module13()
+    print("Module 13 summary")
+    print("-----------------")
+    print(f"Status:                {r['status']}")
+    print(f"Assets analyzed:       {r['assets_analyzed']}")
+    print(f"Recommendations:       {r['recommendations']}")
+    print(f"Portfolio rows:        {r['portfolio_rows']}")
+    print(f"Derivatives rows:      {r['derivatives_rows']}")
+    print(f"Derivatives provider:  {r['derivatives_provider']}")
+    print(f"Run ID:                {r['run_id']}")
+if __name__=="__main__": main()

@@ -1,0 +1,1271 @@
+platform:
+  name: Crypto Intelligence Platform
+  version: 13.0.0
+  database_path: data/crypto_intelligence.duckdb
+  export_directory: data/exports
+  cache_directory: data/cache
+  log_directory: logs
+collection:
+  request_connect_timeout_seconds: 10
+  request_read_timeout_seconds: 60
+  max_retries: 5
+  backoff_seconds: 2
+  cache_ttl_minutes: 30
+  incremental_overlap_days: 5
+  default_start_date: '2017-01-01'
+  exchange_start_date: '2020-01-01'
+  coingecko_history_days: 365
+  exchange_interval: 1d
+  provider_failure_threshold: 2
+providers:
+  market:
+    enabled: true
+    primary: coingecko
+  exchange_ohlcv:
+    enabled: true
+    priority:
+    - coinbase
+    - kraken
+    - binance
+    enabled_providers:
+      coinbase: true
+      kraken: true
+      binance: false
+  stablecoins:
+    enabled: true
+    primary: defillama
+  chains:
+    enabled: true
+    primary: defillama
+  macro:
+    enabled: true
+    priority:
+    - fred_api
+    - local_crypto_cache
+quality:
+  max_price_deviation_pct: 5.0
+  daily_freshness_hours: 48
+  macro_freshness_days: 45
+macro_series:
+- series_key: FRED::DFF
+  series_id: DFF
+  series_name: Effective Federal Funds Rate
+  frequency: daily
+  unit: percent
+- series_key: FRED::DGS10
+  series_id: DGS10
+  series_name: 10-Year Treasury Yield
+  frequency: daily
+  unit: percent
+- series_key: FRED::DFII10
+  series_id: DFII10
+  series_name: 10-Year Real Yield
+  frequency: daily
+  unit: percent
+- series_key: FRED::T10YIE
+  series_id: T10YIE
+  series_name: 10-Year Breakeven Inflation
+  frequency: daily
+  unit: percent
+- series_key: FRED::M2SL
+  series_id: M2SL
+  series_name: M2 Money Supply
+  frequency: monthly
+  unit: billions_usd
+- series_key: FRED::DTWEXBGS
+  series_id: DTWEXBGS
+  series_name: Trade Weighted U.S. Dollar Index
+  frequency: daily
+  unit: index
+- series_key: FRED::VIXCLS
+  series_id: VIXCLS
+  series_name: CBOE Volatility Index
+  frequency: daily
+  unit: index
+- series_key: FRED::BAMLH0A0HYM2
+  series_id: BAMLH0A0HYM2
+  series_name: ICE BofA U.S. High Yield OAS
+  frequency: daily
+  unit: percent
+- series_key: FRED::UNRATE
+  series_id: UNRATE
+  series_name: Unemployment Rate
+  frequency: monthly
+  unit: percent
+module2:
+  minimum_history_days: 200
+  score_history_days: 730
+  signal_thresholds:
+    strong_buy: 80
+    buy: 68
+    hold: 48
+    reduce: 35
+  weights:
+    momentum: 0.25
+    trend: 0.2
+    liquidity: 0.15
+    macro: 0.15
+    risk: 0.15
+    relative_value: 0.1
+  confidence:
+    minimum_complete_components: 4
+    stale_market_days: 3
+    full_history_days: 730
+    provider_agreement_good_pct: 1.0
+    provider_agreement_bad_pct: 7.5
+    liquidity_market_cap_floor: 100000000
+    liquidity_market_cap_full: 100000000000
+  market_regime:
+    lookback_days: 30
+    minimum_assets: 4
+module3:
+  portfolio:
+    monthly_contribution_usd: 1000
+    minimum_cash_weight: 0.1
+    maximum_cash_weight: 0.4
+    core_minimum_total_weight: 0.65
+    maximum_single_asset_weight: 0.45
+    maximum_satellite_weight: 0.15
+    minimum_trade_weight: 0.02
+    core_assets:
+    - bitcoin
+    - ethereum
+  risk:
+    lookback_days: 730
+    risk_free_rate_pct: 4.0
+    minimum_observations: 180
+  scenarios:
+    horizons_years:
+    - 1
+    - 3
+    - 5
+    bear_z: -1.0
+    bull_z: 1.0
+    annual_return_floor_pct: -80
+    annual_return_cap_pct: 150
+module4:
+  valuation:
+    fair_value_weights:
+      trend_anchor: 0.35
+      volatility_anchor: 0.25
+      drawdown_anchor: 0.2
+      score_anchor: 0.2
+    buy_below_discount_pct: 10
+    strong_buy_discount_pct: 20
+    trim_premium_pct: 20
+    overextended_premium_pct: 35
+  dynamic_dca:
+    minimum_multiplier: 0.5
+    maximum_multiplier: 1.5
+    neutral_multiplier: 1.0
+  rebalance:
+    minimum_action_weight_pct: 2.0
+    maximum_position_risk_contribution_pct: 35.0
+module5:
+  return_blend:
+    weights:
+      cagr_1y: 0.2
+      cagr_3y: 0.35
+      cagr_5y: 0.3
+      cagr_since_inception: 0.15
+    min_observations:
+      cagr_1y: 300
+      cagr_3y: 900
+      cagr_5y: 1500
+      cagr_since_inception: 180
+  cycle:
+    ath_drawdown_accumulation_pct: -55
+    ath_drawdown_capitulation_pct: -75
+    overextended_rsi: 72
+    expansion_sma200_pct: 12
+    contraction_sma200_pct: -15
+  expected_return:
+    weights:
+      multi_horizon_return: 0.3
+      valuation: 0.2
+      momentum: 0.15
+      trend_quality: 0.15
+      macro: 0.1
+      market_regime: 0.1
+    annual_return_floor_pct: -60
+    annual_return_cap_pct: 100
+  risk_budget:
+    enforce: true
+    max_iterations: 25
+    tolerance_pct: 0.5
+module6:
+  canonical_history:
+    preferred_market_source: coingecko
+    fallback_exchange_priority:
+    - coinbase
+    - kraken
+    - binance
+    overwrite_fallback_with_preferred: true
+  snapshots:
+    enabled: true
+    history_days: 1095
+    minimum_history_days: 200
+    sampling_frequency_days: 1
+  validation:
+    forward_horizons_days:
+    - 30
+    - 90
+    - 180
+    - 365
+    minimum_completed_horizon_days: 30
+  research:
+    score_bands:
+      strong_buy: 80
+      buy: 68
+      hold: 48
+      reduce: 35
+module7:
+  calibration:
+    primary_horizon_days: 180
+    minimum_samples_per_band: 75
+    score_bin_width: 5
+    minimum_total_samples: 500
+    apply_learned_thresholds_to_live_model: false
+  feature_importance:
+    target: excess_vs_btc_pct
+    ridge_alpha: 10.0
+    minimum_training_rows: 400
+    permutation_repeats: 5
+    random_seed: 42
+  walk_forward:
+    training_days: 730
+    test_days: 90
+    step_days: 90
+    minimum_training_rows: 400
+    minimum_test_rows: 50
+  historical_valuation:
+    horizons_days:
+    - 30
+    - 90
+    - 180
+    - 365
+    minimum_samples: 30
+  confidence:
+    minimum_reliability_samples: 50
+    maximum_calibrated_confidence: 95
+module8:
+  predictive_engine:
+    target_horizon_days: 180
+    minimum_training_rows: 750
+    model_type: gradient_boosting
+    max_iter: 250
+    learning_rate: 0.04
+    max_leaf_nodes: 15
+    min_samples_leaf: 40
+    l2_regularization: 2.0
+    random_seed: 42
+  validation:
+    training_days: 540
+    test_days: 60
+    step_days: 60
+    minimum_training_rows: 1200
+    minimum_test_rows: 120
+    minimum_folds_for_promotion: 3
+  ensemble:
+    maximum_ml_weight: 0.65
+    minimum_ml_weight: 0.0
+    minimum_positive_correlation: 0.05
+    target_top_minus_bottom_pct: 12.0
+    target_directional_accuracy_pct: 55.0
+  explainability:
+    shap_permutations: 160
+    global_permutation_repeats: 8
+    top_features_per_asset: 6
+  retraining:
+    mode: every_run
+    minimum_new_completed_rows: 100
+  regimes:
+    minimum_rows_per_regime: 100
+module9:
+  calibrated_prediction:
+    target_horizon_days: 180
+    lower_winsor_quantile: 0.025
+    upper_winsor_quantile: 0.975
+    minimum_training_rows: 750
+    max_absolute_prediction_pct: 150
+  classification:
+    max_iter: 250
+    learning_rate: 0.04
+    max_leaf_nodes: 15
+    min_samples_leaf: 40
+    l2_regularization: 2.0
+    random_seed: 43
+  walk_forward:
+    training_days: 540
+    test_days: 60
+    step_days: 60
+    minimum_training_rows: 1200
+    minimum_test_rows: 120
+    minimum_folds_for_promotion: 3
+  regimes:
+    minimum_training_rows: 300
+    blend_weight: 0.35
+  promotion:
+    minimum_auc: 0.54
+    minimum_balanced_accuracy_pct: 52
+    minimum_probability_spread_pct: 8
+    maximum_predictive_weight: 0.2
+  confidence:
+    maximum_confidence: 90
+    minimum_confidence: 40
+module10:
+  universe:
+    research_asset_count: 50
+    minimum_market_cap_usd: 250000000
+    minimum_24h_volume_usd: 10000000
+    stablecoin_price_floor: 0.97
+    stablecoin_price_ceiling: 1.03
+    stablecoin_volatility_ceiling_pct: 2.0
+    excluded_symbols:
+    - USDT
+    - USDC
+    - DAI
+    - FDUSD
+    - USDE
+    - PYUSD
+    - TUSD
+    - USDS
+    - WBTC
+    - WETH
+    - STETH
+    - WEETH
+    - CBETH
+    excluded_name_terms:
+    - wrapped
+    - staked
+    - bridged
+    - leveraged
+    - bull
+    - bear
+    - 2x
+    - 3x
+    - 5x
+    core_asset_ids:
+    - bitcoin
+    - ethereum
+    - solana
+    - chainlink
+    - ripple
+    - avalanche-2
+  discovery:
+    coingecko_pages: 2
+    per_page: 100
+    refresh_days: 1
+  history:
+    enabled: true
+    backfill_days: 1095
+    incremental_overlap_days: 5
+    binance_page_limit: 1000
+    max_assets_per_run: 50
+  derivatives:
+    enabled: true
+    funding_history_limit: 100
+    open_interest_enabled: true
+  sentiment:
+    enabled: true
+    fear_greed_history_days: 365
+  defi:
+    enabled: true
+  breadth:
+    lookback_days:
+    - 7
+    - 30
+    - 90
+  calibration:
+    isotonic_enabled: true
+    minimum_calibration_rows: 250
+    maximum_predictive_weight: 0.2
+    minimum_folds_for_live_use: 4
+module11:
+  symbol_mapping:
+    preferred_providers:
+    - binance
+    - coinbase
+    - kraken
+    refresh_days: 7
+    minimum_mapping_confidence: 0.7
+  historical_backfill:
+    target_days: 1095
+    minimum_required_days: 180
+    incremental_overlap_days: 7
+    providers:
+    - binance
+    - coinbase
+    - kraken
+    max_assets_per_run: 50
+  derivatives:
+    enabled: true
+    preferred_provider: binance
+    minimum_supported_assets: 5
+  calibration:
+    isotonic_minimum_rows: 2000
+    platt_minimum_rows: 300
+    maximum_predictive_weight: 0.2
+  taxonomy:
+    enabled: true
+    default_sector: OTHER
+  quality:
+    minimum_history_coverage_pct: 60
+    stale_days: 3
+module12:
+  integrity:
+    minimum_valid_date: '2013-01-01'
+    maximum_future_days: 2
+    delete_invalid_history_rows: true
+    deactivate_unverified_mappings: true
+  mapping:
+    quote_priority:
+    - USD
+    - USDT
+    - USDC
+  history_repair:
+    target_days: 1095
+    minimum_acceptable_days: 180
+    provider_priority:
+    - binance
+    - coinbase
+    - kraken
+    - coingecko
+    coingecko_fallback_days: 365
+    max_assets_per_run: 50
+  derivatives:
+    funding_limit: 100
+  exclusions:
+    remove_asset_ids:
+    - figure-heloc
+    - audiera
+    - stable-2
+    remove_symbols:
+    - XAUT
+    - PAXG
+module13:
+  market_structure:
+    minimum_history_days: 180
+    risk_free_rate_pct: 4.0
+    volatility_windows:
+    - 30
+    - 90
+    correlation_window_days: 180
+    beta_window_days: 180
+    ratio_window_days: 180
+  recommendations:
+    core_only_for_allocations: true
+    minimum_confidence: 45
+    maximum_single_asset_weight: 0.4
+    minimum_cash_weight: 0.05
+    maximum_cash_weight: 0.35
+    core_asset_ids:
+    - bitcoin
+    - ethereum
+    - solana
+    - chainlink
+    - ripple
+    - avalanche-2
+    score_weights:
+      trend: 0.2
+      momentum: 0.15
+      value: 0.15
+      risk_adjusted: 0.2
+      relative_strength: 0.15
+      liquidity: 0.1
+      derivatives: 0.05
+  derivatives:
+    providers:
+    - binance
+    - bybit
+    optional: true
+  exclusions:
+    asset_ids:
+    - figure-heloc
+    - audiera
+    - stable-2
+    - tether-gold
+    - pax-gold
+module14:
+  backtest:
+    start_date: '2023-01-01'
+    rebalance_frequency_days: 30
+    lookback_days: 365
+    minimum_history_days: 180
+    transaction_cost_bps: 15
+    benchmark_asset_id: bitcoin
+  validation:
+    forward_horizons_days:
+    - 30
+    - 90
+    - 180
+    minimum_cross_section_assets: 4
+    minimum_rebalance_periods: 12
+  portfolio:
+    maximum_single_asset_weight: 0.4
+    minimum_cash_weight: 0.05
+    maximum_cash_weight: 0.35
+    risk_penalties:
+      LOW: 1.0
+      MEDIUM: 0.8
+      HIGH: 0.55
+  promotion:
+    minimum_information_ratio: 0.0
+    minimum_hit_rate_pct: 50
+    maximum_drawdown_tolerance_pct: 10
+module15:
+  research:
+    start_date: '2023-01-01'
+    rebalance_frequency_days: 30
+    transaction_cost_bps: 15
+    minimum_history_days: 180
+  walk_forward:
+    training_months: 18
+    testing_months: 6
+    step_months: 6
+    minimum_folds: 3
+  benchmarks:
+    btc_eth_btc_weight: 0.7
+  strategy_variants:
+    baseline:
+      trend_weight: 0.2
+      momentum_weight: 0.15
+      value_weight: 0.15
+      risk_adjusted_weight: 0.2
+      relative_strength_weight: 0.15
+      liquidity_weight: 0.1
+      derivatives_weight: 0.05
+      volatility_penalty_strength: 1.0
+      cash_sensitivity: 1.0
+      maximum_cash_weight: 0.35
+    trend_following:
+      trend_weight: 0.35
+      momentum_weight: 0.25
+      value_weight: 0.05
+      risk_adjusted_weight: 0.1
+      relative_strength_weight: 0.15
+      liquidity_weight: 0.05
+      derivatives_weight: 0.05
+      volatility_penalty_strength: 0.45
+      cash_sensitivity: 0.45
+      maximum_cash_weight: 0.2
+    balanced:
+      trend_weight: 0.25
+      momentum_weight: 0.2
+      value_weight: 0.1
+      risk_adjusted_weight: 0.15
+      relative_strength_weight: 0.2
+      liquidity_weight: 0.05
+      derivatives_weight: 0.05
+      volatility_penalty_strength: 0.7
+      cash_sensitivity: 0.7
+      maximum_cash_weight: 0.25
+    defensive:
+      trend_weight: 0.15
+      momentum_weight: 0.1
+      value_weight: 0.15
+      risk_adjusted_weight: 0.3
+      relative_strength_weight: 0.1
+      liquidity_weight: 0.15
+      derivatives_weight: 0.05
+      volatility_penalty_strength: 1.35
+      cash_sensitivity: 1.35
+      maximum_cash_weight: 0.4
+    relative_strength:
+      trend_weight: 0.25
+      momentum_weight: 0.25
+      value_weight: 0.05
+      risk_adjusted_weight: 0.1
+      relative_strength_weight: 0.25
+      liquidity_weight: 0.05
+      derivatives_weight: 0.05
+      volatility_penalty_strength: 0.55
+      cash_sensitivity: 0.55
+      maximum_cash_weight: 0.2
+  selection:
+    objective_weights:
+      annualized_return: 0.3
+      information_ratio: 0.25
+      drawdown: 0.2
+      benchmark_win_rate: 0.15
+      turnover: 0.1
+    minimum_test_folds: 2
+    minimum_information_ratio: 0.0
+    minimum_benchmark_win_rate_pct: 45
+    maximum_drawdown_pct: -65
+module16:
+  optimization:
+    candidate_count: 300
+    shortlist_count: 25
+    random_seed: 4100
+    minimum_walk_forward_folds: 3
+    cache_enabled: true
+  parameter_space:
+    trend_weight:
+    - 0.1
+    - 0.4
+    momentum_weight:
+    - 0.1
+    - 0.4
+    value_weight:
+    - 0.02
+    - 0.2
+    risk_adjusted_weight:
+    - 0.05
+    - 0.3
+    relative_strength_weight:
+    - 0.05
+    - 0.35
+    liquidity_weight:
+    - 0.02
+    - 0.15
+    derivatives_weight:
+    - 0.0
+    - 0.1
+    volatility_penalty_strength:
+    - 0.0
+    - 1.5
+    cash_sensitivity:
+    - 0.0
+    - 1.5
+    maximum_cash_weight:
+    - 0.05
+    - 0.4
+  ranking:
+    full_sample_weight: 0.3
+    walk_forward_weight: 0.5
+    stability_weight: 0.2
+    minimum_oos_information_ratio: 0.0
+    minimum_oos_benchmark_win_rate_pct: 45
+    maximum_oos_drawdown_pct: -65
+module17:
+  feature_collection:
+    fear_greed_enabled: true
+    fear_greed_url: https://api.alternative.me/fng/
+    request_timeout_seconds: 30
+  feature_engineering:
+    minimum_core_assets: 4
+    breadth_sma_days: 50
+    momentum_window_days: 30
+    stablecoin_growth_days: 30
+    macro_zscore_window_days: 365
+  validation:
+    forward_horizons_days:
+    - 30
+    - 90
+    - 180
+    minimum_observations: 60
+  readiness:
+    minimum_history_days: 180
+    minimum_non_null_pct: 60
+    minimum_predictive_features: 2
+  manual_inputs:
+    etf_flows_csv: data/manual/crypto_etf_flows.csv
+module18:
+  collection:
+    enabled: true
+    url: https://stablecoins.llama.fi/stablecoincharts/all
+    timeout_seconds: 45
+  horizons_days:
+  - 30
+  - 90
+  - 180
+  interactions:
+    maximum_features: 10
+    maximum_pairs: 45
+    minimum_observations: 180
+  permutation:
+    enabled: true
+    n_estimators: 300
+    n_repeats: 10
+    random_state: 4201
+    minimum_observations: 365
+  regimes:
+    sma_days: 200
+    momentum_days: 90
+    minimum_observations: 45
+  readiness:
+    minimum_history_days: 180
+    minimum_active_window_coverage_pct: 80
+    minimum_absolute_spearman: 0.05
+module19:
+  horizons_days:
+  - 30
+  - 90
+  - 180
+  validation:
+    minimum_observations: 120
+  rolling:
+    training_months: 18
+    testing_months: 6
+    step_months: 6
+    minimum_training_observations: 180
+    minimum_testing_observations: 45
+  permutation:
+    training_fraction: 0.75
+    minimum_training_rows: 180
+    minimum_testing_rows: 45
+    n_estimators: 250
+    n_repeats: 8
+    min_samples_leaf: 12
+    random_state: 422
+  promotion:
+    minimum_history_days: 365
+    minimum_active_window_coverage_pct: 80
+    minimum_rolling_windows: 3
+    minimum_window_absolute_spearman: 0.05
+    minimum_regime_absolute_spearman: 0.1
+    minimum_sign_consistency_pct: 55
+    minimum_stable_regimes: 2
+    target_history_days: 1095
+    target_absolute_spearman: 0.25
+    target_positive_windows: 5
+    target_stable_regimes: 3
+    target_permutation_importance: 0.05
+    watchlist_score: 50
+    promoted_shadow_score: 68
+module20:
+  horizons_days:
+  - 30
+  - 90
+  - 180
+  models:
+    training_fraction: 0.75
+    minimum_total_rows: 365
+    minimum_training_rows: 240
+    minimum_testing_rows: 60
+    n_estimators: 250
+    gradient_estimators: 200
+    hist_iterations: 250
+    learning_rate: 0.04
+    max_depth: 3
+    max_leaf_nodes: 15
+    min_samples_leaf: 15
+    l2_regularization: 1.0
+    random_state: 423
+  explainability:
+    n_repeats: 8
+  redundancy:
+    absolute_correlation_threshold: 0.85
+    minimum_observations: 180
+  aging:
+    recent_windows: 6
+    full_decay_days: 120
+    target_recent_absolute_spearman: 0.2
+    minimum_recent_sign_consistency_pct: 55
+    shadow_minimum_score: 60
+    watchlist_minimum_score: 40
+  shadow:
+    zscore_lookback_days: 365
+    minimum_feature_history: 120
+    neutral_btc_weight: 0.7
+    signal_weight_slope: 0.12
+    minimum_btc_weight: 0.2
+    maximum_btc_weight: 1.0
+    transaction_cost_bps: 15
+    fallback_minimum_aged_score: 55
+    minimum_excess_return_pct: 0
+    minimum_information_ratio: 0
+    maximum_drawdown_floor_pct: -65
+module21:
+  horizons_days:
+  - 30
+  - 90
+  - 180
+  governance:
+    permitted_statuses:
+    - PROMOTED_SHADOW
+  signals:
+    zscore_window_days: 365
+    minimum_zscore_history: 120
+  probabilities:
+    training_fraction: 0.75
+    minimum_total_rows: 365
+    minimum_training_rows: 240
+    minimum_testing_rows: 60
+    max_iterations: 250
+    learning_rate: 0.04
+    max_leaf_nodes: 15
+    min_samples_leaf: 20
+    l2_regularization: 1.0
+    random_state: 500
+    minimum_acceptable_auc: 0.55
+    maximum_acceptable_brier: 0.27
+  decision:
+    governed_signal_weight: 0.45
+    regime_weight: 0.25
+    probability_weight: 0.2
+    risk_weight: 0.35
+    maximum_rationales: 8
+    stance_thresholds:
+      strong_buy: 1.0
+      buy: 0.35
+      hold: -0.2
+      reduce: -0.8
+  allocation:
+    minimum_btc_weight: 0.2
+    neutral_btc_weight: 0.7
+    maximum_btc_weight: 1.0
+    action_score_slope: 0.15
+    weak_model_multiplier: 0.5
+  shadow:
+    rebalance_days: 30
+    transaction_cost_bps: 15
+    minimum_excess_return_pct: 0
+    minimum_information_ratio: 0
+    maximum_drawdown_floor_pct: -65
+module22:
+  horizons_days:
+  - 30
+  - 90
+  - 180
+  models:
+    maximum_features: 24
+    minimum_coverage: 0.65
+    training_fraction: 0.75
+    minimum_total_rows: 365
+    minimum_training_rows: 240
+    minimum_testing_rows: 60
+    random_state: 510
+  allocation:
+    base_cash_weight: 0.12
+    minimum_cash_weight: 0.03
+    maximum_cash_weight: 0.45
+    risk_off_cash_slope: 0.1
+    maximum_asset_weight: 0.4
+  portfolio:
+    rebalance_days: 30
+    transaction_cost_bps: 15
+  walk_forward:
+    training_months: 24
+    testing_months: 6
+    step_months: 6
+  promotion:
+    minimum_excess_return_pct: 0
+    minimum_information_ratio: 0
+    maximum_drawdown_floor_pct: -65
+module23:
+  audit:
+    return_error_tolerance_pct: 0.0001
+    expected_rebalance_days: 30
+  labels:
+    minimum_acceptable_auc: 0.55
+    minimum_inverted_auc: 0.6
+  bootstrap:
+    simulations: 10000
+    seed: 511
+  promotion:
+    minimum_probability_excess_positive: 0.95
+    minimum_corrected_excess_pct: 0
+    minimum_information_ratio: 0
+module24:
+  candidate_search:
+    candidate_count: 180
+    shortlist_count: 5
+    random_seed: 600
+  portfolio:
+    rebalance_days: 30
+    transaction_cost_bps: 15
+  walk_forward:
+    training_months: 24
+    testing_months: 6
+    step_months: 6
+  bootstrap:
+    simulations: 10000
+    seed: 600
+  promotion:
+    maximum_reconciliation_error_pct: 0.0001
+    maximum_weak_label_horizons: 1
+    minimum_excess_return_pct: 0
+    minimum_information_ratio: 0
+    minimum_bootstrap_probability: 0.95
+module25:
+  features:
+    minimum_completeness_pct: 70
+  models:
+    minimum_model_rows: 365
+    random_state: 700
+  ensemble:
+    gmm_weight: 0.35
+    kmeans_weight: 0.2
+    rule_weight: 0.35
+    change_weight: 0.1
+    probability_smoothing: 0.75
+  validation:
+    minimum_classified_days: 365
+    minimum_mean_confidence: 0.22
+    maximum_daily_switch_rate: 0.2
+    minimum_mean_model_agreement: 0.4
+    minimum_reproducibility_pct: 100
+module25_validation:
+  walk_forward:
+    minimum_training_days: 365
+    test_days: 90
+    random_state: 703
+  events:
+    days_before: 14
+    days_after: 30
+  validation:
+    minimum_walk_forward_agreement_pct: 55
+    maximum_calibration_mae: 0.2
+    minimum_sensitivity_stability_pct: 70
+module26:
+  feature_selection:
+    minimum_coverage: 0.7
+    minimum_features: 6
+    maximum_features: 10
+    maximum_pairwise_correlation: 0.88
+  models:
+    random_state: 710
+  nested_walk_forward:
+    minimum_training_days: 540
+    outer_test_days: 90
+    inner_validation_days: 120
+  ensemble_search:
+    gmm_weights:
+    - 0.25
+    - 0.35
+    - 0.45
+    kmeans_weights:
+    - 0.1
+    - 0.2
+    rule_weights:
+    - 0.2
+    - 0.3
+    - 0.4
+    markov_weights:
+    - 0.1
+    - 0.2
+    - 0.3
+    smoothing_values:
+    - 0.55
+    - 0.7
+    - 0.82
+  validation:
+    minimum_nested_agreement_pct: 55
+    maximum_calibrated_mae: 0.18
+    minimum_sensitivity_stability_pct: 70
+module27:
+  models:
+    random_state: 720
+  random_search:
+    seed: 720
+    candidates_per_fold: 240
+  nested_walk_forward:
+    minimum_training_days: 540
+    inner_validation_days: 120
+    outer_test_days: 90
+  sensitivity:
+    candidates_per_scenario: 80
+  validation:
+    minimum_nested_agreement_pct: 55
+    maximum_calibrated_mae: 0.15
+    minimum_empirical_stability_pct: 75
+module28:
+  models:
+    random_state: 730
+  feature_selection:
+    permutation_repeats: 8
+    minimum_core_features: 6
+    maximum_features: 12
+    maximum_pairwise_correlation: 0.88
+  adaptive_search:
+    seed: 730
+    initial_candidates: 140
+    generation_candidates: 100
+    generations: 3
+    elite_count: 18
+  meta_ensemble:
+    top_candidates: 5
+    temperature: 4.0
+  nested_walk_forward:
+    minimum_training_days: 540
+    inner_validation_days: 120
+    outer_test_days: 90
+  robustness:
+    initial_candidates: 60
+    generation_candidates: 40
+    generations: 2
+  validation:
+    minimum_nested_agreement_pct: 55
+    maximum_calibrated_mae: 0.15
+    minimum_meta_stability_pct: 75
+  sklearn_compatibility_release: 7.3.1
+module29:
+  models:
+    random_state: 800
+  feature_evidence:
+    minimum_coverage: 0.7
+    permutation_repeats: 8
+  walk_forward:
+    minimum_training_days: 540
+    test_days: 90
+  bootstrap:
+    iterations: 300
+    top_features_per_iteration: 8
+    seed: 800
+  rolling:
+    window_days: 365
+    step_days: 90
+    permutation_repeats: 5
+  selection:
+    minimum_stability_score: 55
+    minimum_positive_fold_rate_pct: 40
+    minimum_bootstrap_selection_rate_pct: 30
+    maximum_stable_features: 8
+    minimum_core_features: 5
+    maximum_pairwise_correlation: 0.88
+  validation:
+    minimum_stable_model_accuracy_pct: 55
+    minimum_worst_fold_accuracy_pct: 20
+    maximum_representation_features: 2
+module30:
+  features:
+    minimum_stable_features: 5
+  models:
+    random_state: 810
+    gradient_weight_candidates:
+    - 0.0
+    - 0.25
+    - 0.5
+    - 0.6
+    - 0.75
+    - 1.0
+  validation:
+    minimum_training_days: 540
+    internal_validation_days: 120
+    outer_test_days: 90
+  drift:
+    recent_window_days: 90
+  promotion:
+    minimum_accuracy_pct: 55
+    maximum_log_loss: 1.5
+    minimum_outer_folds: 4
+    minimum_observation_days: 180
+  confidence:
+    high_probability: 0.7
+    high_agreement: 0.8
+    moderate_probability: 0.5
+    moderate_agreement: 0.55
+module31:
+  persistence:
+    smoothing_values:
+    - 0.0
+    - 0.25
+    - 0.5
+    - 0.7
+    transition_strength_values:
+    - 0.0
+    - 0.5
+    - 1.0
+    - 1.5
+  forward_returns:
+    horizons_days:
+    - 30
+    - 60
+    - 90
+  validation:
+    minimum_accuracy_pct: 55
+    maximum_log_loss: 1.75
+module32:
+  feature_stability:
+    minimum_training_days: 365
+    test_days: 90
+  probability_drift:
+    baseline_days: 180
+    window_days:
+    - 30
+    - 60
+    - 90
+  retraining:
+    minimum_training_days: 365
+    gradient_weight: 0.6
+  benchmarks:
+    transaction_cost_bps: 10
+  validation:
+    maximum_retraining_log_loss: 1.75
+    minimum_synthetic_pass_rate_pct: 80
+module33:
+  transaction_cost_bps: 10
+  cost_sensitivity_bps:
+  - 10
+  - 25
+  - 50
+  drift:
+    rolling_reference_days: 180
+    window_days:
+    - 30
+    - 60
+    - 90
+  optimization:
+    temperatures:
+    - 1.2
+    - 1.5
+    - 1.8
+    probability_floors:
+    - 0.01
+    - 0.025
+    switch_margins:
+    - 0.05
+    - 0.1
+    - 0.15
+    minimum_hold_days:
+    - 7
+    - 14
+    - 30
+    confidence_floors:
+    - 0.3
+    - 0.4
+    - 0.5
+    maximum_risk_exposures:
+    - 0.6
+    - 0.8
+    - 1.0
+  validation:
+    maximum_turnover_pct: 250
+    minimum_cost_pass_rate_pct: 66.67
+module34:
+  transaction_cost_bps: 10
+  cost_sensitivity_bps:
+  - 10
+  - 25
+  - 50
+  drift:
+    reference_days: 120
+    window_days:
+    - 30
+    - 60
+    - 90
+  optimization:
+    rebalance_frequency_days:
+    - 1
+    - 7
+    - 14
+    rebalance_band_pct:
+    - 2.5
+    - 5.0
+    - 10.0
+    minimum_trade_pct:
+    - 1.0
+    - 2.5
+    - 5.0
+    exposure_smoothing_alpha:
+    - 0.1
+    - 0.2
+    - 0.35
+    annual_turnover_budget_pct:
+    - 100
+    - 150
+    - 250
+  validation:
+    maximum_turnover_pct: 250
+    minimum_cost_pass_rate_pct: 66.67
+module35:
+  lookback_days: 180
+  max_asset_weight: 0.45
+  target_volatility_pct: 12.0
+module36:
+  lookback_days: 365
+  target_volatility_pct: 10.0
+module37:
+  lookback_days: 365
+  covariance_ridge: 1.0e-06
+  frontier_points: 25
+  expected_returns:
+    historical_weight: 0.4
+    regime_weight: 0.4
+    prior_weight: 0.2
+  constraints:
+    minimum_asset_weight: 0.0
+    maximum_asset_weight: 0.025
+    minimum_cash_weight: 0.75
+    maximum_risky_exposure: 0.25
+  optimization:
+    turnover_penalty: 12.0
+    concentration_penalty: 0.75
+    risk_aversion: 2.5
+  validation:
+    maximum_concentration_pct: 40.0
+    maximum_turnover_pct: 25.0
+    minimum_active_share_for_ir_pct: 5.0
+module38:
+  horizons_days:
+  - 7
+  - 30
+  - 90
+  - 180
+  - 365
+  portfolio_summary_horizon_days: 90
+  minimum_training_rows: 450
+  validation_rows: 120
+  absolute_minimum_training_rows: 90
+  minimum_validation_rows: 30
+  maximum_validation_share: 0.25
+  random_state: 1000
+  transition_smoothing: 1.0
+  regime_adjustment_strength: 0.03
+  optimizer_feedback:
+    predictive_weight: 0.35
+module39:
+  conformal_alpha: 0.1
+  rolling_folds: 3
+  minimum_training_rows: 90
+  validation:
+    maximum_brier: 0.25
+    minimum_interval_coverage_pct: 80.0
+    minimum_directional_accuracy_pct: 55.0
+    minimum_realized_scorecards: 6
+  minimum_calibration_rows: 30
+  minimum_total_calibration_rows: 180
+  minimum_stability_snapshots: 5
+module40:
+  minimum_matured_forecasts: 30
+  retraining_mae_multiplier: 1.25
+  transactional_persistence: true
+  validate_before_commit: true
+  recover_interrupted_runs: true
+  canonical_identity:
+  - forecast_date
+  - asset_id
+  - horizon_days
+  model_version_is_lineage: true
+  canonical_rebuild_engine: true
+module41:
+  minimum_matured_forecasts: 30
+module42:
+  historical_lookback_days: 730
+  minimum_matured_for_live: 30
+  minimum_cash_portfolio_pct: 75.0
+  maximum_crypto_portfolio_pct: 25.0
+  maximum_asset_portfolio_pct: 8.0
+  minimum_buy_score: 52.0
+  accumulating_evidence_multiplier: 0.35
+  minimum_confidence_multiplier: 0.2
+  reduce_target_fraction: 0.5
+  material_trade_weight_pct: 0.5
+  weight_change_tolerance_pct: 0.05
+  long_range_neutral_annual_return: 0.08
+  long_range_weights:
+    forecast: 0.35
+    historical: 0.25
+    neutral_prior: 0.4
+  maximum_regime_annual_adjustment: 0.12
+  minimum_long_range_annual_return: -0.35
+  maximum_long_range_annual_return: 0.6
+  maximum_projection_volatility: 1.25
+  scenario_standard_deviations: 1.0
+  confidence_half_life_days: 730
+module43:
+  material_change_threshold: 20.0
+  scale_in_score: 52.0
+  buy_score: 65.0
+  strong_buy_score: 78.0
+  minimum_upgrade_confidence: 0.45
+  buy_confidence: 0.55
+  minimum_upgrade_30d_return: 0.0
+  minimum_upgrade_3m_return: 2.0
+  downgrade_score: 35.0
+  downgrade_30d_return: -20.0
+module44:
+  minimum_matured_decisions: 30
+  neutral_action_tolerance_pct: 2.0

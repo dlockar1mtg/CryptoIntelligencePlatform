@@ -1,0 +1,72 @@
+assets:
+  - asset_id: bitcoin
+    symbol: BTC
+    asset_name: Bitcoin
+    coingecko_id: bitcoin
+    coinbase_product: BTC-USD
+    kraken_pair: XBTUSD
+    binance_symbol: BTCUSDT
+    asset_tier: core
+    portfolio_enabled: true
+    research_enabled: true
+    native_chain: bitcoin
+
+  - asset_id: ethereum
+    symbol: ETH
+    asset_name: Ethereum
+    coingecko_id: ethereum
+    coinbase_product: ETH-USD
+    kraken_pair: ETHUSD
+    binance_symbol: ETHUSDT
+    asset_tier: core
+    portfolio_enabled: true
+    research_enabled: true
+    native_chain: ethereum
+
+  - asset_id: solana
+    symbol: SOL
+    asset_name: Solana
+    coingecko_id: solana
+    coinbase_product: SOL-USD
+    kraken_pair: SOLUSD
+    binance_symbol: SOLUSDT
+    asset_tier: satellite
+    portfolio_enabled: false
+    research_enabled: true
+    native_chain: solana
+
+  - asset_id: chainlink
+    symbol: LINK
+    asset_name: Chainlink
+    coingecko_id: chainlink
+    coinbase_product: LINK-USD
+    kraken_pair: LINKUSD
+    binance_symbol: LINKUSDT
+    asset_tier: satellite
+    portfolio_enabled: false
+    research_enabled: true
+    native_chain: ethereum
+
+  - asset_id: xrp
+    symbol: XRP
+    asset_name: XRP
+    coingecko_id: ripple
+    coinbase_product: XRP-USD
+    kraken_pair: XRPUSD
+    binance_symbol: XRPUSDT
+    asset_tier: satellite
+    portfolio_enabled: false
+    research_enabled: true
+    native_chain: xrp-ledger
+
+  - asset_id: avalanche
+    symbol: AVAX
+    asset_name: Avalanche
+    coingecko_id: avalanche-2
+    coinbase_product: AVAX-USD
+    kraken_pair: AVAXUSD
+    binance_symbol: AVAXUSDT
+    asset_tier: satellite
+    portfolio_enabled: false
+    research_enabled: true
+    native_chain: avalanche
