@@ -300,6 +300,12 @@ def load_all() -> tuple[dict[str, Any], list[dict[str, Any]]]:
     return settings, assets
 
 def path_for(settings: dict[str, Any], key: str) -> Path:
+    if key == "database_path":
+        override = os.getenv("CRYPTO_DATABASE_PATH", "").strip()
+
+        if override:
+            return Path(override).expanduser().resolve()
+
     p = Path(settings["platform"][key])
     return p if p.is_absolute() else ROOT / p
 
