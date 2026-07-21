@@ -243,13 +243,16 @@ module_number,module_path,risk_type,line_number,line_text
 26,crypto_platform/module26.py,full_sample_scaler_fit,122,"j=f[cols].join(l['dominant_regime']).dropna(); y=j['dominant_regime'].map({r:i for i,r in enumerate(REGIMES)}).astype(int); X=j[cols]; mi=mutual_info_classif(StandardScaler().fit_transform(X),y,random_state=int(self.cfg['models']['random_st"
 26,crypto_platform/module26.py,global_normalization,95,return [c for c in f.columns if c not in skip and pd.api.types.is_numeric_dtype(f[c]) and f[c].notna().mean()>=float(self.cfg['feature_selection']['minimum_coverage'])]
 26,crypto_platform/module26.py,global_normalization,124,"med=X[c].rolling(180,min_periods=90).median(); pred=np.where(X[c]>=med,1,0); target=y.isin([0,1,2]).astype(int); valid=~pd.isna(med); agr=float((pred[valid]==target[valid]).mean()*100) if valid.any() else 0; stab=float(100*(1-X[c].diff().ab"
-26,crypto_platform/module26.py,global_normalization,155,"agr=accuracy_score(itest['dominant_regime'],labs)*100; raw=np.array([p.max() for p in ps]); correct=np.array([a==b for a,b in zip(itest['dominant_regime'],labs)],float); mae=float(np.mean(np.abs(raw-correct))); obj=agr-mae*40; scored.append"
-26,crypto_platform/module26.py,global_normalization,159,"for comp,actual in zip(comps,itest['dominant_regime']): p=self.combine(comp,best[1],prev); prev=p; lab=REGIMES[int(np.argmax(p))]; raw.append(float(p.max())); corr.append(float(lab==actual))"
-26,crypto_platform/module26.py,global_normalization,164,"p=self.combine(comp,best[1],prev); prev=p; lab=REGIMES[int(np.argmax(p))]; rc=float(p.max()); cc=float(iso.predict([rc])[0]) if iso is not None else rc"
-26,crypto_platform/module26.py,global_normalization,165,"preds.append({'run_id':self.run_id,'outer_fold':fold,'observation_date':date.date(),'training_start_date':train.index.min().date(),'training_end_date':train.index.max().date(),'testing_start_date':test.index.min().date(),'testing_end_date':"
-26,crypto_platform/module26.py,global_normalization,172,"raw=float(g['raw_confidence'].mean()); cal=float(g['calibrated_confidence'].mean()); obs=float(g['correct'].mean()); rows.append({'run_id':self.run_id,'confidence_bin':str(label),'observations':len(g),'mean_raw_confidence':raw,'mean_calibra"
-26,crypto_platform/module26.py,global_normalization,175,"base=float(p['label_match'].mean()*100) if not p.empty else 0; cur=p.iloc[-1] if not p.empty else None; scenarios=[('FEATURE_MINUS_1',max(len(sel)-1,3),0,0),('FEATURE_PLUS_1',len(sel)+1,0,0),('SMOOTHING_MINUS_05',len(sel),-.05,0),('SMOOTHIN"
-26,crypto_platform/module26.py,global_normalization,184,agr=float(pred['label_match'].mean()*100) if not pred.empty else 0; raw=float(cal['raw_absolute_error'].mean()) if not cal.empty else 1; mae=float(cal['calibrated_absolute_error'].mean()) if not cal.empty else 1; stability=float(sens['label
+26,crypto_platform/module26.py,global_normalization,246,raw=np.array([probability.max() for probability in ps])
+26,crypto_platform/module26.py,global_normalization,291,raw.append(float(probability.max()))
+26,crypto_platform/module26.py,global_normalization,322,raw_confidence=float(probability.max())
+26,crypto_platform/module26.py,global_normalization,332,"'training_start_date':train.index.min().date(),"
+26,crypto_platform/module26.py,global_normalization,333,"'training_end_date':train.index.max().date(),"
+26,crypto_platform/module26.py,global_normalization,334,"'testing_start_date':test.index.min().date(),"
+26,crypto_platform/module26.py,global_normalization,335,"'testing_end_date':test.index.max().date(),"
+26,crypto_platform/module26.py,global_normalization,359,"raw=float(g['raw_confidence'].mean()); cal=float(g['calibrated_confidence'].mean()); obs=float(g['correct'].mean()); rows.append({'run_id':self.run_id,'confidence_bin':str(label),'observations':len(g),'mean_raw_confidence':raw,'mean_calibra"
+26,crypto_platform/module26.py,global_normalization,362,"base=float(p['label_match'].mean()*100) if not p.empty else 0; cur=p.iloc[-1] if not p.empty else None; scenarios=[('FEATURE_MINUS_1',max(len(sel)-1,3),0,0),('FEATURE_PLUS_1',len(sel)+1,0,0),('SMOOTHING_MINUS_05',len(sel),-.05,0),('SMOOTHIN"
+26,crypto_platform/module26.py,global_normalization,371,agr=float(pred['label_match'].mean()*100) if not pred.empty else 0; raw=float(cal['raw_absolute_error'].mean()) if not cal.empty else 1; mae=float(cal['calibrated_absolute_error'].mean()) if not cal.empty else 1; stability=float(sens['label
 27,crypto_platform/module27.py,global_normalization,218,logits -= logits.max()
 27,crypto_platform/module27.py,global_normalization,306,short_vol = btc.rolling(30).std() * math.sqrt(365)
 27,crypto_platform/module27.py,global_normalization,307,long_vol = btc.rolling(90).std() * math.sqrt(365)
@@ -287,20 +290,20 @@ module_number,module_path,risk_type,line_number,line_text
 28,crypto_platform/module28.py,global_normalization,582,grouped_means = x.groupby(y)[feature].mean()
 28,crypto_platform/module28.py,global_normalization,584,grouped_means.std()
 28,crypto_platform/module28.py,global_normalization,585,"/ max(x[feature].std(), 1e-9)"
-28,crypto_platform/module28.py,global_normalization,724,(objectives-objectives.max())
-28,crypto_platform/module28.py,global_normalization,764,inner_raw = np.array([p.max() for p in inner_meta])
-28,crypto_platform/module28.py,global_normalization,818,raw_values = np.array([p.max() for p in outer_probabilities])
-28,crypto_platform/module28.py,global_normalization,838,"""training_start_date"": train.index.min().date(),"
-28,crypto_platform/module28.py,global_normalization,839,"""training_end_date"": train.index.max().date(),"
-28,crypto_platform/module28.py,global_normalization,840,"""testing_start_date"": test.index.min().date(),"
-28,crypto_platform/module28.py,global_normalization,841,"""testing_end_date"": test.index.max().date(),"
-28,crypto_platform/module28.py,global_normalization,862,"""testing_start_date"": test.index.min().date(),"
-28,crypto_platform/module28.py,global_normalization,863,"""testing_end_date"": test.index.max().date(),"
-28,crypto_platform/module28.py,global_normalization,867,"""agreement_pct"": float(correctness.mean()*100),"
-28,crypto_platform/module28.py,global_normalization,926,).mean()*100)
+28,crypto_platform/module28.py,global_normalization,795,(objectives-objectives.max())
+28,crypto_platform/module28.py,global_normalization,835,inner_raw = np.array([p.max() for p in inner_meta])
+28,crypto_platform/module28.py,global_normalization,889,raw_values = np.array([p.max() for p in outer_probabilities])
+28,crypto_platform/module28.py,global_normalization,909,"""training_start_date"": train.index.min().date(),"
+28,crypto_platform/module28.py,global_normalization,910,"""training_end_date"": train.index.max().date(),"
+28,crypto_platform/module28.py,global_normalization,911,"""testing_start_date"": test.index.min().date(),"
+28,crypto_platform/module28.py,global_normalization,912,"""testing_end_date"": test.index.max().date(),"
+28,crypto_platform/module28.py,global_normalization,933,"""testing_start_date"": test.index.min().date(),"
+28,crypto_platform/module28.py,global_normalization,934,"""testing_end_date"": test.index.max().date(),"
 28,crypto_platform/module28.py,global_normalization,938,"""agreement_pct"": float(correctness.mean()*100),"
-28,crypto_platform/module28.py,global_normalization,973,"predictions[""label_match""].mean()*100"
-28,crypto_platform/module28.py,global_normalization,987,"float(nonprimary[""agreement_with_primary_pct""].mean())"
+28,crypto_platform/module28.py,global_normalization,997,).mean()*100)
+28,crypto_platform/module28.py,global_normalization,1009,"""agreement_pct"": float(correctness.mean()*100),"
+28,crypto_platform/module28.py,global_normalization,1047,"predictions[""label_match""].mean()*100"
+28,crypto_platform/module28.py,global_normalization,1061,"float(nonprimary[""agreement_with_primary_pct""].mean())"
 29,crypto_platform/module29.py,global_normalization,362,if frame[c].notna().mean() >= minimum_coverage
 29,crypto_platform/module29.py,global_normalization,451,"""training_start_date"": train.index.min().date(),"
 29,crypto_platform/module29.py,global_normalization,452,"""training_end_date"": train.index.max().date(),"

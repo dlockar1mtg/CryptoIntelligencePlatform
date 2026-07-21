@@ -18,7 +18,7 @@ before integration with the Universal Investment Platform.
 | Transaction-cost modeling present | PASS |
 | Benchmark comparison present | PASS |
 | Forecast calibration present | PASS |
-| Feature-selection leakage protection | FAIL |
+| Feature-selection leakage protection | PASS — REMEDIATED |
 | Performance-drift monitoring | NOT IMPLEMENTED |
 | Universal integration certification | BLOCKED |
 
@@ -29,7 +29,7 @@ before integration with the Universal Investment Platform.
 The model must not be treated as Universal Integration Certified until
 the blocking findings below are corrected and independently retested.
 
-## Blocking Finding CRYPTO-ROBUST-001
+## Remediated Finding CRYPTO-ROBUST-001
 
 ### Modules affected
 
@@ -90,6 +90,38 @@ For each outer fold:
 6. Record the fold-specific selected feature list.
 7. Aggregate only genuinely unseen outer-test results.
 
+
+### Remediation implemented
+
+Modules 26 and 28 now:
+
+1. Begin production nested validation with all eligible candidate features.
+2. Construct outer-training and outer-test periods chronologically.
+3. Select features independently from each outer-training period.
+4. Use the fold-specific feature list for inner validation.
+5. Use the same frozen fold-specific list for the corresponding outer test.
+6. Record the fold-specific feature list with each prediction.
+7. Prevent future outer-test rows from affecting an earlier fold's training input.
+
+### Verification evidence
+
+The remediation is protected by:
+
+- Structural contract tests confirming fold-local selectors exist.
+- Structural tests confirming nested validation calls those selectors.
+- Behavioral tests that materially alter future rows.
+- Assertions that earlier outer-training frames remain unchanged.
+- Assertions that earlier fold feature records remain unchanged.
+- Full-suite regression testing.
+- Complete Python compilation testing.
+
+### Remediation result
+
+**CRYPTO-ROBUST-001: PASS — REMEDIATED**
+
+The crypto platform remains **RESEARCH ONLY** because
+CRYPTO-ROBUST-002, performance-drift monitoring, remains open.
+
 ## Blocking Finding CRYPTO-ROBUST-002
 
 ### Modules affected
@@ -129,7 +161,7 @@ research-only statuses when degradation thresholds are crossed.
 
 The crypto platform remains **RESEARCH ONLY** until:
 
-- CRYPTO-ROBUST-001 is remediated and tested.
+- CRYPTO-ROBUST-001 remains remediated and continuously tested.
 - CRYPTO-ROBUST-002 is implemented and tested.
 - Historical validation is rerun from clean inputs.
 - Cost-adjusted benchmark results are reproduced.

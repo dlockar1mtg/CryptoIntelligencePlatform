@@ -647,6 +647,73 @@ class Module28Runner:
         result["selection_rank"] = result["feature_key"].map(ranks)
         return result, retained
 
+    def select_features_for_fold(
+        self,
+        train,
+        candidate_features=None,
+    ):
+        if "dominant_regime" not in train.columns:
+            raise ValueError(
+                "Fold training data must contain dominant_regime."
+            )
+        excluded = {
+            "dominant_regime",
+            "run_id",
+            "calculated_at_utc",
+        }
+        available = [
+            column
+            for column in train.columns
+            if column not in excluded
+            and pd.api.types.is_numeric_dtype(train[column])
+        ]
+        if candidate_features is not None:
+            allowed = set(candidate_features)
+            available = [
+                column
+                for column in available
+                if column in allowed
+            ]
+        if not available:
+            raise ValueError(
+                "No eligible fold-local features are available."
+            )
+        maximum_features = int(
+            self.cfg["feature_selection"]["maximum_features"]
+        )
+        core_features = [
+            feature
+            for feature in available
+            if feature in CORE_FEATURES
+        ]
+        representation_features = [
+            feature
+            for feature in available
+            if feature not in CORE_FEATURES
+        ]
+        if train["dominant_regime"].nunique() < 2:
+            fallback = (
+                core_features + representation_features
+            )[:maximum_features]
+            if not fallback:
+                raise ValueError(
+                    "Fold-local fallback returned no features."
+                )
+            return fallback
+        fold_frame = train[
+            available + ["dominant_regime"]
+        ].copy()
+        _, retained = self.feature_selection(
+            fold_frame,
+            core_features,
+            representation_features,
+        )
+        if not retained:
+            raise ValueError(
+                "Fold-local feature selection returned no features."
+            )
+        return retained
+
     def calibrators(self, raw, correct):
         results = {}
         # Isotonic.
@@ -706,12 +773,16 @@ class Module28Runner:
             if len(test)==0 or len(train)<=inner_days+240:
                 break
             fold += 1
+            fold_retained = self.select_features_for_fold(
+                train,
+                retained,
+            )
             inner_train = train.iloc[:-inner_days]
             inner_test = train.iloc[-inner_days:]
             inner_components = self.components(
-                inner_train[retained],
+                inner_train[fold_retained],
                 inner_train["dominant_regime"],
-                inner_test[retained],
+                inner_test[fold_retained],
             )
             scored = self.adaptive_search(
                 inner_components,
@@ -794,9 +865,9 @@ class Module28Runner:
                 })
 
             outer_components = self.components(
-                train[retained],
+                train[fold_retained],
                 train["dominant_regime"],
-                test[retained],
+                test[fold_retained],
             )
             candidate_outer_results = []
             for _,candidate,_ in selected:
@@ -839,7 +910,7 @@ class Module28Runner:
                     "training_end_date": train.index.max().date(),
                     "testing_start_date": test.index.min().date(),
                     "testing_end_date": test.index.max().date(),
-                    "retained_features_json": json.dumps(retained),
+                    "retained_features_json": json.dumps(fold_retained),
                     "meta_candidates_json": json.dumps(selected_ids,sort_keys=True),
                     "calibration_method": selected_method,
                     "actual_regime": act,
@@ -862,7 +933,7 @@ class Module28Runner:
                 "testing_start_date": test.index.min().date(),
                 "testing_end_date": test.index.max().date(),
                 "test_days": len(test),
-                "retained_features": len(retained),
+                "retained_features": len(fold_retained),
                 "meta_candidates": len(selected),
                 "agreement_pct": float(correctness.mean()*100),
                 "raw_calibration_mae": float(
@@ -956,8 +1027,11 @@ class Module28Runner:
             feature_research,retained = self.feature_selection(
                 frame,core_features,rep_features
             )
+            candidate_features = list(dict.fromkeys(
+                core_features + rep_features
+            ))
             search,predictions,calibration,folds = self.nested_run(
-                frame,retained
+                frame,candidate_features
             )
             robustness = self.robustness(
                 frame,retained,predictions
