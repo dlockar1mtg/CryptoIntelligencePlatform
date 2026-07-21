@@ -1,0 +1,24 @@
+﻿Crypto Intelligence Platform Runtime Baseline
+=============================================
+
+Captured: 2026-07-21T09:21:14-05:00
+Branch: integration/universal-platform-v1
+Commit: 3215bbd2fbba75c69f6bcbfe0d43fb63b5981620
+Python: Python 3.14.6
+Pip: pip 26.1.2 from C:\Users\DevonLockard\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pip (python 3.14) 
+Platform version: 13.0.0
+Baseline tag: crypto-v13.0.0-baseline
+
+Validation Results
+------------------
+Dependency imports: PASS
+Python compilation: PASS
+Pytest discovery: NOT CONFIGURED
+Tests collected: 0
+Tests executed: 0
+
+Notes
+-----
+The repository contains historical files named test_*.py, but pytest did
+not discover runnable tests from the current repository structure.
+This is a test-organization gap, not a runtime or compilation failure.
