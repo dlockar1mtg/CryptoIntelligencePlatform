@@ -74,8 +74,8 @@ Results:
 - Compilation checks: passed
 - Git whitespace validation: passed
 
-The current branch has three fewer tests than the historical-replay
-certification branch because the replay branch alone contains the three
+The correction branch had five fewer tests than the historical-replay
+certification branch because the replay branch alone contains the five
 database-path override certification tests.
 
 ## Certification impact
