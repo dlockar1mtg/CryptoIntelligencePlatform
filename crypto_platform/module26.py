@@ -213,18 +213,18 @@ class Module26Runner:
    if len(test)==0 or len(train)<=inner+180:
     break
    fold+=1
-   fold_sel=self.select_features_for_fold(
-    train,
-    candidate_features,
-   )
    itrain=train.iloc[:-inner]
    itest=train.iloc[-inner:]
+   inner_sel=self.select_features_for_fold(
+    itrain,
+    candidate_features,
+   )
    trans,_=self.transition_matrix(
     itrain[['dominant_regime']]
    )
    comps=self.components(
-    itrain[fold_sel],
-    itest[fold_sel],
+    itrain[inner_sel],
+    itest[inner_sel],
     f.loc[itest.index],
     trans,
     itrain['dominant_regime'].iloc[-1],
@@ -297,12 +297,16 @@ class Module26Runner:
    )
    if calibrator is not None:
     calibrator.fit(raw,correct)
+   outer_sel=self.select_features_for_fold(
+    train,
+    candidate_features,
+   )
    trans,_=self.transition_matrix(
     train[['dominant_regime']]
    )
    outer_components=self.components(
-    train[fold_sel],
-    test[fold_sel],
+    train[outer_sel],
+    test[outer_sel],
     f.loc[test.index],
     trans,
     train['dominant_regime'].iloc[-1],
@@ -333,7 +337,7 @@ class Module26Runner:
      'training_end_date':train.index.max().date(),
      'testing_start_date':test.index.min().date(),
      'testing_end_date':test.index.max().date(),
-     'selected_features_json':json.dumps(fold_sel),
+     'selected_features_json':json.dumps(outer_sel),
      'selected_weights_json':json.dumps(
       best[1],
       sort_keys=True,

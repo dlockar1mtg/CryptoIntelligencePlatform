@@ -773,16 +773,16 @@ class Module28Runner:
             if len(test)==0 or len(train)<=inner_days+240:
                 break
             fold += 1
-            fold_retained = self.select_features_for_fold(
-                train,
-                retained,
-            )
             inner_train = train.iloc[:-inner_days]
             inner_test = train.iloc[-inner_days:]
+            inner_retained = self.select_features_for_fold(
+                inner_train,
+                retained,
+            )
             inner_components = self.components(
-                inner_train[fold_retained],
+                inner_train[inner_retained],
                 inner_train["dominant_regime"],
-                inner_test[fold_retained],
+                inner_test[inner_retained],
             )
             scored = self.adaptive_search(
                 inner_components,
@@ -864,10 +864,14 @@ class Module28Runner:
                     "calculated_at_utc": utcnow(),
                 })
 
+            outer_retained = self.select_features_for_fold(
+                train,
+                retained,
+            )
             outer_components = self.components(
-                train[fold_retained],
+                train[outer_retained],
                 train["dominant_regime"],
-                test[fold_retained],
+                test[outer_retained],
             )
             candidate_outer_results = []
             for _,candidate,_ in selected:
@@ -910,7 +914,7 @@ class Module28Runner:
                     "training_end_date": train.index.max().date(),
                     "testing_start_date": test.index.min().date(),
                     "testing_end_date": test.index.max().date(),
-                    "retained_features_json": json.dumps(fold_retained),
+                    "retained_features_json": json.dumps(outer_retained),
                     "meta_candidates_json": json.dumps(selected_ids,sort_keys=True),
                     "calibration_method": selected_method,
                     "actual_regime": act,
@@ -933,7 +937,7 @@ class Module28Runner:
                 "testing_start_date": test.index.min().date(),
                 "testing_end_date": test.index.max().date(),
                 "test_days": len(test),
-                "retained_features": len(fold_retained),
+                "retained_features": len(outer_retained),
                 "meta_candidates": len(selected),
                 "agreement_pct": float(correctness.mean()*100),
                 "raw_calibration_mae": float(
