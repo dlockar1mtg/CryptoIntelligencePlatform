@@ -186,8 +186,8 @@ def transform_calibrated_forecast(
             or "calibrated_forecast"
         ),
         scenario_name=(
-            source.forecast_status
-            or "calibrated_base"
+            f"{source.forecast_status or 'calibrated_base'}"
+            f"_{source.horizon_days}D"
         ),
         model_version=source.model_version,
         generated_at_utc=context.generated_at_iso,

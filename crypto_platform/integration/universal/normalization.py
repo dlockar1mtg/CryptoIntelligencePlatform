@@ -25,7 +25,7 @@ _RECOMMENDATION_MAP = {
     "BUY": "buy",
     "ACCUMULATE": "accumulate",
     "HOLD": "hold",
-    "WAIT": "wait",
+    "WAIT": "watch",
     "REDUCE": "reduce",
     "SELL": "sell",
 }

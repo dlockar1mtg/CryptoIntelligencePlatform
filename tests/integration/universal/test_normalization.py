@@ -33,7 +33,7 @@ def test_universal_crypto_asset_id_rejects_spaces() -> None:
         ("BUY", "buy"),
         ("ACCUMULATE", "accumulate"),
         ("HOLD", "hold"),
-        ("WAIT", "wait"),
+        ("WAIT", "watch"),
         ("REDUCE", "reduce"),
         ("SELL", "sell"),
     ],
