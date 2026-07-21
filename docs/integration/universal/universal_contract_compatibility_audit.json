@@ -1,0 +1,1009 @@
+{
+  "files": [
+    {
+      "relative_path": "docs/phase_4/PHASE_4_1_3_FORECAST_ENGINE_ABSTRACTION.md",
+      "sha256": "89cccc28dd5d1ccfa190f25084760e372436a691a249d769e2f7656331498546",
+      "size_bytes": 1270,
+      "suffix": ".md"
+    },
+    {
+      "relative_path": "docs/phase_4/PHASE_4_2_1_FORECAST_QUALITY_RANKING.md",
+      "sha256": "b0d9e5424b52828c629a5565f38c6e30bf8557eab35e2ec9310d17276f0e86a7",
+      "size_bytes": 1246,
+      "suffix": ".md"
+    },
+    {
+      "relative_path": "docs/phase_4/PHASE_4_2_2_FORECAST_CONSENSUS_INTELLIGENCE.md",
+      "sha256": "16db89a211787451d1c185bf0c0cfa7973d1cd6f7a665c07dbc43a400ddfe297",
+      "size_bytes": 1424,
+      "suffix": ".md"
+    },
+    {
+      "relative_path": "docs/phase_4/PHASE_4_2_5_EXPLAINABLE_FORECAST_INTELLIGENCE.md",
+      "sha256": "81a6d37ead6001458ee14b2a0f351bc7017d8cd4568cdff7cf64b80b99e4e3f6",
+      "size_bytes": 1959,
+      "suffix": ".md"
+    },
+    {
+      "relative_path": "docs/phase_4/PHASE_4_3_1_FORECAST_DISTRIBUTION_FRAMEWORK.md",
+      "sha256": "a8cbd7e7dc5eef1d9ff35775b3653b4b4809ef049bafbf32255324ec026df163",
+      "size_bytes": 1793,
+      "suffix": ".md"
+    },
+    {
+      "relative_path": "docs/phase_4/PHASE_4_3_3_BAYESIAN_FORECAST_UPDATING.md",
+      "sha256": "80dbbdb194d706e7a0d32182cc5ebb376f651d6cc6855acaa0de14120c823ca6",
+      "size_bytes": 1769,
+      "suffix": ".md"
+    },
+    {
+      "relative_path": "docs/phase_4/PHASE_4_4_1_FORECAST_OUTCOME_TRACKING.md",
+      "sha256": "fe85ab86589efb1f2a792ca731546ea37fa7514b26ff87af86dc5eccfb0c7378",
+      "size_bytes": 1476,
+      "suffix": ".md"
+    },
+    {
+      "relative_path": "docs/phase_4/PHASE_4_4_2_FORECAST_PERFORMANCE_ANALYTICS.md",
+      "sha256": "8ecf89b47ef125c83354521dd088d25680e9bcb43404ec42006ec00e86d82c36",
+      "size_bytes": 1420,
+      "suffix": ".md"
+    },
+    {
+      "relative_path": "docs/phase_4/PHASE_4_4_4_FORECAST_DRIFT_DETECTION.md",
+      "sha256": "35a0e328f95fd319a062e2fed02626cecd0644680fd28cf02b41022425d099e0",
+      "size_bytes": 1671,
+      "suffix": ".md"
+    },
+    {
+      "relative_path": "docs/phase_4/PHASE_4_4_5_FORECAST_CERTIFICATION.md",
+      "sha256": "5dec04a5ae52fc048333d05d6844967e5a4a6f0ad5beeea5ede36d7921f0ab14",
+      "size_bytes": 1603,
+      "suffix": ".md"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/__init__.py",
+      "sha256": "c8ca84d12d367ed28f984217b6c6921db79ab10dec48d14985490f9f8909fc0d",
+      "size_bytes": 100,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/dashboard_horizons.py",
+      "sha256": "c36b6c7ff06e39e7f8674af668a5693ce2aaaf47484efd657224c32502a66780",
+      "size_bytes": 315,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/docs/README.md",
+      "sha256": "ec23d4e4ed26ab8009781a133ce4854652a3953b03542a2ee381b7846beea3c6",
+      "size_bytes": 122,
+      "suffix": ".md"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/docs_PHASE_4_2.md",
+      "sha256": "6af8a79108f563354eeadfc13d6cd8862e39be7ef1b53dc2854c3e261b4f5939",
+      "size_bytes": 225,
+      "suffix": ".md"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/engine/__init__.py",
+      "sha256": "2494dd184e345d65ce178bf1e2ce20ffde0e6044ae2d2820f2ca8f6b4d64bd9e",
+      "size_bytes": 918,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/engine/base_engine.py",
+      "sha256": "dd2bc450e4bfb5324b5cc9daad925eea0470cbb65aba2d4c4e2b634d7a57fe70",
+      "size_bytes": 6684,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/engine/engine_context.py",
+      "sha256": "1eef0122ffcec583b6481d12d2a3c8a15bff9bc47c7251b73f73925e515c2996",
+      "size_bytes": 1452,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/engine/engine_contracts.py",
+      "sha256": "461adca4f4c3689c6a7a1c4a9ceab2895ab62ce5ac9bfd84d09b607a68e2bc47",
+      "size_bytes": 5275,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/engine/engine_registry.py",
+      "sha256": "8fd68f9bc8c6b271e71a2797aa6d40c38a57339507d9700ff136dce37bff852b",
+      "size_bytes": 5806,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/exceptions.py",
+      "sha256": "38ffb1dcace7b4dfb359b11e6fff24310f1fa1b8abacce41e87b44af4e1588d1",
+      "size_bytes": 237,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/forecast_horizon_engine.py",
+      "sha256": "e8b06fe6742bd9fc47102c0693ca53c28e9c3d678f10f307287611f34bd71117",
+      "size_bytes": 642,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/forecast_metadata.py",
+      "sha256": "873b734eea315690743764f41e4192cdbf6b414d10ddc710a48f0c56b6aa9774",
+      "size_bytes": 587,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/forecast_request.py",
+      "sha256": "f0a5039550156b97b493099ce971964137bcc03de7eafaf480f98fab4590756e",
+      "size_bytes": 466,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/forecast_result.py",
+      "sha256": "c55410c97669b62abe44872e1f6227bb41ef08d2befc90ec0ec6421d715536ac",
+      "size_bytes": 569,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/forecast_status.py",
+      "sha256": "1f59a123ad4e22974a665ab3d4ec9c232fe0891c61de01f29111f27cbde9f0a9",
+      "size_bytes": 276,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/forecast_types.py",
+      "sha256": "4c3a5932ef224fd92be36309b0c91f8bd9fc7819e219221394a554a210117f8a",
+      "size_bytes": 321,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/horizon_calendar.py",
+      "sha256": "67fda5d73cb496adc3f6d3af032e78baee8a5c9501ea6e430480e2b1e6a4c456",
+      "size_bytes": 226,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/horizon_scaling.py",
+      "sha256": "b87e8456f18b1046d32205159e920c903dff6ead24f195d89968ec96b61de0ef",
+      "size_bytes": 246,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/horizon_validation.py",
+      "sha256": "a7e2c80b2fc144a2b5ff162a95e63fe1f26bd779932ef736b9137286bdd0dfa1",
+      "size_bytes": 189,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/horizons.py",
+      "sha256": "2ef917dcb888d9de36ad711de6f0e84712bf9f7a51633dd10f08e5e96b8b7cd7",
+      "size_bytes": 1148,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/__init__.py",
+      "sha256": "2fc31f28ce71ea07d2c5030b3e4194269457aa2006391ededff7977007920df3",
+      "size_bytes": 3551,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/attribution_engine.py",
+      "sha256": "d82950b67fadc4dfdd589b23063a6c82a8e258f1876ef61ac81fdaa81d9aada3",
+      "size_bytes": 2172,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/calibration_contracts.py",
+      "sha256": "7635b7315355085c3f1ad05646c727c2816b74ed2ca3001aec09ecb984357d49",
+      "size_bytes": 6446,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/calibration_engine.py",
+      "sha256": "033af6fe4724d10e2cbb5113a5eb651ddce2877affec4b66e6943decfa6b28f1",
+      "size_bytes": 9670,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/calibration_service.py",
+      "sha256": "8ad0f8520f59a0f825d362522475ef6feb797b245a0cdc32c686e32bd85a5883",
+      "size_bytes": 3287,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/consensus_contracts.py",
+      "sha256": "ddd86670f82eda1757a416f954c05ec27f450fb5e6d9c2d7718a984b583034e8",
+      "size_bytes": 6270,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/consensus_engine.py",
+      "sha256": "2d9cf246e0e0b415d957481d3d4c28d7a5e19adf2892d560e21efed0637b9799",
+      "size_bytes": 11404,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/consensus_service.py",
+      "sha256": "e6862f00f2a61fc36501b60cc825920c29049964abe8b996312ef494bb61fd08",
+      "size_bytes": 2686,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/evidence_graph.py",
+      "sha256": "67732c4a25927425872efd0e500de5bc1fb31808bf92f4c9d431520dbd664cb9",
+      "size_bytes": 4652,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/explainability_contracts.py",
+      "sha256": "bd57288c3c7de6d8cae623f16da900530f0c7197dd9702cc7a4e24546e79d0c9",
+      "size_bytes": 7765,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/explainability_service.py",
+      "sha256": "b2920ccf520e605004093784a42a0778bd5b0808694aa28a5fa94ca16d9d2ae2",
+      "size_bytes": 6390,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/explanation_serializer.py",
+      "sha256": "364a2db80cb75fef3f3ad6e209b33b797b633d20285033106f96b0757b7546fa",
+      "size_bytes": 1426,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/historical_similarity.py",
+      "sha256": "36b2eb30fef0b4f2f9264fd049e6e4f87898530bb09b2a561c427c75548f96ba",
+      "size_bytes": 2612,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/narrative_engine.py",
+      "sha256": "0f52a9a6e36319725862ff2ccf65f4d0db7ed3f06bc97f9b9fe2cd45ed9bb91c",
+      "size_bytes": 2405,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/quality_contracts.py",
+      "sha256": "ef69517917d51aa106b9b30cd8955aa425d7e00786d2013861de417f80a27cb9",
+      "size_bytes": 6016,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/quality_engine.py",
+      "sha256": "330adebec693006cbaaa9aac9f7b41983e98de089c20649cf3225d12c8efe74f",
+      "size_bytes": 4098,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/ranking_engine.py",
+      "sha256": "acc2bb4099f6cf648d416d597611be41682a7a149a47e3343f1b0c8d5ff809b4",
+      "size_bytes": 1800,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/selection_service.py",
+      "sha256": "e901ba60ef85435ea677a93289a0373ed4494fca380bb49104bde9445702e26b",
+      "size_bytes": 2202,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/weighting_contracts.py",
+      "sha256": "f51520133704acac7405e8ab3f361751d5c88bf004ac81c7014fc28066536b12",
+      "size_bytes": 6074,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/weighting_engine.py",
+      "sha256": "8a5885f1586cd6d5ad598b42e422e5ac45437e79a946ae8862ef72b40944e1b5",
+      "size_bytes": 11665,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/intelligence/weighting_service.py",
+      "sha256": "23cde368979a31ea1249170cd276b964b9a05c5ebd05281d41042af790956c27",
+      "size_bytes": 3903,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/models/__init__.py",
+      "sha256": "2165b2d27f87cc508d5b085c1ae6d51f527312eaf51b958077aa4fdd8e301f6c",
+      "size_bytes": 1270,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/models/forecast_enums.py",
+      "sha256": "5bc7ab5e48fb3474e77e681fb5c3024d4611651b282e3afc346bd3c59f703e83",
+      "size_bytes": 2407,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/models/forecast_models.py",
+      "sha256": "ea4129dc2494ace9c936860b55568843cf0ed2d4e5a10f4c628cb86eddcd2e64",
+      "size_bytes": 7377,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/models/forecast_schema.py",
+      "sha256": "7751a803eb346761bf64370c16e0243a3a289cb1212b856d430eb61b015b7fff",
+      "size_bytes": 11510,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/probability/__init__.py",
+      "sha256": "d6ecd840ee5024cf4a8f90a6b952ff1b74cd4c74aa386e5ce95da3efd5a07073",
+      "size_bytes": 3843,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/probability/bayesian_contracts.py",
+      "sha256": "7560f25547d7962f59169d7e0ea1ef03822cfaf2b12693ff43d6cebd9ba5e6f6",
+      "size_bytes": 8072,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/probability/bayesian_engine.py",
+      "sha256": "3d742038af31d38f12b24ee6b13bfba8ed4a2009e3b52baa543d843b075105d2",
+      "size_bytes": 24302,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/probability/bayesian_service.py",
+      "sha256": "1feedec341e04aa70e60b1e751b7a3b2c0fd4300518a7d41c7ddf846321c9695",
+      "size_bytes": 3070,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/probability/distribution_enums.py",
+      "sha256": "2ea0453809620609d4487eaf093f0a2e188746991d1aad93638689f22f7e047c",
+      "size_bytes": 1115,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/probability/distribution_models.py",
+      "sha256": "83e390d1add5a2984647545d6451666323f195b8f7b9a97123566450f8630d5e",
+      "size_bytes": 12951,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/probability/distribution_schema.py",
+      "sha256": "2691ca9e2f24b21c7eaf306e6bd83796e543df3aa6d51f65b99bf754ef678987",
+      "size_bytes": 14141,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/probability/risk_analytics_contracts.py",
+      "sha256": "730b77665262d53c9d5c8cbbcb023b24ca609369687d15b599b2ea86b948e655",
+      "size_bytes": 7744,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/probability/risk_analytics_engine.py",
+      "sha256": "929449b71fe00111b3bc55620984353249b9df358a17e337a34c9c4b1430fbc3",
+      "size_bytes": 13200,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/probability/risk_analytics_service.py",
+      "sha256": "0681cfc7849da4918fbffcf35ce5828f45d5b05456cb28f09e89976bc6e21376",
+      "size_bytes": 1654,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/probability/scenario_contracts.py",
+      "sha256": "0f94f565677c1ec67e6c87031272ecbc772a17f2ae36bb18672224a483202969",
+      "size_bytes": 10563,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/probability/scenario_tree_engine.py",
+      "sha256": "fa0663912f35ae21617c7c52d5ac85b17e8eeaaf30e9233d31d388792cc3b3b8",
+      "size_bytes": 17685,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/probability/scenario_tree_service.py",
+      "sha256": "eb41e52c981ceed97294c6e96c5ebf3d8087adcfb48053e0fd6fe4dbcd94c959",
+      "size_bytes": 1728,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/probability/simulation_contracts.py",
+      "sha256": "2bb409a4355fdb83dd87c74437c8dc3a6ac9e57ff1886bb59b7ba059a8a55a4c",
+      "size_bytes": 7065,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/probability/simulation_engine.py",
+      "sha256": "5d7642d9dd7dde6c8e300120a7443eb579fd5a692a6749a63314731542ce5b78",
+      "size_bytes": 11919,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/probability/simulation_service.py",
+      "sha256": "690731e13340a2a2ad58d2d5fe0ef67a012460ca7f92ae734dc97f51826d2609",
+      "size_bytes": 2153,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/__init__.py",
+      "sha256": "189f239d58043330f9d8200495ca69026b814ef82cc35f75fea9377f19f15554",
+      "size_bytes": 4182,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/certification_contracts.py",
+      "sha256": "7bf5a7a4ab4e3fe9f6f410e397946ce1abd3cb7ff03776e42cd90a93fc024918",
+      "size_bytes": 5855,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/certification_engine.py",
+      "sha256": "9bb531bfedabaad1c9e1d9927829f73919afbdb0923ff273cd4b27ad21d36c5a",
+      "size_bytes": 13148,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/certification_service.py",
+      "sha256": "03b542bc751ccc1aacc70e51b2b16e629dc06c1d7a1454530624a4f5e8df0c56",
+      "size_bytes": 1872,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/certification_state.py",
+      "sha256": "419ccafe269db039ad8ca24643a65d1a309b4c05da22336571ea70689d1e74f6",
+      "size_bytes": 4452,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/drift_contracts.py",
+      "sha256": "81ee392a0474b29061b8df43e7cb39ba992244f1700bbf5b997c659c769e684f",
+      "size_bytes": 8394,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/drift_engine.py",
+      "sha256": "478773106fa648365704acfbc42a38666f3566ee6331fa81ae531be828d07d30",
+      "size_bytes": 12479,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/drift_history.py",
+      "sha256": "872f90d7c82efca8465a1ad6e8cebb36fecdbf6c084335c52c4f4b2fd0e3a3c7",
+      "size_bytes": 3156,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/drift_service.py",
+      "sha256": "3963fbc7bbf60e73526368a006501e001c4abac2a2e065cf9945c5fa2407fa1e",
+      "size_bytes": 2923,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/forecast_archive.py",
+      "sha256": "684e8770a7d2ec737a4f22d61103c879381c038d6561363ee01d2e9bd46b96d8",
+      "size_bytes": 2518,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/forecast_outcome_tracker.py",
+      "sha256": "13b562f6f00bcdb363108d3586a35da4eb86cd281cd2872a0fe1e32f95daa0eb",
+      "size_bytes": 4782,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/forecast_validation_contracts.py",
+      "sha256": "ba98e847a658c03ecad740905bd5bd87c6c4b6423e40833730f8a3bbbef884bd",
+      "size_bytes": 5105,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/forecast_validation_service.py",
+      "sha256": "72240bff92d8303eab3de8053453ed9dab34087a72034e3990e904ebc87216b2",
+      "size_bytes": 2055,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/learning_contracts.py",
+      "sha256": "e1ee97e128bdade82d6de13b0007abdf04f4810f00bc834c74767ad7cfc79c47",
+      "size_bytes": 7114,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/learning_engine.py",
+      "sha256": "31a18848408df4f92cf135173c4bf4a7abbd67d153da0f029219e584cc0fc2e8",
+      "size_bytes": 11861,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/learning_service.py",
+      "sha256": "73b2bbe665cd93898292ca441f679c2363888a20b6b3866abe275093bebef3f5",
+      "size_bytes": 2488,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/learning_state.py",
+      "sha256": "fb2b34903a83cdefd173492cb1ff7988eb0e41c2136013e80bc2264d94ebd635",
+      "size_bytes": 2995,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/performance_contracts.py",
+      "sha256": "e0adfdb1bcb53922af91ebc411fd608da99c90779d1a49f82f1a3f1388ddf8dd",
+      "size_bytes": 6744,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/performance_engine.py",
+      "sha256": "b240ae234c8285f290b2c60a9f85f5919026b8587b1ea53c1237bf4dbd1787c0",
+      "size_bytes": 12921,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/validation/performance_service.py",
+      "sha256": "55955a789284635d8c76236d0585752f3ce4ea276a455b7fd105a68364c1e622",
+      "size_bytes": 1582,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/intelligence/forecasting/version.py",
+      "sha256": "a1be8c4fa446a6716e92f3b0d0c1a914ad07dca1b01835ac5cba7d03f256d282",
+      "size_bytes": 38,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/portfolio_engine/allocation/allocation_target_loader.py",
+      "sha256": "9e144bfc06e5e145666646f0810a4580f0d433e8586c2d5193bbd30ef48f887e",
+      "size_bytes": 1838,
+      "suffix": ".py"
+    },
+    {
+      "relative_path": "foundation/portfolio_engine/models/allocation_target.py",
+      "sha256": "dc2c5a6845d94d20f0fe0680b9909f49b9183075c1fe1057cbe2bbf4cf0d1146",
+      "size_bytes": 1567,
+      "suffix": ".py"
+    },
+    {
+      "csv_header": [
+        "column_name",
+        "data_type",
+        "required",
+        "description",
+        "example"
+      ],
+      "relative_path": "schemas/v1/csv/asset_master_columns.csv",
+      "sha256": "ff75959365ab5ba915c3aed7319c72f28ea2152764287750de8b9bbc22625869",
+      "size_bytes": 1158,
+      "suffix": ".csv"
+    },
+    {
+      "csv_header": [
+        "column_name",
+        "data_type",
+        "required",
+        "description",
+        "example"
+      ],
+      "relative_path": "schemas/v1/csv/forecasts_columns.csv",
+      "sha256": "7d9b6f953b0abf787bdfcdbf8c6a4d5917367a1123bffcc8c33c1a6297f39033",
+      "size_bytes": 1278,
+      "suffix": ".csv"
+    },
+    {
+      "csv_header": [
+        "column_name",
+        "data_type",
+        "required",
+        "description",
+        "example"
+      ],
+      "relative_path": "schemas/v1/csv/platform_status_columns.csv",
+      "sha256": "9b22626c3d53bc276b9e8ca12ec0aa619bf72f043ec656c3121a7423c7788ac2",
+      "size_bytes": 1025,
+      "suffix": ".csv"
+    },
+    {
+      "csv_header": [
+        "column_name",
+        "data_type",
+        "required",
+        "description",
+        "example"
+      ],
+      "relative_path": "schemas/v1/csv/portfolio_positions_columns.csv",
+      "sha256": "10a107d86a33329280a4e5f3c03843975cd361e448dbff0638458f7ed4091aa4",
+      "size_bytes": 1005,
+      "suffix": ".csv"
+    },
+    {
+      "csv_header": [
+        "column_name",
+        "data_type",
+        "required",
+        "description",
+        "example"
+      ],
+      "relative_path": "schemas/v1/csv/recommendations_columns.csv",
+      "sha256": "d309e8fac07c3f6002b3e340ab0aa39bc730a1e9ae23d250ab270f1a784b3e97",
+      "size_bytes": 1241,
+      "suffix": ".csv"
+    },
+    {
+      "csv_header": [
+        "column_name",
+        "data_type",
+        "required",
+        "description",
+        "example"
+      ],
+      "relative_path": "schemas/v1/csv/risk_metrics_columns.csv",
+      "sha256": "2ea70566e3844cca21b54a3baae31d3f2359d13a60b266b109e360cd7c1b602c",
+      "size_bytes": 1256,
+      "suffix": ".csv"
+    },
+    {
+      "csv_header": [
+        "contract_version",
+        "platform_id",
+        "run_id",
+        "universal_asset_id",
+        "platform_asset_id",
+        "asset_name",
+        "asset_symbol",
+        "asset_class",
+        "asset_subclass",
+        "currency",
+        "market_or_region",
+        "is_active",
+        "investable",
+        "liquidity_tier",
+        "data_source",
+        "first_available_date",
+        "last_updated_at_utc"
+      ],
+      "relative_path": "schemas/v1/examples/asset_master_example.csv",
+      "sha256": "991be655df2b43efcc4767ef28e7402c457760b1dcb06f2b99e00e09eabca568",
+      "size_bytes": 784,
+      "suffix": ".csv"
+    },
+    {
+      "csv_header": [
+        "contract_version",
+        "platform_id",
+        "run_id",
+        "universal_asset_id",
+        "as_of_date",
+        "recommendation",
+        "normalized_score",
+        "confidence_score",
+        "platform_native_score",
+        "platform_native_label",
+        "time_horizon",
+        "target_weight",
+        "minimum_weight",
+        "maximum_weight",
+        "rationale_summary",
+        "primary_risk",
+        "model_version",
+        "generated_at_utc"
+      ],
+      "relative_path": "schemas/v1/examples/recommendations_example.csv",
+      "sha256": "b1a1e190ff2e760833849c832dee8647f425857624361217bc4ba00d41847584",
+      "size_bytes": 907,
+      "suffix": ".csv"
+    },
+    {
+      "json_shape": {
+        "properties": [
+          "asset_class",
+          "asset_name",
+          "asset_subclass",
+          "asset_symbol",
+          "contract_version",
+          "currency",
+          "data_source",
+          "first_available_date",
+          "investable",
+          "is_active",
+          "last_updated_at_utc",
+          "liquidity_tier",
+          "market_or_region",
+          "platform_asset_id",
+          "platform_id",
+          "run_id",
+          "universal_asset_id"
+        ],
+        "required": [
+          "contract_version",
+          "platform_id",
+          "run_id",
+          "universal_asset_id",
+          "platform_asset_id",
+          "asset_name",
+          "asset_class",
+          "is_active",
+          "investable",
+          "last_updated_at_utc"
+        ],
+        "top_level_keys": [
+          "$id",
+          "$schema",
+          "additionalProperties",
+          "description",
+          "properties",
+          "required",
+          "title",
+          "type"
+        ],
+        "top_level_type": "dict"
+      },
+      "relative_path": "schemas/v1/json/asset_master.schema.json",
+      "sha256": "d6acd7008dd18323863321310a1bd40b23aff65d6357a56665db930018606cc0",
+      "size_bytes": 3827,
+      "suffix": ".json"
+    },
+    {
+      "json_shape": {
+        "properties": [
+          "contract_version",
+          "current_value",
+          "expected_cagr",
+          "expected_total_return",
+          "forecast_confidence",
+          "forecast_date",
+          "forecast_horizon_months",
+          "forecast_method",
+          "forecast_origin_date",
+          "forecast_value_base",
+          "forecast_value_bear",
+          "forecast_value_bull",
+          "generated_at_utc",
+          "model_version",
+          "platform_id",
+          "probability_positive_return",
+          "run_id",
+          "scenario_name",
+          "universal_asset_id"
+        ],
+        "required": [
+          "contract_version",
+          "platform_id",
+          "run_id",
+          "universal_asset_id",
+          "forecast_origin_date",
+          "forecast_horizon_months",
+          "forecast_date",
+          "forecast_method",
+          "generated_at_utc"
+        ],
+        "top_level_keys": [
+          "$id",
+          "$schema",
+          "additionalProperties",
+          "description",
+          "properties",
+          "required",
+          "title",
+          "type"
+        ],
+        "top_level_type": "dict"
+      },
+      "relative_path": "schemas/v1/json/forecasts.schema.json",
+      "sha256": "0b8a43a5c68c30f63c5400deb945463902d537180b42835b6f29e504440e6511",
+      "size_bytes": 3887,
+      "suffix": ".json"
+    },
+    {
+      "json_shape": {
+        "properties": [
+          "contract_version",
+          "data_as_of_date",
+          "error_count",
+          "message",
+          "platform_id",
+          "platform_name",
+          "platform_version",
+          "records_published",
+          "run_completed_at_utc",
+          "run_id",
+          "run_started_at_utc",
+          "run_status",
+          "source_machine",
+          "warning_count"
+        ],
+        "required": [
+          "contract_version",
+          "platform_id",
+          "platform_name",
+          "platform_version",
+          "run_id",
+          "run_started_at_utc",
+          "run_status",
+          "data_as_of_date",
+          "records_published",
+          "warning_count",
+          "error_count"
+        ],
+        "top_level_keys": [
+          "$id",
+          "$schema",
+          "additionalProperties",
+          "description",
+          "properties",
+          "required",
+          "title",
+          "type"
+        ],
+        "top_level_type": "dict"
+      },
+      "relative_path": "schemas/v1/json/platform_status.schema.json",
+      "sha256": "521b8e5fab74985bcf91330b702417119c6613cf542afb8330e19a9993bf5583",
+      "size_bytes": 3162,
+      "suffix": ".json"
+    },
+    {
+      "json_shape": {
+        "properties": [
+          "as_of_date",
+          "contract_version",
+          "cost_basis",
+          "current_weight",
+          "last_updated_at_utc",
+          "maximum_weight",
+          "minimum_weight",
+          "monthly_allocation_amount",
+          "portfolio_id",
+          "position_value",
+          "quantity",
+          "source_platform",
+          "target_weight",
+          "unit_value",
+          "universal_asset_id",
+          "unrealized_gain_loss"
+        ],
+        "required": [
+          "contract_version",
+          "portfolio_id",
+          "universal_asset_id",
+          "as_of_date",
+          "position_value",
+          "current_weight",
+          "last_updated_at_utc"
+        ],
+        "top_level_keys": [
+          "$id",
+          "$schema",
+          "additionalProperties",
+          "description",
+          "properties",
+          "required",
+          "title",
+          "type"
+        ],
+        "top_level_type": "dict"
+      },
+      "relative_path": "schemas/v1/json/portfolio_positions.schema.json",
+      "sha256": "d5a3b0d4d57b7238c879127720a7f3c47a499e4f2369cd650af4b9b3cfaabb06",
+      "size_bytes": 3352,
+      "suffix": ".json"
+    },
+    {
+      "json_shape": {
+        "properties": [
+          "as_of_date",
+          "confidence_score",
+          "contract_version",
+          "generated_at_utc",
+          "maximum_weight",
+          "minimum_weight",
+          "model_version",
+          "normalized_score",
+          "platform_id",
+          "platform_native_label",
+          "platform_native_score",
+          "primary_risk",
+          "rationale_summary",
+          "recommendation",
+          "run_id",
+          "target_weight",
+          "time_horizon",
+          "universal_asset_id"
+        ],
+        "required": [
+          "contract_version",
+          "platform_id",
+          "run_id",
+          "universal_asset_id",
+          "as_of_date",
+          "recommendation",
+          "normalized_score",
+          "confidence_score",
+          "generated_at_utc"
+        ],
+        "top_level_keys": [
+          "$id",
+          "$schema",
+          "additionalProperties",
+          "description",
+          "properties",
+          "required",
+          "title",
+          "type"
+        ],
+        "top_level_type": "dict"
+      },
+      "relative_path": "schemas/v1/json/recommendations.schema.json",
+      "sha256": "6201a3815f689e1dca169c6edcc7a404de1807d4bb8f33c8062d69db9317a9b5",
+      "size_bytes": 4093,
+      "suffix": ".json"
+    },
+    {
+      "json_shape": {
+        "properties": [
+          "annualized_volatility",
+          "as_of_date",
+          "concentration_risk_score",
+          "contract_version",
+          "data_quality_score",
+          "downside_deviation",
+          "generated_at_utc",
+          "liquidity_risk_score",
+          "lookback_days",
+          "maximum_drawdown",
+          "model_risk_score",
+          "platform_id",
+          "risk_level",
+          "risk_notes",
+          "risk_score",
+          "run_id",
+          "universal_asset_id",
+          "value_at_risk_95"
+        ],
+        "required": [
+          "contract_version",
+          "platform_id",
+          "run_id",
+          "universal_asset_id",
+          "as_of_date",
+          "risk_score",
+          "risk_level",
+          "generated_at_utc"
+        ],
+        "top_level_keys": [
+          "$id",
+          "$schema",
+          "additionalProperties",
+          "description",
+          "properties",
+          "required",
+          "title",
+          "type"
+        ],
+        "top_level_type": "dict"
+      },
+      "relative_path": "schemas/v1/json/risk_metrics.schema.json",
+      "sha256": "253a98ffaf5b992aa0d5192c483807e83864ac6383ced4d2fe61a51b266367af",
+      "size_bytes": 3931,
+      "suffix": ".json"
+    }
+  ],
+  "matching_file_count": 108,
+  "platform_root": "C:\\Users\\DevonLockard\\InvestmentPlatform",
+  "target_terms": [
+    "asset_master",
+    "market_price",
+    "market_prices",
+    "portfolio_position",
+    "portfolio_positions",
+    "forecast",
+    "recommendation",
+    "risk_metric",
+    "risk_metrics",
+    "allocation_target",
+    "allocation_targets",
+    "platform_status",
+    "price_projection",
+    "price_projections"
+  ]
+}
