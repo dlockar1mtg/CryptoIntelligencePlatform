@@ -488,7 +488,7 @@
   {
     "module_number": 26,
     "module_path": "crypto_platform/module26.py",
-    "function_count": 20,
+    "function_count": 21,
     "class_count": 1,
     "table_count": 23,
     "detected_capabilities": [
@@ -509,7 +509,7 @@
       "risk_adjusted_metrics",
       "walk_forward_validation"
     ],
-    "leakage_risk_count": 10
+    "leakage_risk_count": 13
   },
   {
     "module_number": 27,
@@ -542,7 +542,7 @@
   {
     "module_number": 28,
     "module_path": "crypto_platform/module28.py",
-    "function_count": 25,
+    "function_count": 26,
     "class_count": 1,
     "table_count": 26,
     "detected_capabilities": [

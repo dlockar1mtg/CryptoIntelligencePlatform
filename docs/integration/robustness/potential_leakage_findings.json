@@ -1711,49 +1711,70 @@
     "module_number": 26,
     "module_path": "crypto_platform/module26.py",
     "risk_type": "global_normalization",
-    "line_number": 155,
-    "line_text": "agr=accuracy_score(itest['dominant_regime'],labs)*100; raw=np.array([p.max() for p in ps]); correct=np.array([a==b for a,b in zip(itest['dominant_regime'],labs)],float); mae=float(np.mean(np.abs(raw-correct))); obj=agr-mae*40; scored.append"
+    "line_number": 246,
+    "line_text": "raw=np.array([probability.max() for probability in ps])"
   },
   {
     "module_number": 26,
     "module_path": "crypto_platform/module26.py",
     "risk_type": "global_normalization",
-    "line_number": 159,
-    "line_text": "for comp,actual in zip(comps,itest['dominant_regime']): p=self.combine(comp,best[1],prev); prev=p; lab=REGIMES[int(np.argmax(p))]; raw.append(float(p.max())); corr.append(float(lab==actual))"
+    "line_number": 291,
+    "line_text": "raw.append(float(probability.max()))"
   },
   {
     "module_number": 26,
     "module_path": "crypto_platform/module26.py",
     "risk_type": "global_normalization",
-    "line_number": 164,
-    "line_text": "p=self.combine(comp,best[1],prev); prev=p; lab=REGIMES[int(np.argmax(p))]; rc=float(p.max()); cc=float(iso.predict([rc])[0]) if iso is not None else rc"
+    "line_number": 322,
+    "line_text": "raw_confidence=float(probability.max())"
   },
   {
     "module_number": 26,
     "module_path": "crypto_platform/module26.py",
     "risk_type": "global_normalization",
-    "line_number": 165,
-    "line_text": "preds.append({'run_id':self.run_id,'outer_fold':fold,'observation_date':date.date(),'training_start_date':train.index.min().date(),'training_end_date':train.index.max().date(),'testing_start_date':test.index.min().date(),'testing_end_date':"
+    "line_number": 332,
+    "line_text": "'training_start_date':train.index.min().date(),"
   },
   {
     "module_number": 26,
     "module_path": "crypto_platform/module26.py",
     "risk_type": "global_normalization",
-    "line_number": 172,
+    "line_number": 333,
+    "line_text": "'training_end_date':train.index.max().date(),"
+  },
+  {
+    "module_number": 26,
+    "module_path": "crypto_platform/module26.py",
+    "risk_type": "global_normalization",
+    "line_number": 334,
+    "line_text": "'testing_start_date':test.index.min().date(),"
+  },
+  {
+    "module_number": 26,
+    "module_path": "crypto_platform/module26.py",
+    "risk_type": "global_normalization",
+    "line_number": 335,
+    "line_text": "'testing_end_date':test.index.max().date(),"
+  },
+  {
+    "module_number": 26,
+    "module_path": "crypto_platform/module26.py",
+    "risk_type": "global_normalization",
+    "line_number": 359,
     "line_text": "raw=float(g['raw_confidence'].mean()); cal=float(g['calibrated_confidence'].mean()); obs=float(g['correct'].mean()); rows.append({'run_id':self.run_id,'confidence_bin':str(label),'observations':len(g),'mean_raw_confidence':raw,'mean_calibra"
   },
   {
     "module_number": 26,
     "module_path": "crypto_platform/module26.py",
     "risk_type": "global_normalization",
-    "line_number": 175,
+    "line_number": 362,
     "line_text": "base=float(p['label_match'].mean()*100) if not p.empty else 0; cur=p.iloc[-1] if not p.empty else None; scenarios=[('FEATURE_MINUS_1',max(len(sel)-1,3),0,0),('FEATURE_PLUS_1',len(sel)+1,0,0),('SMOOTHING_MINUS_05',len(sel),-.05,0),('SMOOTHIN"
   },
   {
     "module_number": 26,
     "module_path": "crypto_platform/module26.py",
     "risk_type": "global_normalization",
-    "line_number": 184,
+    "line_number": 371,
     "line_text": "agr=float(pred['label_match'].mean()*100) if not pred.empty else 0; raw=float(cal['raw_absolute_error'].mean()) if not cal.empty else 1; mae=float(cal['calibrated_absolute_error'].mean()) if not cal.empty else 1; stability=float(sens['label"
   },
   {
@@ -2019,78 +2040,64 @@
     "module_number": 28,
     "module_path": "crypto_platform/module28.py",
     "risk_type": "global_normalization",
-    "line_number": 724,
+    "line_number": 795,
     "line_text": "(objectives-objectives.max())"
   },
   {
     "module_number": 28,
     "module_path": "crypto_platform/module28.py",
     "risk_type": "global_normalization",
-    "line_number": 764,
+    "line_number": 835,
     "line_text": "inner_raw = np.array([p.max() for p in inner_meta])"
   },
   {
     "module_number": 28,
     "module_path": "crypto_platform/module28.py",
     "risk_type": "global_normalization",
-    "line_number": 818,
+    "line_number": 889,
     "line_text": "raw_values = np.array([p.max() for p in outer_probabilities])"
   },
   {
     "module_number": 28,
     "module_path": "crypto_platform/module28.py",
     "risk_type": "global_normalization",
-    "line_number": 838,
+    "line_number": 909,
     "line_text": "\"training_start_date\": train.index.min().date(),"
   },
   {
     "module_number": 28,
     "module_path": "crypto_platform/module28.py",
     "risk_type": "global_normalization",
-    "line_number": 839,
+    "line_number": 910,
     "line_text": "\"training_end_date\": train.index.max().date(),"
   },
   {
     "module_number": 28,
     "module_path": "crypto_platform/module28.py",
     "risk_type": "global_normalization",
-    "line_number": 840,
+    "line_number": 911,
     "line_text": "\"testing_start_date\": test.index.min().date(),"
   },
   {
     "module_number": 28,
     "module_path": "crypto_platform/module28.py",
     "risk_type": "global_normalization",
-    "line_number": 841,
+    "line_number": 912,
     "line_text": "\"testing_end_date\": test.index.max().date(),"
   },
   {
     "module_number": 28,
     "module_path": "crypto_platform/module28.py",
     "risk_type": "global_normalization",
-    "line_number": 862,
+    "line_number": 933,
     "line_text": "\"testing_start_date\": test.index.min().date(),"
   },
   {
     "module_number": 28,
     "module_path": "crypto_platform/module28.py",
     "risk_type": "global_normalization",
-    "line_number": 863,
+    "line_number": 934,
     "line_text": "\"testing_end_date\": test.index.max().date(),"
-  },
-  {
-    "module_number": 28,
-    "module_path": "crypto_platform/module28.py",
-    "risk_type": "global_normalization",
-    "line_number": 867,
-    "line_text": "\"agreement_pct\": float(correctness.mean()*100),"
-  },
-  {
-    "module_number": 28,
-    "module_path": "crypto_platform/module28.py",
-    "risk_type": "global_normalization",
-    "line_number": 926,
-    "line_text": ").mean()*100)"
   },
   {
     "module_number": 28,
@@ -2103,14 +2110,28 @@
     "module_number": 28,
     "module_path": "crypto_platform/module28.py",
     "risk_type": "global_normalization",
-    "line_number": 973,
+    "line_number": 997,
+    "line_text": ").mean()*100)"
+  },
+  {
+    "module_number": 28,
+    "module_path": "crypto_platform/module28.py",
+    "risk_type": "global_normalization",
+    "line_number": 1009,
+    "line_text": "\"agreement_pct\": float(correctness.mean()*100),"
+  },
+  {
+    "module_number": 28,
+    "module_path": "crypto_platform/module28.py",
+    "risk_type": "global_normalization",
+    "line_number": 1047,
     "line_text": "predictions[\"label_match\"].mean()*100"
   },
   {
     "module_number": 28,
     "module_path": "crypto_platform/module28.py",
     "risk_type": "global_normalization",
-    "line_number": 987,
+    "line_number": 1061,
     "line_text": "float(nonprimary[\"agreement_with_primary_pct\"].mean())"
   },
   {

@@ -143,26 +143,213 @@ class Module26Runner:
   gv,kv,rv,mv=comp; p=cand['gmm_weight']*gv+cand['kmeans_weight']*kv+cand['rule_weight']*rv+cand['markov_weight']*mv; p=p/p.sum()
   if prev is not None: p=prev*cand['smoothing']+p*(1-cand['smoothing']); p=p/p.sum()
   return p
+ def select_features_for_fold(
+  self,
+  train,
+  candidate_features=None,
+ ):
+  if 'dominant_regime' not in train.columns:
+   raise ValueError(
+    'Fold training data must contain dominant_regime.'
+   )
+  excluded={
+   'dominant_regime',
+   'regime_confidence',
+   'run_id',
+   'calculated_at_utc',
+   'feature_completeness_pct',
+  }
+  available=[
+   column
+   for column in train.columns
+   if column not in excluded
+   and pd.api.types.is_numeric_dtype(train[column])
+  ]
+  if candidate_features is not None:
+   allowed=set(candidate_features)
+   available=[
+    column
+    for column in available
+    if column in allowed
+   ]
+  if not available:
+   raise ValueError(
+    'No eligible fold-local features are available.'
+   )
+  fold_features=train[available].copy()
+  fold_labels=train[['dominant_regime']].copy()
+  _,selected=self.feature_research(
+   fold_features,
+   fold_labels,
+   available,
+  )
+  if not selected:
+   raise ValueError(
+    'Fold-local feature selection returned no features.'
+   )
+  return selected
+
  def nested(self,f,l,sel):
-  d=f[sel].join(l).dropna(); minimum=int(self.cfg['nested_walk_forward']['minimum_training_days']); testdays=int(self.cfg['nested_walk_forward']['outer_test_days']); inner=int(self.cfg['nested_walk_forward']['inner_validation_days']); cands=self.weight_candidates(); opts=[]; preds=[]; fold=0; start=minimum
+  candidate_features=list(sel)
+  d=f[candidate_features].join(l).dropna()
+  minimum=int(
+   self.cfg['nested_walk_forward']['minimum_training_days']
+  )
+  testdays=int(
+   self.cfg['nested_walk_forward']['outer_test_days']
+  )
+  inner=int(
+   self.cfg['nested_walk_forward']['inner_validation_days']
+  )
+  cands=self.weight_candidates()
+  opts=[]
+  preds=[]
+  fold=0
+  start=minimum
   while start<len(d):
-   end=min(start+testdays,len(d)); train=d.iloc[:start]; test=d.iloc[start:end]
-   if len(test)==0 or len(train)<=inner+180: break
-   fold+=1; itrain=train.iloc[:-inner]; itest=train.iloc[-inner:]; trans,_=self.transition_matrix(itrain[['dominant_regime']]); comps=self.components(itrain[sel],itest[sel],f.loc[itest.index],trans,itrain['dominant_regime'].iloc[-1]); scored=[]
+   end=min(start+testdays,len(d))
+   train=d.iloc[:start]
+   test=d.iloc[start:end]
+   if len(test)==0 or len(train)<=inner+180:
+    break
+   fold+=1
+   fold_sel=self.select_features_for_fold(
+    train,
+    candidate_features,
+   )
+   itrain=train.iloc[:-inner]
+   itest=train.iloc[-inner:]
+   trans,_=self.transition_matrix(
+    itrain[['dominant_regime']]
+   )
+   comps=self.components(
+    itrain[fold_sel],
+    itest[fold_sel],
+    f.loc[itest.index],
+    trans,
+    itrain['dominant_regime'].iloc[-1],
+   )
+   scored=[]
    for cand in cands:
-    ps=[]; labs=[]; prev=None
-    for comp in comps: p=self.combine(comp,cand,prev); ps.append(p); labs.append(REGIMES[int(np.argmax(p))]); prev=p
-    agr=accuracy_score(itest['dominant_regime'],labs)*100; raw=np.array([p.max() for p in ps]); correct=np.array([a==b for a,b in zip(itest['dominant_regime'],labs)],float); mae=float(np.mean(np.abs(raw-correct))); obj=agr-mae*40; scored.append((obj,cand,agr,mae))
-   scored.sort(key=lambda x:x[0],reverse=True); best=scored[0]
-   for obj,cand,agr,mae in scored: opts.append({'run_id':self.run_id,'outer_fold':fold,**cand,'inner_agreement_pct':float(agr),'inner_calibration_mae':float(mae),'objective_score':float(obj),'selected':cand['candidate_key']==best[1]['candidate_key'],'calculated_at_utc':utcnow()})
-   raw=[]; corr=[]; prev=None
-   for comp,actual in zip(comps,itest['dominant_regime']): p=self.combine(comp,best[1],prev); prev=p; lab=REGIMES[int(np.argmax(p))]; raw.append(float(p.max())); corr.append(float(lab==actual))
-   iso=IsotonicRegression(out_of_bounds='clip') if len(set(raw))>1 and len(set(corr))>1 else None
-   if iso is not None: iso.fit(raw,corr)
-   trans,_=self.transition_matrix(train[['dominant_regime']]); ocomps=self.components(train[sel],test[sel],f.loc[test.index],trans,train['dominant_regime'].iloc[-1]); prev=None
-   for date,comp in zip(test.index,ocomps):
-    p=self.combine(comp,best[1],prev); prev=p; lab=REGIMES[int(np.argmax(p))]; rc=float(p.max()); cc=float(iso.predict([rc])[0]) if iso is not None else rc
-    preds.append({'run_id':self.run_id,'outer_fold':fold,'observation_date':date.date(),'training_start_date':train.index.min().date(),'training_end_date':train.index.max().date(),'testing_start_date':test.index.min().date(),'testing_end_date':test.index.max().date(),'selected_features_json':json.dumps(sel),'selected_weights_json':json.dumps(best[1],sort_keys=True),'full_sample_regime':test.loc[date,'dominant_regime'],'predicted_regime':lab,'raw_confidence':rc,'calibrated_confidence':cc,'label_match':bool(lab==test.loc[date,'dominant_regime']),'calculated_at_utc':utcnow()})
+    ps=[]
+    labs=[]
+    prev=None
+    for comp in comps:
+     p=self.combine(comp,cand,prev)
+     ps.append(p)
+     labs.append(REGIMES[int(np.argmax(p))])
+     prev=p
+    agr=accuracy_score(
+     itest['dominant_regime'],
+     labs,
+    )*100
+    raw=np.array([probability.max() for probability in ps])
+    correct=np.array(
+     [
+      actual==predicted
+      for actual,predicted in zip(
+       itest['dominant_regime'],
+       labs,
+      )
+     ],
+     float,
+    )
+    mae=float(np.mean(np.abs(raw-correct)))
+    objective=agr-mae*40
+    scored.append(
+     (objective,cand,agr,mae)
+    )
+   scored.sort(
+    key=lambda item:item[0],
+    reverse=True,
+   )
+   best=scored[0]
+   for objective,cand,agr,mae in scored:
+    opts.append({
+     'run_id':self.run_id,
+     'outer_fold':fold,
+     **cand,
+     'inner_agreement_pct':float(agr),
+     'inner_calibration_mae':float(mae),
+     'objective_score':float(objective),
+     'selected':(
+      cand['candidate_key']
+      == best[1]['candidate_key']
+     ),
+     'calculated_at_utc':utcnow(),
+    })
+   raw=[]
+   correct=[]
+   prev=None
+   for comp,actual in zip(
+    comps,
+    itest['dominant_regime'],
+   ):
+    probability=self.combine(comp,best[1],prev)
+    prev=probability
+    predicted=REGIMES[int(np.argmax(probability))]
+    raw.append(float(probability.max()))
+    correct.append(float(predicted==actual))
+   calibrator=(
+    IsotonicRegression(out_of_bounds='clip')
+    if len(set(raw))>1 and len(set(correct))>1
+    else None
+   )
+   if calibrator is not None:
+    calibrator.fit(raw,correct)
+   trans,_=self.transition_matrix(
+    train[['dominant_regime']]
+   )
+   outer_components=self.components(
+    train[fold_sel],
+    test[fold_sel],
+    f.loc[test.index],
+    trans,
+    train['dominant_regime'].iloc[-1],
+   )
+   prev=None
+   for date,component in zip(
+    test.index,
+    outer_components,
+   ):
+    probability=self.combine(
+     component,
+     best[1],
+     prev,
+    )
+    prev=probability
+    predicted=REGIMES[int(np.argmax(probability))]
+    raw_confidence=float(probability.max())
+    calibrated_confidence=(
+     float(calibrator.predict([raw_confidence])[0])
+     if calibrator is not None
+     else raw_confidence
+    )
+    preds.append({
+     'run_id':self.run_id,
+     'outer_fold':fold,
+     'observation_date':date.date(),
+     'training_start_date':train.index.min().date(),
+     'training_end_date':train.index.max().date(),
+     'testing_start_date':test.index.min().date(),
+     'testing_end_date':test.index.max().date(),
+     'selected_features_json':json.dumps(fold_sel),
+     'selected_weights_json':json.dumps(
+      best[1],
+      sort_keys=True,
+     ),
+     'full_sample_regime':test.loc[
+      date,
+      'dominant_regime',
+     ],
+     'predicted_regime':predicted,
+     'raw_confidence':raw_confidence,
+     'calibrated_confidence':calibrated_confidence,
+     'label_match':bool(
+      predicted==test.loc[date,'dominant_regime']
+     ),
+     'calculated_at_utc':utcnow(),
+    })
    start=end
   return pd.DataFrame(opts),pd.DataFrame(preds)
  def calibration(self,p):
@@ -179,7 +366,7 @@ class Module26Runner:
  def run(self):
   self.conn.execute("INSERT INTO module26_runs VALUES (?,?,?,NULL,'RUNNING',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'7.1.0')",[self.run_id,self.source_run_id,self.started])
   try:
-   f=self.features(); l=self.labels(); cols=self.candidate_columns(f); research,sel=self.feature_research(f,l,cols); _,tm=self.transition_matrix(l); opt,pred=self.nested(f,l,sel); cal=self.calibration(pred); sens=self.sensitivity(sel,pred)
+   f=self.features(); l=self.labels(); cols=self.candidate_columns(f); research,sel=self.feature_research(f,l,cols); _,tm=self.transition_matrix(l); opt,pred=self.nested(f,l,cols); cal=self.calibration(pred); sens=self.sensitivity(sel,pred)
    for t,x in [('m26_feature_research',research),('m26_transition_matrix',tm),('m26_ensemble_optimization',opt),('m26_nested_walk_forward',pred),('m26_probability_calibration',cal),('m26_sensitivity_results',sens)]: self.upsert(t,x)
    agr=float(pred['label_match'].mean()*100) if not pred.empty else 0; raw=float(cal['raw_absolute_error'].mean()) if not cal.empty else 1; mae=float(cal['calibrated_absolute_error'].mean()) if not cal.empty else 1; stability=float(sens['label_agreement_pct'].mean()) if not sens.empty else 0; cur=pred.iloc[-1] if not pred.empty else None
    passed=agr>=float(self.cfg['validation']['minimum_nested_agreement_pct']) and mae<=float(self.cfg['validation']['maximum_calibrated_mae']) and stability>=float(self.cfg['validation']['minimum_sensitivity_stability_pct']); status='PASSED' if passed else 'LIMITED'; rec='READY_FOR_REGIME_SPECIALIST_LAB' if passed else 'CONTINUE_REGIME_RESEARCH'
