@@ -1,0 +1,45 @@
+{
+  "certification": "crypto_post_remediation_historical_replay",
+  "status": "PASS",
+  "scope": {
+    "first_module": 25,
+    "last_module": 32,
+    "strict_nesting_commit": "9fed1d4",
+    "integration_merge_commit": "addc7e1",
+    "replay_infrastructure_commit": "dd9b97c"
+  },
+  "replay_preparation": {
+    "independent_replays": 2,
+    "derived_tables_purged_per_replay": 69,
+    "derived_rows_removed_per_replay": 33377,
+    "module30_registry_rows_removed_per_replay": 2,
+    "clean_module_run_boundaries": true,
+    "frozen_inputs_preserved": true
+  },
+  "execution": {
+    "replay_a_status": "SUCCESS",
+    "replay_b_status": "SUCCESS",
+    "modules_completed_per_replay": 8,
+    "frozen_inputs_unchanged": true,
+    "active_database_unchanged": true
+  },
+  "comparison": {
+    "tables_compared": 332,
+    "missing_from_replay_a": 0,
+    "missing_from_replay_b": 0,
+    "mismatched_tables": 0,
+    "execution_manifests_match": true,
+    "overall_status": "PASS",
+    "ignored_execution_metadata": [
+      "run_id",
+      "source_run_id",
+      "experiment_id",
+      "*_run_id",
+      "*_at_utc"
+    ]
+  },
+  "tests": {
+    "complete_suite_passed": 44
+  },
+  "platform_status": "RESEARCH ONLY"
+}

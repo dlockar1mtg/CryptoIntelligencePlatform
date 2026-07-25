@@ -1,0 +1,924 @@
+[
+  {
+    "module_number": 6,
+    "module_path": "crypto_platform/module6.py",
+    "function_count": 20,
+    "class_count": 1,
+    "table_count": 16,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "lookahead_protection",
+      "risk_adjusted_metrics"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "lookahead_protection",
+      "risk_adjusted_metrics"
+    ],
+    "leakage_risk_count": 16
+  },
+  {
+    "module_number": 7,
+    "module_path": "crypto_platform/module7.py",
+    "function_count": 18,
+    "class_count": 1,
+    "table_count": 20,
+    "detected_capabilities": [
+      "auditability",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "risk_adjusted_metrics",
+      "statistical_confidence",
+      "time_based_split",
+      "walk_forward_validation"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "risk_adjusted_metrics",
+      "time_based_split",
+      "walk_forward_validation"
+    ],
+    "leakage_risk_count": 14
+  },
+  {
+    "module_number": 8,
+    "module_path": "crypto_platform/module8.py",
+    "function_count": 18,
+    "class_count": 1,
+    "table_count": 26,
+    "detected_capabilities": [
+      "auditability",
+      "deterministic_replay",
+      "promotion_guardrails",
+      "regime_validation",
+      "statistical_confidence",
+      "time_based_split",
+      "walk_forward_validation"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "deterministic_replay",
+      "time_based_split",
+      "walk_forward_validation"
+    ],
+    "leakage_risk_count": 12
+  },
+  {
+    "module_number": 9,
+    "module_path": "crypto_platform/module9.py",
+    "function_count": 18,
+    "class_count": 1,
+    "table_count": 23,
+    "detected_capabilities": [
+      "auditability",
+      "deterministic_replay",
+      "forecast_calibration",
+      "promotion_guardrails",
+      "regime_validation",
+      "time_based_split",
+      "walk_forward_validation"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "deterministic_replay",
+      "forecast_calibration",
+      "time_based_split",
+      "walk_forward_validation"
+    ],
+    "leakage_risk_count": 13
+  },
+  {
+    "module_number": 10,
+    "module_path": "crypto_platform/module10.py",
+    "function_count": 16,
+    "class_count": 1,
+    "table_count": 25,
+    "detected_capabilities": [
+      "auditability",
+      "forecast_calibration",
+      "promotion_guardrails",
+      "regime_validation",
+      "risk_adjusted_metrics"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "forecast_calibration",
+      "risk_adjusted_metrics"
+    ],
+    "leakage_risk_count": 10
+  },
+  {
+    "module_number": 11,
+    "module_path": "crypto_platform/module11.py",
+    "function_count": 22,
+    "class_count": 1,
+    "table_count": 28,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "forecast_calibration",
+      "promotion_guardrails"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "forecast_calibration"
+    ],
+    "leakage_risk_count": 10
+  },
+  {
+    "module_number": 12,
+    "module_path": "crypto_platform/module12.py",
+    "function_count": 20,
+    "class_count": 1,
+    "table_count": 26,
+    "detected_capabilities": [
+      "auditability"
+    ],
+    "critical_capabilities_detected": [
+      "auditability"
+    ],
+    "leakage_risk_count": 2
+  },
+  {
+    "module_number": 13,
+    "module_path": "crypto_platform/module13.py",
+    "function_count": 14,
+    "class_count": 1,
+    "table_count": 25,
+    "detected_capabilities": [
+      "auditability",
+      "drawdown_analysis",
+      "risk_adjusted_metrics",
+      "universal_contract"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "drawdown_analysis",
+      "risk_adjusted_metrics"
+    ],
+    "leakage_risk_count": 7
+  },
+  {
+    "module_number": 14,
+    "module_path": "crypto_platform/module14.py",
+    "function_count": 17,
+    "class_count": 1,
+    "table_count": 23,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "drawdown_analysis",
+      "promotion_guardrails",
+      "regime_validation",
+      "risk_adjusted_metrics",
+      "transaction_costs",
+      "universal_contract"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "drawdown_analysis",
+      "risk_adjusted_metrics",
+      "transaction_costs"
+    ],
+    "leakage_risk_count": 31
+  },
+  {
+    "module_number": 15,
+    "module_path": "crypto_platform/module15.py",
+    "function_count": 22,
+    "class_count": 1,
+    "table_count": 23,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "drawdown_analysis",
+      "promotion_guardrails",
+      "risk_adjusted_metrics",
+      "sensitivity_testing",
+      "time_based_split",
+      "transaction_costs",
+      "walk_forward_validation"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "drawdown_analysis",
+      "risk_adjusted_metrics",
+      "time_based_split",
+      "transaction_costs",
+      "walk_forward_validation"
+    ],
+    "leakage_risk_count": 16
+  },
+  {
+    "module_number": 16,
+    "module_path": "crypto_platform/module16.py",
+    "function_count": 11,
+    "class_count": 1,
+    "table_count": 28,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "promotion_guardrails",
+      "risk_adjusted_metrics",
+      "time_based_split",
+      "transaction_costs",
+      "walk_forward_validation"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "risk_adjusted_metrics",
+      "time_based_split",
+      "transaction_costs",
+      "walk_forward_validation"
+    ],
+    "leakage_risk_count": 1
+  },
+  {
+    "module_number": 17,
+    "module_path": "crypto_platform/module17.py",
+    "function_count": 12,
+    "class_count": 1,
+    "table_count": 29,
+    "detected_capabilities": [
+      "auditability"
+    ],
+    "critical_capabilities_detected": [
+      "auditability"
+    ],
+    "leakage_risk_count": 10
+  },
+  {
+    "module_number": 18,
+    "module_path": "crypto_platform/module18.py",
+    "function_count": 12,
+    "class_count": 1,
+    "table_count": 17,
+    "detected_capabilities": [
+      "auditability",
+      "deterministic_replay",
+      "regime_validation",
+      "statistical_confidence"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "deterministic_replay"
+    ],
+    "leakage_risk_count": 6
+  },
+  {
+    "module_number": 19,
+    "module_path": "crypto_platform/module19.py",
+    "function_count": 16,
+    "class_count": 1,
+    "table_count": 19,
+    "detected_capabilities": [
+      "auditability",
+      "deterministic_replay",
+      "promotion_guardrails",
+      "regime_validation",
+      "statistical_confidence",
+      "time_based_split",
+      "walk_forward_validation"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "deterministic_replay",
+      "time_based_split",
+      "walk_forward_validation"
+    ],
+    "leakage_risk_count": 12
+  },
+  {
+    "module_number": 20,
+    "module_path": "crypto_platform/module20.py",
+    "function_count": 12,
+    "class_count": 1,
+    "table_count": 21,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "promotion_guardrails",
+      "risk_adjusted_metrics",
+      "statistical_confidence",
+      "transaction_costs",
+      "walk_forward_validation"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "risk_adjusted_metrics",
+      "transaction_costs",
+      "walk_forward_validation"
+    ],
+    "leakage_risk_count": 5
+  },
+  {
+    "module_number": 21,
+    "module_path": "crypto_platform/module21.py",
+    "function_count": 20,
+    "class_count": 1,
+    "table_count": 23,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "promotion_guardrails",
+      "regime_validation",
+      "risk_adjusted_metrics",
+      "transaction_costs",
+      "walk_forward_validation"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "risk_adjusted_metrics",
+      "transaction_costs",
+      "walk_forward_validation"
+    ],
+    "leakage_risk_count": 16
+  },
+  {
+    "module_number": 22,
+    "module_path": "crypto_platform/module22.py",
+    "function_count": 21,
+    "class_count": 1,
+    "table_count": 28,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "promotion_guardrails",
+      "regime_validation",
+      "risk_adjusted_metrics",
+      "time_based_split",
+      "transaction_costs",
+      "universal_contract",
+      "walk_forward_validation"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "risk_adjusted_metrics",
+      "time_based_split",
+      "transaction_costs",
+      "walk_forward_validation"
+    ],
+    "leakage_risk_count": 21
+  },
+  {
+    "module_number": 23,
+    "module_path": "crypto_platform/module23.py",
+    "function_count": 16,
+    "class_count": 1,
+    "table_count": 21,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "lookahead_protection",
+      "promotion_guardrails",
+      "risk_adjusted_metrics",
+      "statistical_confidence",
+      "transaction_costs"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "lookahead_protection",
+      "risk_adjusted_metrics",
+      "transaction_costs"
+    ],
+    "leakage_risk_count": 7
+  },
+  {
+    "module_number": 24,
+    "module_path": "crypto_platform/module24.py",
+    "function_count": 23,
+    "class_count": 1,
+    "table_count": 23,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "promotion_guardrails",
+      "regime_validation",
+      "risk_adjusted_metrics",
+      "sensitivity_testing",
+      "statistical_confidence",
+      "time_based_split",
+      "transaction_costs",
+      "walk_forward_validation"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "risk_adjusted_metrics",
+      "time_based_split",
+      "transaction_costs",
+      "walk_forward_validation"
+    ],
+    "leakage_risk_count": 21
+  },
+  {
+    "module_number": 25,
+    "module_path": "crypto_platform/module25.py",
+    "function_count": 21,
+    "class_count": 1,
+    "table_count": 23,
+    "detected_capabilities": [
+      "auditability",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "lookahead_protection",
+      "regime_validation",
+      "risk_adjusted_metrics",
+      "statistical_confidence"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "lookahead_protection",
+      "risk_adjusted_metrics"
+    ],
+    "leakage_risk_count": 11
+  },
+  {
+    "module_number": 26,
+    "module_path": "crypto_platform/module26.py",
+    "function_count": 21,
+    "class_count": 1,
+    "table_count": 23,
+    "detected_capabilities": [
+      "auditability",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "regime_validation",
+      "risk_adjusted_metrics",
+      "sensitivity_testing",
+      "walk_forward_validation"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "risk_adjusted_metrics",
+      "walk_forward_validation"
+    ],
+    "leakage_risk_count": 13
+  },
+  {
+    "module_number": 27,
+    "module_path": "crypto_platform/module27.py",
+    "function_count": 26,
+    "class_count": 1,
+    "table_count": 23,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "regime_validation",
+      "risk_adjusted_metrics",
+      "sensitivity_testing",
+      "walk_forward_validation"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "risk_adjusted_metrics",
+      "walk_forward_validation"
+    ],
+    "leakage_risk_count": 26
+  },
+  {
+    "module_number": 28,
+    "module_path": "crypto_platform/module28.py",
+    "function_count": 26,
+    "class_count": 1,
+    "table_count": 26,
+    "detected_capabilities": [
+      "auditability",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "regime_validation",
+      "risk_adjusted_metrics",
+      "sensitivity_testing",
+      "statistical_confidence",
+      "walk_forward_validation"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "risk_adjusted_metrics",
+      "walk_forward_validation"
+    ],
+    "leakage_risk_count": 25
+  },
+  {
+    "module_number": 29,
+    "module_path": "crypto_platform/module29.py",
+    "function_count": 15,
+    "class_count": 1,
+    "table_count": 27,
+    "detected_capabilities": [
+      "auditability",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "regime_validation",
+      "risk_adjusted_metrics",
+      "statistical_confidence",
+      "walk_forward_validation"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "risk_adjusted_metrics",
+      "walk_forward_validation"
+    ],
+    "leakage_risk_count": 15
+  },
+  {
+    "module_number": 30,
+    "module_path": "crypto_platform/module30.py",
+    "function_count": 9,
+    "class_count": 1,
+    "table_count": 31,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "feature_drift",
+      "forecast_calibration",
+      "promotion_guardrails",
+      "regime_validation",
+      "walk_forward_validation"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "forecast_calibration",
+      "walk_forward_validation"
+    ],
+    "leakage_risk_count": 5
+  },
+  {
+    "module_number": 31,
+    "module_path": "crypto_platform/module31.py",
+    "function_count": 12,
+    "class_count": 1,
+    "table_count": 23,
+    "detected_capabilities": [
+      "auditability",
+      "deterministic_replay",
+      "forecast_calibration",
+      "regime_validation",
+      "risk_adjusted_metrics"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "deterministic_replay",
+      "forecast_calibration",
+      "risk_adjusted_metrics"
+    ],
+    "leakage_risk_count": 12
+  },
+  {
+    "module_number": 32,
+    "module_path": "crypto_platform/module32.py",
+    "function_count": 18,
+    "class_count": 1,
+    "table_count": 35,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "feature_drift",
+      "forecast_calibration",
+      "lookahead_protection",
+      "performance_drift",
+      "prediction_drift",
+      "promotion_guardrails",
+      "regime_validation",
+      "risk_adjusted_metrics",
+      "sensitivity_testing",
+      "statistical_confidence",
+      "transaction_costs"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "deterministic_replay",
+      "drawdown_analysis",
+      "forecast_calibration",
+      "lookahead_protection",
+      "risk_adjusted_metrics",
+      "transaction_costs"
+    ],
+    "leakage_risk_count": 37
+  },
+  {
+    "module_number": 33,
+    "module_path": "crypto_platform/module33.py",
+    "function_count": 17,
+    "class_count": 1,
+    "table_count": 20,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "drawdown_analysis",
+      "feature_drift",
+      "lookahead_protection",
+      "prediction_drift",
+      "regime_validation",
+      "risk_adjusted_metrics",
+      "sensitivity_testing",
+      "transaction_costs"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "drawdown_analysis",
+      "lookahead_protection",
+      "risk_adjusted_metrics",
+      "transaction_costs"
+    ],
+    "leakage_risk_count": 16
+  },
+  {
+    "module_number": 34,
+    "module_path": "crypto_platform/module34.py",
+    "function_count": 16,
+    "class_count": 1,
+    "table_count": 23,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "drawdown_analysis",
+      "regime_validation",
+      "risk_adjusted_metrics",
+      "sensitivity_testing",
+      "transaction_costs"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "drawdown_analysis",
+      "risk_adjusted_metrics",
+      "transaction_costs"
+    ],
+    "leakage_risk_count": 9
+  },
+  {
+    "module_number": 35,
+    "module_path": "crypto_platform/module35.py",
+    "function_count": 7,
+    "class_count": 1,
+    "table_count": 15,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "regime_validation",
+      "risk_adjusted_metrics"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "risk_adjusted_metrics"
+    ],
+    "leakage_risk_count": 1
+  },
+  {
+    "module_number": 36,
+    "module_path": "crypto_platform/module36.py",
+    "function_count": 5,
+    "class_count": 1,
+    "table_count": 13,
+    "detected_capabilities": [
+      "auditability",
+      "drawdown_analysis",
+      "risk_adjusted_metrics"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "drawdown_analysis",
+      "risk_adjusted_metrics"
+    ],
+    "leakage_risk_count": 2
+  },
+  {
+    "module_number": 37,
+    "module_path": "crypto_platform/module37.py",
+    "function_count": 16,
+    "class_count": 1,
+    "table_count": 24,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "regime_validation",
+      "risk_adjusted_metrics"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "risk_adjusted_metrics"
+    ],
+    "leakage_risk_count": 6
+  },
+  {
+    "module_number": 38,
+    "module_path": "crypto_platform/module38.py",
+    "function_count": 17,
+    "class_count": 2,
+    "table_count": 27,
+    "detected_capabilities": [
+      "auditability",
+      "deterministic_replay",
+      "forecast_calibration",
+      "lookahead_protection",
+      "regime_validation",
+      "risk_adjusted_metrics",
+      "universal_contract",
+      "walk_forward_validation"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "deterministic_replay",
+      "forecast_calibration",
+      "lookahead_protection",
+      "risk_adjusted_metrics",
+      "walk_forward_validation"
+    ],
+    "leakage_risk_count": 12
+  },
+  {
+    "module_number": 39,
+    "module_path": "crypto_platform/module39.py",
+    "function_count": 15,
+    "class_count": 1,
+    "table_count": 22,
+    "detected_capabilities": [
+      "auditability",
+      "forecast_calibration",
+      "risk_adjusted_metrics",
+      "universal_contract"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "forecast_calibration",
+      "risk_adjusted_metrics"
+    ],
+    "leakage_risk_count": 21
+  },
+  {
+    "module_number": 40,
+    "module_path": "crypto_platform/module40.py",
+    "function_count": 17,
+    "class_count": 1,
+    "table_count": 23,
+    "detected_capabilities": [
+      "auditability",
+      "forecast_calibration",
+      "promotion_guardrails",
+      "regime_validation",
+      "risk_adjusted_metrics",
+      "universal_contract"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "forecast_calibration",
+      "risk_adjusted_metrics"
+    ],
+    "leakage_risk_count": 28
+  },
+  {
+    "module_number": 41,
+    "module_path": "crypto_platform/module41.py",
+    "function_count": 9,
+    "class_count": 1,
+    "table_count": 16,
+    "detected_capabilities": [
+      "auditability",
+      "forecast_calibration",
+      "universal_contract"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "forecast_calibration"
+    ],
+    "leakage_risk_count": 7
+  },
+  {
+    "module_number": 42,
+    "module_path": "crypto_platform/module42.py",
+    "function_count": 22,
+    "class_count": 1,
+    "table_count": 21,
+    "detected_capabilities": [
+      "auditability",
+      "drawdown_analysis",
+      "regime_validation",
+      "risk_adjusted_metrics",
+      "sensitivity_testing",
+      "universal_contract"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "drawdown_analysis",
+      "risk_adjusted_metrics"
+    ],
+    "leakage_risk_count": 3
+  },
+  {
+    "module_number": 43,
+    "module_path": "crypto_platform/module43.py",
+    "function_count": 18,
+    "class_count": 1,
+    "table_count": 16,
+    "detected_capabilities": [
+      "auditability",
+      "regime_validation",
+      "sensitivity_testing",
+      "universal_contract"
+    ],
+    "critical_capabilities_detected": [
+      "auditability"
+    ],
+    "leakage_risk_count": 2
+  },
+  {
+    "module_number": 44,
+    "module_path": "crypto_platform/module44.py",
+    "function_count": 14,
+    "class_count": 1,
+    "table_count": 21,
+    "detected_capabilities": [
+      "auditability",
+      "benchmark_comparison",
+      "drawdown_analysis",
+      "risk_adjusted_metrics",
+      "universal_contract"
+    ],
+    "critical_capabilities_detected": [
+      "auditability",
+      "benchmark_comparison",
+      "drawdown_analysis",
+      "risk_adjusted_metrics"
+    ],
+    "leakage_risk_count": 26
+  }
+]

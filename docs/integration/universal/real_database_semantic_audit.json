@@ -1,0 +1,210 @@
+{
+  "allocation_weight_sums": {
+    "final_risk_weight": 1.0,
+    "original_weight": 1.0,
+    "volatility_adjusted_weight": 1.0
+  },
+  "module36_run_id": "9e986677-c0a0-40f3-8bad-9572f5615d91",
+  "module42_run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+  "recommendation_weight_sum": 3.9631841680717987,
+  "recommendations": [
+    {
+      "asset_id": "avalanche",
+      "best_action": "WAIT",
+      "best_current_portfolio_pct": 0.0,
+      "conviction": "LOW",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "forecast_confidence": 0.21038505184984124,
+      "investment_score": 44.63705259418806,
+      "reliability_score": 22.78959088804549,
+      "risk_score": 43.30188022233316,
+      "weight_change_pct": 0.0
+    },
+    {
+      "asset_id": "bitcoin",
+      "best_action": "HOLD",
+      "best_current_portfolio_pct": 0.24149383403153352,
+      "conviction": "LOW",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "forecast_confidence": 0.430529480819992,
+      "investment_score": 47.244851603485074,
+      "reliability_score": 21.971379302109685,
+      "risk_score": 70.12767854081761,
+      "weight_change_pct": 0.0
+    },
+    {
+      "asset_id": "chainlink",
+      "best_action": "WAIT",
+      "best_current_portfolio_pct": 1.334437906981905,
+      "conviction": "LOW",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "forecast_confidence": 0.338685484903335,
+      "investment_score": 38.896427828245194,
+      "reliability_score": 23.161246130606138,
+      "risk_score": 42.75880632215659,
+      "weight_change_pct": 0.0
+    },
+    {
+      "asset_id": "ethereum",
+      "best_action": "WAIT",
+      "best_current_portfolio_pct": 1.5621950407612595,
+      "conviction": "LOW",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "forecast_confidence": 0.44209785650460626,
+      "investment_score": 39.865734376993686,
+      "reliability_score": 22.387151099417213,
+      "risk_score": 54.06793939222887,
+      "weight_change_pct": 0.0
+    },
+    {
+      "asset_id": "solana",
+      "best_action": "WAIT",
+      "best_current_portfolio_pct": 0.8250573862971008,
+      "conviction": "LOW",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "forecast_confidence": 0.30641330253894367,
+      "investment_score": 41.06552522084193,
+      "reliability_score": 22.583455840900417,
+      "risk_score": 48.88222259042135,
+      "weight_change_pct": 0.0
+    },
+    {
+      "asset_id": "xrp",
+      "best_action": "HOLD",
+      "best_current_portfolio_pct": 0.0,
+      "conviction": "LOW",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "forecast_confidence": 0.4268900549811699,
+      "investment_score": 45.754058081170776,
+      "reliability_score": 23.879457639180895,
+      "risk_score": 45.25762448509645,
+      "weight_change_pct": 0.0
+    }
+  ],
+  "risk_adjusted_allocations": [
+    {
+      "action": "HOLD",
+      "asset_id": "CASH",
+      "final_risk_weight": 0.960368158319282,
+      "original_weight": 0.960368158319282,
+      "risk_reduction_pct": 0.0,
+      "volatility_adjusted_weight": 0.960368158319282
+    },
+    {
+      "action": "HOLD",
+      "asset_id": "avalanche",
+      "final_risk_weight": 0.006087463054525717,
+      "original_weight": 0.006087463054525717,
+      "risk_reduction_pct": 0.0,
+      "volatility_adjusted_weight": 0.006087463054525717
+    },
+    {
+      "action": "HOLD",
+      "asset_id": "bitcoin",
+      "final_risk_weight": 0.008285242064700073,
+      "original_weight": 0.008285242064700073,
+      "risk_reduction_pct": 0.0,
+      "volatility_adjusted_weight": 0.008285242064700073
+    },
+    {
+      "action": "HOLD",
+      "asset_id": "chainlink",
+      "final_risk_weight": 0.006444436328093657,
+      "original_weight": 0.006444436328093657,
+      "risk_reduction_pct": 0.0,
+      "volatility_adjusted_weight": 0.006444436328093657
+    },
+    {
+      "action": "HOLD",
+      "asset_id": "ethereum",
+      "final_risk_weight": 0.006184734155758028,
+      "original_weight": 0.006184734155758028,
+      "risk_reduction_pct": 0.0,
+      "volatility_adjusted_weight": 0.006184734155758028
+    },
+    {
+      "action": "HOLD",
+      "asset_id": "solana",
+      "final_risk_weight": 0.006078961486670561,
+      "original_weight": 0.006078961486670561,
+      "risk_reduction_pct": 0.0,
+      "volatility_adjusted_weight": 0.006078961486670561
+    },
+    {
+      "action": "HOLD",
+      "asset_id": "xrp",
+      "final_risk_weight": 0.0065510045909699475,
+      "original_weight": 0.0065510045909699475,
+      "risk_reduction_pct": 0.0,
+      "volatility_adjusted_weight": 0.0065510045909699475
+    }
+  ],
+  "risk_metrics": [
+    {
+      "annualized_volatility_pct": 77.97697242536647,
+      "asset_id": "avalanche",
+      "cvar_95_pct": -9.603742564839537,
+      "liquidity_score": 100.0,
+      "marginal_risk_contribution_pct": 17.810579349213082,
+      "max_drawdown_365d_pct": -83.30405538945764,
+      "risk_status": "MODERATE",
+      "target_weight": 0.006087463054525717,
+      "var_95_pct": -5.902418828060618
+    },
+    {
+      "annualized_volatility_pct": 42.87385053883025,
+      "asset_id": "bitcoin",
+      "cvar_95_pct": -5.238587398540904,
+      "liquidity_score": 100.0,
+      "marginal_risk_contribution_pct": 13.311886617272467,
+      "max_drawdown_365d_pct": -53.074375627971904,
+      "risk_status": "LOW",
+      "target_weight": 0.008285242064700073,
+      "var_95_pct": -3.608813785760381
+    },
+    {
+      "annualized_volatility_pct": 76.39953645111628,
+      "asset_id": "chainlink",
+      "cvar_95_pct": -8.610276379964825,
+      "liquidity_score": 100.0,
+      "marginal_risk_contribution_pct": 19.346442369425233,
+      "max_drawdown_365d_pct": -73.14256524613599,
+      "risk_status": "MODERATE",
+      "target_weight": 0.006444436328093657,
+      "var_95_pct": -6.171453838314001
+    },
+    {
+      "annualized_volatility_pct": 66.84224066623386,
+      "asset_id": "ethereum",
+      "cvar_95_pct": -7.823224153296744,
+      "liquidity_score": 100.0,
+      "marginal_risk_contribution_pct": 16.17449799773095,
+      "max_drawdown_365d_pct": -67.59640174373888,
+      "risk_status": "MODERATE",
+      "target_weight": 0.006184734155758028,
+      "var_95_pct": -5.134031577592215
+    },
+    {
+      "annualized_volatility_pct": 71.22905094431312,
+      "asset_id": "solana",
+      "cvar_95_pct": -8.24032354672736,
+      "liquidity_score": 100.0,
+      "marginal_risk_contribution_pct": 16.90831939369079,
+      "max_drawdown_365d_pct": -74.89141385549482,
+      "risk_status": "MODERATE",
+      "target_weight": 0.006078961486670561,
+      "var_95_pct": -5.742760356777432
+    },
+    {
+      "annualized_volatility_pct": 66.63048720772589,
+      "asset_id": "xrp",
+      "cvar_95_pct": -7.483973893947428,
+      "liquidity_score": 100.0,
+      "marginal_risk_contribution_pct": 16.448274272667494,
+      "max_drawdown_365d_pct": -70.79417302346603,
+      "risk_status": "MODERATE",
+      "target_weight": 0.0065510045909699475,
+      "var_95_pct": -5.019992847090659
+    }
+  ]
+}

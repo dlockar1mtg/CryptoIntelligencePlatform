@@ -1,0 +1,108 @@
+Crypto Historical Replay Discovery
+Generated: 2026-07-21T11:00:48.6737125-05:00
+Branch: certification/crypto-clean-historical-replay
+Commit: e94ca9f1648dd369dc82fe23032fef1f0de5c86d
+
+=== Candidate run scripts ===
+C:\Users\DevonLockard\crypto\run_all.py
+C:\Users\DevonLockard\crypto\run_module1.py
+C:\Users\DevonLockard\crypto\run_module10.py
+C:\Users\DevonLockard\crypto\run_module11.py
+C:\Users\DevonLockard\crypto\run_module12.py
+C:\Users\DevonLockard\crypto\run_module13.py
+C:\Users\DevonLockard\crypto\run_module14.py
+C:\Users\DevonLockard\crypto\run_module15.py
+C:\Users\DevonLockard\crypto\run_module16.py
+C:\Users\DevonLockard\crypto\run_module17.py
+C:\Users\DevonLockard\crypto\run_module18.py
+C:\Users\DevonLockard\crypto\run_module19.py
+C:\Users\DevonLockard\crypto\run_module2.py
+C:\Users\DevonLockard\crypto\run_module20.py
+C:\Users\DevonLockard\crypto\run_module21.py
+C:\Users\DevonLockard\crypto\run_module22.py
+C:\Users\DevonLockard\crypto\run_module23.py
+C:\Users\DevonLockard\crypto\run_module24.py
+C:\Users\DevonLockard\crypto\run_module25.py
+C:\Users\DevonLockard\crypto\run_module25_validation.py
+C:\Users\DevonLockard\crypto\run_module26.py
+C:\Users\DevonLockard\crypto\run_module27.py
+C:\Users\DevonLockard\crypto\run_module28.py
+C:\Users\DevonLockard\crypto\run_module29.py
+C:\Users\DevonLockard\crypto\run_module3.py
+C:\Users\DevonLockard\crypto\run_module30.py
+C:\Users\DevonLockard\crypto\run_module31.py
+C:\Users\DevonLockard\crypto\run_module32.py
+C:\Users\DevonLockard\crypto\run_module33.py
+C:\Users\DevonLockard\crypto\run_module34.py
+C:\Users\DevonLockard\crypto\run_module35.py
+C:\Users\DevonLockard\crypto\run_module36.py
+C:\Users\DevonLockard\crypto\run_module37.py
+C:\Users\DevonLockard\crypto\run_module38.py
+C:\Users\DevonLockard\crypto\run_module39.py
+C:\Users\DevonLockard\crypto\run_module40.py
+C:\Users\DevonLockard\crypto\run_module41.py
+C:\Users\DevonLockard\crypto\run_module42.py
+C:\Users\DevonLockard\crypto\run_module43.py
+C:\Users\DevonLockard\crypto\run_module44.py
+C:\Users\DevonLockard\crypto\run_module5.py
+C:\Users\DevonLockard\crypto\run_module6.py
+C:\Users\DevonLockard\crypto\run_module7.py
+C:\Users\DevonLockard\crypto\run_module8.py
+C:\Users\DevonLockard\crypto\run_module9.py
+
+=== Database artifacts ===
+C:\Users\DevonLockard\crypto\data\crypto_intelligence.duckdb | 155463680 bytes | 07/21/2026 11:00:12
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v1_1.duckdb | 5255168 bytes | 07/13/2026 12:01:28
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v1_1_1.duckdb | 11022336 bytes | 07/13/2026 12:43:04
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v1_2.duckdb | 798720 bytes | 07/13/2026 13:09:04
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v1_2_1.duckdb | 1585152 bytes | 07/13/2026 13:15:59
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v1_3.duckdb | 1847296 bytes | 07/13/2026 13:36:26
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v1_4.duckdb | 2109440 bytes | 07/13/2026 13:46:54
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v1_5.duckdb | 2371584 bytes | 07/13/2026 14:09:56
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v1_6.duckdb | 2895872 bytes | 07/13/2026 14:19:49
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v1_7.duckdb | 3682304 bytes | 07/13/2026 14:31:15
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v10_0_0.duckdb | 126889984 bytes | 07/15/2026 12:23:31
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v10_0_1.duckdb | 130297856 bytes | 07/15/2026 12:33:47
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v10_0_2.duckdb | 130297856 bytes | 07/15/2026 12:42:02
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v10_1_0.duckdb | 131084288 bytes | 07/15/2026 12:54:44
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v10_2_0.duckdb | 133705728 bytes | 07/15/2026 13:05:55
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v11_0_0.duckdb | 141045760 bytes | 07/15/2026 13:59:41
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v11_0_1.duckdb | 141045760 bytes | 07/15/2026 14:25:17
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v11_0_2.duckdb | 144453632 bytes | 07/15/2026 14:40:28
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v11_0_3.duckdb | 144977920 bytes | 07/15/2026 14:55:56
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v12_0_0.duckdb | 144453632 bytes | 07/15/2026 15:04:45
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v12_0_1.duckdb | 144453632 bytes | 07/15/2026 15:31:44
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v12_1_0.duckdb | 146812928 bytes | 07/15/2026 15:45:50
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v13_0_0.duckdb | 158871552 bytes | 07/16/2026 08:22:58
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v2_0.duckdb | 4206592 bytes | 07/13/2026 14:51:10
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v2_1.duckdb | 4730880 bytes | 07/13/2026 15:40:23
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v3_0.duckdb | 5517312 bytes | 07/13/2026 15:55:59
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v3_1.duckdb | 6041600 bytes | 07/13/2026 16:19:07
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v3_2.duckdb | 6303744 bytes | 07/14/2026 07:26:58
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v3_3.duckdb | 6565888 bytes | 07/14/2026 07:51:14
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v3_3_4.duckdb | 7090176 bytes | 07/14/2026 10:07:56
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v4_0.duckdb | 19673088 bytes | 07/14/2026 10:47:56
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v4_1_0.duckdb | 21508096 bytes | 07/14/2026 11:28:29
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v4_2.duckdb | 24915968 bytes | 07/14/2026 13:42:46
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v4_2_1.duckdb | 27799552 bytes | 07/14/2026 14:06:35
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v4_2_2.duckdb | 31207424 bytes | 07/14/2026 14:42:34
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v4_2_3.duckdb | 34353152 bytes | 07/14/2026 14:59:14
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v5_0.duckdb | 38023168 bytes | 07/14/2026 15:08:52
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v5_1.duckdb | 43790336 bytes | 07/14/2026 15:18:17
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v5_1_1.duckdb | 48771072 bytes | 07/14/2026 16:49:22
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v6_0.duckdb | 54276096 bytes | 07/14/2026 17:02:52
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v7_0.duckdb | 59518976 bytes | 07/14/2026 17:22:41
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v7_0_1_hotfix.duckdb | 59518976 bytes | 07/14/2026 17:35:00
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v7_0_3.duckdb | 66596864 bytes | 07/14/2026 17:45:22
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v7_1.duckdb | 71053312 bytes | 07/14/2026 18:00:49
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v7_2.duckdb | 74985472 bytes | 07/14/2026 20:21:15
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v7_3.duckdb | 79441920 bytes | 07/14/2026 20:30:18
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v8_0.duckdb | 85471232 bytes | 07/14/2026 21:16:22
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v8_1_0.duckdb | 89927680 bytes | 07/15/2026 08:36:47
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v8_1_1.duckdb | 95170560 bytes | 07/15/2026 09:17:03
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v8_2.duckdb | 101462016 bytes | 07/15/2026 09:32:56
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v8_3_0.duckdb | 105656320 bytes | 07/15/2026 09:53:41
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v8_3_1.duckdb | 111161344 bytes | 07/15/2026 10:13:26
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v8_4_0.duckdb | 114569216 bytes | 07/15/2026 10:31:40
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v9_1_0.duckdb | 118763520 bytes | 07/15/2026 10:47:44
+C:\Users\DevonLockard\crypto\data\crypto_intelligence_before_v9_2_0.duckdb | 123219968 bytes | 07/15/2026 11:52:14

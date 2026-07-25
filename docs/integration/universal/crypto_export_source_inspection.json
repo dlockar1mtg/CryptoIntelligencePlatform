@@ -1,0 +1,3483 @@
+{
+  "database_path": "C:\\Users\\DevonLockard\\Crypto\\data\\crypto_intelligence.duckdb",
+  "source_table_count": 17,
+  "tables": [
+    {
+      "exists": true,
+      "row_count": 6,
+      "sample_rows": [
+        {
+          "active": true,
+          "asset_id": "xrp",
+          "asset_name": "XRP",
+          "asset_tier": "satellite",
+          "binance_symbol": "XRPUSDT",
+          "coinbase_product": "XRP-USD",
+          "coingecko_id": "ripple",
+          "created_at_utc": "2026-07-14T10:45:39.245236-05:00",
+          "kraken_pair": "XRPUSD",
+          "native_chain": "xrp-ledger",
+          "portfolio_enabled": false,
+          "research_enabled": true,
+          "symbol": "XRP"
+        },
+        {
+          "active": true,
+          "asset_id": "solana",
+          "asset_name": "Solana",
+          "asset_tier": "satellite",
+          "binance_symbol": "SOLUSDT",
+          "coinbase_product": "SOL-USD",
+          "coingecko_id": "solana",
+          "created_at_utc": "2026-07-14T10:45:39.245236-05:00",
+          "kraken_pair": "SOLUSD",
+          "native_chain": "solana",
+          "portfolio_enabled": false,
+          "research_enabled": true,
+          "symbol": "SOL"
+        },
+        {
+          "active": true,
+          "asset_id": "ethereum",
+          "asset_name": "Ethereum",
+          "asset_tier": "core",
+          "binance_symbol": "ETHUSDT",
+          "coinbase_product": "ETH-USD",
+          "coingecko_id": "ethereum",
+          "created_at_utc": "2026-07-14T10:45:39.245236-05:00",
+          "kraken_pair": "ETHUSD",
+          "native_chain": "ethereum",
+          "portfolio_enabled": true,
+          "research_enabled": true,
+          "symbol": "ETH"
+        },
+        {
+          "active": true,
+          "asset_id": "chainlink",
+          "asset_name": "Chainlink",
+          "asset_tier": "satellite",
+          "binance_symbol": "LINKUSDT",
+          "coinbase_product": "LINK-USD",
+          "coingecko_id": "chainlink",
+          "created_at_utc": "2026-07-14T10:45:39.245236-05:00",
+          "kraken_pair": "LINKUSD",
+          "native_chain": "ethereum",
+          "portfolio_enabled": false,
+          "research_enabled": true,
+          "symbol": "LINK"
+        },
+        {
+          "active": true,
+          "asset_id": "bitcoin",
+          "asset_name": "Bitcoin",
+          "asset_tier": "core",
+          "binance_symbol": "BTCUSDT",
+          "coinbase_product": "BTC-USD",
+          "coingecko_id": "bitcoin",
+          "created_at_utc": "2026-07-14T10:45:39.245236-05:00",
+          "kraken_pair": "XBTUSD",
+          "native_chain": "bitcoin",
+          "portfolio_enabled": true,
+          "research_enabled": true,
+          "symbol": "BTC"
+        },
+        {
+          "active": true,
+          "asset_id": "avalanche",
+          "asset_name": "Avalanche",
+          "asset_tier": "satellite",
+          "binance_symbol": "AVAXUSDT",
+          "coinbase_product": "AVAX-USD",
+          "coingecko_id": "avalanche-2",
+          "created_at_utc": "2026-07-14T10:45:39.245236-05:00",
+          "kraken_pair": "AVAXUSD",
+          "native_chain": "avalanche",
+          "portfolio_enabled": false,
+          "research_enabled": true,
+          "symbol": "AVAX"
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "asset_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "symbol",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "asset_name",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "coingecko_id",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "coinbase_product",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "kraken_pair",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "binance_symbol",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "asset_tier",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "portfolio_enabled",
+          "data_type": "BOOLEAN",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "research_enabled",
+          "data_type": "BOOLEAN",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "native_chain",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "active",
+          "data_type": "BOOLEAN",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "created_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "assets"
+    },
+    {
+      "exists": true,
+      "row_count": 2190,
+      "sample_rows": [
+        {
+          "asset_id": "xrp",
+          "ath_change_pct": NaN,
+          "ath_usd": NaN,
+          "circulating_supply": NaN,
+          "collected_at_utc": "2026-07-14T10:46:44.443174-05:00",
+          "fully_diluted_value_usd": NaN,
+          "market_cap_rank": null,
+          "market_cap_usd": 203036588057.2096,
+          "max_supply": NaN,
+          "observation_date": "2025-07-20T00:00:00",
+          "price_usd": 3.43091157808989,
+          "source": "coingecko",
+          "total_supply": NaN,
+          "volume_24h_usd": 5783505866.425777
+        },
+        {
+          "asset_id": "xrp",
+          "ath_change_pct": NaN,
+          "ath_usd": NaN,
+          "circulating_supply": NaN,
+          "collected_at_utc": "2026-07-14T10:46:44.443174-05:00",
+          "fully_diluted_value_usd": NaN,
+          "market_cap_rank": null,
+          "market_cap_usd": 183971298108.38446,
+          "max_supply": NaN,
+          "observation_date": "2025-08-18T00:00:00",
+          "price_usd": 3.0953855433967075,
+          "source": "coingecko",
+          "total_supply": NaN,
+          "volume_24h_usd": 3486012703.1641827
+        },
+        {
+          "asset_id": "xrp",
+          "ath_change_pct": NaN,
+          "ath_usd": NaN,
+          "circulating_supply": NaN,
+          "collected_at_utc": "2026-07-14T10:46:44.443174-05:00",
+          "fully_diluted_value_usd": NaN,
+          "market_cap_rank": null,
+          "market_cap_usd": 170168406125.4961,
+          "max_supply": NaN,
+          "observation_date": "2025-08-20T00:00:00",
+          "price_usd": 2.8587366392387112,
+          "source": "coingecko",
+          "total_supply": NaN,
+          "volume_24h_usd": 6736297698.175642
+        },
+        {
+          "asset_id": "xrp",
+          "ath_change_pct": NaN,
+          "ath_usd": NaN,
+          "circulating_supply": NaN,
+          "collected_at_utc": "2026-07-14T10:46:44.443174-05:00",
+          "fully_diluted_value_usd": NaN,
+          "market_cap_rank": null,
+          "market_cap_usd": 163668082549.3002,
+          "max_supply": NaN,
+          "observation_date": "2025-09-02T00:00:00",
+          "price_usd": 2.752094842681695,
+          "source": "coingecko",
+          "total_supply": NaN,
+          "volume_24h_usd": 8149612555.21553
+        },
+        {
+          "asset_id": "xrp",
+          "ath_change_pct": NaN,
+          "ath_usd": NaN,
+          "circulating_supply": NaN,
+          "collected_at_utc": "2026-07-14T10:46:44.443174-05:00",
+          "fully_diluted_value_usd": NaN,
+          "market_cap_rank": null,
+          "market_cap_usd": 166553893839.9241,
+          "max_supply": NaN,
+          "observation_date": "2025-09-05T00:00:00",
+          "price_usd": 2.797620314598713,
+          "source": "coingecko",
+          "total_supply": NaN,
+          "volume_24h_usd": 4435280469.053911
+        },
+        {
+          "asset_id": "xrp",
+          "ath_change_pct": NaN,
+          "ath_usd": NaN,
+          "circulating_supply": NaN,
+          "collected_at_utc": "2026-07-14T10:46:44.443174-05:00",
+          "fully_diluted_value_usd": NaN,
+          "market_cap_rank": null,
+          "market_cap_usd": 180683294841.68112,
+          "max_supply": NaN,
+          "observation_date": "2025-09-15T00:00:00",
+          "price_usd": 3.0312637323512215,
+          "source": "coingecko",
+          "total_supply": NaN,
+          "volume_24h_usd": 4717722674.640647
+        },
+        {
+          "asset_id": "xrp",
+          "ath_change_pct": NaN,
+          "ath_usd": NaN,
+          "circulating_supply": NaN,
+          "collected_at_utc": "2026-07-14T10:46:44.443174-05:00",
+          "fully_diluted_value_usd": NaN,
+          "market_cap_rank": null,
+          "market_cap_usd": 178756914408.9819,
+          "max_supply": NaN,
+          "observation_date": "2025-09-20T00:00:00",
+          "price_usd": 2.9911678094786853,
+          "source": "coingecko",
+          "total_supply": NaN,
+          "volume_24h_usd": 4614169289.07877
+        },
+        {
+          "asset_id": "xrp",
+          "ath_change_pct": NaN,
+          "ath_usd": NaN,
+          "circulating_supply": NaN,
+          "collected_at_utc": "2026-07-14T10:46:44.443174-05:00",
+          "fully_diluted_value_usd": NaN,
+          "market_cap_rank": null,
+          "market_cap_usd": 170400585443.59097,
+          "max_supply": NaN,
+          "observation_date": "2025-09-23T00:00:00",
+          "price_usd": 2.851139194678168,
+          "source": "coingecko",
+          "total_supply": NaN,
+          "volume_24h_usd": 9546312187.865196
+        },
+        {
+          "asset_id": "xrp",
+          "ath_change_pct": NaN,
+          "ath_usd": NaN,
+          "circulating_supply": NaN,
+          "collected_at_utc": "2026-07-14T10:46:44.443174-05:00",
+          "fully_diluted_value_usd": NaN,
+          "market_cap_rank": null,
+          "market_cap_usd": 169113142027.29474,
+          "max_supply": NaN,
+          "observation_date": "2025-09-24T00:00:00",
+          "price_usd": 2.8290556379505225,
+          "source": "coingecko",
+          "total_supply": NaN,
+          "volume_24h_usd": 5177734080.177338
+        },
+        {
+          "asset_id": "xrp",
+          "ath_change_pct": NaN,
+          "ath_usd": NaN,
+          "circulating_supply": NaN,
+          "collected_at_utc": "2026-07-14T10:46:44.443174-05:00",
+          "fully_diluted_value_usd": NaN,
+          "market_cap_rank": null,
+          "market_cap_usd": 117518467990.35646,
+          "max_supply": NaN,
+          "observation_date": "2025-11-22T00:00:00",
+          "price_usd": 1.950091461265794,
+          "source": "coingecko",
+          "total_supply": NaN,
+          "volume_24h_usd": 8745429497.04679
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "asset_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "observation_date",
+          "data_type": "DATE",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "price_usd",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "market_cap_usd",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "volume_24h_usd",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "circulating_supply",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "total_supply",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "max_supply",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "fully_diluted_value_usd",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "market_cap_rank",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "ath_usd",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "ath_change_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "source",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "collected_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "asset_market_daily"
+    },
+    {
+      "exists": true,
+      "row_count": 12247,
+      "sample_rows": [
+        {
+          "asset_id": "xrp",
+          "base_volume": 44927222.0,
+          "close": 0.2356,
+          "close_time_utc": "2020-01-19T17:59:59.999000-06:00",
+          "collected_at_utc": "2026-07-14T10:47:00.774706-05:00",
+          "exchange": "coinbase",
+          "high": 0.2517,
+          "interval": "1d",
+          "low": 0.2268,
+          "open": 0.2434,
+          "open_time_utc": "2020-01-18T18:00:00-06:00",
+          "quote_volume": 10584853.5032,
+          "symbol": "XRP-USD",
+          "taker_buy_base_volume": NaN,
+          "taker_buy_quote_volume": NaN,
+          "trade_count": null
+        },
+        {
+          "asset_id": "xrp",
+          "base_volume": 40902028.0,
+          "close": 0.2435,
+          "close_time_utc": "2020-01-30T17:59:59.999000-06:00",
+          "collected_at_utc": "2026-07-14T10:47:00.774706-05:00",
+          "exchange": "coinbase",
+          "high": 0.2468,
+          "interval": "1d",
+          "low": 0.23,
+          "open": 0.2351,
+          "open_time_utc": "2020-01-29T18:00:00-06:00",
+          "quote_volume": 9959643.818,
+          "symbol": "XRP-USD",
+          "taker_buy_base_volume": NaN,
+          "taker_buy_quote_volume": NaN,
+          "trade_count": null
+        },
+        {
+          "asset_id": "xrp",
+          "base_volume": 43122164.0,
+          "close": 0.2544,
+          "close_time_utc": "2020-02-03T17:59:59.999000-06:00",
+          "collected_at_utc": "2026-07-14T10:47:00.774706-05:00",
+          "exchange": "coinbase",
+          "high": 0.26,
+          "interval": "1d",
+          "low": 0.2467,
+          "open": 0.2507,
+          "open_time_utc": "2020-02-02T18:00:00-06:00",
+          "quote_volume": 10970278.5216,
+          "symbol": "XRP-USD",
+          "taker_buy_base_volume": NaN,
+          "taker_buy_quote_volume": NaN,
+          "trade_count": null
+        },
+        {
+          "asset_id": "xrp",
+          "base_volume": 100277894.0,
+          "close": 0.293,
+          "close_time_utc": "2020-02-16T17:59:59.999000-06:00",
+          "collected_at_utc": "2026-07-14T10:47:00.774706-05:00",
+          "exchange": "coinbase",
+          "high": 0.3193,
+          "interval": "1d",
+          "low": 0.2651,
+          "open": 0.3072,
+          "open_time_utc": "2020-02-15T18:00:00-06:00",
+          "quote_volume": 29381422.941999998,
+          "symbol": "XRP-USD",
+          "taker_buy_base_volume": NaN,
+          "taker_buy_quote_volume": NaN,
+          "trade_count": null
+        },
+        {
+          "asset_id": "xrp",
+          "base_volume": 32017274.0,
+          "close": 0.2348,
+          "close_time_utc": "2020-03-04T17:59:59.999000-06:00",
+          "collected_at_utc": "2026-07-14T10:47:00.774706-05:00",
+          "exchange": "coinbase",
+          "high": 0.2384,
+          "interval": "1d",
+          "low": 0.23,
+          "open": 0.2344,
+          "open_time_utc": "2020-03-03T18:00:00-06:00",
+          "quote_volume": 7517655.9352,
+          "symbol": "XRP-USD",
+          "taker_buy_base_volume": NaN,
+          "taker_buy_quote_volume": NaN,
+          "trade_count": null
+        },
+        {
+          "asset_id": "xrp",
+          "base_volume": 91937253.0,
+          "close": 0.1477,
+          "close_time_utc": "2020-03-17T18:59:59.999000-05:00",
+          "collected_at_utc": "2026-07-14T10:47:00.774706-05:00",
+          "exchange": "coinbase",
+          "high": 0.1527,
+          "interval": "1d",
+          "low": 0.1399,
+          "open": 0.1415,
+          "open_time_utc": "2020-03-16T19:00:00-05:00",
+          "quote_volume": 13579132.268099999,
+          "symbol": "XRP-USD",
+          "taker_buy_base_volume": NaN,
+          "taker_buy_quote_volume": NaN,
+          "trade_count": null
+        },
+        {
+          "asset_id": "xrp",
+          "base_volume": 138627032.0,
+          "close": 0.157,
+          "close_time_utc": "2020-03-20T18:59:59.999000-05:00",
+          "collected_at_utc": "2026-07-14T10:47:00.774706-05:00",
+          "exchange": "coinbase",
+          "high": 0.176,
+          "interval": "1d",
+          "low": 0.145,
+          "open": 0.1651,
+          "open_time_utc": "2020-03-19T19:00:00-05:00",
+          "quote_volume": 21764444.024,
+          "symbol": "XRP-USD",
+          "taker_buy_base_volume": NaN,
+          "taker_buy_quote_volume": NaN,
+          "trade_count": null
+        },
+        {
+          "asset_id": "xrp",
+          "base_volume": 114793661.0,
+          "close": 0.2115,
+          "close_time_utc": "2020-04-30T18:59:59.999000-05:00",
+          "collected_at_utc": "2026-07-14T10:47:00.774706-05:00",
+          "exchange": "coinbase",
+          "high": 0.2361,
+          "interval": "1d",
+          "low": 0.2081,
+          "open": 0.2269,
+          "open_time_utc": "2020-04-29T19:00:00-05:00",
+          "quote_volume": 24278859.3015,
+          "symbol": "XRP-USD",
+          "taker_buy_base_volume": NaN,
+          "taker_buy_quote_volume": NaN,
+          "trade_count": null
+        },
+        {
+          "asset_id": "xrp",
+          "base_volume": 46375845.0,
+          "close": 0.2241,
+          "close_time_utc": "2020-05-02T18:59:59.999000-05:00",
+          "collected_at_utc": "2026-07-14T10:47:00.774706-05:00",
+          "exchange": "coinbase",
+          "high": 0.226,
+          "interval": "1d",
+          "low": 0.2155,
+          "open": 0.2181,
+          "open_time_utc": "2020-05-01T19:00:00-05:00",
+          "quote_volume": 10392826.8645,
+          "symbol": "XRP-USD",
+          "taker_buy_base_volume": NaN,
+          "taker_buy_quote_volume": NaN,
+          "trade_count": null
+        },
+        {
+          "asset_id": "xrp",
+          "base_volume": 33671977.917864,
+          "close": 0.1766,
+          "close_time_utc": "2020-07-01T18:59:59.999000-05:00",
+          "collected_at_utc": "2026-07-14T10:47:00.774706-05:00",
+          "exchange": "coinbase",
+          "high": 0.1783,
+          "interval": "1d",
+          "low": 0.1731,
+          "open": 0.1754,
+          "open_time_utc": "2020-06-30T19:00:00-05:00",
+          "quote_volume": 5946471.300294783,
+          "symbol": "XRP-USD",
+          "taker_buy_base_volume": NaN,
+          "taker_buy_quote_volume": NaN,
+          "trade_count": null
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "asset_id",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "exchange",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "symbol",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "interval",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "open_time_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "close_time_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "open",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "high",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "low",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "close",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "base_volume",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "quote_volume",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "trade_count",
+          "data_type": "BIGINT",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "taker_buy_base_volume",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "taker_buy_quote_volume",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "collected_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "asset_ohlcv"
+    },
+    {
+      "exists": true,
+      "row_count": 7,
+      "sample_rows": [
+        {
+          "allocation_status": "HOLD",
+          "asset_id": "CASH",
+          "calculated_at_utc": "2026-07-15T11:51:46.086323-05:00",
+          "current_weight": 0.890247610230866,
+          "final_target_weight": 0.960368158319282,
+          "observation_date": "2026-07-14T00:00:00",
+          "raw_target_weight": 0.960368158319282,
+          "run_id": "d39e06e1-db72-4aab-a243-550c35f0c254",
+          "trade_weight": 0.07012054808841606
+        },
+        {
+          "allocation_status": "HOLD",
+          "asset_id": "avalanche",
+          "calculated_at_utc": "2026-07-15T11:51:46.086320-05:00",
+          "current_weight": 0.0,
+          "final_target_weight": 0.006087463054525717,
+          "observation_date": "2026-07-14T00:00:00",
+          "raw_target_weight": 0.006087463054525717,
+          "run_id": "d39e06e1-db72-4aab-a243-550c35f0c254",
+          "trade_weight": 0.006087463054525717
+        },
+        {
+          "allocation_status": "HOLD",
+          "asset_id": "xrp",
+          "calculated_at_utc": "2026-07-15T11:51:46.086319-05:00",
+          "current_weight": 0.0,
+          "final_target_weight": 0.0065510045909699475,
+          "observation_date": "2026-07-14T00:00:00",
+          "raw_target_weight": 0.0065510045909699475,
+          "run_id": "d39e06e1-db72-4aab-a243-550c35f0c254",
+          "trade_weight": 0.0065510045909699475
+        },
+        {
+          "allocation_status": "HOLD",
+          "asset_id": "chainlink",
+          "calculated_at_utc": "2026-07-15T11:51:46.086318-05:00",
+          "current_weight": 0.0,
+          "final_target_weight": 0.006444436328093657,
+          "observation_date": "2026-07-14T00:00:00",
+          "raw_target_weight": 0.006444436328093657,
+          "run_id": "d39e06e1-db72-4aab-a243-550c35f0c254",
+          "trade_weight": 0.006444436328093657
+        },
+        {
+          "allocation_status": "HOLD",
+          "asset_id": "solana",
+          "calculated_at_utc": "2026-07-15T11:51:46.086317-05:00",
+          "current_weight": 0.0,
+          "final_target_weight": 0.006078961486670561,
+          "observation_date": "2026-07-14T00:00:00",
+          "raw_target_weight": 0.006078961486670561,
+          "run_id": "d39e06e1-db72-4aab-a243-550c35f0c254",
+          "trade_weight": 0.006078961486670561
+        },
+        {
+          "allocation_status": "HOLD",
+          "asset_id": "ethereum",
+          "calculated_at_utc": "2026-07-15T11:51:46.086315-05:00",
+          "current_weight": 0.004910635139153255,
+          "final_target_weight": 0.006184734155758028,
+          "observation_date": "2026-07-14T00:00:00",
+          "raw_target_weight": 0.006184734155758028,
+          "run_id": "d39e06e1-db72-4aab-a243-550c35f0c254",
+          "trade_weight": 0.001274099016604773
+        },
+        {
+          "allocation_status": "REDUCE",
+          "asset_id": "bitcoin",
+          "calculated_at_utc": "2026-07-15T11:51:46.086310-05:00",
+          "current_weight": 0.10484175462998081,
+          "final_target_weight": 0.008285242064700073,
+          "observation_date": "2026-07-14T00:00:00",
+          "raw_target_weight": 0.008285242064700073,
+          "run_id": "d39e06e1-db72-4aab-a243-550c35f0c254",
+          "trade_weight": -0.09655651256528074
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "run_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "observation_date",
+          "data_type": "DATE",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "asset_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "raw_target_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "final_target_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "current_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "trade_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "allocation_status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "calculated_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "m35_portfolio_allocations"
+    },
+    {
+      "exists": true,
+      "row_count": 6,
+      "sample_rows": [
+        {
+          "annualized_volatility_pct": 77.97697242536647,
+          "asset_id": "avalanche",
+          "calculated_at_utc": "2026-07-15T11:52:04.155219-05:00",
+          "cvar_95_pct": -9.603742564839537,
+          "liquidity_score": 100.0,
+          "marginal_risk_contribution_pct": 17.810579349213082,
+          "max_drawdown_365d_pct": -83.30405538945764,
+          "observation_date": "2026-07-14T00:00:00",
+          "risk_status": "MODERATE",
+          "run_id": "9e986677-c0a0-40f3-8bad-9572f5615d91",
+          "target_weight": 0.006087463054525717,
+          "var_95_pct": -5.902418828060618
+        },
+        {
+          "annualized_volatility_pct": 66.63048720772589,
+          "asset_id": "xrp",
+          "calculated_at_utc": "2026-07-15T11:52:04.154853-05:00",
+          "cvar_95_pct": -7.483973893947428,
+          "liquidity_score": 100.0,
+          "marginal_risk_contribution_pct": 16.448274272667494,
+          "max_drawdown_365d_pct": -70.79417302346603,
+          "observation_date": "2026-07-14T00:00:00",
+          "risk_status": "MODERATE",
+          "run_id": "9e986677-c0a0-40f3-8bad-9572f5615d91",
+          "target_weight": 0.0065510045909699475,
+          "var_95_pct": -5.019992847090659
+        },
+        {
+          "annualized_volatility_pct": 76.39953645111628,
+          "asset_id": "chainlink",
+          "calculated_at_utc": "2026-07-15T11:52:04.154474-05:00",
+          "cvar_95_pct": -8.610276379964825,
+          "liquidity_score": 100.0,
+          "marginal_risk_contribution_pct": 19.346442369425233,
+          "max_drawdown_365d_pct": -73.14256524613599,
+          "observation_date": "2026-07-14T00:00:00",
+          "risk_status": "MODERATE",
+          "run_id": "9e986677-c0a0-40f3-8bad-9572f5615d91",
+          "target_weight": 0.006444436328093657,
+          "var_95_pct": -6.171453838314001
+        },
+        {
+          "annualized_volatility_pct": 71.22905094431312,
+          "asset_id": "solana",
+          "calculated_at_utc": "2026-07-15T11:52:04.154059-05:00",
+          "cvar_95_pct": -8.24032354672736,
+          "liquidity_score": 100.0,
+          "marginal_risk_contribution_pct": 16.90831939369079,
+          "max_drawdown_365d_pct": -74.89141385549482,
+          "observation_date": "2026-07-14T00:00:00",
+          "risk_status": "MODERATE",
+          "run_id": "9e986677-c0a0-40f3-8bad-9572f5615d91",
+          "target_weight": 0.006078961486670561,
+          "var_95_pct": -5.742760356777432
+        },
+        {
+          "annualized_volatility_pct": 66.84224066623386,
+          "asset_id": "ethereum",
+          "calculated_at_utc": "2026-07-15T11:52:04.153666-05:00",
+          "cvar_95_pct": -7.823224153296744,
+          "liquidity_score": 100.0,
+          "marginal_risk_contribution_pct": 16.17449799773095,
+          "max_drawdown_365d_pct": -67.59640174373888,
+          "observation_date": "2026-07-14T00:00:00",
+          "risk_status": "MODERATE",
+          "run_id": "9e986677-c0a0-40f3-8bad-9572f5615d91",
+          "target_weight": 0.006184734155758028,
+          "var_95_pct": -5.134031577592215
+        },
+        {
+          "annualized_volatility_pct": 42.87385053883025,
+          "asset_id": "bitcoin",
+          "calculated_at_utc": "2026-07-15T11:52:04.153234-05:00",
+          "cvar_95_pct": -5.238587398540904,
+          "liquidity_score": 100.0,
+          "marginal_risk_contribution_pct": 13.311886617272467,
+          "max_drawdown_365d_pct": -53.074375627971904,
+          "observation_date": "2026-07-14T00:00:00",
+          "risk_status": "LOW",
+          "run_id": "9e986677-c0a0-40f3-8bad-9572f5615d91",
+          "target_weight": 0.008285242064700073,
+          "var_95_pct": -3.608813785760381
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "run_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "observation_date",
+          "data_type": "DATE",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "asset_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "target_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "annualized_volatility_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "var_95_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "cvar_95_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "max_drawdown_365d_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "liquidity_score",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "marginal_risk_contribution_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "risk_status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "calculated_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "m36_asset_risk"
+    },
+    {
+      "exists": true,
+      "row_count": 7,
+      "sample_rows": [
+        {
+          "action": "HOLD",
+          "asset_id": "CASH",
+          "calculated_at_utc": "2026-07-15T11:52:04.155525-05:00",
+          "final_risk_weight": 0.960368158319282,
+          "observation_date": "2026-07-14T00:00:00",
+          "original_weight": 0.960368158319282,
+          "risk_reduction_pct": 0.0,
+          "run_id": "9e986677-c0a0-40f3-8bad-9572f5615d91",
+          "volatility_adjusted_weight": 0.960368158319282
+        },
+        {
+          "action": "HOLD",
+          "asset_id": "avalanche",
+          "calculated_at_utc": "2026-07-15T11:52:04.155221-05:00",
+          "final_risk_weight": 0.006087463054525717,
+          "observation_date": "2026-07-14T00:00:00",
+          "original_weight": 0.006087463054525717,
+          "risk_reduction_pct": 0.0,
+          "run_id": "9e986677-c0a0-40f3-8bad-9572f5615d91",
+          "volatility_adjusted_weight": 0.006087463054525717
+        },
+        {
+          "action": "HOLD",
+          "asset_id": "xrp",
+          "calculated_at_utc": "2026-07-15T11:52:04.154855-05:00",
+          "final_risk_weight": 0.0065510045909699475,
+          "observation_date": "2026-07-14T00:00:00",
+          "original_weight": 0.0065510045909699475,
+          "risk_reduction_pct": 0.0,
+          "run_id": "9e986677-c0a0-40f3-8bad-9572f5615d91",
+          "volatility_adjusted_weight": 0.0065510045909699475
+        },
+        {
+          "action": "HOLD",
+          "asset_id": "chainlink",
+          "calculated_at_utc": "2026-07-15T11:52:04.154475-05:00",
+          "final_risk_weight": 0.006444436328093657,
+          "observation_date": "2026-07-14T00:00:00",
+          "original_weight": 0.006444436328093657,
+          "risk_reduction_pct": 0.0,
+          "run_id": "9e986677-c0a0-40f3-8bad-9572f5615d91",
+          "volatility_adjusted_weight": 0.006444436328093657
+        },
+        {
+          "action": "HOLD",
+          "asset_id": "solana",
+          "calculated_at_utc": "2026-07-15T11:52:04.154061-05:00",
+          "final_risk_weight": 0.006078961486670561,
+          "observation_date": "2026-07-14T00:00:00",
+          "original_weight": 0.006078961486670561,
+          "risk_reduction_pct": 0.0,
+          "run_id": "9e986677-c0a0-40f3-8bad-9572f5615d91",
+          "volatility_adjusted_weight": 0.006078961486670561
+        },
+        {
+          "action": "HOLD",
+          "asset_id": "ethereum",
+          "calculated_at_utc": "2026-07-15T11:52:04.153669-05:00",
+          "final_risk_weight": 0.006184734155758028,
+          "observation_date": "2026-07-14T00:00:00",
+          "original_weight": 0.006184734155758028,
+          "risk_reduction_pct": 0.0,
+          "run_id": "9e986677-c0a0-40f3-8bad-9572f5615d91",
+          "volatility_adjusted_weight": 0.006184734155758028
+        },
+        {
+          "action": "HOLD",
+          "asset_id": "bitcoin",
+          "calculated_at_utc": "2026-07-15T11:52:04.153240-05:00",
+          "final_risk_weight": 0.008285242064700073,
+          "observation_date": "2026-07-14T00:00:00",
+          "original_weight": 0.008285242064700073,
+          "risk_reduction_pct": 0.0,
+          "run_id": "9e986677-c0a0-40f3-8bad-9572f5615d91",
+          "volatility_adjusted_weight": 0.008285242064700073
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "run_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "observation_date",
+          "data_type": "DATE",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "asset_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "original_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "volatility_adjusted_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "final_risk_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "risk_reduction_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "action",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "calculated_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "m36_risk_adjusted_allocations"
+    },
+    {
+      "exists": true,
+      "row_count": 120,
+      "sample_rows": [
+        {
+          "asset_id": "xrp",
+          "calculated_at_utc": "2026-07-16T08:37:38.237772-05:00",
+          "calibrated_probability_positive": 0.549,
+          "calibration_method": "EVIDENCE_SHRINKAGE",
+          "conformal_lower_return_pct": -38.735727167061434,
+          "conformal_upper_return_pct": -22.767462034046854,
+          "forecast_confidence": 0.8505283030679978,
+          "forecast_date": "2026-07-14T00:00:00",
+          "forecast_status": "NEGATIVE",
+          "horizon_days": 180,
+          "interval_width_pct": 15.96826513301458,
+          "predicted_return_pct": -30.751594600554142,
+          "raw_probability_positive": 0.0,
+          "run_id": "9bf04e6d-4897-4f6a-9e87-e41ed942cc6c"
+        },
+        {
+          "asset_id": "xrp",
+          "calculated_at_utc": "2026-07-16T08:37:38.237150-05:00",
+          "calibrated_probability_positive": 0.5467213114754099,
+          "calibration_method": "EVIDENCE_SHRINKAGE",
+          "conformal_lower_return_pct": -46.46180084759983,
+          "conformal_upper_return_pct": -30.61811623004847,
+          "forecast_confidence": 0.8182623886773895,
+          "forecast_date": "2026-07-14T00:00:00",
+          "forecast_status": "NEGATIVE",
+          "horizon_days": 90,
+          "interval_width_pct": 15.84368461755136,
+          "predicted_return_pct": -38.53995853882415,
+          "raw_probability_positive": 0.0,
+          "run_id": "9bf04e6d-4897-4f6a-9e87-e41ed942cc6c"
+        },
+        {
+          "asset_id": "xrp",
+          "calculated_at_utc": "2026-07-16T08:37:38.236536-05:00",
+          "calibrated_probability_positive": 0.5302631578947369,
+          "calibration_method": "EVIDENCE_SHRINKAGE",
+          "conformal_lower_return_pct": -29.753665335431506,
+          "conformal_upper_return_pct": -5.98513629151185,
+          "forecast_confidence": 0.6588671983396264,
+          "forecast_date": "2026-07-14T00:00:00",
+          "forecast_status": "NEGATIVE",
+          "horizon_days": 30,
+          "interval_width_pct": 23.768529043919656,
+          "predicted_return_pct": -17.869400813471678,
+          "raw_probability_positive": 0.10087719298245613,
+          "run_id": "9bf04e6d-4897-4f6a-9e87-e41ed942cc6c"
+        },
+        {
+          "asset_id": "xrp",
+          "calculated_at_utc": "2026-07-16T08:37:38.235920-05:00",
+          "calibrated_probability_positive": 0.5154471544715448,
+          "calibration_method": "EVIDENCE_SHRINKAGE",
+          "conformal_lower_return_pct": -14.181744977890002,
+          "conformal_upper_return_pct": 6.570973647065613,
+          "forecast_confidence": 0.7819914654350528,
+          "forecast_date": "2026-07-14T00:00:00",
+          "forecast_status": "NEGATIVE",
+          "horizon_days": 7,
+          "interval_width_pct": 20.752718624955616,
+          "predicted_return_pct": -3.805385665412195,
+          "raw_probability_positive": 0.21951219512195122,
+          "run_id": "9bf04e6d-4897-4f6a-9e87-e41ed942cc6c"
+        },
+        {
+          "asset_id": "solana",
+          "calculated_at_utc": "2026-07-16T08:37:38.235298-05:00",
+          "calibrated_probability_positive": 0.549,
+          "calibration_method": "EVIDENCE_SHRINKAGE",
+          "conformal_lower_return_pct": -48.32311318191327,
+          "conformal_upper_return_pct": -34.32516198483678,
+          "forecast_confidence": 0.901885890286322,
+          "forecast_date": "2026-07-14T00:00:00",
+          "forecast_status": "NEGATIVE",
+          "horizon_days": 180,
+          "interval_width_pct": 13.997951197076489,
+          "predicted_return_pct": -41.32413758337503,
+          "raw_probability_positive": 0.0,
+          "run_id": "9bf04e6d-4897-4f6a-9e87-e41ed942cc6c"
+        },
+        {
+          "asset_id": "solana",
+          "calculated_at_utc": "2026-07-16T08:37:38.234668-05:00",
+          "calibrated_probability_positive": 0.5286885245901639,
+          "calibration_method": "EVIDENCE_SHRINKAGE",
+          "conformal_lower_return_pct": -45.13827660758083,
+          "conformal_upper_return_pct": -12.594998711704818,
+          "forecast_confidence": 0.7240630018357713,
+          "forecast_date": "2026-07-14T00:00:00",
+          "forecast_status": "NEGATIVE",
+          "horizon_days": 90,
+          "interval_width_pct": 32.54327789587601,
+          "predicted_return_pct": -28.866637659642823,
+          "raw_probability_positive": 0.02185792349726776,
+          "run_id": "9bf04e6d-4897-4f6a-9e87-e41ed942cc6c"
+        },
+        {
+          "asset_id": "solana",
+          "calculated_at_utc": "2026-07-16T08:37:38.234050-05:00",
+          "calibrated_probability_positive": 0.5096491228070176,
+          "calibration_method": "EVIDENCE_SHRINKAGE",
+          "conformal_lower_return_pct": -63.73793026780387,
+          "conformal_upper_return_pct": 16.92977787548498,
+          "forecast_confidence": 0.4544452919414966,
+          "forecast_date": "2026-07-14T00:00:00",
+          "forecast_status": "NEGATIVE",
+          "horizon_days": 30,
+          "interval_width_pct": 80.66770814328885,
+          "predicted_return_pct": -23.404076196159444,
+          "raw_probability_positive": 0.20614035087719298,
+          "run_id": "9bf04e6d-4897-4f6a-9e87-e41ed942cc6c"
+        },
+        {
+          "asset_id": "solana",
+          "calculated_at_utc": "2026-07-16T08:37:38.233395-05:00",
+          "calibrated_probability_positive": 0.5077235772357723,
+          "calibration_method": "EVIDENCE_SHRINKAGE",
+          "conformal_lower_return_pct": -26.72144802288819,
+          "conformal_upper_return_pct": 14.752142983516329,
+          "forecast_confidence": 0.48318002516824576,
+          "forecast_date": "2026-07-14T00:00:00",
+          "forecast_status": "NEGATIVE",
+          "horizon_days": 7,
+          "interval_width_pct": 41.47359100640452,
+          "predicted_return_pct": -5.98465251968593,
+          "raw_probability_positive": 0.35772357723577236,
+          "run_id": "9bf04e6d-4897-4f6a-9e87-e41ed942cc6c"
+        },
+        {
+          "asset_id": "ethereum",
+          "calculated_at_utc": "2026-07-16T08:37:38.232781-05:00",
+          "calibrated_probability_positive": 0.549,
+          "calibration_method": "EVIDENCE_SHRINKAGE",
+          "conformal_lower_return_pct": -45.692505302467886,
+          "conformal_upper_return_pct": -29.439870959351232,
+          "forecast_confidence": 0.8968960214851732,
+          "forecast_date": "2026-07-14T00:00:00",
+          "forecast_status": "NEGATIVE",
+          "horizon_days": 180,
+          "interval_width_pct": 16.252634343116654,
+          "predicted_return_pct": -37.56618813090956,
+          "raw_probability_positive": 0.0,
+          "run_id": "9bf04e6d-4897-4f6a-9e87-e41ed942cc6c"
+        },
+        {
+          "asset_id": "ethereum",
+          "calculated_at_utc": "2026-07-16T08:37:38.232155-05:00",
+          "calibrated_probability_positive": 0.5292349726775957,
+          "calibration_method": "EVIDENCE_SHRINKAGE",
+          "conformal_lower_return_pct": -44.40523030879352,
+          "conformal_upper_return_pct": 1.9145726196905102,
+          "forecast_confidence": 0.8111292471296215,
+          "forecast_date": "2026-07-14T00:00:00",
+          "forecast_status": "NEGATIVE",
+          "horizon_days": 90,
+          "interval_width_pct": 46.31980292848403,
+          "predicted_return_pct": -21.245328844551505,
+          "raw_probability_positive": 0.0,
+          "run_id": "9bf04e6d-4897-4f6a-9e87-e41ed942cc6c"
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "run_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "forecast_date",
+          "data_type": "DATE",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "asset_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "horizon_days",
+          "data_type": "INTEGER",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "predicted_return_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "raw_probability_positive",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "calibrated_probability_positive",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "conformal_lower_return_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "conformal_upper_return_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "interval_width_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "calibration_method",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "forecast_confidence",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "forecast_status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "calculated_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "m39_calibrated_forecasts"
+    },
+    {
+      "exists": true,
+      "row_count": 24,
+      "sample_rows": [
+        {
+          "asset_id": "avalanche",
+          "best_action": "WAIT",
+          "best_current_portfolio_pct": 0.0,
+          "calculated_at_utc": "2026-07-16T08:37:44.781474-05:00",
+          "conviction": "LOW",
+          "current_portfolio_weight": 0.0,
+          "current_price": 6.67,
+          "entry_strategy": "Reassess after short-term signal improves",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "forecast_confidence": 0.21038505184984124,
+          "investment_score": 44.63705259418806,
+          "long_term_signal": 45.63062608134785,
+          "medium_term_signal": 44.198195699860975,
+          "primary_reason": "7D 0.8%, 30D -8.1%, 3M -3.5%, 12M -13.4%; regime=LIQUIDITY_EXPANSION.",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "regime_alignment_score": 68.58588877130596,
+          "reliability_score": 22.78959088804549,
+          "risk_score": 43.30188022233316,
+          "risk_warning": "Long-range prices are scenario estimates with declining confidence.",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "short_term_signal": 43.531998929423025,
+          "suggested_timeline": "WAIT_7_TO_30_DAYS",
+          "weight_change_pct": 0.0
+        },
+        {
+          "asset_id": "xrp",
+          "best_action": "HOLD",
+          "best_current_portfolio_pct": 0.0,
+          "calculated_at_utc": "2026-07-16T08:37:44.781284-05:00",
+          "conviction": "LOW",
+          "current_portfolio_weight": 0.0,
+          "current_price": 1.11,
+          "entry_strategy": "No immediate increase; rebalance only",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "forecast_confidence": 0.4268900549811699,
+          "investment_score": 45.754058081170776,
+          "long_term_signal": 55.66920079351503,
+          "medium_term_signal": 54.954232091210336,
+          "primary_reason": "7D -3.6%, 30D -16.5%, 3M 2.8%, 12M 11.9%; regime=LIQUIDITY_EXPANSION.",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "regime_alignment_score": 68.58588877130596,
+          "reliability_score": 23.879457639180895,
+          "risk_score": 45.25762448509645,
+          "risk_warning": "Long-range prices are scenario estimates with declining confidence.",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "short_term_signal": 26.347777646291323,
+          "suggested_timeline": "REVIEW_IN_30_DAYS",
+          "weight_change_pct": 0.0
+        },
+        {
+          "asset_id": "chainlink",
+          "best_action": "WAIT",
+          "best_current_portfolio_pct": 1.334437906981905,
+          "calculated_at_utc": "2026-07-16T08:37:44.781088-05:00",
+          "conviction": "LOW",
+          "current_portfolio_weight": 0.01334437906981905,
+          "current_price": 8.33,
+          "entry_strategy": "Reassess after short-term signal improves",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "forecast_confidence": 0.338685484903335,
+          "investment_score": 38.896427828245194,
+          "long_term_signal": 49.86735617527422,
+          "medium_term_signal": 49.85854310195045,
+          "primary_reason": "7D -5.5%, 30D -34.4%, 3M -0.1%, 12M -0.3%; regime=LIQUIDITY_EXPANSION.",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "regime_alignment_score": 68.58588877130596,
+          "reliability_score": 23.161246130606138,
+          "risk_score": 42.75880632215659,
+          "risk_warning": "Long-range prices are scenario estimates with declining confidence.",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "short_term_signal": 4.568688794819884,
+          "suggested_timeline": "WAIT_7_TO_30_DAYS",
+          "weight_change_pct": 0.0
+        },
+        {
+          "asset_id": "solana",
+          "best_action": "WAIT",
+          "best_current_portfolio_pct": 0.8250573862971008,
+          "calculated_at_utc": "2026-07-16T08:37:44.780894-05:00",
+          "conviction": "LOW",
+          "current_portfolio_weight": 0.008250573862971008,
+          "current_price": 77.41,
+          "entry_strategy": "Reassess after short-term signal improves",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "forecast_confidence": 0.30641330253894367,
+          "investment_score": 41.06552522084193,
+          "long_term_signal": 47.50827411535786,
+          "medium_term_signal": 47.03426797229983,
+          "primary_reason": "7D -5.4%, 30D -21.1%, 3M -1.8%, 12M -6.9%; regime=LIQUIDITY_EXPANSION.",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "regime_alignment_score": 68.58588877130596,
+          "reliability_score": 22.583455840900417,
+          "risk_score": 48.88222259042135,
+          "risk_warning": "Long-range prices are scenario estimates with declining confidence.",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "short_term_signal": 18.085465797950977,
+          "suggested_timeline": "WAIT_7_TO_30_DAYS",
+          "weight_change_pct": 0.0
+        },
+        {
+          "asset_id": "ethereum",
+          "best_action": "WAIT",
+          "best_current_portfolio_pct": 1.5621950407612595,
+          "calculated_at_utc": "2026-07-16T08:37:44.780695-05:00",
+          "conviction": "LOW",
+          "current_portfolio_weight": 0.015621950407612594,
+          "current_price": 1878.89,
+          "entry_strategy": "Reassess after short-term signal improves",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "forecast_confidence": 0.44209785650460626,
+          "investment_score": 39.865734376993686,
+          "long_term_signal": 48.28195069017311,
+          "medium_term_signal": 48.03284624892076,
+          "primary_reason": "7D -5.6%, 30D -30.9%, 3M -1.2%, 12M -4.6%; regime=LIQUIDITY_EXPANSION.",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "regime_alignment_score": 68.58588877130596,
+          "reliability_score": 22.387151099417213,
+          "risk_score": 54.06793939222887,
+          "risk_warning": "Long-range prices are scenario estimates with declining confidence.",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "short_term_signal": 7.812401457030816,
+          "suggested_timeline": "WAIT_7_TO_30_DAYS",
+          "weight_change_pct": 0.0
+        },
+        {
+          "asset_id": "bitcoin",
+          "best_action": "HOLD",
+          "best_current_portfolio_pct": 0.24149383403153352,
+          "calculated_at_utc": "2026-07-16T08:37:44.780488-05:00",
+          "conviction": "LOW",
+          "current_portfolio_weight": 0.002414938340315335,
+          "current_price": 64725.0,
+          "entry_strategy": "No immediate increase; rebalance only",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "forecast_confidence": 0.430529480819992,
+          "investment_score": 47.244851603485074,
+          "long_term_signal": 50.365872187673844,
+          "medium_term_signal": 50.382290727746266,
+          "primary_reason": "7D 0.3%, 30D -18.2%, 3M 0.2%, 12M 0.9%; regime=LIQUIDITY_EXPANSION.",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "regime_alignment_score": 68.58588877130596,
+          "reliability_score": 21.971379302109685,
+          "risk_score": 70.12767854081761,
+          "risk_warning": "Long-range prices are scenario estimates with declining confidence.",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "short_term_signal": 32.490200141516596,
+          "suggested_timeline": "REVIEW_IN_30_DAYS",
+          "weight_change_pct": 0.0
+        },
+        {
+          "asset_id": "avalanche",
+          "best_action": "WAIT",
+          "best_current_portfolio_pct": 0.0,
+          "calculated_at_utc": "2026-07-16T08:22:55.309468-05:00",
+          "conviction": "LOW",
+          "current_portfolio_weight": 0.0,
+          "current_price": 6.67,
+          "entry_strategy": "Reassess after short-term signal improves",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "forecast_confidence": 0.21038505184984127,
+          "investment_score": 44.63705259418806,
+          "long_term_signal": 45.63062608134785,
+          "medium_term_signal": 44.198195699860975,
+          "primary_reason": "7D 0.8%, 30D -8.1%, 3M -3.5%, 12M -13.4%; regime=LIQUIDITY_EXPANSION.",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "regime_alignment_score": 68.58588877130596,
+          "reliability_score": 22.78959088804549,
+          "risk_score": 43.30188022233316,
+          "risk_warning": "Long-range prices are scenario estimates with declining confidence.",
+          "run_id": "ef4c4095-f86f-4ee4-94ac-537f0b297059",
+          "short_term_signal": 43.53199892942302,
+          "suggested_timeline": "WAIT_7_TO_30_DAYS",
+          "weight_change_pct": 0.0
+        },
+        {
+          "asset_id": "xrp",
+          "best_action": "HOLD",
+          "best_current_portfolio_pct": 0.0,
+          "calculated_at_utc": "2026-07-16T08:22:55.309276-05:00",
+          "conviction": "LOW",
+          "current_portfolio_weight": 0.0,
+          "current_price": 1.11,
+          "entry_strategy": "No immediate increase; rebalance only",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "forecast_confidence": 0.4268900549811699,
+          "investment_score": 45.754058081170776,
+          "long_term_signal": 55.66920079351503,
+          "medium_term_signal": 54.954232091210336,
+          "primary_reason": "7D -3.6%, 30D -16.5%, 3M 2.8%, 12M 11.9%; regime=LIQUIDITY_EXPANSION.",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "regime_alignment_score": 68.58588877130596,
+          "reliability_score": 23.879457639180895,
+          "risk_score": 45.25762448509645,
+          "risk_warning": "Long-range prices are scenario estimates with declining confidence.",
+          "run_id": "ef4c4095-f86f-4ee4-94ac-537f0b297059",
+          "short_term_signal": 26.347777646291323,
+          "suggested_timeline": "REVIEW_IN_30_DAYS",
+          "weight_change_pct": 0.0
+        },
+        {
+          "asset_id": "chainlink",
+          "best_action": "WAIT",
+          "best_current_portfolio_pct": 1.334437906981905,
+          "calculated_at_utc": "2026-07-16T08:22:55.309086-05:00",
+          "conviction": "LOW",
+          "current_portfolio_weight": 0.01334437906981905,
+          "current_price": 8.33,
+          "entry_strategy": "Reassess after short-term signal improves",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "forecast_confidence": 0.338685484903335,
+          "investment_score": 38.896427828245194,
+          "long_term_signal": 49.86735617527422,
+          "medium_term_signal": 49.85854310195045,
+          "primary_reason": "7D -5.5%, 30D -34.4%, 3M -0.1%, 12M -0.3%; regime=LIQUIDITY_EXPANSION.",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "regime_alignment_score": 68.58588877130596,
+          "reliability_score": 23.161246130606138,
+          "risk_score": 42.75880632215659,
+          "risk_warning": "Long-range prices are scenario estimates with declining confidence.",
+          "run_id": "ef4c4095-f86f-4ee4-94ac-537f0b297059",
+          "short_term_signal": 4.568688794819884,
+          "suggested_timeline": "WAIT_7_TO_30_DAYS",
+          "weight_change_pct": 0.0
+        },
+        {
+          "asset_id": "solana",
+          "best_action": "WAIT",
+          "best_current_portfolio_pct": 0.8250573862971008,
+          "calculated_at_utc": "2026-07-16T08:22:55.308895-05:00",
+          "conviction": "LOW",
+          "current_portfolio_weight": 0.008250573862971008,
+          "current_price": 77.41,
+          "entry_strategy": "Reassess after short-term signal improves",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "forecast_confidence": 0.30641330253894367,
+          "investment_score": 41.06552522084193,
+          "long_term_signal": 47.50827411535786,
+          "medium_term_signal": 47.03426797229983,
+          "primary_reason": "7D -5.4%, 30D -21.1%, 3M -1.8%, 12M -6.9%; regime=LIQUIDITY_EXPANSION.",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "regime_alignment_score": 68.58588877130596,
+          "reliability_score": 22.583455840900417,
+          "risk_score": 48.88222259042135,
+          "risk_warning": "Long-range prices are scenario estimates with declining confidence.",
+          "run_id": "ef4c4095-f86f-4ee4-94ac-537f0b297059",
+          "short_term_signal": 18.085465797950977,
+          "suggested_timeline": "WAIT_7_TO_30_DAYS",
+          "weight_change_pct": 0.0
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "run_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "recommendation_date",
+          "data_type": "DATE",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "asset_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "current_price",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "investment_score",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "best_action",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "current_portfolio_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "best_current_portfolio_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "weight_change_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "suggested_timeline",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "entry_strategy",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "conviction",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "forecast_confidence",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "reliability_score",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "regime_alignment_score",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "risk_score",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "short_term_signal",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "medium_term_signal",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "long_term_signal",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "primary_reason",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "risk_warning",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "evidence_status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "calculated_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "m42_asset_recommendations"
+    },
+    {
+      "exists": true,
+      "row_count": 4,
+      "sample_rows": [
+        {
+          "calculated_at_utc": "2026-07-16T08:37:44.784933-05:00",
+          "decision_status": "DEFENSIVE",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "highest_conviction_asset": "bitcoin",
+          "highest_conviction_score": 47.244851603485074,
+          "overall_action": "REMAIN_DEFENSIVE",
+          "overall_timeline": "REASSESS_IN_30_DAYS",
+          "positive_assets": 0,
+          "recommendation_date": "2026-07-14T00:00:00",
+          "reduce_assets": 0,
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "target_cash_weight": 0.960368158319282,
+          "target_risk_weight": 0.03963184168071799,
+          "wait_assets": 6
+        },
+        {
+          "calculated_at_utc": "2026-07-16T08:22:55.311491-05:00",
+          "decision_status": "DEFENSIVE",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "highest_conviction_asset": "bitcoin",
+          "highest_conviction_score": 47.244851603485074,
+          "overall_action": "REMAIN_DEFENSIVE",
+          "overall_timeline": "REASSESS_IN_30_DAYS",
+          "positive_assets": 0,
+          "recommendation_date": "2026-07-14T00:00:00",
+          "reduce_assets": 0,
+          "run_id": "ef4c4095-f86f-4ee4-94ac-537f0b297059",
+          "target_cash_weight": 0.960368158319282,
+          "target_risk_weight": 0.03963184168071799,
+          "wait_assets": 6
+        },
+        {
+          "calculated_at_utc": "2026-07-15T15:45:45.417424-05:00",
+          "decision_status": "DEFENSIVE",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "highest_conviction_asset": "bitcoin",
+          "highest_conviction_score": 47.244851603485074,
+          "overall_action": "REMAIN_DEFENSIVE",
+          "overall_timeline": "REASSESS_IN_30_DAYS",
+          "positive_assets": 0,
+          "recommendation_date": "2026-07-14T00:00:00",
+          "reduce_assets": 0,
+          "run_id": "2e097afe-7173-4359-83bc-bf5124b1f6db",
+          "target_cash_weight": 0.960368158319282,
+          "target_risk_weight": 0.03963184168071799,
+          "wait_assets": 6
+        },
+        {
+          "calculated_at_utc": "2026-07-15T15:31:38.427104-05:00",
+          "decision_status": "DEFENSIVE",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "highest_conviction_asset": "bitcoin",
+          "highest_conviction_score": 47.244851603485074,
+          "overall_action": "REMAIN_DEFENSIVE",
+          "overall_timeline": "REASSESS_IN_30_DAYS",
+          "positive_assets": 0,
+          "recommendation_date": "2026-07-14T00:00:00",
+          "reduce_assets": 0,
+          "run_id": "738cfd48-b892-4227-8c86-2fd469206779",
+          "target_cash_weight": 0.75,
+          "target_risk_weight": 0.25,
+          "wait_assets": 6
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "run_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "recommendation_date",
+          "data_type": "DATE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "overall_action",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "overall_timeline",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "target_cash_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "target_risk_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "highest_conviction_asset",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "highest_conviction_score",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "positive_assets",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "wait_assets",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "reduce_assets",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "evidence_status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "decision_status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "calculated_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "m42_decision_summary"
+    },
+    {
+      "exists": true,
+      "row_count": 36,
+      "sample_rows": [
+        {
+          "asset_id": "avalanche",
+          "calculated_at_utc": "2026-07-16T08:37:44.781492-05:00",
+          "current_weight": 0.0,
+          "execution_stage": 1,
+          "execution_window": "WAIT_7_TO_30_DAYS",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "target_weight": 0.0,
+          "trade_action": "HOLD",
+          "trade_weight": 0.0,
+          "tranche_pct": 100.0,
+          "trigger_description": "Reassess after short-term signal improves"
+        },
+        {
+          "asset_id": "xrp",
+          "calculated_at_utc": "2026-07-16T08:37:44.781490-05:00",
+          "current_weight": 0.0,
+          "execution_stage": 1,
+          "execution_window": "REVIEW_IN_30_DAYS",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "target_weight": 0.0,
+          "trade_action": "HOLD",
+          "trade_weight": 0.0,
+          "tranche_pct": 100.0,
+          "trigger_description": "No immediate increase; rebalance only"
+        },
+        {
+          "asset_id": "chainlink",
+          "calculated_at_utc": "2026-07-16T08:37:44.781488-05:00",
+          "current_weight": 0.01334437906981905,
+          "execution_stage": 1,
+          "execution_window": "WAIT_7_TO_30_DAYS",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "target_weight": 0.01334437906981905,
+          "trade_action": "HOLD",
+          "trade_weight": 0.0,
+          "tranche_pct": 100.0,
+          "trigger_description": "Reassess after short-term signal improves"
+        },
+        {
+          "asset_id": "solana",
+          "calculated_at_utc": "2026-07-16T08:37:44.781486-05:00",
+          "current_weight": 0.008250573862971008,
+          "execution_stage": 1,
+          "execution_window": "WAIT_7_TO_30_DAYS",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "target_weight": 0.008250573862971008,
+          "trade_action": "HOLD",
+          "trade_weight": 0.0,
+          "tranche_pct": 100.0,
+          "trigger_description": "Reassess after short-term signal improves"
+        },
+        {
+          "asset_id": "ethereum",
+          "calculated_at_utc": "2026-07-16T08:37:44.781483-05:00",
+          "current_weight": 0.015621950407612594,
+          "execution_stage": 1,
+          "execution_window": "WAIT_7_TO_30_DAYS",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "target_weight": 0.015621950407612594,
+          "trade_action": "HOLD",
+          "trade_weight": 0.0,
+          "tranche_pct": 100.0,
+          "trigger_description": "Reassess after short-term signal improves"
+        },
+        {
+          "asset_id": "bitcoin",
+          "calculated_at_utc": "2026-07-16T08:37:44.781479-05:00",
+          "current_weight": 0.002414938340315335,
+          "execution_stage": 1,
+          "execution_window": "REVIEW_IN_30_DAYS",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "target_weight": 0.002414938340315335,
+          "trade_action": "HOLD",
+          "trade_weight": 0.0,
+          "tranche_pct": 100.0,
+          "trigger_description": "No immediate increase; rebalance only"
+        },
+        {
+          "asset_id": "avalanche",
+          "calculated_at_utc": "2026-07-16T08:22:55.309486-05:00",
+          "current_weight": 0.0,
+          "execution_stage": 1,
+          "execution_window": "WAIT_7_TO_30_DAYS",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "ef4c4095-f86f-4ee4-94ac-537f0b297059",
+          "target_weight": 0.0,
+          "trade_action": "HOLD",
+          "trade_weight": 0.0,
+          "tranche_pct": 100.0,
+          "trigger_description": "Reassess after short-term signal improves"
+        },
+        {
+          "asset_id": "xrp",
+          "calculated_at_utc": "2026-07-16T08:22:55.309483-05:00",
+          "current_weight": 0.0,
+          "execution_stage": 1,
+          "execution_window": "REVIEW_IN_30_DAYS",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "ef4c4095-f86f-4ee4-94ac-537f0b297059",
+          "target_weight": 0.0,
+          "trade_action": "HOLD",
+          "trade_weight": 0.0,
+          "tranche_pct": 100.0,
+          "trigger_description": "No immediate increase; rebalance only"
+        },
+        {
+          "asset_id": "chainlink",
+          "calculated_at_utc": "2026-07-16T08:22:55.309481-05:00",
+          "current_weight": 0.01334437906981905,
+          "execution_stage": 1,
+          "execution_window": "WAIT_7_TO_30_DAYS",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "ef4c4095-f86f-4ee4-94ac-537f0b297059",
+          "target_weight": 0.01334437906981905,
+          "trade_action": "HOLD",
+          "trade_weight": 0.0,
+          "tranche_pct": 100.0,
+          "trigger_description": "Reassess after short-term signal improves"
+        },
+        {
+          "asset_id": "solana",
+          "calculated_at_utc": "2026-07-16T08:22:55.309479-05:00",
+          "current_weight": 0.008250573862971008,
+          "execution_stage": 1,
+          "execution_window": "WAIT_7_TO_30_DAYS",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "ef4c4095-f86f-4ee4-94ac-537f0b297059",
+          "target_weight": 0.008250573862971008,
+          "trade_action": "HOLD",
+          "trade_weight": 0.0,
+          "tranche_pct": 100.0,
+          "trigger_description": "Reassess after short-term signal improves"
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "run_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "recommendation_date",
+          "data_type": "DATE",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "asset_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "target_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "current_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "trade_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "trade_action",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "execution_stage",
+          "data_type": "INTEGER",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "execution_window",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "tranche_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "trigger_description",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "calculated_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "m42_portfolio_plan"
+    },
+    {
+      "exists": true,
+      "row_count": 432,
+      "sample_rows": [
+        {
+          "annualized_median_return_pct": -13.367298859106747,
+          "asset_id": "avalanche",
+          "bear_price": 0.6557999615796215,
+          "bear_return_pct": -90.16791661799668,
+          "bull_price": 21.507684458852776,
+          "bull_return_pct": 222.45403986286018,
+          "calculated_at_utc": "2026-07-16T08:37:44.779936-05:00",
+          "current_price": 6.67,
+          "evidence_status": "SCENARIO_ONLY",
+          "horizon_days": 1461,
+          "horizon_label": "M48",
+          "horizon_months": 48.0,
+          "median_price": 3.7556275962590147,
+          "median_return_pct": -43.69373918652152,
+          "projection_confidence": 0.04243007212053364,
+          "projection_date": "2030-07-14T00:00:00",
+          "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "scenario_width_pct": 312.62195648085685
+        },
+        {
+          "annualized_median_return_pct": -13.367298859106747,
+          "asset_id": "avalanche",
+          "bear_price": 0.7182760130186865,
+          "bear_return_pct": -89.23124418262839,
+          "bull_price": 21.093438678764365,
+          "bull_return_pct": 216.24345845223934,
+          "calculated_at_utc": "2026-07-16T08:37:44.779437-05:00",
+          "current_price": 6.67,
+          "evidence_status": "SCENARIO_ONLY",
+          "horizon_days": 1370,
+          "horizon_label": "M45",
+          "horizon_months": 45.0,
+          "median_price": 3.892417119867425,
+          "median_return_pct": -41.642921741118066,
+          "projection_confidence": 0.04806310779966251,
+          "projection_date": "2030-04-14T00:00:00",
+          "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "scenario_width_pct": 305.47470263486775
+        },
+        {
+          "annualized_median_return_pct": -13.367298859106747,
+          "asset_id": "avalanche",
+          "bear_price": 0.788987283532361,
+          "bear_return_pct": -88.17110519441738,
+          "bull_price": 20.64352790596156,
+          "bull_return_pct": 209.49816950467107,
+          "calculated_at_utc": "2026-07-16T08:37:44.778872-05:00",
+          "current_price": 6.67,
+          "evidence_status": "SCENARIO_ONLY",
+          "horizon_days": 1278,
+          "horizon_label": "M42",
+          "horizon_months": 42.0,
+          "median_price": 4.035775143023841,
+          "median_return_pct": -39.493626041621575,
+          "projection_confidence": 0.054518619769776656,
+          "projection_date": "2030-01-12T00:00:00",
+          "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "scenario_width_pct": 297.6692746990884
+        },
+        {
+          "annualized_median_return_pct": -13.367298859106747,
+          "asset_id": "avalanche",
+          "bear_price": 0.8675808034802172,
+          "bear_return_pct": -86.99279155202073,
+          "bull_price": 20.165903892930082,
+          "bull_return_pct": 202.3373896991017,
+          "calculated_at_utc": "2026-07-16T08:37:44.778004-05:00",
+          "current_price": 6.67,
+          "evidence_status": "SCENARIO_ONLY",
+          "horizon_days": 1187,
+          "horizon_label": "M39",
+          "horizon_months": 39.0,
+          "median_price": 4.182768353893522,
+          "median_return_pct": -37.289829776708814,
+          "projection_confidence": 0.06175653653474468,
+          "projection_date": "2029-10-13T00:00:00",
+          "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "scenario_width_pct": 289.33018125112244
+        },
+        {
+          "annualized_median_return_pct": -13.367298859106747,
+          "asset_id": "avalanche",
+          "bear_price": 0.9562148786061344,
+          "bear_return_pct": -85.66394484848374,
+          "bull_price": 19.653768445410407,
+          "bull_return_pct": 194.6591970826148,
+          "calculated_at_utc": "2026-07-16T08:37:44.777512-05:00",
+          "current_price": 6.67,
+          "evidence_status": "SCENARIO_ONLY",
+          "horizon_days": 1096,
+          "horizon_label": "M36",
+          "horizon_months": 36.0,
+          "median_price": 4.335115431932717,
+          "median_return_pct": -35.00576563819015,
+          "projection_confidence": 0.0699553624224643,
+          "projection_date": "2029-07-14T00:00:00",
+          "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "scenario_width_pct": 280.3231419310985
+        },
+        {
+          "annualized_median_return_pct": -13.367298859106747,
+          "asset_id": "avalanche",
+          "bear_price": 1.0578361747376832,
+          "bear_return_pct": -84.14038718534208,
+          "bull_price": 19.098448667263686,
+          "bull_return_pct": 186.3335632273416,
+          "calculated_at_utc": "2026-07-16T08:37:44.777004-05:00",
+          "current_price": 6.67,
+          "evidence_status": "SCENARIO_ONLY",
+          "horizon_days": 1004,
+          "horizon_label": "M33",
+          "horizon_months": 33.0,
+          "median_price": 4.4947780681144005,
+          "median_return_pct": -32.612022966800595,
+          "projection_confidence": 0.07935129414985591,
+          "projection_date": "2029-04-13T00:00:00",
+          "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "scenario_width_pct": 270.4739504126837
+        },
+        {
+          "annualized_median_return_pct": -13.367298859106747,
+          "asset_id": "avalanche",
+          "bear_price": 1.1724781451404986,
+          "bear_return_pct": -82.42161701438533,
+          "bull_price": 18.509106520745284,
+          "bull_return_pct": 177.4978488867359,
+          "calculated_at_utc": "2026-07-16T08:37:44.776517-05:00",
+          "current_price": 6.67,
+          "evidence_status": "SCENARIO_ONLY",
+          "horizon_days": 913,
+          "horizon_label": "M30",
+          "horizon_months": 30.0,
+          "median_price": 4.658489334714779,
+          "median_return_pct": -30.15758118868398,
+          "projection_confidence": 0.0898860080636433,
+          "projection_date": "2029-01-12T00:00:00",
+          "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "scenario_width_pct": 259.91946590112127
+        },
+        {
+          "annualized_median_return_pct": -13.367298859106747,
+          "asset_id": "avalanche",
+          "bear_price": 1.3040185380902363,
+          "bear_return_pct": -80.44949718005643,
+          "bull_price": 17.876403569994153,
+          "bull_return_pct": 168.0120475261492,
+          "calculated_at_utc": "2026-07-16T08:37:44.776020-05:00",
+          "current_price": 6.67,
+          "evidence_status": "SCENARIO_ONLY",
+          "horizon_days": 822,
+          "horizon_label": "M27",
+          "horizon_months": 27.0,
+          "median_price": 4.828163382659587,
+          "median_return_pct": -27.613742388911746,
+          "projection_confidence": 0.10181931538960313,
+          "projection_date": "2028-10-13T00:00:00",
+          "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "scenario_width_pct": 248.46154470620564
+        },
+        {
+          "annualized_median_return_pct": -13.367298859106747,
+          "asset_id": "avalanche",
+          "bear_price": 1.4579709931186235,
+          "bear_return_pct": -78.14136442101014,
+          "bull_price": 17.18819240446516,
+          "bull_return_pct": 157.69403904745366,
+          "calculated_at_utc": "2026-07-16T08:37:44.775518-05:00",
+          "current_price": 6.67,
+          "evidence_status": "SCENARIO_ONLY",
+          "horizon_days": 730,
+          "horizon_label": "M24",
+          "horizon_months": 24.0,
+          "median_price": 5.005985012947207,
+          "median_return_pct": -24.947750930326727,
+          "projection_confidence": 0.11549499803638831,
+          "projection_date": "2028-07-13T00:00:00",
+          "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "scenario_width_pct": 235.83540346846382
+        },
+        {
+          "annualized_median_return_pct": -13.367298859106747,
+          "asset_id": "avalanche",
+          "bear_price": 1.6360208566299026,
+          "bear_return_pct": -75.47195117496398,
+          "bull_price": 16.4537145690304,
+          "bull_return_pct": 146.6823773467826,
+          "calculated_at_utc": "2026-07-16T08:37:44.775034-05:00",
+          "current_price": 6.67,
+          "evidence_status": "SCENARIO_ONLY",
+          "horizon_days": 639,
+          "horizon_label": "M21",
+          "horizon_months": 21.0,
+          "median_price": 5.188315738654406,
+          "median_return_pct": -22.21415684176302,
+          "projection_confidence": 0.13082816652245008,
+          "projection_date": "2028-04-13T00:00:00",
+          "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+          "recommendation_date": "2026-07-14T00:00:00",
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "scenario_width_pct": 222.15432852174658
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "run_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "recommendation_date",
+          "data_type": "DATE",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "asset_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "horizon_label",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "horizon_days",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "horizon_months",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "projection_date",
+          "data_type": "DATE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "current_price",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "bear_price",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "median_price",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "bull_price",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "bear_return_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "median_return_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "bull_return_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "annualized_median_return_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "scenario_width_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "projection_confidence",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "projection_method",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "evidence_status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "calculated_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "m42_price_projections"
+    },
+    {
+      "exists": true,
+      "row_count": 1,
+      "sample_rows": [
+        {
+          "action_score": -1.0554279947053402,
+          "calculated_at_utc": "2026-07-14T15:18:03.005529-05:00",
+          "confidence": 39.01014083942244,
+          "dominant_regime": "BULL",
+          "drawdown_20_probability_90d": 0.4509669291513595,
+          "governed_feature_count": 1,
+          "observation_date": "2026-07-14T00:00:00",
+          "positive_return_probability_90d": 0.11359944741872902,
+          "production_status": "SHADOW_ONLY",
+          "risk_score": 73.62488753350293,
+          "run_id": "b7ae5d2b-a87c-4720-9c66-ed9fb0fe4c60",
+          "stance": "DEFENSIVE",
+          "target_btc_weight": 0.6208429003970994,
+          "target_cash_weight": 0.37915709960290056
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "run_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "observation_date",
+          "data_type": "DATE",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "stance",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "confidence",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "target_btc_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "target_cash_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "action_score",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "dominant_regime",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "positive_return_probability_90d",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "drawdown_20_probability_90d",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "risk_score",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "governed_feature_count",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "production_status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "calculated_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "investment_decisions"
+    },
+    {
+      "exists": true,
+      "row_count": 4,
+      "sample_rows": [
+        {
+          "calculated_at_utc": "2026-07-14T15:18:03.033510-05:00",
+          "contribution": 0.04108545287443682,
+          "feature_key": NaN,
+          "feature_value": NaN,
+          "inferred_direction": "N/A",
+          "observation_date": "2026-07-14T00:00:00",
+          "rationale_rank": 4,
+          "rationale_text": "Market regime is BULL with 28.1% confidence.",
+          "rationale_type": "REGIME",
+          "run_id": "b7ae5d2b-a87c-4720-9c66-ed9fb0fe4c60",
+          "standardized_value": NaN
+        },
+        {
+          "calculated_at_utc": "2026-07-14T15:18:03.033443-05:00",
+          "contribution": -0.3373674817326305,
+          "feature_key": NaN,
+          "feature_value": NaN,
+          "inferred_direction": "N/A",
+          "observation_date": "2026-07-14T00:00:00",
+          "rationale_rank": 3,
+          "rationale_text": "90-day positive-return probability is 11.4% and >20% drawdown probability is 45.1%.",
+          "rationale_type": "PROBABILITY",
+          "run_id": "b7ae5d2b-a87c-4720-9c66-ed9fb0fe4c60",
+          "standardized_value": NaN
+        },
+        {
+          "calculated_at_utc": "2026-07-14T15:18:03.033365-05:00",
+          "contribution": -0.7362488753350293,
+          "feature_key": NaN,
+          "feature_value": NaN,
+          "inferred_direction": "N/A",
+          "observation_date": "2026-07-14T00:00:00",
+          "rationale_rank": 2,
+          "rationale_text": "Current risk level is HIGH with a risk score of 73.6.",
+          "rationale_type": "RISK",
+          "run_id": "b7ae5d2b-a87c-4720-9c66-ed9fb0fe4c60",
+          "standardized_value": NaN
+        },
+        {
+          "calculated_at_utc": "2026-07-14T15:18:03.033252-05:00",
+          "contribution": -125.15144132787951,
+          "feature_key": "high_yield_spread",
+          "feature_value": 2.69,
+          "inferred_direction": "POSITIVE",
+          "observation_date": "2026-07-14T00:00:00",
+          "rationale_rank": 1,
+          "rationale_text": "high_yield_spread is 1.25 standard deviations below its rolling norm and contributes negatively.",
+          "rationale_type": "FEATURE",
+          "run_id": "b7ae5d2b-a87c-4720-9c66-ed9fb0fe4c60",
+          "standardized_value": -1.2516858770975756
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "run_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "observation_date",
+          "data_type": "DATE",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "rationale_rank",
+          "data_type": "INTEGER",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "rationale_type",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "feature_key",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "feature_value",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "standardized_value",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "inferred_direction",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "contribution",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "rationale_text",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "calculated_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "investment_decision_rationale"
+    },
+    {
+      "exists": true,
+      "row_count": 1,
+      "sample_rows": [
+        {
+          "calculated_at_utc": "2026-07-14T15:18:02.969751-05:00",
+          "expected_30d_loss_pct": -28.692924876431587,
+          "historical_cvar_95_1d_pct": -5.238587398540904,
+          "historical_var_95_1d_pct": -3.608813785760381,
+          "maximum_drawdown_365d_pct": -53.07437562797199,
+          "observation_date": "2026-07-14T00:00:00",
+          "risk_level": "HIGH",
+          "risk_score": 73.62488753350293,
+          "run_id": "b7ae5d2b-a87c-4720-9c66-ed9fb0fe4c60",
+          "volatility_30d_pct": 30.430567427011972,
+          "volatility_90d_pct": 34.46186249099474
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "run_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "observation_date",
+          "data_type": "DATE",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "volatility_30d_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "volatility_90d_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "historical_var_95_1d_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "historical_cvar_95_1d_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "maximum_drawdown_365d_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "expected_30d_loss_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "risk_score",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "risk_level",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "calculated_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "investment_risk_snapshot"
+    },
+    {
+      "exists": true,
+      "row_count": 1,
+      "sample_rows": [
+        {
+          "adjusted_allocation_rows": 7,
+          "asset_risk_rows": 6,
+          "completed_at_utc": "2026-07-15T11:52:04.192090-05:00",
+          "expected_shortfall_pct": -0.28681809453330254,
+          "liquidity_risk_status": "LOW",
+          "notes": "Risk-adjusted allocations derived from Module 35.",
+          "overall_risk_status": "CONTROLLED",
+          "platform_version": "9.1.0",
+          "portfolio_cvar_95_pct": -0.28681809453330254,
+          "portfolio_risk_rows": 1,
+          "portfolio_var_95_pct": -0.18596264299459447,
+          "realized_volatility_pct": 2.4036725721617738,
+          "recommendation": "RISK_WITHIN_LIMITS",
+          "run_id": "9e986677-c0a0-40f3-8bad-9572f5615d91",
+          "source_module35_run_id": "d39e06e1-db72-4aab-a243-550c35f0c254",
+          "started_at_utc": "2026-07-15T11:52:04.116505-05:00",
+          "status": "SUCCESS",
+          "tail_risk_status": "LOW",
+          "target_volatility_pct": 10.0,
+          "volatility_scaler": 1.0
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "run_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "source_module35_run_id",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "started_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "completed_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "asset_risk_rows",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "portfolio_risk_rows",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "adjusted_allocation_rows",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "portfolio_var_95_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "portfolio_cvar_95_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "expected_shortfall_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "target_volatility_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "realized_volatility_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "volatility_scaler",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "tail_risk_status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "liquidity_risk_status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "overall_risk_status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "recommendation",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "notes",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "platform_version",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "module36_runs"
+    },
+    {
+      "exists": true,
+      "row_count": 5,
+      "sample_rows": [
+        {
+          "calibration_rows": 24,
+          "completed_at_utc": "2026-07-16T08:37:38.451446-05:00",
+          "current_drift_status": "STABLE",
+          "drift_rows": 24,
+          "interval_rows": 24,
+          "mean_calibrated_brier": 0.226402435500783,
+          "mean_directional_accuracy_pct": 75.69882134865354,
+          "mean_interval_coverage_pct": 90.62127637124378,
+          "notes": "Probability calibration, conformal intervals, rolling validation, feature stability, drift monitoring, and realized scorecards completed.",
+          "platform_version": "10.1.1",
+          "recommendation": "BUILD_FORECAST_MEMORY",
+          "rolling_validation_rows": 72,
+          "run_id": "9bf04e6d-4897-4f6a-9e87-e41ed942cc6c",
+          "scorecard_rows": 0,
+          "source_module38_run_id": "04cee77d-ed74-4e0b-8446-e518c71a5f11",
+          "stability_rows": 240,
+          "started_at_utc": "2026-07-16T08:37:38.183450-05:00",
+          "status": "SUCCESS",
+          "validation_status": "ACCUMULATING_EVIDENCE"
+        },
+        {
+          "calibration_rows": 24,
+          "completed_at_utc": "2026-07-16T08:22:49.087761-05:00",
+          "current_drift_status": "STABLE",
+          "drift_rows": 24,
+          "interval_rows": 24,
+          "mean_calibrated_brier": 0.226402435500783,
+          "mean_directional_accuracy_pct": 75.69882134865354,
+          "mean_interval_coverage_pct": 90.62127637124377,
+          "notes": "Probability calibration, conformal intervals, rolling validation, feature stability, drift monitoring, and realized scorecards completed.",
+          "platform_version": "10.1.1",
+          "recommendation": "BUILD_FORECAST_MEMORY",
+          "rolling_validation_rows": 72,
+          "run_id": "5f7a5f48-6649-483c-9064-60e117114af6",
+          "scorecard_rows": 0,
+          "source_module38_run_id": "7f957012-d481-4fe4-bf85-366d394bb66a",
+          "stability_rows": 240,
+          "started_at_utc": "2026-07-16T08:22:48.811750-05:00",
+          "status": "SUCCESS",
+          "validation_status": "ACCUMULATING_EVIDENCE"
+        },
+        {
+          "calibration_rows": 24,
+          "completed_at_utc": "2026-07-15T13:20:35.005329-05:00",
+          "current_drift_status": "STABLE",
+          "drift_rows": 24,
+          "interval_rows": 24,
+          "mean_calibrated_brier": 0.226402435500783,
+          "mean_directional_accuracy_pct": 75.69882134865354,
+          "mean_interval_coverage_pct": 90.62127637124377,
+          "notes": "Probability calibration, conformal intervals, rolling validation, feature stability, drift monitoring, and realized scorecards completed.",
+          "platform_version": "10.1.1",
+          "recommendation": "BUILD_FORECAST_MEMORY",
+          "rolling_validation_rows": 72,
+          "run_id": "167d9f1b-556c-4263-aa4c-689bb0e94f6d",
+          "scorecard_rows": 0,
+          "source_module38_run_id": "6d0b42fe-1d63-4e2a-b9d2-56f67cf68097",
+          "stability_rows": 240,
+          "started_at_utc": "2026-07-15T13:20:34.737706-05:00",
+          "status": "SUCCESS",
+          "validation_status": "ACCUMULATING_EVIDENCE"
+        },
+        {
+          "calibration_rows": 24,
+          "completed_at_utc": "2026-07-15T13:20:00.709339-05:00",
+          "current_drift_status": "STABLE",
+          "drift_rows": 24,
+          "interval_rows": 24,
+          "mean_calibrated_brier": 0.226402435500783,
+          "mean_directional_accuracy_pct": 75.69882134865354,
+          "mean_interval_coverage_pct": 90.62127637124377,
+          "notes": "Probability calibration, conformal intervals, rolling validation, feature stability, drift monitoring, and realized scorecards completed.",
+          "platform_version": "10.1.1",
+          "recommendation": "BUILD_FORECAST_MEMORY",
+          "rolling_validation_rows": 72,
+          "run_id": "47586301-fab7-455e-a2c6-623458548197",
+          "scorecard_rows": 0,
+          "source_module38_run_id": "8644e440-d506-4ae1-bb67-2957f7155cd5",
+          "stability_rows": 240,
+          "started_at_utc": "2026-07-15T13:20:00.434270-05:00",
+          "status": "SUCCESS",
+          "validation_status": "ACCUMULATING_EVIDENCE"
+        },
+        {
+          "calibration_rows": 24,
+          "completed_at_utc": "2026-07-15T13:05:50.664862-05:00",
+          "current_drift_status": "STABLE",
+          "drift_rows": 24,
+          "interval_rows": 24,
+          "mean_calibrated_brier": 0.3953427532970795,
+          "mean_directional_accuracy_pct": 75.69882134865354,
+          "mean_interval_coverage_pct": 90.62127637124377,
+          "notes": "Probability calibration, conformal intervals, rolling validation, feature stability, drift monitoring, and realized scorecards completed.",
+          "platform_version": "10.1.0",
+          "recommendation": "FORECAST_VALIDATION_REQUIRES_REFINEMENT",
+          "rolling_validation_rows": 72,
+          "run_id": "bf9e8f0b-aa33-48f4-8759-75a2d8569797",
+          "scorecard_rows": 0,
+          "source_module38_run_id": "8644e440-d506-4ae1-bb67-2957f7155cd5",
+          "stability_rows": 240,
+          "started_at_utc": "2026-07-15T13:05:50.309801-05:00",
+          "status": "SUCCESS",
+          "validation_status": "LIMITED"
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "run_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "source_module38_run_id",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "started_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "completed_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "calibration_rows",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "interval_rows",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "rolling_validation_rows",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "stability_rows",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "drift_rows",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "scorecard_rows",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "mean_calibrated_brier",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "mean_interval_coverage_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "mean_directional_accuracy_pct",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "current_drift_status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "validation_status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "recommendation",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "notes",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "platform_version",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "module39_runs"
+    },
+    {
+      "exists": true,
+      "row_count": 4,
+      "sample_rows": [
+        {
+          "assets_covered": 6,
+          "completed_at_utc": "2026-07-16T08:37:44.858031-05:00",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "horizons_covered": 18,
+          "notes": "Generated action-consistent asset recommendations, non-forced target weights, staged execution timelines, and bear/median/bull projections through month 48. Long-range scenario influence is confidence-discounted. Consistency validation={\"invalid_buy_rows\":0,\"defensive_material_buys\":0,\"hold_wait_increases\":0,\"target_risk_weight\":0.03963184168071799,\"maximum_crypto_weight\":0.25}",
+          "overall_action": "REMAIN_DEFENSIVE",
+          "overall_timeline": "REASSESS_IN_30_DAYS",
+          "platform_version": "12.0.1",
+          "projection_rows": 108,
+          "recommendation": "DEFENSIVE",
+          "recommendation_rows": 6,
+          "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+          "source_module30_run_id": "cd9d6f4c-ef24-4545-aad1-408b00ee5c4a",
+          "source_module37_run_id": "35422f74-95d8-4ffe-8407-f202207110a5",
+          "source_module38_run_id": "04cee77d-ed74-4e0b-8446-e518c71a5f11",
+          "source_module39_run_id": "9bf04e6d-4897-4f6a-9e87-e41ed942cc6c",
+          "source_module40_run_id": "62476a9b-8324-4ea7-838e-d70e6f5f2e0e",
+          "source_module41_run_id": "72389b58-ec1b-4ef2-a685-bdbcd12a5a04",
+          "started_at_utc": "2026-07-16T08:37:44.680221-05:00",
+          "status": "SUCCESS",
+          "target_cash_weight": 0.960368158319282,
+          "total_target_risk_weight": 0.03963184168071799
+        },
+        {
+          "assets_covered": 6,
+          "completed_at_utc": "2026-07-16T08:22:55.402059-05:00",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "horizons_covered": 18,
+          "notes": "Generated action-consistent asset recommendations, non-forced target weights, staged execution timelines, and bear/median/bull projections through month 48. Long-range scenario influence is confidence-discounted. Consistency validation={\"invalid_buy_rows\":0,\"defensive_material_buys\":0,\"hold_wait_increases\":0,\"target_risk_weight\":0.03963184168071799,\"maximum_crypto_weight\":0.25}",
+          "overall_action": "REMAIN_DEFENSIVE",
+          "overall_timeline": "REASSESS_IN_30_DAYS",
+          "platform_version": "12.0.1",
+          "projection_rows": 108,
+          "recommendation": "DEFENSIVE",
+          "recommendation_rows": 6,
+          "run_id": "ef4c4095-f86f-4ee4-94ac-537f0b297059",
+          "source_module30_run_id": "cd9d6f4c-ef24-4545-aad1-408b00ee5c4a",
+          "source_module37_run_id": "35422f74-95d8-4ffe-8407-f202207110a5",
+          "source_module38_run_id": "7f957012-d481-4fe4-bf85-366d394bb66a",
+          "source_module39_run_id": "5f7a5f48-6649-483c-9064-60e117114af6",
+          "source_module40_run_id": "93f7b29b-3754-49e9-9e59-b6c41bf6325f",
+          "source_module41_run_id": "85956258-0b5d-454d-a585-999d97b4e277",
+          "started_at_utc": "2026-07-16T08:22:55.216333-05:00",
+          "status": "SUCCESS",
+          "target_cash_weight": 0.960368158319282,
+          "total_target_risk_weight": 0.03963184168071799
+        },
+        {
+          "assets_covered": 6,
+          "completed_at_utc": "2026-07-15T15:45:45.476922-05:00",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "horizons_covered": 18,
+          "notes": "Generated action-consistent asset recommendations, non-forced target weights, staged execution timelines, and bear/median/bull projections through month 48. Long-range scenario influence is confidence-discounted. Consistency validation={\"invalid_buy_rows\":0,\"defensive_material_buys\":0,\"hold_wait_increases\":0,\"target_risk_weight\":0.03963184168071799,\"maximum_crypto_weight\":0.25}",
+          "overall_action": "REMAIN_DEFENSIVE",
+          "overall_timeline": "REASSESS_IN_30_DAYS",
+          "platform_version": "12.0.1",
+          "projection_rows": 108,
+          "recommendation": "DEFENSIVE",
+          "recommendation_rows": 6,
+          "run_id": "2e097afe-7173-4359-83bc-bf5124b1f6db",
+          "source_module30_run_id": "cd9d6f4c-ef24-4545-aad1-408b00ee5c4a",
+          "source_module37_run_id": "35422f74-95d8-4ffe-8407-f202207110a5",
+          "source_module38_run_id": "6d0b42fe-1d63-4e2a-b9d2-56f67cf68097",
+          "source_module39_run_id": "167d9f1b-556c-4263-aa4c-689bb0e94f6d",
+          "source_module40_run_id": "24d6bbdf-241b-401c-9838-39f093c12cc9",
+          "source_module41_run_id": "bfa7a8f6-80b4-4823-9dfd-2bd86468cc55",
+          "started_at_utc": "2026-07-15T15:45:45.235368-05:00",
+          "status": "SUCCESS",
+          "target_cash_weight": 0.960368158319282,
+          "total_target_risk_weight": 0.03963184168071799
+        },
+        {
+          "assets_covered": 6,
+          "completed_at_utc": "2026-07-15T15:31:38.519511-05:00",
+          "evidence_status": "ACCUMULATING_EVIDENCE",
+          "horizons_covered": 18,
+          "notes": "Generated asset actions, target portfolio percentages, staged entry timelines, and bear/median/bull projections for 7D, 30D, and quarterly horizons through month 48. Long-range outputs are scenario estimates with confidence decay.",
+          "overall_action": "REMAIN_DEFENSIVE",
+          "overall_timeline": "REASSESS_IN_30_DAYS",
+          "platform_version": "12.0.0",
+          "projection_rows": 108,
+          "recommendation": "DEFENSIVE",
+          "recommendation_rows": 6,
+          "run_id": "738cfd48-b892-4227-8c86-2fd469206779",
+          "source_module30_run_id": "cd9d6f4c-ef24-4545-aad1-408b00ee5c4a",
+          "source_module37_run_id": "35422f74-95d8-4ffe-8407-f202207110a5",
+          "source_module38_run_id": "6d0b42fe-1d63-4e2a-b9d2-56f67cf68097",
+          "source_module39_run_id": "167d9f1b-556c-4263-aa4c-689bb0e94f6d",
+          "source_module40_run_id": "24d6bbdf-241b-401c-9838-39f093c12cc9",
+          "source_module41_run_id": "bfa7a8f6-80b4-4823-9dfd-2bd86468cc55",
+          "started_at_utc": "2026-07-15T15:31:38.258697-05:00",
+          "status": "SUCCESS",
+          "target_cash_weight": 0.75,
+          "total_target_risk_weight": 0.25
+        }
+      ],
+      "schema": [
+        {
+          "column_name": "run_id",
+          "data_type": "VARCHAR",
+          "key": "PRI",
+          "nullable": "NO"
+        },
+        {
+          "column_name": "source_module30_run_id",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "source_module37_run_id",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "source_module38_run_id",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "source_module39_run_id",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "source_module40_run_id",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "source_module41_run_id",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "started_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "completed_at_utc",
+          "data_type": "TIMESTAMP WITH TIME ZONE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "recommendation_rows",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "projection_rows",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "assets_covered",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "horizons_covered",
+          "data_type": "INTEGER",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "total_target_risk_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "target_cash_weight",
+          "data_type": "DOUBLE",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "overall_action",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "overall_timeline",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "evidence_status",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "recommendation",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "notes",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        },
+        {
+          "column_name": "platform_version",
+          "data_type": "VARCHAR",
+          "key": null,
+          "nullable": "YES"
+        }
+      ],
+      "table_name": "module42_runs"
+    }
+  ]
+}

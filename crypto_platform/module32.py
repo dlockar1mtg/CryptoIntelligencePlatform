@@ -26,6 +26,18 @@ from crypto_platform.ml.validation import (
     multiclass_brier_score,
     validate_probability_matrix,
 )
+from crypto_platform.ml.performance_drift import (
+    PerformanceDriftThresholds,
+    evaluate_performance_drift,
+)
+from crypto_platform.ml.module32_performance_adapter import (
+    build_module32_performance_frame,
+    split_reference_current_windows,
+)
+from crypto_platform.ml.module32_performance_persistence import (
+    build_performance_drift_frames,
+    persist_performance_drift,
+)
 
 MODULE32_SCHEMA = r"""
 CREATE TABLE IF NOT EXISTS module32_runs(
@@ -750,6 +762,99 @@ class Module32Runner:
         s["selected"]=s["strategy_key"]==best
         return pd.DataFrame(daily_rows),s
 
+    def realized_performance_drift(
+        self,
+        daily,
+        probabilities,
+        history,
+        benchmarks,
+    ):
+        selected = benchmarks.loc[
+            benchmarks["selected"],
+            "strategy_key",
+        ]
+        if selected.empty:
+            raise ValueError(
+                "No selected Module 32 strategy is available."
+            )
+        strategy_key = str(selected.iloc[0])
+        benchmark_key = "BTC_BUY_HOLD"
+        performance = build_module32_performance_frame(
+            daily,
+            probabilities,
+            history,
+            strategy_key=strategy_key,
+            benchmark_key=benchmark_key,
+        )
+        settings = self.cfg.get("performance_drift", {})
+        minimum = int(
+            settings.get("minimum_observations", 30)
+        )
+        requested_current = int(
+            settings.get("current_window_days", 60)
+        )
+        requested_reference = int(
+            settings.get("reference_window_days", 180)
+        )
+        available = len(performance)
+        current_days = min(
+            requested_current,
+            max(available - minimum, 0),
+        )
+        reference_days = min(
+            requested_reference,
+            max(available - current_days, 0),
+        )
+        if (
+            current_days < minimum
+            or reference_days < minimum
+        ):
+            raise ValueError(
+                "At least two non-overlapping performance windows "
+                f"of {minimum} observations are required; "
+                f"only {available} aligned rows are available."
+            )
+        split = split_reference_current_windows(
+            performance,
+            reference_days=reference_days,
+            current_days=current_days,
+        )
+        thresholds = PerformanceDriftThresholds(
+            minimum_observations=minimum,
+        )
+        result = evaluate_performance_drift(
+            split.reference,
+            split.current,
+            thresholds,
+        )
+        evaluation, windows, regimes = (
+            build_performance_drift_frames(
+                run_id=self.run_id,
+                strategy_key=strategy_key,
+                benchmark_key=benchmark_key,
+                split=split,
+                result=result,
+            )
+        )
+        persist_performance_drift(
+            self.conn,
+            evaluation=evaluation,
+            windows=windows,
+            regimes=regimes,
+        )
+        return {
+            "strategy_key": strategy_key,
+            "benchmark_key": benchmark_key,
+            "reference_days": reference_days,
+            "current_days": current_days,
+            "drift_status": result.drift_status,
+            "governance_action": result.governance_action,
+            "drift_score": result.drift_score,
+            "breached_metrics": list(
+                result.breached_metrics
+            ),
+        }
+
     def run(self):
         self.conn.execute(
             "INSERT INTO module32_runs VALUES("
@@ -766,6 +871,12 @@ class Module32Runner:
             historical=self.historical_stress(prices,probs,hist)
             synthetic=self.synthetic_stress(frame)
             daily,benchmarks=self.benchmark(prices,probs,hist)
+            performance_drift=self.realized_performance_drift(
+                daily,
+                probs,
+                hist,
+                benchmarks,
+            )
 
             for table,data in [
                 ("m32_feature_stability_history",stability_history),
@@ -793,9 +904,21 @@ class Module32Runner:
                 and float(best_row["sharpe_ratio"])>=float(btc["sharpe_ratio"])
                 and float(best_row["maximum_drawdown_pct"])>float(btc["maximum_drawdown_pct"])
                 and current_drift!="CRITICAL"
+                and performance_drift["governance_action"] in {
+                    "NONE",
+                    "MONITOR",
+                }
             )
             status="PASSED" if passed else "LIMITED"
-            recommendation="READY_FOR_PORTFOLIO_INTELLIGENCE" if passed else "RESEARCH_VALIDATION_REQUIRES_REFINEMENT"
+            performance_action=performance_drift["governance_action"]
+            if performance_action=="ROLLBACK":
+                recommendation="ROLLBACK_TO_LAST_APPROVED_MODEL"
+            elif performance_action=="RETRAIN":
+                recommendation="RETRAIN_BEFORE_PORTFOLIO_INTELLIGENCE"
+            elif passed:
+                recommendation="READY_FOR_PORTFOLIO_INTELLIGENCE"
+            else:
+                recommendation="RESEARCH_VALIDATION_REQUIRES_REFINEMENT"
             summary=pd.DataFrame([{
                 "run_id":self.run_id,"stable_features":len(stability_summary),
                 "mean_feature_stability_score":mean_stability,
@@ -822,8 +945,20 @@ class Module32Runner:
                 "WHERE run_id=?",
                 [utcnow(),len(stability_history),len(drift),len(retraining),len(historical),
                  len(synthetic),len(benchmarks),best_policy,best_strategy,status,recommendation,
-                 "Point-in-time retraining, stress testing, and common-date benchmark comparison completed. "
-                 "Module 30 remains OBSERVATION.",self.run_id]
+                 (
+                  "Point-in-time retraining, stress testing, common-date "
+                  "benchmark comparison, and realized-performance drift "
+                  "monitoring completed. Performance action="
+                  +performance_action
+                  +"; performance status="
+                  +performance_drift["drift_status"]
+                  +"; breached metrics="
+                  +json.dumps(
+                      performance_drift["breached_metrics"],
+                      sort_keys=True,
+                  )
+                  +". Module 30 remains OBSERVATION."
+                 ),self.run_id]
             )
             self.conn.close()
             return summary.iloc[0].to_dict()
