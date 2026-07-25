@@ -1,0 +1,53 @@
+name: Crypto Production Cycle
+
+on:
+  workflow_dispatch:
+    inputs:
+      full_refresh:
+        description: "Run full provider refresh"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: crypto-production-cycle
+  cancel-in-progress: false
+
+jobs:
+  crypto-cycle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    environment: staging
+    env:
+      CRYPTO_DATABASE_PATH: data/crypto_intelligence.duckdb
+      FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+      COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+          cache: pip
+      - run: pip install -r requirements.txt -r requirements-dev.txt
+      - name: Validate registry and workflow
+        run: python scripts/check_crypto_production_readiness.py --strict
+      - name: Run production pipeline
+        shell: bash
+        run: |
+          EXTRA_ARGS=""
+          if [[ "${{ inputs.full_refresh }}" == "true" ]]; then
+            EXTRA_ARGS="--full-refresh"
+          fi
+          python scripts/run_crypto_production_pipeline.py $EXTRA_ARGS
+      - name: Run production tests
+        run: python -m pytest tests/production -q
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: crypto-production-${{ github.run_id }}
+          path: |
+            data/operations/crypto/production_runs/
+          retention-days: 30
