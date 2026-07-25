@@ -715,12 +715,14 @@ class Module11Runner:
                 status_rows.append({
                     "asset_id": asset["asset_id"],
                     "provider": "binance",
-                    "provider_symbol": None,
+                    "provider_symbol": "UNMAPPED",
                     "supported": False,
                     "funding_rows": 0,
                     "open_interest_rows": 0,
                     "status": "NO_MAPPING",
-                    "error_message": None,
+                    "error_message": (
+                        "No Binance perpetual provider symbol is configured."
+                    ),
                     "checked_at_utc": now,
                 })
                 continue
