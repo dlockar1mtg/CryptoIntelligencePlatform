@@ -19,21 +19,35 @@ concurrency:
 jobs:
   crypto-cycle:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 180
     environment: staging
     env:
       CRYPTO_DATABASE_PATH: data/crypto_intelligence.duckdb
       FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
       COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
+      CRYPTO_PRODUCTION_RUN_ID: gha-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.14"
           cache: pip
+
       - run: pip install -r requirements.txt -r requirements-dev.txt
+
+      - name: Restore hosted Crypto database
+        id: restore-db
+        uses: actions/cache/restore@v4
+        with:
+          path: data/crypto_intelligence.duckdb
+          key: crypto-db-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            crypto-db-${{ runner.os }}-
+
       - name: Validate registry and workflow
         run: python scripts/check_crypto_production_readiness.py --strict
+
       - name: Run production pipeline
         shell: bash
         run: |
@@ -42,12 +56,46 @@ jobs:
             EXTRA_ARGS="--full-refresh"
           fi
           python scripts/run_crypto_production_pipeline.py $EXTRA_ARGS
+
+      - name: Resolve production run summary
+        id: production
+        shell: bash
+        run: |
+          SUMMARY="data/operations/crypto/production_runs/${CRYPTO_PRODUCTION_RUN_ID}/run_summary.json"
+          test -f "$SUMMARY"
+          echo "summary=$SUMMARY" >> "$GITHUB_OUTPUT"
+
+      - name: Certify hosted database health and freshness
+        run: |
+          python scripts/check_crypto_hosted_readiness.py \
+            --database "$CRYPTO_DATABASE_PATH" \
+            --output data/operations/crypto/hosted_readiness.json \
+            --strict
+
+      - name: Prepare UIP delivery artifact
+        run: |
+          python scripts/prepare_crypto_uip_delivery.py \
+            --run-summary "${{ steps.production.outputs.summary }}" \
+            --output-root data/operations/crypto/uip_delivery
+
       - name: Run production tests
         run: python -m pytest tests/production -q
-      - uses: actions/upload-artifact@v4
-        if: always()
+
+      - name: Save hosted Crypto database
+        if: success()
+        uses: actions/cache/save@v4
         with:
-          name: crypto-production-${{ github.run_id }}
+          path: data/crypto_intelligence.duckdb
+          key: crypto-db-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - name: Upload Crypto production evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: crypto-production-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             data/operations/crypto/production_runs/
+            data/operations/crypto/hosted_readiness.json
+            data/operations/crypto/uip_delivery/
           retention-days: 30
+          if-no-files-found: warn
