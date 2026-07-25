@@ -165,3 +165,6 @@ exchange/crypto/archive/
 
 # Local historical replay databases and generated evidence
 replay_workspace/
+
+# Generated production runtime artifacts
+data/operations/
