@@ -629,7 +629,16 @@ class Module21Runner:
         directions: dict[str, str],
     ) -> tuple[pd.Series, pd.DataFrame]:
         if not features:
-            return pd.Series(0.0, index=frame.index), pd.DataFrame()
+            empty_details = pd.DataFrame(
+                columns=[
+                    "feature_key",
+                    "feature_value",
+                    "standardized_value",
+                    "inferred_direction",
+                    "contribution",
+                ]
+            )
+            return pd.Series(0.0, index=frame.index), empty_details
         signals = []
         weights = []
         detail_rows = []
@@ -680,9 +689,12 @@ class Module21Runner:
         )
         latest_regime = regimes.iloc[-1]
         latest_risk = risk.iloc[0]
-        probability90 = probabilities[
-            probabilities["forward_horizon_days"] == 90
-        ]
+        if "forward_horizon_days" not in probabilities.columns:
+            probability90 = pd.DataFrame()
+        else:
+            probability90 = probabilities[
+                probabilities["forward_horizon_days"] == 90
+            ]
         if probability90.empty:
             positive = 0.5
             drawdown = 0.5
