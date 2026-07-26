@@ -28,6 +28,7 @@ _RECOMMENDATION_MAP = {
     "WAIT": "watch",
     "REDUCE": "reduce",
     "SELL": "sell",
+    "AVOID": "sell",
 }
 
 _RISK_LEVEL_MAP = {
