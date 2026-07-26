@@ -183,3 +183,16 @@ def test_unknown_risk_status_score_fails() -> None:
 
     with pytest.raises(ValueError):
         risk_status_to_score("UNKNOWN")
+
+def test_normalize_avoid_recommendation() -> None:
+    assert normalize_recommendation("AVOID") == "sell"
+    assert normalize_recommendation("avoid") == "sell"
+    assert normalize_recommendation(" Avoid ") == "sell"
+
+
+def test_unknown_recommendation_remains_unsupported() -> None:
+    with pytest.raises(
+        ValueError,
+        match="Unsupported recommendation label",
+    ):
+        normalize_recommendation("UNDEFINED_ACTION")
