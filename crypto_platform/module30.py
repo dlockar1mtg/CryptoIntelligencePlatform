@@ -304,11 +304,12 @@ class Module30Runner:
             SELECT
                 summary.run_id,
                 summary.stable_feature_list,
-                runs.source_module27_run_id
+                runs.source_module27_run_id,
+                summary.validation_status
             FROM m29_research_summary AS summary
             JOIN module29_runs AS runs
               ON runs.run_id = summary.run_id
-            WHERE summary.validation_status='PASSED'
+            WHERE summary.validation_status IN ('PASSED', 'LIMITED')
               AND runs.status='SUCCESS'
             ORDER BY summary.calculated_at_utc DESC
             LIMIT 1
@@ -316,11 +317,12 @@ class Module30Runner:
         ).fetchone()
         if row is None:
             raise RuntimeError(
-                "No passed Module 29 feature registry is available."
+                "No usable Module 29 feature registry is available."
             )
         self.source_m29 = str(row[0])
         self.features = list(json.loads(row[1]))
         self.source_m27 = str(row[2])
+        self.source_m29_validation_status = str(row[3])
         minimum = int(self.cfg["features"]["minimum_stable_features"])
         if len(self.features) < minimum:
             raise RuntimeError(
@@ -973,6 +975,8 @@ class Module30Runner:
 
             notes = (
                 "Clean model uses only Module 29 stable features. "
+                f"Source Module 29 validation status is "
+                f"{self.source_m29_validation_status}. "
                 "Legacy Module 25 remains the production benchmark. "
                 "Promotion is deliberately held at OBSERVATION."
             )

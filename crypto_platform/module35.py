@@ -46,9 +46,18 @@ class Module35Runner:
  def __init__(self):
   self.settings,_=load_all(); self.conn=connect(self.settings); self.conn.execute(MODULE34_SCHEMA); self.conn.execute(MODULE35_SCHEMA)
   self.cfg=self.settings['module35']; self.run_id=str(uuid.uuid4()); self.started=utcnow()
-  row=self.conn.execute("SELECT run_id FROM module34_runs WHERE status='SUCCESS' AND validation_status='PASSED' ORDER BY started_at_utc DESC LIMIT 1").fetchone()
-  if row is None: raise RuntimeError('A passed Module 34 run is required.')
+  row=self.conn.execute(
+   "SELECT run_id,validation_status FROM module34_runs "
+   "WHERE status='SUCCESS' "
+   "AND validation_status IN ('PASSED','LIMITED') "
+   "ORDER BY started_at_utc DESC LIMIT 1"
+  ).fetchone()
+  if row is None:
+   raise RuntimeError(
+    'A usable Module 34 run is required.'
+   )
   self.source=str(row[0])
+  self.source_validation_status=str(row[1])
  def upsert(self,t,f):
   if f.empty:return
   self.conn.register('_s',f); c=','.join(f.columns); self.conn.execute(f'INSERT OR REPLACE INTO {t}({c}) SELECT {c} FROM _s'); self.conn.unregister('_s')
@@ -70,14 +79,23 @@ class Module35Runner:
    confrow=self.conn.execute("SELECT clean_probability,model_agreement,historical_reliability,drift_status FROM latest_clean_regime_current LIMIT 1").fetchone(); conf=50.0
    if confrow:
     p,a,h,d=confrow; df=1 if d=='LOW' else .85 if d=='MODERATE' else .65; conf=100*(.4*float(p)+.25*float(a)+.25*float(h)+.1*df)
-   heat=min(100,float(sel.expected_volatility_pct)/max(float(self.cfg['target_volatility_pct']),1e-9)*100*max(w.sum(),.01)); rec='AGGRESSIVE_ACCUMULATION' if conf>=80 and heat<75 else 'MODERATE_ACCUMULATION' if conf>=65 and heat<85 else 'HOLD' if conf>=50 else 'DEFENSIVE'; date=pd.to_datetime(ex['observation_date']).date()
+   heat=min(100,float(sel.expected_volatility_pct)/max(float(self.cfg['target_volatility_pct']),1e-9)*100*max(w.sum(),.01)); rec='AGGRESSIVE_ACCUMULATION' if conf>=80 and heat<75 else 'MODERATE_ACCUMULATION' if conf>=65 and heat<85 else 'HOLD' if conf>=50 else 'DEFENSIVE'
+   if (
+    self.source_validation_status == 'LIMITED'
+    and rec in (
+     'AGGRESSIVE_ACCUMULATION',
+     'MODERATE_ACCUMULATION',
+    )
+   ):
+    rec='HOLD'
+   date=pd.to_datetime(ex['observation_date']).date()
    alloc=[]
    for a,x,c in zip(ASSETS,w,current): alloc.append({'run_id':self.run_id,'observation_date':date,'asset_id':a,'raw_target_weight':float(x),'final_target_weight':float(x),'current_weight':float(c),'trade_weight':float(x-c),'allocation_status':'INCREASE' if x>c+.01 else 'REDUCE' if x<c-.01 else 'HOLD','calculated_at_utc':utcnow()})
    alloc.append({'run_id':self.run_id,'observation_date':date,'asset_id':'CASH','raw_target_weight':cash,'final_target_weight':cash,'current_weight':max(1-current.sum(),0),'trade_weight':cash-max(1-current.sum(),0),'allocation_status':'HOLD','calculated_at_utc':utcnow()})
    corr=r.tail(90).corr(); cr=[{'run_id':self.run_id,'observation_date':date,'asset_id_1':a,'asset_id_2':b,'correlation_90d':float(corr.loc[a,b]),'calculated_at_utc':utcnow()} for a in ASSETS for b in ASSETS]
    stats=pd.DataFrame([{'run_id':self.run_id,'observation_date':date,'expected_return_pct':float(sel.expected_return_pct),'expected_volatility_pct':float(sel.expected_volatility_pct),'expected_sharpe':float(sel.expected_sharpe),'diversification_score':div,'effective_assets':eff,'concentration_score':conc*100,'portfolio_heat':heat,'portfolio_confidence':conf,'cash_weight':cash,'recommendation':rec,'calculated_at_utc':utcnow()}])
    self.upsert('m35_portfolio_allocations',pd.DataFrame(alloc)); self.upsert('m35_portfolio_candidates',cand); self.upsert('m35_portfolio_correlations',pd.DataFrame(cr)); self.upsert('m35_portfolio_statistics',stats)
-   self.conn.execute("UPDATE module35_runs SET completed_at_utc=?,status='SUCCESS',allocation_rows=?,candidate_rows=?,correlation_rows=?,current_recommendation=?,portfolio_confidence=?,portfolio_heat=?,diversification_score=?,expected_return_pct=?,expected_volatility_pct=?,expected_sharpe=?,cash_weight=?,validation_status='PASSED',notes=? WHERE run_id=?",[utcnow(),len(alloc),len(cand),len(cr),rec,conf,heat,div,float(sel.expected_return_pct),float(sel.expected_volatility_pct),float(sel.expected_sharpe),cash,f'Selected {sel.method} portfolio.',self.run_id])
+   self.conn.execute("UPDATE module35_runs SET completed_at_utc=?,status='SUCCESS',allocation_rows=?,candidate_rows=?,correlation_rows=?,current_recommendation=?,portfolio_confidence=?,portfolio_heat=?,diversification_score=?,expected_return_pct=?,expected_volatility_pct=?,expected_sharpe=?,cash_weight=?,validation_status='PASSED',notes=? WHERE run_id=?",[utcnow(),len(alloc),len(cand),len(cr),rec,conf,heat,div,float(sel.expected_return_pct),float(sel.expected_volatility_pct),float(sel.expected_sharpe),cash,f'Selected {sel.method} portfolio from Module 34 status {self.source_validation_status}.',self.run_id])
    self.conn.close(); return stats.iloc[0].to_dict()
   except Exception as e:
    self.conn.execute("UPDATE module35_runs SET completed_at_utc=?,status='FAILED',notes=? WHERE run_id=?",[utcnow(),str(e)[:1000],self.run_id]); self.conn.close(); raise
