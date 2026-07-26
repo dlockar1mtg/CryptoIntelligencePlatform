@@ -13,6 +13,7 @@ from sklearn.preprocessing import StandardScaler
 
 from crypto_platform.platform import load_all, connect
 from crypto_platform.module25 import MODULE25_SCHEMA
+from crypto_platform.module27 import MODULE27_SCHEMA
 from crypto_platform.module29 import MODULE29_SCHEMA
 from crypto_platform.module30 import MODULE30_SCHEMA
 from crypto_platform.module31 import MODULE31_SCHEMA
@@ -322,6 +323,7 @@ class Module32Runner:
         self.settings,_ = load_all()
         self.conn = connect(self.settings)
         self.conn.execute(MODULE25_SCHEMA)
+        self.conn.execute(MODULE27_SCHEMA)
         self.conn.execute(MODULE29_SCHEMA)
         self.conn.execute(MODULE30_SCHEMA)
         self.conn.execute(MODULE31_SCHEMA)
@@ -338,12 +340,35 @@ class Module32Runner:
         self.source_m31 = str(row[0])
         self.source_m30 = str(row[1])
         frow = self.conn.execute(
-            "SELECT stable_feature_list FROM m29_research_summary "
-            "WHERE validation_status='PASSED' ORDER BY calculated_at_utc DESC LIMIT 1"
+            """
+            SELECT
+                summary.run_id,
+                summary.stable_feature_list,
+                summary.validation_status,
+                runs.source_module25_run_id,
+                runs.source_module27_run_id
+            FROM module30_runs AS clean_runs
+            JOIN m29_research_summary AS summary
+              ON summary.run_id = clean_runs.source_module29_run_id
+            JOIN module29_runs AS runs
+              ON runs.run_id = summary.run_id
+            WHERE clean_runs.run_id=?
+              AND clean_runs.status='SUCCESS'
+              AND runs.status='SUCCESS'
+              AND summary.validation_status IN ('PASSED', 'LIMITED')
+            LIMIT 1
+            """,
+            [self.source_m30],
         ).fetchone()
         if frow is None:
-            raise RuntimeError("No passed Module 29 stable feature registry is available.")
-        self.features = list(json.loads(frow[0]))
+            raise RuntimeError(
+                "No usable Module 29 registry is linked to Module 30."
+            )
+        self.source_m29 = str(frow[0])
+        self.features = list(json.loads(frow[1]))
+        self.source_m29_validation_status = str(frow[2])
+        self.source_m25 = str(frow[3])
+        self.source_m27 = str(frow[4])
         self.classes = canonical_classes()
 
     def upsert(self, table, frame):
@@ -358,21 +383,85 @@ class Module32Runner:
         self.conn.unregister("_m32_stage")
 
     def feature_label_data(self):
-        features = self.conn.execute(
-            "SELECT * FROM m25_regime_features WHERE run_id=("
-            "SELECT run_id FROM module25_runs WHERE status='SUCCESS' "
-            "ORDER BY started_at_utc DESC LIMIT 1) ORDER BY observation_date"
+        core = self.conn.execute(
+            """
+            SELECT *
+            FROM m25_regime_features
+            WHERE run_id=?
+            ORDER BY observation_date
+            """,
+            [self.source_m25],
         ).fetchdf()
+
+        representation = self.conn.execute(
+            """
+            SELECT *
+            FROM m27_representation_features
+            WHERE run_id=?
+            ORDER BY observation_date
+            """,
+            [self.source_m27],
+        ).fetchdf()
+
         labels = self.conn.execute(
-            "SELECT observation_date,dominant_regime FROM m25_regime_probabilities "
-            "WHERE run_id=(SELECT run_id FROM module25_runs WHERE status='SUCCESS' "
-            "ORDER BY started_at_utc DESC LIMIT 1) ORDER BY observation_date"
+            """
+            SELECT observation_date, dominant_regime
+            FROM m25_regime_probabilities
+            WHERE run_id=?
+            ORDER BY observation_date
+            """,
+            [self.source_m25],
         ).fetchdf()
-        features["observation_date"] = pd.to_datetime(features["observation_date"])
-        labels["observation_date"] = pd.to_datetime(labels["observation_date"])
-        frame = features.set_index("observation_date")[self.features].join(
-            labels.set_index("observation_date")
-        ).replace([np.inf,-np.inf],np.nan).dropna()
+
+        for frame in (core, representation, labels):
+            if "observation_date" not in frame.columns:
+                raise RuntimeError(
+                    "Module 32 upstream frame lacks observation_date."
+                )
+            frame["observation_date"] = pd.to_datetime(
+                frame["observation_date"]
+            )
+
+        core = core.set_index("observation_date")
+        representation = representation.set_index(
+            "observation_date"
+        )
+        labels = labels.set_index("observation_date")
+
+        representation = representation.drop(
+            columns=[
+                column
+                for column in representation.columns
+                if column in core.columns
+            ]
+        )
+
+        features = core.join(
+            representation,
+            how="outer",
+        )
+
+        missing = [
+            feature
+            for feature in self.features
+            if feature not in features.columns
+        ]
+        if missing:
+            raise RuntimeError(
+                "Module 32 feature frame is missing governed "
+                f"features: {missing}"
+            )
+
+        frame = (
+            features[self.features]
+            .join(labels)
+            .replace([np.inf, -np.inf], np.nan)
+            .dropna()
+        )
+        if frame.empty:
+            raise RuntimeError(
+                "Module 32 has no complete governed feature rows."
+            )
         return frame
 
     def clean_history(self):

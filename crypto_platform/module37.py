@@ -259,31 +259,40 @@ class Module37Runner:
         self.run_id = str(uuid.uuid4())
         self.started = utcnow()
 
-        portfolio_row = self.conn.execute(
+        source_row = self.conn.execute(
             """
-            SELECT run_id
-            FROM module35_runs
-            WHERE status='SUCCESS'
-              AND validation_status='PASSED'
-            ORDER BY started_at_utc DESC
+            SELECT
+                portfolio.run_id,
+                risk.run_id,
+                execution.source_module30_run_id,
+                validation.source_module31_run_id
+            FROM module36_runs AS risk
+            JOIN module35_runs AS portfolio
+              ON portfolio.run_id = risk.source_module35_run_id
+            JOIN module34_runs AS execution
+              ON execution.run_id =
+                 portfolio.source_module34_run_id
+            JOIN module33_runs AS regularization
+              ON regularization.run_id =
+                 execution.source_module33_run_id
+            JOIN module32_runs AS validation
+              ON validation.run_id =
+                 regularization.source_module32_run_id
+            WHERE risk.status='SUCCESS'
+              AND portfolio.status='SUCCESS'
+            ORDER BY risk.started_at_utc DESC
             LIMIT 1
             """
         ).fetchone()
-        risk_row = self.conn.execute(
-            """
-            SELECT run_id
-            FROM module36_runs
-            WHERE status='SUCCESS'
-            ORDER BY started_at_utc DESC
-            LIMIT 1
-            """
-        ).fetchone()
-        if portfolio_row is None or risk_row is None:
+        if source_row is None:
             raise RuntimeError(
-                "Successful Modules 35 and 36 are required."
+                "A complete Module 35 through Module 36 lineage "
+                "is required."
             )
-        self.source_m35 = str(portfolio_row[0])
-        self.source_m36 = str(risk_row[0])
+        self.source_m35 = str(source_row[0])
+        self.source_m36 = str(source_row[1])
+        self.source_m30 = str(source_row[2])
+        self.source_m31 = str(source_row[3])
 
     def upsert(self, table, frame):
         if frame.empty:
@@ -357,9 +366,11 @@ class Module37Runner:
         frame = self.conn.execute(
             """
             SELECT regime, probability
-            FROM latest_clean_probability_current
+            FROM clean_probability_current
+            WHERE run_id=?
             ORDER BY probability_rank
-            """
+            """,
+            [self.source_m30],
         ).fetchdf()
         return dict(zip(frame["regime"], frame["probability"]))
 
@@ -368,10 +379,12 @@ class Module37Runner:
             """
             SELECT regime, asset_id, horizon_days,
                    mean_forward_return_pct
-            FROM latest_m31_forward_return_validation
-            WHERE signal_source='CLEAN'
+            FROM m31_forward_return_validation
+            WHERE run_id=?
+              AND signal_source='CLEAN'
               AND horizon_days IN (30, 60, 90)
-            """
+            """,
+            [self.source_m31],
         ).fetchdf()
         return frame
 

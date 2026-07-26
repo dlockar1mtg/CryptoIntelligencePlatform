@@ -262,10 +262,10 @@ class Module38Runner:
 
         row37 = self.conn.execute(
             """
-            SELECT run_id
+            SELECT run_id, validation_status
             FROM module37_runs
             WHERE status='SUCCESS'
-              AND validation_status='PASSED'
+              AND validation_status IN ('PASSED', 'LIMITED')
             ORDER BY started_at_utc DESC
             LIMIT 1
             """
@@ -284,6 +284,7 @@ class Module38Runner:
                 "Successful Modules 30 and 37 are required."
             )
         self.source_m37 = str(row37[0])
+        self.source_m37_validation_status = str(row37[1])
         self.source_m30 = str(row30[0])
 
     def upsert(self, table, frame):
