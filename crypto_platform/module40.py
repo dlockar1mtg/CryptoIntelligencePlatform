@@ -294,6 +294,7 @@ class Module40Runner:
         self.conn.execute(MODULE38_SCHEMA)
         self.conn.execute(MODULE39_SCHEMA)
         self.conn.execute(MODULE40_SCHEMA)
+        self.ensure_canonical_memory_schema()
         self.cfg = self.settings["module40"]
         self.run_id = str(uuid.uuid4())
         self.started = utcnow()
@@ -322,6 +323,236 @@ class Module40Runner:
             )
         self.source38 = str(source38[0])
         self.source39 = str(source39[0])
+
+    def ensure_canonical_memory_schema(self):
+        """Upgrade restored databases to the canonical memory identity.
+
+        Older hosted database snapshots may contain Module 40 tables but
+        lack the unique index required by the forecast-memory ON CONFLICT
+        clause. This migration consolidates duplicate forecast events,
+        rewires child records to the surviving forecast ID, and creates
+        the required canonical unique index.
+        """
+        self.conn.execute("BEGIN TRANSACTION")
+        try:
+            self.conn.execute(
+                """
+                CREATE OR REPLACE TEMP TABLE
+                    m40_identity_rank AS
+                SELECT
+                    forecast_memory_id,
+                    first_value(forecast_memory_id) OVER(
+                        PARTITION BY
+                            forecast_date,
+                            asset_id,
+                            horizon_days
+                        ORDER BY
+                            CASE
+                                WHEN outcome_status='MATURED'
+                                THEN 0
+                                ELSE 1
+                            END,
+                            created_at_utc DESC,
+                            forecast_memory_id DESC
+                    ) AS survivor_id,
+                    row_number() OVER(
+                        PARTITION BY
+                            forecast_date,
+                            asset_id,
+                            horizon_days
+                        ORDER BY
+                            CASE
+                                WHEN outcome_status='MATURED'
+                                THEN 0
+                                ELSE 1
+                            END,
+                            created_at_utc DESC,
+                            forecast_memory_id DESC
+                    ) AS identity_rank
+                FROM m40_forecast_memory
+                """
+            )
+
+            self.conn.execute(
+                """
+                CREATE OR REPLACE TEMP TABLE
+                    m40_models_consolidated AS
+                SELECT
+                    ranked.survivor_id
+                        AS forecast_memory_id,
+                    child.model_key,
+                    arg_max(
+                        child.validation_rows,
+                        child.created_at_utc
+                    ) AS validation_rows,
+                    arg_max(
+                        child.validation_mae_pct,
+                        child.created_at_utc
+                    ) AS validation_mae_pct,
+                    arg_max(
+                        child.validation_rmse_pct,
+                        child.created_at_utc
+                    ) AS validation_rmse_pct,
+                    arg_max(
+                        child.directional_accuracy_pct,
+                        child.created_at_utc
+                    ) AS directional_accuracy_pct,
+                    arg_max(
+                        child.ensemble_weight,
+                        child.created_at_utc
+                    ) AS ensemble_weight,
+                    bool_or(child.selected) AS selected,
+                    max(child.created_at_utc)
+                        AS created_at_utc
+                FROM m40_model_memory AS child
+                JOIN m40_identity_rank AS ranked
+                  ON ranked.forecast_memory_id =
+                     child.forecast_memory_id
+                GROUP BY
+                    ranked.survivor_id,
+                    child.model_key
+                """
+            )
+
+            self.conn.execute(
+                """
+                CREATE OR REPLACE TEMP TABLE
+                    m40_attributions_consolidated AS
+                SELECT
+                    ranked.survivor_id
+                        AS forecast_memory_id,
+                    child.driver_key,
+                    arg_max(
+                        child.driver_category,
+                        child.created_at_utc
+                    ) AS driver_category,
+                    arg_max(
+                        child.contribution_pct,
+                        child.created_at_utc
+                    ) AS contribution_pct,
+                    arg_max(
+                        child.contribution_direction,
+                        child.created_at_utc
+                    ) AS contribution_direction,
+                    arg_max(
+                        child.importance_rank,
+                        child.created_at_utc
+                    ) AS importance_rank,
+                    max(child.created_at_utc)
+                        AS created_at_utc
+                FROM m40_attribution_memory AS child
+                JOIN m40_identity_rank AS ranked
+                  ON ranked.forecast_memory_id =
+                     child.forecast_memory_id
+                GROUP BY
+                    ranked.survivor_id,
+                    child.driver_key
+                """
+            )
+
+            self.conn.execute(
+                "DELETE FROM m40_model_memory"
+            )
+            self.conn.execute(
+                "DELETE FROM m40_attribution_memory"
+            )
+            self.conn.execute(
+                """
+                DELETE FROM m40_forecast_memory
+                WHERE forecast_memory_id IN(
+                    SELECT forecast_memory_id
+                    FROM m40_identity_rank
+                    WHERE identity_rank > 1
+                )
+                """
+            )
+
+            self.conn.execute(
+                """
+                INSERT INTO m40_model_memory
+                SELECT *
+                FROM m40_models_consolidated
+                """
+            )
+            self.conn.execute(
+                """
+                INSERT INTO m40_attribution_memory
+                SELECT *
+                FROM m40_attributions_consolidated
+                """
+            )
+
+            self.conn.execute(
+                """
+                CREATE UNIQUE INDEX IF NOT EXISTS
+                    ux_m40_canonical_forecast
+                ON m40_forecast_memory(
+                    forecast_date,
+                    asset_id,
+                    horizon_days
+                )
+                """
+            )
+
+            duplicate_count = self.conn.execute(
+                """
+                SELECT COUNT(*)
+                FROM (
+                    SELECT
+                        forecast_date,
+                        asset_id,
+                        horizon_days,
+                        COUNT(*) AS row_count
+                    FROM m40_forecast_memory
+                    GROUP BY
+                        forecast_date,
+                        asset_id,
+                        horizon_days
+                    HAVING COUNT(*) > 1
+                )
+                """
+            ).fetchone()[0]
+
+            orphan_models = self.conn.execute(
+                """
+                SELECT COUNT(*)
+                FROM m40_model_memory AS child
+                LEFT JOIN m40_forecast_memory AS parent
+                  ON parent.forecast_memory_id =
+                     child.forecast_memory_id
+                WHERE parent.forecast_memory_id IS NULL
+                """
+            ).fetchone()[0]
+
+            orphan_attributions = self.conn.execute(
+                """
+                SELECT COUNT(*)
+                FROM m40_attribution_memory AS child
+                LEFT JOIN m40_forecast_memory AS parent
+                  ON parent.forecast_memory_id =
+                     child.forecast_memory_id
+                WHERE parent.forecast_memory_id IS NULL
+                """
+            ).fetchone()[0]
+
+            if duplicate_count:
+                raise RuntimeError(
+                    "Module 40 canonical migration left "
+                    f"{duplicate_count} duplicate forecast events."
+                )
+
+            if orphan_models or orphan_attributions:
+                raise RuntimeError(
+                    "Module 40 canonical migration created "
+                    "orphaned child records: "
+                    f"models={orphan_models}, "
+                    f"attributions={orphan_attributions}."
+                )
+
+            self.conn.execute("COMMIT")
+        except Exception:
+            self.conn.execute("ROLLBACK")
+            raise
 
     def upsert(self, table, frame):
         """Persist a frame using explicit conflict targets.
