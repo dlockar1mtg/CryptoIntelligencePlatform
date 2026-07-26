@@ -11,6 +11,7 @@ from sklearn.metrics import accuracy_score, log_loss
 
 from crypto_platform.platform import load_all, connect
 from crypto_platform.module25 import MODULE25_SCHEMA
+from crypto_platform.module27 import MODULE27_SCHEMA
 from crypto_platform.ml.classes import canonical_classes
 from crypto_platform.module29 import MODULE29_SCHEMA
 from crypto_platform.ml.datasets import aligned_feature_label_frame
@@ -290,6 +291,7 @@ class Module30Runner:
         self.settings, _ = load_all()
         self.conn = connect(self.settings)
         self.conn.execute(MODULE25_SCHEMA)
+        self.conn.execute(MODULE27_SCHEMA)
         self.conn.execute(MODULE29_SCHEMA)
         self.conn.execute(EXPERIMENT_REGISTRY_SCHEMA)
         self.conn.execute(MODULE30_SCHEMA)
@@ -299,10 +301,16 @@ class Module30Runner:
 
         row = self.conn.execute(
             """
-            SELECT run_id, stable_feature_list
-            FROM m29_research_summary
-            WHERE validation_status='PASSED'
-            ORDER BY calculated_at_utc DESC
+            SELECT
+                summary.run_id,
+                summary.stable_feature_list,
+                runs.source_module27_run_id
+            FROM m29_research_summary AS summary
+            JOIN module29_runs AS runs
+              ON runs.run_id = summary.run_id
+            WHERE summary.validation_status='PASSED'
+              AND runs.status='SUCCESS'
+            ORDER BY summary.calculated_at_utc DESC
             LIMIT 1
             """
         ).fetchone()
@@ -312,6 +320,7 @@ class Module30Runner:
             )
         self.source_m29 = str(row[0])
         self.features = list(json.loads(row[1]))
+        self.source_m27 = str(row[2])
         minimum = int(self.cfg["features"]["minimum_stable_features"])
         if len(self.features) < minimum:
             raise RuntimeError(
@@ -339,39 +348,76 @@ class Module30Runner:
         self.conn.unregister("_m30_stage")
 
     def data(self):
-        features = self.conn.execute(
+        core_features = self.conn.execute(
             """
             SELECT *
             FROM m25_regime_features
             WHERE run_id=(
-                SELECT run_id FROM module25_runs
-                WHERE status='SUCCESS'
-                ORDER BY started_at_utc DESC LIMIT 1
+                SELECT source_module25_run_id
+                FROM module29_runs
+                WHERE run_id=?
             )
             ORDER BY observation_date
-            """
+            """,
+            [self.source_m29],
         ).fetchdf()
+
+        representation_features = self.conn.execute(
+            """
+            SELECT *
+            FROM m27_representation_features
+            WHERE run_id=?
+            ORDER BY observation_date
+            """,
+            [self.source_m27],
+        ).fetchdf()
+
         labels = self.conn.execute(
             """
             SELECT observation_date,
                    dominant_regime
             FROM m25_regime_probabilities
             WHERE run_id=(
-                SELECT run_id FROM module25_runs
-                WHERE status='SUCCESS'
-                ORDER BY started_at_utc DESC LIMIT 1
+                SELECT source_module25_run_id
+                FROM module29_runs
+                WHERE run_id=?
             )
             ORDER BY observation_date
-            """
+            """,
+            [self.source_m29],
         ).fetchdf()
-        features["observation_date"] = pd.to_datetime(
-            features["observation_date"]
+
+        for frame in (
+            core_features,
+            representation_features,
+            labels,
+        ):
+            frame["observation_date"] = pd.to_datetime(
+                frame["observation_date"]
+            )
+
+        core_features = core_features.set_index(
+            "observation_date"
         )
-        labels["observation_date"] = pd.to_datetime(
-            labels["observation_date"]
+        representation_features = representation_features.set_index(
+            "observation_date"
         )
-        features = features.set_index("observation_date")
         labels = labels.set_index("observation_date")
+
+        duplicate_columns = [
+            column
+            for column in representation_features.columns
+            if column in core_features.columns
+        ]
+        representation_features = representation_features.drop(
+            columns=duplicate_columns
+        )
+
+        features = core_features.join(
+            representation_features,
+            how="outer",
+        )
+
         return aligned_feature_label_frame(
             features,
             labels,
