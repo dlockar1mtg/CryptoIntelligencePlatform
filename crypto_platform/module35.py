@@ -73,7 +73,22 @@ class Module35Runner:
    methods={'INVERSE_VOLATILITY':norm(1/vol),'MOMENTUM':norm(np.clip((1+r).prod().to_numpy()-1,0,None)),'RISK_ADJUSTED':norm(np.clip(mu/vol,0,None)),'EQUAL_WEIGHT':np.repeat(1/6,6)}
    rows=[]; wm={}; maxw=float(self.cfg['max_asset_weight'])
    for i,(name,w) in enumerate(methods.items(),1):
-    w=np.minimum(w,maxw); w=norm(w)*risk; er=float(w@mu); ev=float(np.sqrt(w@cov@w)); sh=er/ev if ev>0 else 0; conc=float(np.sum((w/max(w.sum(),1e-9))**2)); div=float(min((1/conc)/6,1)*100); turn=float(np.abs(w-current).sum()*100); obj=45*sh+.25*div-.05*turn-8*conc; cid=f'P{i:03d}'
+    risky_mix=norm(np.minimum(w,maxw))
+    w=risky_mix*risk
+    er=float(w@mu)
+    ev=float(np.sqrt(max(float(w@cov@w),0.0)))
+    sh=er/ev if ev>1e-12 else 0.0
+    risky_weight=float(w.sum())
+    if risky_weight>1e-12:
+     normalized_risky=w/risky_weight
+     conc=float(np.sum(normalized_risky**2))
+     div=float(min((1.0/conc)/6.0,1.0)*100.0) if conc>1e-12 else 0.0
+    else:
+     conc=0.0
+     div=0.0
+    turn=float(np.abs(w-current).sum()*100)
+    obj=45*sh+.25*div-.05*turn-8*conc
+    cid=f'P{i:03d}'
     rows.append({'run_id':self.run_id,'candidate_id':cid,'method':name,'expected_return_pct':er*100,'expected_volatility_pct':ev*100,'expected_sharpe':sh,'diversification_score':div,'concentration_score':conc*100,'turnover_pct':turn,'objective_score':obj,'selected':False,'weights_json':json.dumps(dict(zip(ASSETS,map(float,w)))),'calculated_at_utc':utcnow()}); wm[cid]=w
    cand=pd.DataFrame(rows); bi=cand.objective_score.idxmax(); cand.loc[bi,'selected']=True; cid=str(cand.loc[bi,'candidate_id']); w=wm[cid]; sel=cand.loc[bi]; cash=max(1-w.sum(),0); total=np.append(w,cash); conc=float(np.sum(total**2)); eff=1/conc; div=float(min(eff/7,1)*100)
    confrow=self.conn.execute("SELECT clean_probability,model_agreement,historical_reliability,drift_status FROM latest_clean_regime_current LIMIT 1").fetchone(); conf=50.0
