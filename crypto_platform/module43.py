@@ -478,9 +478,12 @@ class Module43Runner:
 
         for _, row in current.iterrows():
             asset = row["asset_id"]
-            old = prior[
-                prior["asset_id"] == asset
-            ]
+            if prior.empty or "asset_id" not in prior.columns:
+                old = pd.DataFrame()
+            else:
+                old = prior[
+                    prior["asset_id"] == asset
+                ]
             if old.empty:
                 prior_action = "NO_BASELINE"
                 score_change = 0.0
