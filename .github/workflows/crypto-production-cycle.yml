@@ -8,6 +8,9 @@ on:
         required: false
         default: false
         type: boolean
+  schedule:
+    - cron: "15 11 * * *"
+    - cron: "45 10 * * 0"
 
 permissions:
   contents: read
@@ -26,6 +29,7 @@ jobs:
       FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
       COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
       CRYPTO_PRODUCTION_RUN_ID: gha-${{ github.run_id }}-${{ github.run_attempt }}
+      CRYPTO_FULL_REFRESH: ${{ github.event_name == 'schedule' && github.event.schedule == '45 10 * * 0' || (github.event_name == 'workflow_dispatch' && inputs.full_refresh == true) }}
     steps:
       - uses: actions/checkout@v4
 
@@ -52,7 +56,7 @@ jobs:
         shell: bash
         run: |
           EXTRA_ARGS=""
-          if [[ "${{ inputs.full_refresh }}" == "true" ]]; then
+          if [[ "$CRYPTO_FULL_REFRESH" == "true" ]]; then
             EXTRA_ARGS="--full-refresh"
           fi
           python scripts/run_crypto_production_pipeline.py $EXTRA_ARGS
