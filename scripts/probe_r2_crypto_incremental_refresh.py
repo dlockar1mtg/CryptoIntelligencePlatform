@@ -11,6 +11,7 @@ import tempfile
 from pathlib import Path
 
 import duckdb
+from dotenv import dotenv_values
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -105,11 +106,24 @@ def main() -> int:
         description="Probe the supported non-full-refresh Crypto collection path on a disposable database copy."
     )
     parser.add_argument("--source-database", type=Path, required=True)
+    parser.add_argument(
+        "--source-repo",
+        type=Path,
+        default=None,
+        help="Original Crypto repository whose ignored .env may contain runtime provider credentials.",
+    )
     args = parser.parse_args()
 
     source = args.source_database.resolve()
     if not source.is_file():
         raise RuntimeError(f"Source Crypto database not found: {source}")
+
+    source_repo = (
+        args.source_repo.resolve()
+        if args.source_repo is not None
+        else source.parent.parent.resolve()
+    )
+    source_env = source_repo / ".env"
 
     source_hash_before = sha256(source)
     source_size_before = source.stat().st_size
@@ -122,6 +136,11 @@ def main() -> int:
         before = inspect_database(probe_db)
 
         env = os.environ.copy()
+        source_env_values = dotenv_values(source_env) if source_env.is_file() else {}
+        for key, value in source_env_values.items():
+            if value is not None and key not in env:
+                env[key] = value
+
         env["CRYPTO_DATABASE_PATH"] = str(probe_db)
         env.pop("CRYPTO_PRODUCTION_RUN_ID", None)
         env.pop("CRYPTO_PRODUCTION_STAGE", None)
@@ -171,6 +190,11 @@ def main() -> int:
             "source_database": str(source),
             "source_database_sha256": source_hash_before,
             "source_database_unchanged": source_unchanged,
+            "source_repo": str(source_repo),
+            "source_env_present": source_env.is_file(),
+            "fred_api_key_available_to_probe": bool(env.get("FRED_API_KEY", "").strip()),
+            "coingecko_api_key_available_to_probe": bool(env.get("COINGECKO_API_KEY", "").strip()),
+            "coingecko_pro_api_key_available_to_probe": bool(env.get("COINGECKO_PRO_API_KEY", "").strip()),
             "module1_return_code": int(completed.returncode),
             "module1_stdout_tail": (completed.stdout or "")[-8000:],
             "module1_stderr_tail": (completed.stderr or "")[-8000:],
@@ -186,6 +210,8 @@ def main() -> int:
         }
         print(json.dumps(payload, indent=2, sort_keys=True))
         print("CRYPTO_R2_INCREMENTAL_PROBE=PASS")
+        print(f"SOURCE_ENV_PRESENT={str(source_env.is_file()).upper()}")
+        print(f"FRED_API_KEY_AVAILABLE={str(bool(env.get('FRED_API_KEY', '').strip())).upper()}")
         print(f"INCREMENTAL_REFRESH_VIABLE={str(viable).upper()}")
         print(f"SOURCE_DATABASE_UNCHANGED={str(source_unchanged).upper()}")
         print(f"NEXT_GATE={payload['next_gate']}")
