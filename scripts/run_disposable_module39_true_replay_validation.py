@@ -54,13 +54,15 @@ def main() -> int:
 
         with duckdb.connect(str(temp_db), read_only=True) as con:
             latest = con.execute(
-                "SELECT run_id, validation_status, advancement_recommendation, "
+                "SELECT run_id, validation_status, recommendation, "
                 "mean_calibrated_brier, mean_interval_coverage_pct, "
                 "mean_directional_accuracy_pct FROM module39_runs "
                 "WHERE status='SUCCESS' ORDER BY started_at_utc DESC LIMIT 1"
             ).fetchone()
             require(latest is not None, "Disposable Module 39 did not finish successfully")
             run_id = str(latest[0])
+            validation_status = str(latest[1])
+            advancement_recommendation = str(latest[2])
             calibration_rows = con.execute(
                 "SELECT COUNT(*) FROM m39_probability_calibration WHERE run_id=?",
                 [run_id],
@@ -106,6 +108,8 @@ def main() -> int:
         "status": "CRYPTO_MODULE39_TRUE_REPLAY_DISPOSABLE_VALIDATION_COMPLETE",
         "source_database_unchanged": True,
         "module39_result": result,
+        "validation_status": validation_status,
+        "advancement_recommendation": advancement_recommendation,
         "calibration_rows": int(calibration_rows),
         "supported_calibration_rows": int(supported_calibration),
         "uncalibrated_evidence_gap_rows": int(gap_calibration),
