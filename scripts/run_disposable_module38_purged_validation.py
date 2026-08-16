@@ -11,6 +11,7 @@ import tempfile
 from pathlib import Path
 
 import duckdb
+import yaml
 
 EXPECTED_SOURCE_COMMIT = "951ca1111ef844a651eb6e12299441252ef5f56b"
 
@@ -102,6 +103,9 @@ def main() -> int:
     source_db = Path(args.database).resolve()
     require(source_db.is_file(), f"Crypto database missing: {source_db}")
 
+    settings = yaml.safe_load((root / "config" / "settings.yaml").read_text(encoding="utf-8"))
+    configured_horizons = {int(v) for v in settings["module38"]["horizons_days"]}
+
     source_hash_before = sha256(source_db)
     with duckdb.connect(str(source_db), read_only=True) as source_con:
         prior_run_id = latest_run_id(source_con)
@@ -138,15 +142,22 @@ def main() -> int:
             corrected_summary = run_summary(disposable_con, corrected_run_id)
             corrected_rollup = validation_rollup(disposable_con, corrected_run_id)
 
-        comparison = []
         prior_by_h = {r["horizon_days"]: r for r in prior_rollup}
         corrected_by_h = {r["horizon_days"]: r for r in corrected_rollup}
-        require(set(prior_by_h) == set(corrected_by_h), "Corrected validation horizon set changed")
-        for horizon in sorted(prior_by_h):
+        prior_horizons = set(prior_by_h)
+        corrected_horizons = set(corrected_by_h)
+
+        require(
+            corrected_horizons == configured_horizons,
+            "Corrected validation horizon set does not match configured Module 38 horizons",
+        )
+
+        comparison = []
+        for horizon in sorted(prior_horizons & corrected_horizons):
             old = prior_by_h[horizon]
             new = corrected_by_h[horizon]
-            require(new["assets"] == old["assets"], f"Asset coverage changed for horizon {horizon}")
-            require(new["model_rows"] == old["model_rows"], f"Model-row coverage changed for horizon {horizon}")
+            require(new["assets"] == 6, f"Corrected asset coverage is incomplete for horizon {horizon}")
+            require(new["model_rows"] == 18, f"Corrected model-row coverage is incomplete for horizon {horizon}")
             comparison.append({
                 "horizon_days": horizon,
                 "prior_mean_mae_pct": old["mean_mae_pct"],
@@ -161,6 +172,9 @@ def main() -> int:
                 "validation_rows": [new["min_validation_rows"], new["max_validation_rows"]],
             })
 
+        restored_or_new = [corrected_by_h[h] for h in sorted(corrected_horizons - prior_horizons)]
+        missing_from_corrected = sorted(configured_horizons - corrected_horizons)
+
     source_hash_after = sha256(source_db)
     require(source_hash_before == source_hash_after, "Source Crypto database changed during disposable rehearsal")
 
@@ -169,15 +183,21 @@ def main() -> int:
         "source_commit": args.source_commit,
         "source_database_unchanged": True,
         "source_database_sha256": source_hash_before,
+        "configured_horizons": sorted(configured_horizons),
+        "prior_horizons": sorted(prior_horizons),
+        "corrected_horizons": sorted(corrected_horizons),
         "prior_run": prior_summary,
         "corrected_disposable_run": corrected_summary,
-        "horizon_comparison": comparison,
+        "common_horizon_comparison": comparison,
+        "restored_or_new_horizons": restored_or_new,
+        "missing_from_corrected": missing_from_corrected,
         "interpretation_guard": "Corrected Module 38 holdout metrics are diagnostic evidence only. Predictive skill remains uncertified until Module 39 true rolling-origin and realized-outcome calibration remediation are complete.",
         "next_gate": "INTERPRET_PURGED_HOLDOUT_IMPACT_THEN_REMEDIATE_MODULE39",
     }
     print(json.dumps(payload, indent=2))
     print("CRYPTO_MODULE38_PURGED_DISPOSABLE_VALIDATION=COMPLETE")
     print("SOURCE_DATABASE_MODIFIED=FALSE")
+    print("CORRECTED_HORIZONS_MATCH_CONFIG=TRUE")
     print("NEXT_GATE=INTERPRET_PURGED_HOLDOUT_IMPACT_THEN_REMEDIATE_MODULE39")
     return 0
 
