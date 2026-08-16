@@ -167,15 +167,15 @@ def main() -> int:
     try:
         db_evidence = {
             "module44": con.execute(
-                "SELECT outcome_status, COUNT(*) rows FROM m44_decision_outcomes GROUP BY 1 ORDER BY 1"
+                "SELECT outcome_status, COUNT(*) AS row_count FROM m44_decision_outcomes GROUP BY 1 ORDER BY 1"
             ).fetchall(),
             "module39_latest_date_integrity": con.execute(
                 """
                 SELECT horizon_days,
-                       COUNT(*) rows,
-                       COUNT(DISTINCT training_end_date) training_end_dates,
-                       COUNT(DISTINCT testing_start_date) testing_start_dates,
-                       COUNT(DISTINCT testing_end_date) testing_end_dates,
+                       COUNT(*) AS row_count,
+                       COUNT(DISTINCT training_end_date) AS training_end_dates,
+                       COUNT(DISTINCT testing_start_date) AS testing_start_dates,
+                       COUNT(DISTINCT testing_end_date) AS testing_end_dates,
                        MIN(training_end_date), MAX(training_end_date),
                        MIN(testing_start_date), MAX(testing_start_date)
                 FROM latest_m39_rolling_origin_validation
