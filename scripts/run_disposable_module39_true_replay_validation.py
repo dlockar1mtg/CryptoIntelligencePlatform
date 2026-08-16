@@ -44,7 +44,14 @@ def main() -> int:
         prior = os.environ.get("CRYPTO_DATABASE_PATH")
         os.environ["CRYPTO_DATABASE_PATH"] = str(temp_db)
         try:
+            from crypto_platform.module38 import run_module38
             from crypto_platform.module39 import run_module39
+
+            module38_result = run_module38()
+            require(
+                int(module38_result["forecast_rows"]) == 30,
+                f"Disposable remediated Module 38 produced {module38_result['forecast_rows']} forecasts; expected 30",
+            )
             result = run_module39()
         finally:
             if prior is None:
@@ -53,6 +60,13 @@ def main() -> int:
                 os.environ["CRYPTO_DATABASE_PATH"] = prior
 
         with duckdb.connect(str(temp_db), read_only=True) as con:
+            latest_m38 = con.execute(
+                "SELECT run_id, forecast_rows, recommendation, mean_validation_mae_pct "
+                "FROM module38_runs WHERE status='SUCCESS' "
+                "ORDER BY started_at_utc DESC LIMIT 1"
+            ).fetchone()
+            require(latest_m38 is not None, "Disposable remediated Module 38 did not finish successfully")
+
             latest = con.execute(
                 "SELECT run_id, validation_status, recommendation, "
                 "mean_calibrated_brier, mean_interval_coverage_pct, "
@@ -92,6 +106,7 @@ def main() -> int:
                 [run_id],
             ).fetchone()[0]
 
+        require(int(latest_m38[1]) == 30, f"Expected refreshed Module 38 forecast_rows=30, got {latest_m38[1]}")
         require(int(calibration_rows) == 30, f"Expected 30 current calibration rows, got {calibration_rows}")
         require(int(supported_calibration) == 29, f"Expected 29 supported calibration rows, got {supported_calibration}")
         require(int(gap_calibration) == 1, f"Expected one uncalibrated evidence-gap forecast, got {gap_calibration}")
@@ -102,11 +117,12 @@ def main() -> int:
         require(int(bad_dates) == 0, f"Found {bad_dates} rolling rows with invalid chronology")
 
     after = sha256(source)
-    require(before == after, "Source database changed during disposable Module 39 validation")
+    require(before == after, "Source database changed during disposable Module 38/39 validation")
 
     payload = {
         "status": "CRYPTO_MODULE39_TRUE_REPLAY_DISPOSABLE_VALIDATION_COMPLETE",
         "source_database_unchanged": True,
+        "module38_result": module38_result,
         "module39_result": result,
         "validation_status": validation_status,
         "advancement_recommendation": advancement_recommendation,
@@ -129,6 +145,7 @@ def main() -> int:
     print(json.dumps(payload, indent=2, default=str))
     print("CRYPTO_MODULE39_TRUE_REPLAY_DISPOSABLE_VALIDATION=PASS")
     print("SOURCE_DATABASE_MODIFIED=FALSE")
+    print("REFRESHED_MODULE38_FORECAST_ROWS=30")
     print("SUPPORTED_CALIBRATION_GROUPS=29")
     print("EXPLICIT_EVIDENCE_GAPS=1")
     print("TRUE_ROLLING_ROWS=87")
