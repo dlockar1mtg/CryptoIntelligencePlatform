@@ -14,6 +14,10 @@ from sklearn.preprocessing import StandardScaler
 
 from crypto_platform.platform import load_all, connect
 from crypto_platform.module38 import MODULE38_SCHEMA
+from crypto_platform.module39_validation import (
+    apply_calibration,
+    build_true_replay_evidence,
+)
 
 MODULE39_SCHEMA = r"""
 CREATE TABLE IF NOT EXISTS module39_runs(
@@ -92,6 +96,38 @@ CREATE TABLE IF NOT EXISTS m39_rolling_origin_validation(
     interval_coverage_pct DOUBLE,
     calculated_at_utc TIMESTAMPTZ,
     PRIMARY KEY(run_id, asset_id, horizon_days, fold_number)
+);
+
+CREATE TABLE IF NOT EXISTS m39_replay_origin_evidence(
+    run_id VARCHAR,
+    asset_id VARCHAR,
+    horizon_days INTEGER,
+    fold_number INTEGER,
+    forecast_date DATE,
+    training_end_date DATE,
+    training_rows INTEGER,
+    internal_validation_rows INTEGER,
+    predicted_return_pct DOUBLE,
+    actual_return_pct DOUBLE,
+    raw_probability_positive DOUBLE,
+    observed_positive INTEGER,
+    lower_return_pct DOUBLE,
+    upper_return_pct DOUBLE,
+    interval_covered BOOLEAN,
+    calculated_at_utc TIMESTAMPTZ,
+    PRIMARY KEY(run_id, asset_id, horizon_days, forecast_date)
+);
+
+CREATE TABLE IF NOT EXISTS m39_evidence_gaps(
+    run_id VARCHAR,
+    asset_id VARCHAR,
+    horizon_days INTEGER,
+    evidence_gap VARCHAR,
+    available_candidates INTEGER,
+    required_candidates INTEGER,
+    predictive_skill_certified BOOLEAN,
+    calculated_at_utc TIMESTAMPTZ,
+    PRIMARY KEY(run_id, asset_id, horizon_days, evidence_gap)
 );
 
 CREATE TABLE IF NOT EXISTS m39_feature_stability(
@@ -175,6 +211,16 @@ CREATE OR REPLACE VIEW latest_m39_rolling_origin_validation AS
 SELECT * FROM m39_rolling_origin_validation
 WHERE run_id=(SELECT run_id FROM module39_runs ORDER BY started_at_utc DESC LIMIT 1)
 ORDER BY asset_id,horizon_days,fold_number;
+
+CREATE OR REPLACE VIEW latest_m39_replay_origin_evidence AS
+SELECT * FROM m39_replay_origin_evidence
+WHERE run_id=(SELECT run_id FROM module39_runs ORDER BY started_at_utc DESC LIMIT 1)
+ORDER BY asset_id,horizon_days,forecast_date;
+
+CREATE OR REPLACE VIEW latest_m39_evidence_gaps AS
+SELECT * FROM m39_evidence_gaps
+WHERE run_id=(SELECT run_id FROM module39_runs ORDER BY started_at_utc DESC LIMIT 1)
+ORDER BY asset_id,horizon_days;
 
 CREATE OR REPLACE VIEW latest_m39_feature_stability AS
 SELECT * FROM m39_feature_stability
@@ -262,127 +308,123 @@ class Module39Runner:
             """,[self.source_m38]
         ).fetchdf()
 
-    def calibration(self,forecasts,validation):
-        rows=[]; calibrated=[]
-        for _,forecast in forecasts.iterrows():
-            asset=forecast["asset_id"]; horizon=int(forecast["horizon_days"])
-            subset=validation[
-                (validation.asset_id==asset)&
-                (validation.horizon_days==horizon)
-            ]
-            directional=(subset["directional_accuracy_pct"]/100).clip(0.01,0.99)
-            raw=np.repeat(float(forecast["probability_positive"]),len(subset))
-            observed=(directional>=0.5).astype(int).to_numpy()
-            minimum_calibration_rows=int(
-                self.cfg.get(
-                    "minimum_calibration_rows",
-                    30,
-                )
-            )
-            if (
-                len(observed)<minimum_calibration_rows
-                or len(np.unique(observed))<2
-            ):
-                selected_method="EVIDENCE_SHRINKAGE"
-                empirical_rate=float(
-                    directional.mean()
-                    if len(directional)
-                    else 0.5
-                )
-                evidence_weight=min(
-                    len(observed)
-                    / max(minimum_calibration_rows,1),
-                    1.0,
-                )
-                calibrated_probability=float(
-                    evidence_weight*empirical_rate+
-                    (1-evidence_weight)*0.5
-                )
-                raw_brier=float(np.mean((raw-observed)**2)) if len(observed) else 0.25
-                calibrated_brier=float(np.mean((calibrated_probability-observed)**2)) if len(observed) else raw_brier
-                raw_ll=float(log_loss(observed,clip_probability(raw))) if len(np.unique(observed))>1 else 0.0
-                calibrated_ll=float(log_loss(observed,np.repeat(clip_probability([calibrated_probability])[0],len(observed)))) if len(np.unique(observed))>1 else 0.0
-            else:
-                candidates=[]
-                # Logistic/Platt calibration.
-                logistic=LogisticRegression().fit(raw.reshape(-1,1),observed)
-                p_log=logistic.predict_proba([[float(forecast["probability_positive"])]])[0,1]
-                candidates.append(("PLATT",float(p_log)))
-                # Isotonic calibration.
-                iso=IsotonicRegression(out_of_bounds="clip").fit(raw,observed)
-                p_iso=float(iso.predict([float(forecast["probability_positive"])])[0])
-                candidates.append(("ISOTONIC",p_iso))
-                raw_brier=float(brier_score_loss(observed,raw))
-                raw_ll=float(log_loss(observed,clip_probability(raw)))
-                scored=[]
-                for method,p in candidates:
-                    probs=np.repeat(clip_probability([p])[0],len(observed))
-                    scored.append((method,p,float(brier_score_loss(observed,probs)),float(log_loss(observed,probs))))
-                selected_method,calibrated_probability,calibrated_brier,calibrated_ll=min(scored,key=lambda x:x[2])
-            improvement=(raw_brier-calibrated_brier)/max(raw_brier,1e-9)*100
-            rows.append({
-                "run_id":self.run_id,"asset_id":asset,"horizon_days":horizon,
-                "calibration_method":selected_method,"validation_rows":len(subset),
-                "raw_brier_score":raw_brier,"calibrated_brier_score":calibrated_brier,
-                "raw_log_loss":raw_ll,"calibrated_log_loss":calibrated_ll,
-                "raw_mean_probability":float(forecast["probability_positive"]),
-                "calibrated_mean_probability":float(calibrated_probability),
-                "observed_positive_rate":float(observed.mean()) if len(observed) else np.nan,
-                "calibration_improvement_pct":improvement,"selected":True,
-                "calculated_at_utc":utcnow(),
-            })
-            # Conformalized interval using model-validation RMSE as a conservative residual proxy.
-            residual_scale=float(subset["validation_rmse_pct"].median()) if not subset.empty else float(forecast["upper_return_pct"]-forecast["lower_return_pct"])/2
-            alpha=float(self.cfg["conformal_alpha"])
-            multiplier=1.645 if alpha<=0.10 else 1.282
-            half_width=max(residual_scale*multiplier,1.0)
-            lower=float(forecast["predicted_return_pct"]-half_width)
-            upper=float(forecast["predicted_return_pct"]+half_width)
-            calibrated.append({
-                "run_id":self.run_id,
-                "forecast_date":forecast["forecast_date"],
-                "asset_id":asset,"horizon_days":horizon,
-                "predicted_return_pct":float(forecast["predicted_return_pct"]),
-                "raw_probability_positive":float(forecast["probability_positive"]),
-                "calibrated_probability_positive":float(np.clip(calibrated_probability,0,1)),
-                "conformal_lower_return_pct":lower,
-                "conformal_upper_return_pct":upper,
-                "interval_width_pct":upper-lower,
-                "calibration_method":selected_method,
-                "forecast_confidence":float(forecast["forecast_confidence"]),
-                "forecast_status":forecast["forecast_status"],
-                "calculated_at_utc":utcnow(),
-            })
-        return pd.DataFrame(rows),pd.DataFrame(calibrated)
+    def true_replay(self):
+        return build_true_replay_evidence(self.conn, self.settings)
 
-    def rolling_validation(self,forecasts,validation):
-        rows=[]
-        folds=int(self.cfg["rolling_folds"])
-        for (asset,horizon),group in validation.groupby(["asset_id","horizon_days"]):
-            n=len(group)
-            fold_size=max(n//folds,1)
-            for fold in range(folds):
-                test=group.iloc[fold*fold_size:min((fold+1)*fold_size,n)]
-                if test.empty:continue
-                mae=float(test["validation_mae_pct"].mean())
-                rmse=float(test["validation_rmse_pct"].mean())
-                direction=float(test["directional_accuracy_pct"].mean())
-                probability=np.clip(direction/100,1e-4,1-1e-4)
-                observed=np.repeat(1 if direction>=50 else 0,len(test))
-                brier=float(np.mean((probability-observed)**2))
-                coverage=float(np.clip(100-mae,0,100))
-                rows.append({
-                    "run_id":self.run_id,"asset_id":asset,"horizon_days":int(horizon),
-                    "fold_number":fold+1,
-                    "training_rows":int(self.cfg["minimum_training_rows"]+fold*fold_size),
-                    "testing_rows":len(test),"training_end_date":pd.Timestamp(forecasts["forecast_date"].max()).date(),
-                    "testing_start_date":pd.Timestamp(forecasts["forecast_date"].max()).date(),
-                    "testing_end_date":pd.Timestamp(forecasts["forecast_date"].max()).date(),
-                    "mae_pct":mae,"rmse_pct":rmse,
-                    "directional_accuracy_pct":direction,"brier_score":brier,
-                    "interval_coverage_pct":coverage,"calculated_at_utc":utcnow(),
-                })
-        return pd.DataFrame(rows)
+    def calibration(self, forecasts, replay_bundle):
+        evidence = replay_bundle["calibration"].copy()
+        specs = replay_bundle["calibration_specs"]
+        rows = []
+        calibrated = []
+        gap_keys = set()
+        gaps = replay_bundle["evidence_gaps"]
+        if not gaps.empty:
+            gap_keys = set(
+                zip(gaps["asset_id"], gaps["horizon_days"].astype(int))
+            )
+
+        for _, forecast in forecasts.iterrows():
+            asset = str(forecast["asset_id"])
+            horizon = int(forecast["horizon_days"])
+            key = (asset, horizon)
+            raw_probability = float(forecast["probability_positive"])
+            subset = evidence[
+                (evidence.asset_id == asset)
+                & (evidence.horizon_days == horizon)
+            ]
+
+            if key in gap_keys or subset.empty or key not in specs:
+                selected_method = "UNCALIBRATED_EVIDENCE_GAP"
+                calibrated_probability = raw_probability
+                raw_brier = calibrated_brier = np.nan
+                raw_ll = calibrated_ll = np.nan
+                observed_rate = np.nan
+                validation_rows = 0
+                improvement = 0.0
+            else:
+                row = subset.iloc[0]
+                selected_method = str(row["calibration_method"])
+                calibrated_probability = apply_calibration(
+                    specs[key], raw_probability
+                )
+                raw_brier = float(row["raw_brier_score"])
+                calibrated_brier = float(row["calibrated_brier_score"])
+                raw_ll = float(row["raw_log_loss"])
+                calibrated_ll = float(row["calibrated_log_loss"])
+                observed_rate = float(row["observed_positive_rate"])
+                validation_rows = int(row["validation_rows"])
+                improvement = float(row["calibration_improvement_pct"])
+
+            rows.append({
+                "run_id": self.run_id,
+                "asset_id": asset,
+                "horizon_days": horizon,
+                "calibration_method": selected_method,
+                "validation_rows": validation_rows,
+                "raw_brier_score": raw_brier,
+                "calibrated_brier_score": calibrated_brier,
+                "raw_log_loss": raw_ll,
+                "calibrated_log_loss": calibrated_ll,
+                "raw_mean_probability": raw_probability,
+                "calibrated_mean_probability": float(calibrated_probability),
+                "observed_positive_rate": observed_rate,
+                "calibration_improvement_pct": improvement,
+                "selected": True,
+                "calculated_at_utc": utcnow(),
+            })
+
+            validation = self.model_validation()
+            model_subset = validation[
+                (validation.asset_id == asset)
+                & (validation.horizon_days == horizon)
+            ]
+            residual_scale = (
+                float(model_subset["validation_rmse_pct"].median())
+                if not model_subset.empty
+                else float(
+                    forecast["upper_return_pct"]
+                    - forecast["lower_return_pct"]
+                ) / 2
+            )
+            alpha = float(self.cfg["conformal_alpha"])
+            multiplier = 1.645 if alpha <= 0.10 else 1.282
+            half_width = max(residual_scale * multiplier, 1.0)
+            lower = float(forecast["predicted_return_pct"] - half_width)
+            upper = float(forecast["predicted_return_pct"] + half_width)
+            calibrated.append({
+                "run_id": self.run_id,
+                "forecast_date": forecast["forecast_date"],
+                "asset_id": asset,
+                "horizon_days": horizon,
+                "predicted_return_pct": float(forecast["predicted_return_pct"]),
+                "raw_probability_positive": raw_probability,
+                "calibrated_probability_positive": float(
+                    np.clip(calibrated_probability, 0, 1)
+                ),
+                "conformal_lower_return_pct": lower,
+                "conformal_upper_return_pct": upper,
+                "interval_width_pct": upper - lower,
+                "calibration_method": selected_method,
+                "forecast_confidence": float(forecast["forecast_confidence"]),
+                "forecast_status": forecast["forecast_status"],
+                "calculated_at_utc": utcnow(),
+            })
+        return pd.DataFrame(rows), pd.DataFrame(calibrated)
+
+    def rolling_validation(self, replay_bundle):
+        rolling = replay_bundle["rolling"].copy()
+        if rolling.empty:
+            return rolling
+        rolling["run_id"] = self.run_id
+        rolling["calculated_at_utc"] = utcnow()
+        columns = [
+            "run_id", "asset_id", "horizon_days", "fold_number",
+            "training_rows", "testing_rows", "training_end_date",
+            "testing_start_date", "testing_end_date", "mae_pct",
+            "rmse_pct", "directional_accuracy_pct", "brier_score",
+            "interval_coverage_pct", "calculated_at_utc",
+        ]
+        return rolling[columns]
 
     def stability(self,attribution):
         rows=[]
@@ -542,24 +584,49 @@ class Module39Runner:
             forecasts=self.source_forecasts()
             validation=self.model_validation()
             attribution=self.attributions()
-            calibration,calibrated=self.calibration(forecasts,validation)
-            rolling=self.rolling_validation(forecasts,validation)
+            replay_bundle=self.true_replay()
+            replay_origins=replay_bundle["replay"].copy()
+            replay_origins["run_id"]=self.run_id
+            replay_origins["calculated_at_utc"]=utcnow()
+            replay_origins=replay_origins[[
+                "run_id","asset_id","horizon_days","fold_number",
+                "forecast_date","training_end_date","training_rows",
+                "internal_validation_rows","predicted_return_pct",
+                "actual_return_pct","raw_probability_positive",
+                "observed_positive","lower_return_pct","upper_return_pct",
+                "interval_covered","calculated_at_utc",
+            ]]
+            calibration,calibrated=self.calibration(forecasts,replay_bundle)
+            rolling=self.rolling_validation(replay_bundle)
+            gaps=replay_bundle["evidence_gaps"].copy()
+            if not gaps.empty:
+                gaps["run_id"]=self.run_id
+                gaps["calculated_at_utc"]=utcnow()
+                gaps=gaps[[
+                    "run_id","asset_id","horizon_days","evidence_gap",
+                    "available_candidates","required_candidates",
+                    "predictive_skill_certified","calculated_at_utc",
+                ]]
             stability=self.stability(attribution)
             drift=self.drift(forecasts,validation,attribution)
             scorecards=self.scorecards(self.historical_forecasts())
             for table,frame in [
                 ("m39_probability_calibration",calibration),
                 ("m39_calibrated_forecasts",calibrated),
+                ("m39_replay_origin_evidence",replay_origins),
                 ("m39_rolling_origin_validation",rolling),
+                ("m39_evidence_gaps",gaps),
                 ("m39_feature_stability",stability),
                 ("m39_forecast_drift",drift),
                 ("m39_forecast_scorecard",scorecards),
             ]:self.upsert(table,frame)
 
             improvement=float((calibration["calibration_improvement_pct"]>0).mean()*100)
-            mean_brier=float(calibration["calibrated_brier_score"].mean())
+            supported_calibration=calibration[calibration["validation_rows"]>0]
+            mean_brier=float(supported_calibration["calibrated_brier_score"].mean()) if not supported_calibration.empty else np.nan
             coverage=float(rolling["interval_coverage_pct"].mean()) if not rolling.empty else 0.0
             direction=float(rolling["directional_accuracy_pct"].mean()) if not rolling.empty else 0.0
+            model_minus_majority=float(replay_bundle["model_minus_majority_accuracy_pct_points"])
             evidence_ready=stability[
                 stability["folds"]>=int(
                     self.cfg.get(
@@ -584,7 +651,7 @@ class Module39Runner:
             )
             evidence_ready=bool(
                 len(scorecards)>=minimum_scorecards
-                and calibration["validation_rows"].sum()
+                and supported_calibration["validation_rows"].sum()
                 >=int(
                     self.cfg.get(
                         "minimum_total_calibration_rows",
@@ -597,6 +664,8 @@ class Module39Runner:
                 and mean_brier<=float(self.cfg["validation"]["maximum_brier"])
                 and coverage>=float(self.cfg["validation"]["minimum_interval_coverage_pct"])
                 and direction>=float(self.cfg["validation"]["minimum_directional_accuracy_pct"])
+                and model_minus_majority>0
+                and gaps.empty
                 and current_drift!="CRITICAL"
             )
             status=(
@@ -640,8 +709,9 @@ class Module39Runner:
                 [utcnow(),len(calibration),len(calibrated),len(rolling),len(stability),
                  len(drift),len(scorecards),mean_brier,coverage,direction,current_drift,
                  status,recommendation,
-                 "Probability calibration, conformal intervals, rolling validation, "
-                 "feature stability, drift monitoring, and realized scorecards completed.",
+                 "True chronological point-in-time replay, realized-outcome probability calibration, "
+                 "explicit evidence gaps, conformal intervals, feature stability, drift monitoring, "
+                 f"and realized scorecards completed. Model-minus-majority directional accuracy: {model_minus_majority:.4f} pp.",
                  self.run_id]
             )
             self.conn.close()

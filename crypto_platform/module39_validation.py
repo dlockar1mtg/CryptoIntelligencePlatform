@@ -372,7 +372,10 @@ def build_true_replay_evidence(conn, settings) -> dict:
                     "fold_number": fold_number,
                     "training_rows": int(frame["training_rows"].min()),
                     "testing_rows": int(len(frame)),
-                    "training_end_date": max(frame["training_end_date"]),
+                    # A fold contains expanding rolling origins, so no single
+                    # training-end date truthfully describes the whole fold.
+                    # Per-origin chronology is retained in replay evidence.
+                    "training_end_date": None,
                     "testing_start_date": min(frame["forecast_date"]),
                     "testing_end_date": max(frame["forecast_date"]),
                     "mae_pct": float(error.abs().mean()),
