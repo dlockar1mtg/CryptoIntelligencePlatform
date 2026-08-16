@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 import shutil
+import sys
 import tempfile
 from pathlib import Path
 
@@ -51,6 +52,9 @@ def main() -> int:
 
     require(args.source_commit == EXPECTED_SOURCE_COMMIT, "Unexpected certified source commit")
     root = Path(__file__).resolve().parents[1]
+    root_text = str(root)
+    if root_text not in sys.path:
+        sys.path.insert(0, root_text)
     source_db = Path(args.database).resolve()
     require(source_db.is_file(), f"Crypto database missing: {source_db}")
     source_hash_before = sha256(source_db)
