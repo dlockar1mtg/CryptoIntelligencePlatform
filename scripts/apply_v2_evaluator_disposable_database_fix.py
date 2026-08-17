@@ -25,9 +25,20 @@ def main() -> int:
     new = '''    prior_env = os.environ.get("CRYPTO_DATABASE_PATH")\n    with tempfile.TemporaryDirectory(prefix="crypto_v2_holdout_") as tmp:\n        temp_db = Path(tmp) / source.name\n        shutil.copy2(source, temp_db)\n        os.environ["CRYPTO_DATABASE_PATH"] = str(temp_db)\n        try:\n            from crypto_platform.platform import load_all, connect\n            settings, _ = load_all()\n            conn = connect(settings)\n'''
     text = replace_once(text, old, new, "disposable database setup")
 
-    # Indent the evaluation body so it remains inside the disposable DB try block.
-    start = text.index('            runner = object.__new__(Module38Runner)\n')
+    # The source body is still at the original try indentation immediately
+    # after setup replacement. Move that body one level deeper so it remains
+    # inside the new TemporaryDirectory + try scope.
+    start_anchor = '        runner = object.__new__(Module38Runner)\n'
     end_anchor = '        conn.close()\n    finally:\n'
+    if text.count(start_anchor) != 1:
+        raise RuntimeError(
+            f"evaluation body start: expected exactly one source anchor, found {text.count(start_anchor)}"
+        )
+    if text.count(end_anchor) != 1:
+        raise RuntimeError(
+            f"evaluation body end: expected exactly one source anchor, found {text.count(end_anchor)}"
+        )
+    start = text.index(start_anchor)
     end = text.index(end_anchor, start)
     body = text[start:end]
     body = ''.join('    ' + line if line.strip() else line for line in body.splitlines(True))
