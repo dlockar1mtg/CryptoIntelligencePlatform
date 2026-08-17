@@ -1,0 +1,570 @@
+{
+  "manifest_version": "1.0.0",
+  "experiment_id": "CRYPTO_NATIVE_PREDICTIVE_MODEL_IMPROVEMENT_V2",
+  "holdout_outcomes_viewed_before_freeze": false,
+  "selection_rule": "chronologically latest 10 valid matured candidate origins not used by V1",
+  "rows_per_supported_group": 10,
+  "supported_groups": 29,
+  "unsupported_groups": [
+    {
+      "asset_id": "xrp",
+      "horizon_days": 365,
+      "candidate_rows": 0,
+      "reason": "INSUFFICIENT_POINT_IN_TIME_REPLAY_HISTORY"
+    }
+  ],
+  "groups": [
+    {
+      "asset_id": "bitcoin",
+      "horizon_days": 7,
+      "candidate_rows": 2061,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 2031,
+      "v2_holdout_origin_dates": [
+        "2026-07-11",
+        "2026-07-12",
+        "2026-07-13",
+        "2026-07-14",
+        "2026-07-15",
+        "2026-07-16",
+        "2026-07-17",
+        "2026-07-18",
+        "2026-07-19",
+        "2026-07-20"
+      ]
+    },
+    {
+      "asset_id": "bitcoin",
+      "horizon_days": 30,
+      "candidate_rows": 1985,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1955,
+      "v2_holdout_origin_dates": [
+        "2026-06-18",
+        "2026-06-19",
+        "2026-06-20",
+        "2026-06-21",
+        "2026-06-22",
+        "2026-06-23",
+        "2026-06-24",
+        "2026-06-25",
+        "2026-06-26",
+        "2026-06-27"
+      ]
+    },
+    {
+      "asset_id": "bitcoin",
+      "horizon_days": 90,
+      "candidate_rows": 1785,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1755,
+      "v2_holdout_origin_dates": [
+        "2026-04-19",
+        "2026-04-20",
+        "2026-04-21",
+        "2026-04-22",
+        "2026-04-23",
+        "2026-04-24",
+        "2026-04-25",
+        "2026-04-26",
+        "2026-04-27",
+        "2026-04-28"
+      ]
+    },
+    {
+      "asset_id": "bitcoin",
+      "horizon_days": 180,
+      "candidate_rows": 1485,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1455,
+      "v2_holdout_origin_dates": [
+        "2026-01-19",
+        "2026-01-20",
+        "2026-01-21",
+        "2026-01-22",
+        "2026-01-23",
+        "2026-01-24",
+        "2026-01-25",
+        "2026-01-26",
+        "2026-01-27",
+        "2026-01-28"
+      ]
+    },
+    {
+      "asset_id": "bitcoin",
+      "horizon_days": 365,
+      "candidate_rows": 899,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 869,
+      "v2_holdout_origin_dates": [
+        "2025-07-18",
+        "2025-07-19",
+        "2025-07-20",
+        "2025-07-21",
+        "2025-07-22",
+        "2025-07-23",
+        "2025-07-24",
+        "2025-07-25",
+        "2025-07-26",
+        "2025-07-27"
+      ]
+    },
+    {
+      "asset_id": "ethereum",
+      "horizon_days": 7,
+      "candidate_rows": 2061,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 2031,
+      "v2_holdout_origin_dates": [
+        "2026-07-11",
+        "2026-07-12",
+        "2026-07-13",
+        "2026-07-14",
+        "2026-07-15",
+        "2026-07-16",
+        "2026-07-17",
+        "2026-07-18",
+        "2026-07-19",
+        "2026-07-20"
+      ]
+    },
+    {
+      "asset_id": "ethereum",
+      "horizon_days": 30,
+      "candidate_rows": 1985,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1955,
+      "v2_holdout_origin_dates": [
+        "2026-06-18",
+        "2026-06-19",
+        "2026-06-20",
+        "2026-06-21",
+        "2026-06-22",
+        "2026-06-23",
+        "2026-06-24",
+        "2026-06-25",
+        "2026-06-26",
+        "2026-06-27"
+      ]
+    },
+    {
+      "asset_id": "ethereum",
+      "horizon_days": 90,
+      "candidate_rows": 1785,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1755,
+      "v2_holdout_origin_dates": [
+        "2026-04-19",
+        "2026-04-20",
+        "2026-04-21",
+        "2026-04-22",
+        "2026-04-23",
+        "2026-04-24",
+        "2026-04-25",
+        "2026-04-26",
+        "2026-04-27",
+        "2026-04-28"
+      ]
+    },
+    {
+      "asset_id": "ethereum",
+      "horizon_days": 180,
+      "candidate_rows": 1485,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1455,
+      "v2_holdout_origin_dates": [
+        "2026-01-19",
+        "2026-01-20",
+        "2026-01-21",
+        "2026-01-22",
+        "2026-01-23",
+        "2026-01-24",
+        "2026-01-25",
+        "2026-01-26",
+        "2026-01-27",
+        "2026-01-28"
+      ]
+    },
+    {
+      "asset_id": "ethereum",
+      "horizon_days": 365,
+      "candidate_rows": 899,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 869,
+      "v2_holdout_origin_dates": [
+        "2025-07-18",
+        "2025-07-19",
+        "2025-07-20",
+        "2025-07-21",
+        "2025-07-22",
+        "2025-07-23",
+        "2025-07-24",
+        "2025-07-25",
+        "2025-07-26",
+        "2025-07-27"
+      ]
+    },
+    {
+      "asset_id": "solana",
+      "horizon_days": 7,
+      "candidate_rows": 1528,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1498,
+      "v2_holdout_origin_dates": [
+        "2026-07-11",
+        "2026-07-12",
+        "2026-07-13",
+        "2026-07-14",
+        "2026-07-15",
+        "2026-07-16",
+        "2026-07-17",
+        "2026-07-18",
+        "2026-07-19",
+        "2026-07-20"
+      ]
+    },
+    {
+      "asset_id": "solana",
+      "horizon_days": 30,
+      "candidate_rows": 1452,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1422,
+      "v2_holdout_origin_dates": [
+        "2026-06-18",
+        "2026-06-19",
+        "2026-06-20",
+        "2026-06-21",
+        "2026-06-22",
+        "2026-06-23",
+        "2026-06-24",
+        "2026-06-25",
+        "2026-06-26",
+        "2026-06-27"
+      ]
+    },
+    {
+      "asset_id": "solana",
+      "horizon_days": 90,
+      "candidate_rows": 1252,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1222,
+      "v2_holdout_origin_dates": [
+        "2026-04-19",
+        "2026-04-20",
+        "2026-04-21",
+        "2026-04-22",
+        "2026-04-23",
+        "2026-04-24",
+        "2026-04-25",
+        "2026-04-26",
+        "2026-04-27",
+        "2026-04-28"
+      ]
+    },
+    {
+      "asset_id": "solana",
+      "horizon_days": 180,
+      "candidate_rows": 952,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 922,
+      "v2_holdout_origin_dates": [
+        "2026-01-19",
+        "2026-01-20",
+        "2026-01-21",
+        "2026-01-22",
+        "2026-01-23",
+        "2026-01-24",
+        "2026-01-25",
+        "2026-01-26",
+        "2026-01-27",
+        "2026-01-28"
+      ]
+    },
+    {
+      "asset_id": "solana",
+      "horizon_days": 365,
+      "candidate_rows": 366,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 336,
+      "v2_holdout_origin_dates": [
+        "2025-07-18",
+        "2025-07-19",
+        "2025-07-20",
+        "2025-07-21",
+        "2025-07-22",
+        "2025-07-23",
+        "2025-07-24",
+        "2025-07-25",
+        "2025-07-26",
+        "2025-07-27"
+      ]
+    },
+    {
+      "asset_id": "chainlink",
+      "horizon_days": 7,
+      "candidate_rows": 2061,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 2031,
+      "v2_holdout_origin_dates": [
+        "2026-07-11",
+        "2026-07-12",
+        "2026-07-13",
+        "2026-07-14",
+        "2026-07-15",
+        "2026-07-16",
+        "2026-07-17",
+        "2026-07-18",
+        "2026-07-19",
+        "2026-07-20"
+      ]
+    },
+    {
+      "asset_id": "chainlink",
+      "horizon_days": 30,
+      "candidate_rows": 1985,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1955,
+      "v2_holdout_origin_dates": [
+        "2026-06-18",
+        "2026-06-19",
+        "2026-06-20",
+        "2026-06-21",
+        "2026-06-22",
+        "2026-06-23",
+        "2026-06-24",
+        "2026-06-25",
+        "2026-06-26",
+        "2026-06-27"
+      ]
+    },
+    {
+      "asset_id": "chainlink",
+      "horizon_days": 90,
+      "candidate_rows": 1785,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1755,
+      "v2_holdout_origin_dates": [
+        "2026-04-19",
+        "2026-04-20",
+        "2026-04-21",
+        "2026-04-22",
+        "2026-04-23",
+        "2026-04-24",
+        "2026-04-25",
+        "2026-04-26",
+        "2026-04-27",
+        "2026-04-28"
+      ]
+    },
+    {
+      "asset_id": "chainlink",
+      "horizon_days": 180,
+      "candidate_rows": 1485,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1455,
+      "v2_holdout_origin_dates": [
+        "2026-01-19",
+        "2026-01-20",
+        "2026-01-21",
+        "2026-01-22",
+        "2026-01-23",
+        "2026-01-24",
+        "2026-01-25",
+        "2026-01-26",
+        "2026-01-27",
+        "2026-01-28"
+      ]
+    },
+    {
+      "asset_id": "chainlink",
+      "horizon_days": 365,
+      "candidate_rows": 899,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 869,
+      "v2_holdout_origin_dates": [
+        "2025-07-18",
+        "2025-07-19",
+        "2025-07-20",
+        "2025-07-21",
+        "2025-07-22",
+        "2025-07-23",
+        "2025-07-24",
+        "2025-07-25",
+        "2025-07-26",
+        "2025-07-27"
+      ]
+    },
+    {
+      "asset_id": "xrp",
+      "horizon_days": 7,
+      "candidate_rows": 1157,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1127,
+      "v2_holdout_origin_dates": [
+        "2026-07-11",
+        "2026-07-12",
+        "2026-07-13",
+        "2026-07-14",
+        "2026-07-15",
+        "2026-07-16",
+        "2026-07-17",
+        "2026-07-18",
+        "2026-07-19",
+        "2026-07-20"
+      ]
+    },
+    {
+      "asset_id": "xrp",
+      "horizon_days": 30,
+      "candidate_rows": 1083,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1053,
+      "v2_holdout_origin_dates": [
+        "2026-06-18",
+        "2026-06-19",
+        "2026-06-20",
+        "2026-06-21",
+        "2026-06-22",
+        "2026-06-23",
+        "2026-06-24",
+        "2026-06-25",
+        "2026-06-26",
+        "2026-06-27"
+      ]
+    },
+    {
+      "asset_id": "xrp",
+      "horizon_days": 90,
+      "candidate_rows": 881,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 851,
+      "v2_holdout_origin_dates": [
+        "2026-04-19",
+        "2026-04-20",
+        "2026-04-21",
+        "2026-04-22",
+        "2026-04-23",
+        "2026-04-24",
+        "2026-04-25",
+        "2026-04-26",
+        "2026-04-27",
+        "2026-04-28"
+      ]
+    },
+    {
+      "asset_id": "xrp",
+      "horizon_days": 180,
+      "candidate_rows": 581,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 551,
+      "v2_holdout_origin_dates": [
+        "2026-01-19",
+        "2026-01-20",
+        "2026-01-21",
+        "2026-01-22",
+        "2026-01-23",
+        "2026-01-24",
+        "2026-01-25",
+        "2026-01-26",
+        "2026-01-27",
+        "2026-01-28"
+      ]
+    },
+    {
+      "asset_id": "avalanche",
+      "horizon_days": 7,
+      "candidate_rows": 1423,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1393,
+      "v2_holdout_origin_dates": [
+        "2026-07-11",
+        "2026-07-12",
+        "2026-07-13",
+        "2026-07-14",
+        "2026-07-15",
+        "2026-07-16",
+        "2026-07-17",
+        "2026-07-18",
+        "2026-07-19",
+        "2026-07-20"
+      ]
+    },
+    {
+      "asset_id": "avalanche",
+      "horizon_days": 30,
+      "candidate_rows": 1347,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1317,
+      "v2_holdout_origin_dates": [
+        "2026-06-18",
+        "2026-06-19",
+        "2026-06-20",
+        "2026-06-21",
+        "2026-06-22",
+        "2026-06-23",
+        "2026-06-24",
+        "2026-06-25",
+        "2026-06-26",
+        "2026-06-27"
+      ]
+    },
+    {
+      "asset_id": "avalanche",
+      "horizon_days": 90,
+      "candidate_rows": 1147,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 1117,
+      "v2_holdout_origin_dates": [
+        "2026-04-19",
+        "2026-04-20",
+        "2026-04-21",
+        "2026-04-22",
+        "2026-04-23",
+        "2026-04-24",
+        "2026-04-25",
+        "2026-04-26",
+        "2026-04-27",
+        "2026-04-28"
+      ]
+    },
+    {
+      "asset_id": "avalanche",
+      "horizon_days": 180,
+      "candidate_rows": 847,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 817,
+      "v2_holdout_origin_dates": [
+        "2026-01-19",
+        "2026-01-20",
+        "2026-01-21",
+        "2026-01-22",
+        "2026-01-23",
+        "2026-01-24",
+        "2026-01-25",
+        "2026-01-26",
+        "2026-01-27",
+        "2026-01-28"
+      ]
+    },
+    {
+      "asset_id": "avalanche",
+      "horizon_days": 365,
+      "candidate_rows": 261,
+      "v1_used_rows": 30,
+      "unused_rows_before_v2": 231,
+      "v2_holdout_origin_dates": [
+        "2025-07-17",
+        "2025-07-18",
+        "2025-07-20",
+        "2025-07-21",
+        "2025-07-22",
+        "2025-07-23",
+        "2025-07-24",
+        "2025-07-25",
+        "2025-07-26",
+        "2025-07-27"
+      ]
+    }
+  ],
+  "manifest_content_sha256": "7ae0e4f84896097c32ebae0f7a6a514686f07e065db23fa4e04d205752729a76"
+}
