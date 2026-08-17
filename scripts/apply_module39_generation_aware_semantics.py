@@ -27,8 +27,8 @@ def write_text(path: Path, text: str) -> None:
 def remediate_module38(text: str) -> str:
     text = replace_once(
         text,
-        ")\n\nCREATE TABLE IF NOT EXISTS m38_asset_forecasts(",
-        ")\n\nALTER TABLE module38_runs ADD COLUMN IF NOT EXISTS methodology_generation VARCHAR;\n\nCREATE TABLE IF NOT EXISTS m38_asset_forecasts(",
+        ");\n\nCREATE TABLE IF NOT EXISTS m38_asset_forecasts(",
+        ");\n\nALTER TABLE module38_runs ADD COLUMN IF NOT EXISTS methodology_generation VARCHAR;\n\nCREATE TABLE IF NOT EXISTS m38_asset_forecasts(",
         "module38 methodology column",
     )
     text = replace_once(
