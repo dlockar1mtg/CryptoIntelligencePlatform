@@ -3,14 +3,12 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import math
 import os
 import shutil
 import sys
 import tempfile
 from pathlib import Path
 
-import duckdb
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
@@ -40,24 +38,15 @@ VARIANTS = (
 )
 
 HORIZON_FEATURES = {
-    7: [
-        "return_1d", "return_7d", "return_30d", "volatility_30d", "distance_sma50",
-    ],
-    30: [
-        "return_7d", "return_30d", "return_90d", "volatility_30d", "volatility_90d",
-        "distance_sma50", "distance_sma200",
-    ],
-    90: [
-        "return_30d", "return_90d", "volatility_30d", "volatility_90d",
-        "distance_sma50", "distance_sma200",
-    ],
-    180: [
-        "return_30d", "return_90d", "volatility_90d", "distance_sma50", "distance_sma200",
-    ],
-    365: [
-        "return_90d", "volatility_90d", "distance_sma200",
-    ],
+    7: ["return_1d", "return_7d", "return_30d", "volatility_30d", "distance_sma50"],
+    30: ["return_7d", "return_30d", "return_90d", "volatility_30d", "volatility_90d", "distance_sma50", "distance_sma200"],
+    90: ["return_30d", "return_90d", "volatility_30d", "volatility_90d", "distance_sma50", "distance_sma200"],
+    180: ["return_30d", "return_90d", "volatility_90d", "distance_sma50", "distance_sma200"],
+    365: ["return_90d", "volatility_90d", "distance_sma200"],
 }
+
+DEVELOPMENT_ORIGINS = 20
+FINAL_TEST_ORIGINS = 10
 
 
 def sha256(path: Path) -> str:
@@ -74,9 +63,7 @@ def require(condition: bool, message: str) -> None:
 
 
 def feature_columns(frame: pd.DataFrame, horizon: int, variant: str) -> list[str]:
-    available = [
-        c for c in frame.columns if c not in {"observation_date", "target_return"}
-    ]
+    available = [c for c in frame.columns if c not in {"observation_date", "target_return"}]
     if variant != "HORIZON_SPECIFIC_FEATURE_WINDOWS":
         return available
     chosen = [c for c in HORIZON_FEATURES[int(horizon)] if c in available]
@@ -84,15 +71,7 @@ def feature_columns(frame: pd.DataFrame, horizon: int, variant: str) -> list[str
     return chosen
 
 
-def regression_prediction(
-    runner: Module38Runner,
-    train: pd.DataFrame,
-    validation: pd.DataFrame,
-    current: pd.DataFrame,
-    columns: list[str],
-    horizon: int,
-    robust_target: bool,
-) -> tuple[float, float, float, float]:
+def regression_prediction(runner, train, validation, current, columns, horizon, robust_target):
     train_x = train[columns].astype(float).copy()
     val_x = validation[columns].astype(float).copy()
     current_x = current[columns].astype(float).copy()
@@ -108,14 +87,12 @@ def regression_prediction(
     y_train = train["target_return"].to_numpy(dtype=float)
     y_val = validation["target_return"].to_numpy(dtype=float)
     if robust_target:
-        lower_q, upper_q = np.quantile(y_train, [0.025, 0.975])
-        y_fit = np.clip(y_train, lower_q, upper_q)
+        q_lo, q_hi = np.quantile(y_train, [0.025, 0.975])
+        y_fit = np.clip(y_train, q_lo, q_hi)
     else:
         y_fit = y_train
 
-    predictions: list[float] = []
-    residuals: list[float] = []
-    weights: list[float] = []
+    predictions, residuals, weights = [], [], []
     for model in runner.model_suite(int(runner.cfg["random_state"]) + int(horizon)).values():
         model.fit(x_train, y_fit)
         val_pred = model.predict(x_val)
@@ -125,23 +102,16 @@ def regression_prediction(
         predictions.append(current_pred)
         residuals.extend((y_val - val_pred).tolist())
 
-    weight_array = np.asarray(weights, dtype=float)
-    weight_array /= weight_array.sum()
-    prediction = float(np.dot(weight_array, np.asarray(predictions, dtype=float)))
+    w = np.asarray(weights, dtype=float)
+    w /= w.sum()
+    prediction = float(np.dot(w, np.asarray(predictions, dtype=float)))
     residual_array = np.asarray(residuals, dtype=float)
     raw_probability = float(np.mean(prediction + residual_array > 0))
     half_width = float(np.quantile(np.abs(residual_array), 0.90)) if len(residual_array) else 0.0
     return prediction, raw_probability, prediction - half_width, prediction + half_width
 
 
-def direction_probability(
-    train: pd.DataFrame,
-    validation: pd.DataFrame,
-    current: pd.DataFrame,
-    columns: list[str],
-    horizon: int,
-    random_state: int,
-) -> float:
+def direction_probability(train, validation, current, columns, horizon, random_state):
     train_x = train[columns].astype(float).copy()
     val_x = validation[columns].astype(float).copy()
     current_x = current[columns].astype(float).copy()
@@ -171,8 +141,7 @@ def direction_probability(
             n_jobs=-1,
         ),
     ]
-    probabilities: list[float] = []
-    weights: list[float] = []
+    probabilities, weights = [], []
     for model in models:
         model.fit(x_train, y_train)
         val_p = model.predict_proba(x_val)[:, 1]
@@ -185,13 +154,7 @@ def direction_probability(
     return float(np.dot(w, np.asarray(probabilities, dtype=float)))
 
 
-def origin_prediction(
-    runner: Module38Runner,
-    features: pd.DataFrame,
-    origin_idx: int,
-    horizon: int,
-    variant: str,
-) -> dict:
+def origin_prediction(runner, features, origin_idx, horizon, variant):
     origin_date = pd.Timestamp(features.iloc[origin_idx]["observation_date"])
     dates = pd.to_datetime(features["observation_date"])
     due_mask = (dates + pd.to_timedelta(horizon, unit="D") <= origin_date) & (dates < origin_date)
@@ -217,22 +180,12 @@ def origin_prediction(
 
     columns = feature_columns(train, horizon, variant)
     prediction, raw_probability, lower, upper = regression_prediction(
-        runner,
-        train,
-        validation,
-        current,
-        columns,
-        horizon,
+        runner, train, validation, current, columns, horizon,
         robust_target=(variant == "ROBUST_RETURN_TARGET"),
     )
     if variant == "DIRECTION_FIRST_TWO_STAGE":
         raw_probability = direction_probability(
-            train,
-            validation,
-            current,
-            columns,
-            horizon,
-            int(cfg["random_state"]),
+            train, validation, current, columns, horizon, int(cfg["random_state"])
         )
         signed_prediction = abs(prediction) if raw_probability >= 0.5 else -abs(prediction)
         shift = signed_prediction - prediction
@@ -254,44 +207,61 @@ def origin_prediction(
     }
 
 
-def summarize(frame: pd.DataFrame) -> dict:
-    actual = frame["actual_return_pct"].to_numpy(dtype=float)
-    predicted = frame["predicted_return_pct"].to_numpy(dtype=float)
-    observed = frame["observed_positive"].to_numpy(dtype=int)
-    raw_p = np.clip(frame["raw_probability_positive"].to_numpy(dtype=float), 1e-4, 1 - 1e-4)
+def group_test_frame(group: pd.DataFrame) -> tuple[pd.DataFrame, int]:
+    ordered = group.sort_values("origin_number").copy()
+    require(len(ordered) == DEVELOPMENT_ORIGINS + FINAL_TEST_ORIGINS, "Expected 30 replay rows per supported group")
+    development = ordered.iloc[:DEVELOPMENT_ORIGINS]
+    test = ordered.iloc[DEVELOPMENT_ORIGINS:]
+    development_majority = 1 if float(development["observed_positive"].mean()) >= 0.5 else 0
+    return test, development_majority
+
+
+def summarize_test_only(frame: pd.DataFrame) -> dict:
+    test_parts = []
+    majority_correct = []
+    for _, group in frame.groupby(["asset_id", "horizon_days"], sort=True):
+        test, development_majority = group_test_frame(group)
+        test_parts.append(test)
+        majority_correct.extend((test["observed_positive"].to_numpy(dtype=int) == development_majority).tolist())
+    test_frame = pd.concat(test_parts, ignore_index=True)
+    actual = test_frame["actual_return_pct"].to_numpy(dtype=float)
+    predicted = test_frame["predicted_return_pct"].to_numpy(dtype=float)
+    observed = test_frame["observed_positive"].to_numpy(dtype=int)
+    raw_p = np.clip(test_frame["raw_probability_positive"].to_numpy(dtype=float), 1e-4, 1 - 1e-4)
     direction = float((np.sign(actual) == np.sign(predicted)).mean() * 100)
-    majority_sign = 1 if observed.mean() >= 0.5 else 0
-    majority_accuracy = float((observed == majority_sign).mean() * 100)
+    majority_accuracy = float(np.mean(majority_correct) * 100)
     error = actual - predicted
     return {
-        "rows": int(len(frame)),
+        "evaluation_rows": int(len(test_frame)),
         "directional_accuracy_pct": direction,
-        "majority_accuracy_pct": majority_accuracy,
+        "development_majority_baseline_accuracy_pct": majority_accuracy,
         "model_minus_majority_accuracy_pct_points": direction - majority_accuracy,
         "raw_brier_score": float(brier_score_loss(observed, raw_p)),
         "mae_pct": float(np.mean(np.abs(error))),
         "rmse_pct": float(np.sqrt(np.mean(error ** 2))),
-        "interval_coverage_pct": float(frame["interval_covered"].mean() * 100),
+        "interval_coverage_pct": float(test_frame["interval_covered"].mean() * 100),
     }
 
 
-def economic_metrics(frame: pd.DataFrame, cost_bps: float) -> dict:
-    ordered = frame.sort_values(["forecast_date", "asset_id", "horizon_days"]).copy()
-    position = np.sign(ordered["predicted_return_pct"].to_numpy(dtype=float))
-    realized = ordered["actual_return_pct"].to_numpy(dtype=float) / 100.0
-    gross = position * realized
-    turnover = np.abs(np.diff(np.concatenate([[0.0], position])))
-    costs = turnover * (cost_bps / 10000.0)
-    net = gross - costs
-    equity = np.cumprod(1.0 + net)
-    peak = np.maximum.accumulate(equity)
-    drawdown = equity / np.maximum(peak, 1e-12) - 1.0
+def economic_metrics_test_only(frame: pd.DataFrame, cost_bps: float) -> dict:
+    returns = []
+    turnover = []
+    for _, group in frame.groupby(["asset_id", "horizon_days"], sort=True):
+        test, _ = group_test_frame(group)
+        ordered = test.sort_values("forecast_date")
+        position = np.sign(ordered["predicted_return_pct"].to_numpy(dtype=float))
+        realized = ordered["actual_return_pct"].to_numpy(dtype=float) / 100.0
+        changes = np.abs(np.diff(np.concatenate([[0.0], position])))
+        net = position * realized - changes * (cost_bps / 10000.0)
+        returns.extend(net.tolist())
+        turnover.extend(changes.tolist())
+    arr = np.asarray(returns, dtype=float)
     return {
-        "sign_strategy_return_before_costs_pct": float((np.prod(1.0 + gross) - 1.0) * 100),
-        "sign_strategy_return_after_fixed_transaction_cost_pct": float((np.prod(1.0 + net) - 1.0) * 100),
-        "maximum_drawdown_pct": float(drawdown.min() * 100) if len(drawdown) else 0.0,
-        "turnover_units": float(turnover.sum()),
+        "mean_sign_strategy_return_after_fixed_transaction_cost_pct": float(arr.mean() * 100) if len(arr) else 0.0,
+        "median_sign_strategy_return_after_fixed_transaction_cost_pct": float(np.median(arr) * 100) if len(arr) else 0.0,
+        "turnover_units": float(np.sum(turnover)),
         "transaction_cost_bps": float(cost_bps),
+        "note": "Secondary exploratory metric over isolated final-test forecast outcomes; not a portfolio backtest.",
     }
 
 
@@ -315,9 +285,9 @@ def main() -> int:
             conn = connect(settings)
             runner = object.__new__(Module38Runner)
             runner.cfg = settings["module38"]
-            m39_cfg = settings["module39"]
-            folds = int(m39_cfg["rolling_folds"])
+            folds = int(settings["module39"]["rolling_folds"])
             required = folds * TEST_ORIGINS_PER_FOLD
+            require(required == 30, "Experiment requires exactly 30 chronological origins per supported group")
             prices = conn.execute(
                 """
                 SELECT asset_id, observation_date, price_usd, market_cap_usd, volume_24h_usd
@@ -329,15 +299,13 @@ def main() -> int:
             ).fetchdf()
             prices["observation_date"] = pd.to_datetime(prices["observation_date"])
 
-            all_rows: list[dict] = []
-            gaps: list[dict] = []
+            all_rows, gaps = [], []
             for asset in ASSETS:
                 asset_frame = prices[prices.asset_id == asset].copy()
                 for horizon in [int(v) for v in runner.cfg["horizons_days"]]:
                     features = runner.build_features(asset_frame, horizon).reset_index(drop=True)
                     candidates = exact_candidates(
-                        features,
-                        horizon,
+                        features, horizon,
                         int(runner.cfg.get("absolute_minimum_training_rows", 90)),
                         int(runner.cfg.get("minimum_validation_rows", 30)),
                         int(runner.cfg["validation_rows"]),
@@ -374,47 +342,42 @@ def main() -> int:
     evidence = pd.DataFrame(all_rows)
     require(not evidence.empty, "No challenger replay evidence produced")
 
-    results: dict[str, dict] = {}
+    results = {}
     for variant in VARIANTS:
         vf = evidence[evidence.variant == variant].copy()
-        variant_result = summarize(vf)
-        variant_result["economic_metrics"] = economic_metrics(vf, args.transaction_cost_bps)
+        result = summarize_test_only(vf)
+        result["economic_metrics"] = economic_metrics_test_only(vf, args.transaction_cost_bps)
         by_horizon = {}
         positive_horizons = 0
         for horizon, hf in vf.groupby("horizon_days"):
-            summary = summarize(hf)
+            summary = summarize_test_only(hf)
             by_horizon[str(int(horizon))] = summary
             if summary["model_minus_majority_accuracy_pct_points"] > 0:
                 positive_horizons += 1
-        variant_result["by_horizon"] = by_horizon
-        variant_result["supported_horizons_with_positive_baseline_adjusted_skill"] = positive_horizons
-        calibration_groups = []
-        for (asset, horizon), gf in vf.groupby(["asset_id", "horizon_days"]):
-            if len(gf) != required:
-                continue
-            calibration, _ = calibration_evidence(gf)
-            calibration_groups.append(calibration)
-        if calibration_groups:
-            variant_result["mean_leakage_safe_calibrated_brier_score"] = float(
-                np.mean([row["calibrated_brier_score"] for row in calibration_groups])
-            )
-            variant_result["calibration_groups"] = len(calibration_groups)
-        else:
-            variant_result["mean_leakage_safe_calibrated_brier_score"] = None
-            variant_result["calibration_groups"] = 0
-        results[variant] = variant_result
+        result["by_horizon"] = by_horizon
+        result["supported_horizons_with_positive_baseline_adjusted_skill"] = positive_horizons
 
-    champion = results["CURRENT_M38_REGRESSION_ENSEMBLE"]
-    exploratory_winners = []
+        calibration_groups = []
+        for (_, _), gf in vf.groupby(["asset_id", "horizon_days"]):
+            if len(gf) == required:
+                calibration, _ = calibration_evidence(gf.sort_values("origin_number"))
+                calibration_groups.append(calibration)
+        result["mean_leakage_safe_calibrated_brier_score"] = (
+            float(np.mean([r["calibrated_brier_score"] for r in calibration_groups]))
+            if calibration_groups else None
+        )
+        result["calibration_groups"] = len(calibration_groups)
+        results[variant] = result
+
+    champion = results[VARIANTS[0]]
+    exploratory = []
     for variant in VARIANTS[1:]:
         result = results[variant]
         result["delta_model_minus_majority_vs_champion_pp"] = (
             result["model_minus_majority_accuracy_pct_points"]
             - champion["model_minus_majority_accuracy_pct_points"]
         )
-        result["beats_champion_aggregate_direction"] = bool(
-            result["delta_model_minus_majority_vs_champion_pp"] > 0
-        )
+        result["beats_champion_aggregate_direction"] = bool(result["delta_model_minus_majority_vs_champion_pp"] > 0)
         result["majority_of_supported_horizons_positive"] = bool(
             result["supported_horizons_with_positive_baseline_adjusted_skill"] >= 3
         )
@@ -423,18 +386,22 @@ def main() -> int:
             and result["majority_of_supported_horizons_positive"]
         )
         if result["eligible_for_exploratory_followup"]:
-            exploratory_winners.append(variant)
+            exploratory.append(variant)
 
+    champion_rows = evidence[evidence.variant == VARIANTS[0]]
     payload = {
         "experiment_id": EXPERIMENT_ID,
         "evidence_class": "HISTORICAL_RECONSTRUCTION_REPLAY_EXPLORATORY",
+        "evaluation_partition": "FINAL_10_OF_30_PER_SUPPORTED_ASSET_HORIZON_GROUP",
+        "majority_baseline_partition": "FIRST_20_OF_30_DEVELOPMENT_ROWS_PER_GROUP",
         "production_source_modified": False,
         "source_database_unchanged": True,
-        "rows_per_supported_variant": int(len(evidence[evidence.variant == VARIANTS[0]])),
-        "supported_asset_horizon_groups": int(evidence[evidence.variant == VARIANTS[0]].groupby(["asset_id", "horizon_days"]).ngroups),
+        "rows_per_supported_variant": int(len(champion_rows)),
+        "final_test_rows_per_supported_variant": int(results[VARIANTS[0]]["evaluation_rows"]),
+        "supported_asset_horizon_groups": int(champion_rows.groupby(["asset_id", "horizon_days"]).ngroups),
         "explicit_evidence_gaps": gaps,
         "results": results,
-        "exploratory_followup_candidates": exploratory_winners,
+        "exploratory_followup_candidates": exploratory,
         "promotion_allowed_from_this_run": False,
         "reason_promotion_blocked": "Final replay outcomes are visible in this experiment; any selected challenger requires a newly isolated holdout before promotion.",
     }
@@ -443,6 +410,8 @@ def main() -> int:
     print(f"SUPPORTED_ASSET_HORIZON_GROUPS={payload['supported_asset_horizon_groups']}")
     print(f"EXPLICIT_EVIDENCE_GAPS={len(gaps)}")
     print(f"ROWS_PER_SUPPORTED_VARIANT={payload['rows_per_supported_variant']}")
+    print(f"FINAL_TEST_ROWS_PER_SUPPORTED_VARIANT={payload['final_test_rows_per_supported_variant']}")
+    print("MAJORITY_BASELINE_USES_FINAL_TEST_OUTCOMES=FALSE")
     print("SOURCE_DATABASE_MODIFIED=FALSE")
     print("PRODUCTION_SOURCE_MODIFIED=FALSE")
     print("PROMOTION_ALLOWED_FROM_THIS_RUN=FALSE")
