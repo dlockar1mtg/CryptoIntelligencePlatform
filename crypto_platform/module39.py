@@ -13,7 +13,10 @@ from sklearn.metrics import brier_score_loss, log_loss
 from sklearn.preprocessing import StandardScaler
 
 from crypto_platform.platform import load_all, connect
-from crypto_platform.module38 import MODULE38_SCHEMA
+from crypto_platform.module38 import (
+    MODULE38_SCHEMA,
+    PREDICTIVE_METHODOLOGY_GENERATION,
+)
 from crypto_platform.module39_validation import (
     apply_calibration,
     build_true_replay_evidence,
@@ -261,12 +264,17 @@ class Module39Runner:
         self.run_id=str(uuid.uuid4())
         self.started=utcnow()
         row=self.conn.execute(
-            "SELECT run_id FROM module38_runs WHERE status='SUCCESS' "
+            "SELECT run_id, methodology_generation FROM module38_runs WHERE status='SUCCESS' "
             "ORDER BY started_at_utc DESC LIMIT 1"
         ).fetchone()
         if row is None:
             raise RuntimeError("A successful Module 38 run is required.")
         self.source_m38=str(row[0])
+        self.methodology_generation=row[1]
+        if self.methodology_generation is None:
+            raise RuntimeError("Latest successful Module 38 run is legacy and cannot be used as a generation-aware Module 39 source.")
+        if str(self.methodology_generation) != PREDICTIVE_METHODOLOGY_GENERATION:
+            raise RuntimeError("Unexpected Module 38 predictive methodology generation.")
 
     def upsert(self,table,frame):
         if frame.empty:return
@@ -293,6 +301,26 @@ class Module39Runner:
         return self.conn.execute(
             "SELECT * FROM m38_forecast_attribution WHERE run_id=?",
             [self.source_m38]
+        ).fetchdf()
+
+    def stability_attributions(self):
+        return self.conn.execute(
+            """
+            SELECT f.* EXCLUDE(methodology_generation, started_at_utc)
+            FROM (
+                SELECT a.*, r.methodology_generation, r.started_at_utc
+                FROM m38_forecast_attribution a
+                JOIN module38_runs r USING(run_id)
+                WHERE r.status='SUCCESS'
+                  AND r.methodology_generation=?
+                QUALIFY row_number() OVER(
+                    PARTITION BY a.forecast_date,a.asset_id,a.horizon_days,a.driver_key
+                    ORDER BY r.started_at_utc DESC,a.calculated_at_utc DESC
+                )=1
+            ) f
+            ORDER BY forecast_date,asset_id,horizon_days,driver_key
+            """,
+            [self.methodology_generation],
         ).fetchdf()
 
     def historical_forecasts(self):
@@ -486,13 +514,22 @@ class Module39Runner:
         rows=[]
         previous=self.conn.execute(
             """
-            SELECT * FROM m38_asset_forecasts
-            WHERE run_id<>?
+            SELECT f.*
+            FROM m38_asset_forecasts f
+            JOIN module38_runs r USING(run_id)
+            WHERE f.run_id<>?
+              AND r.status='SUCCESS'
+              AND r.methodology_generation=?
+              AND f.forecast_date < (
+                  SELECT MAX(forecast_date)
+                  FROM m38_asset_forecasts
+                  WHERE run_id=?
+              )
             QUALIFY row_number() OVER(
-                PARTITION BY asset_id,horizon_days
-                ORDER BY forecast_date DESC,calculated_at_utc DESC
+                PARTITION BY f.asset_id,f.horizon_days
+                ORDER BY f.forecast_date DESC,f.calculated_at_utc DESC
             )=1
-            """,[self.source_m38]
+            """,[self.source_m38,self.methodology_generation,self.source_m38]
         ).fetchdf()
         for _,row in current.iterrows():
             prior=previous[
@@ -500,8 +537,20 @@ class Module39Runner:
                 (previous.horizon_days==row.horizon_days)
             ]
             if prior.empty:
-                return_change=prob_change=conf_change=width_change=0.0
-                prior_date=row.forecast_date
+                rows.append({
+                    "run_id":self.run_id,"asset_id":row.asset_id,
+                    "horizon_days":int(row.horizon_days),
+                    "current_forecast_date":row.forecast_date,
+                    "prior_forecast_date":None,
+                    "return_forecast_change_pct":np.nan,
+                    "probability_change":np.nan,"confidence_change":np.nan,
+                    "interval_width_change_pct":np.nan,
+                    "model_weight_distance":np.nan,
+                    "attribution_rank_change":np.nan,
+                    "drift_score":np.nan,"drift_status":"BASELINE_REQUIRED",
+                    "calculated_at_utc":utcnow(),
+                })
+                continue
             else:
                 p=prior.iloc[0]
                 return_change=float(row.predicted_return_pct-p.predicted_return_pct)
@@ -584,6 +633,7 @@ class Module39Runner:
             forecasts=self.source_forecasts()
             validation=self.model_validation()
             attribution=self.attributions()
+            stability_attribution=self.stability_attributions()
             replay_bundle=self.true_replay()
             replay_origins=replay_bundle["replay"].copy()
             replay_origins["run_id"]=self.run_id
@@ -607,7 +657,7 @@ class Module39Runner:
                     "available_candidates","required_candidates",
                     "predictive_skill_certified","calculated_at_utc",
                 ]]
-            stability=self.stability(attribution)
+            stability=self.stability(stability_attribution)
             drift=self.drift(forecasts,validation,attribution)
             scorecards=self.scorecards(self.historical_forecasts())
             for table,frame in [
@@ -637,11 +687,16 @@ class Module39Runner:
             ]
             stable_pct=float(
                 (evidence_ready["stability_score"]>=65).mean()*100
-            ) if not evidence_ready.empty else 0.0
+            ) if not evidence_ready.empty else np.nan
             current_drift=(
                 "CRITICAL" if (drift["drift_status"]=="CRITICAL").any()
                 else "WARNING" if (drift["drift_status"]=="WARNING").any()
+                else "BASELINE_REQUIRED" if (drift["drift_status"]=="BASELINE_REQUIRED").any()
                 else "STABLE"
+            )
+            monitoring_evidence_ready=bool(
+                not evidence_ready.empty
+                and current_drift != "BASELINE_REQUIRED"
             )
             minimum_scorecards=int(
                 self.cfg["validation"].get(
@@ -658,6 +713,7 @@ class Module39Runner:
                         180,
                     )
                 )
+                and monitoring_evidence_ready
             )
             passed=bool(
                 evidence_ready

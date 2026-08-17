@@ -46,6 +46,8 @@ CREATE TABLE IF NOT EXISTS module38_runs(
     platform_version VARCHAR
 );
 
+ALTER TABLE module38_runs ADD COLUMN IF NOT EXISTS methodology_generation VARCHAR;
+
 CREATE TABLE IF NOT EXISTS m38_asset_forecasts(
     run_id VARCHAR,
     forecast_date DATE,
@@ -213,6 +215,8 @@ REGIMES = [
     "RECOVERY",
     "VOLATILITY_SHOCK",
 ]
+
+PREDICTIVE_METHODOLOGY_GENERATION = "M38_PURGED_FEATURE_STABLE_V1"
 
 
 def utcnow():
@@ -971,6 +975,10 @@ class Module38Runner:
                 self.source_m30,
                 self.started,
             ],
+        )
+        self.conn.execute(
+            "UPDATE module38_runs SET methodology_generation=? WHERE run_id=?",
+            [PREDICTIVE_METHODOLOGY_GENERATION, self.run_id],
         )
 
         try:
