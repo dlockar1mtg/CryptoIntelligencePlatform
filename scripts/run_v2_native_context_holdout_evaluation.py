@@ -4,7 +4,9 @@ import argparse
 import hashlib
 import json
 import os
+import shutil
 import sys
+import tempfile
 from pathlib import Path
 
 import numpy as np
@@ -277,97 +279,100 @@ def main() -> int:
     require(int(manifest["rows_per_supported_group"]) == 10, "Expected 10 V2 rows per supported group")
 
     prior_env = os.environ.get("CRYPTO_DATABASE_PATH")
-    os.environ["CRYPTO_DATABASE_PATH"] = str(source)
-    try:
-        from crypto_platform.platform import load_all, connect
-        settings, _ = load_all()
-        conn = connect(settings)
-        runner = object.__new__(Module38Runner)
-        runner.cfg = settings["module38"]
-        folds = int(settings["module39"]["rolling_folds"])
-        require(folds * TEST_ORIGINS_PER_FOLD == 30, "Expected 30 V1 origins per supported group")
+    with tempfile.TemporaryDirectory(prefix="crypto_v2_holdout_") as tmp:
+        temp_db = Path(tmp) / source.name
+        shutil.copy2(source, temp_db)
+        os.environ["CRYPTO_DATABASE_PATH"] = str(temp_db)
+        try:
+            from crypto_platform.platform import load_all, connect
+            settings, _ = load_all()
+            conn = connect(settings)
+            runner = object.__new__(Module38Runner)
+            runner.cfg = settings["module38"]
+            folds = int(settings["module39"]["rolling_folds"])
+            require(folds * TEST_ORIGINS_PER_FOLD == 30, "Expected 30 V1 origins per supported group")
 
-        prices = conn.execute(
-            """
-            SELECT asset_id, observation_date, price_usd, market_cap_usd, volume_24h_usd
-            FROM canonical_market_daily
-            WHERE asset_id IN ('bitcoin','ethereum','solana','chainlink','xrp','avalanche')
-              AND price_usd IS NOT NULL
-            ORDER BY observation_date, asset_id
-            """
-        ).fetchdf()
-        prices["observation_date"] = pd.to_datetime(prices["observation_date"])
-        context = conn.execute(
-            "SELECT observation_date," + ",".join(NATIVE_CONTEXT_FEATURES) + " FROM crypto_features_daily ORDER BY observation_date"
-        ).fetchdf()
-        context["observation_date"] = pd.to_datetime(context["observation_date"])
-        require(all(c in context.columns for c in NATIVE_CONTEXT_FEATURES), "Native context warehouse columns missing")
+            prices = conn.execute(
+                """
+                SELECT asset_id, observation_date, price_usd, market_cap_usd, volume_24h_usd
+                FROM canonical_market_daily
+                WHERE asset_id IN ('bitcoin','ethereum','solana','chainlink','xrp','avalanche')
+                  AND price_usd IS NOT NULL
+                ORDER BY observation_date, asset_id
+                """
+            ).fetchdf()
+            prices["observation_date"] = pd.to_datetime(prices["observation_date"])
+            context = conn.execute(
+                "SELECT observation_date," + ",".join(NATIVE_CONTEXT_FEATURES) + " FROM crypto_features_daily ORDER BY observation_date"
+            ).fetchdf()
+            context["observation_date"] = pd.to_datetime(context["observation_date"])
+            require(all(c in context.columns for c in NATIVE_CONTEXT_FEATURES), "Native context warehouse columns missing")
 
-        manifest_groups = {(g["asset_id"], int(g["horizon_days"])): g for g in manifest["groups"]}
-        all_rows = {CHAMPION: [], CHALLENGER: []}
-        calibration_specs = {CHAMPION: {}, CHALLENGER: {}}
-        baseline_sign_by_group = {}
+            manifest_groups = {(g["asset_id"], int(g["horizon_days"])): g for g in manifest["groups"]}
+            all_rows = {CHAMPION: [], CHALLENGER: []}
+            calibration_specs = {CHAMPION: {}, CHALLENGER: {}}
+            baseline_sign_by_group = {}
 
-        for asset in ASSETS:
-            asset_frame = prices[prices.asset_id == asset].copy()
-            for horizon in [int(v) for v in runner.cfg["horizons_days"]]:
-                key = (asset, horizon)
-                if key not in manifest_groups:
-                    continue
-                features = runner.build_features(asset_frame, horizon).reset_index(drop=True)
-                candidates = exact_candidates(
-                    features, horizon,
-                    int(runner.cfg.get("absolute_minimum_training_rows", 90)),
-                    int(runner.cfg.get("minimum_validation_rows", 30)),
-                    int(runner.cfg["validation_rows"]),
-                    float(runner.cfg.get("maximum_validation_share", 0.25)),
-                )
-                require(len(candidates) >= 30, f"V1 evidence disappeared for {asset} {horizon}d")
-                v1_selected = [idx for group in select_groups(candidates, folds) for idx in group]
-                v1_rows = {CHAMPION: [], CHALLENGER: []}
-                for idx in v1_selected:
-                    result = predict_origin(runner, features, idx, horizon, context)
+            for asset in ASSETS:
+                asset_frame = prices[prices.asset_id == asset].copy()
+                for horizon in [int(v) for v in runner.cfg["horizons_days"]]:
+                    key = (asset, horizon)
+                    if key not in manifest_groups:
+                        continue
+                    features = runner.build_features(asset_frame, horizon).reset_index(drop=True)
+                    candidates = exact_candidates(
+                        features, horizon,
+                        int(runner.cfg.get("absolute_minimum_training_rows", 90)),
+                        int(runner.cfg.get("minimum_validation_rows", 30)),
+                        int(runner.cfg["validation_rows"]),
+                        float(runner.cfg.get("maximum_validation_share", 0.25)),
+                    )
+                    require(len(candidates) >= 30, f"V1 evidence disappeared for {asset} {horizon}d")
+                    v1_selected = [idx for group in select_groups(candidates, folds) for idx in group]
+                    v1_rows = {CHAMPION: [], CHALLENGER: []}
+                    for idx in v1_selected:
+                        result = predict_origin(runner, features, idx, horizon, context)
+                        for variant in (CHAMPION, CHALLENGER):
+                            row = {
+                                "forecast_date": result["forecast_date"],
+                                "observed_positive": result["observed_positive"],
+                                "raw_probability_positive": result[variant]["raw_probability_positive"],
+                            }
+                            v1_rows[variant].append(row)
+                    development = pd.DataFrame(v1_rows[CHAMPION][:20])
+                    baseline_sign_by_group[key] = 1 if float(development["observed_positive"].mean()) >= 0.5 else 0
                     for variant in (CHAMPION, CHALLENGER):
-                        row = {
-                            "forecast_date": result["forecast_date"],
-                            "observed_positive": result["observed_positive"],
-                            "raw_probability_positive": result[variant]["raw_probability_positive"],
-                        }
-                        v1_rows[variant].append(row)
-                development = pd.DataFrame(v1_rows[CHAMPION][:20])
-                baseline_sign_by_group[key] = 1 if float(development["observed_positive"].mean()) >= 0.5 else 0
-                for variant in (CHAMPION, CHALLENGER):
-                    _, spec = calibration_evidence(pd.DataFrame(v1_rows[variant]))
-                    calibration_specs[variant][key] = spec
+                        _, spec = calibration_evidence(pd.DataFrame(v1_rows[variant]))
+                        calibration_specs[variant][key] = spec
 
-                date_to_idx = {pd.Timestamp(d).date(): i for i, d in enumerate(pd.to_datetime(features["observation_date"]))}
-                frozen_dates = [pd.Timestamp(d).date() for d in manifest_groups[key]["v2_holdout_origin_dates"]]
-                require(len(frozen_dates) == 10 and len(set(frozen_dates)) == 10, f"Invalid frozen dates for {asset} {horizon}d")
-                require(not set(frozen_dates).intersection({pd.Timestamp(features.iloc[i]["observation_date"]).date() for i in v1_selected}), f"V2/V1 overlap for {asset} {horizon}d")
-                for origin_date in frozen_dates:
-                    require(origin_date in date_to_idx, f"Frozen origin missing from features for {asset} {horizon}d: {origin_date}")
-                    result = predict_origin(runner, features, date_to_idx[origin_date], horizon, context)
-                    for variant in (CHAMPION, CHALLENGER):
-                        spec = calibration_specs[variant][key]
-                        raw_p = float(result[variant]["raw_probability_positive"])
-                        all_rows[variant].append({
-                            "variant": variant,
-                            "asset_id": asset,
-                            "horizon_days": horizon,
-                            "forecast_date": result["forecast_date"],
-                            "actual_return_pct": result["actual_return_pct"],
-                            "observed_positive": result["observed_positive"],
-                            "predicted_return_pct": result[variant]["predicted_return_pct"],
-                            "raw_probability_positive": raw_p,
-                            "calibrated_probability_positive": apply_calibration(spec, raw_p),
-                            "interval_covered": result[variant]["interval_covered"],
-                        })
-        conn.close()
-    finally:
-        if prior_env is None:
-            os.environ.pop("CRYPTO_DATABASE_PATH", None)
-        else:
-            os.environ["CRYPTO_DATABASE_PATH"] = prior_env
+                    date_to_idx = {pd.Timestamp(d).date(): i for i, d in enumerate(pd.to_datetime(features["observation_date"]))}
+                    frozen_dates = [pd.Timestamp(d).date() for d in manifest_groups[key]["v2_holdout_origin_dates"]]
+                    require(len(frozen_dates) == 10 and len(set(frozen_dates)) == 10, f"Invalid frozen dates for {asset} {horizon}d")
+                    require(not set(frozen_dates).intersection({pd.Timestamp(features.iloc[i]["observation_date"]).date() for i in v1_selected}), f"V2/V1 overlap for {asset} {horizon}d")
+                    for origin_date in frozen_dates:
+                        require(origin_date in date_to_idx, f"Frozen origin missing from features for {asset} {horizon}d: {origin_date}")
+                        result = predict_origin(runner, features, date_to_idx[origin_date], horizon, context)
+                        for variant in (CHAMPION, CHALLENGER):
+                            spec = calibration_specs[variant][key]
+                            raw_p = float(result[variant]["raw_probability_positive"])
+                            all_rows[variant].append({
+                                "variant": variant,
+                                "asset_id": asset,
+                                "horizon_days": horizon,
+                                "forecast_date": result["forecast_date"],
+                                "actual_return_pct": result["actual_return_pct"],
+                                "observed_positive": result["observed_positive"],
+                                "predicted_return_pct": result[variant]["predicted_return_pct"],
+                                "raw_probability_positive": raw_p,
+                                "calibrated_probability_positive": apply_calibration(spec, raw_p),
+                                "interval_covered": result[variant]["interval_covered"],
+                            })
+            conn.close()
+        finally:
+            if prior_env is None:
+                os.environ.pop("CRYPTO_DATABASE_PATH", None)
+            else:
+                os.environ["CRYPTO_DATABASE_PATH"] = prior_env
 
     require(sha256(source) == before_db, "Source database changed during V2 holdout evaluation")
     require(sha256(manifest_path) == before_manifest, "Frozen V2 manifest changed during evaluation")
