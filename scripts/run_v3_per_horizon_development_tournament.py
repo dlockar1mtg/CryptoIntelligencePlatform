@@ -193,11 +193,11 @@ def attach_lagged_native(frame: pd.DataFrame, context: pd.DataFrame, features: l
     out = frame.copy().sort_values("observation_date")
     if not features:
         return out
-    base_dates = pd.to_datetime(out["observation_date"])
+    base_dates = pd.to_datetime(out["observation_date"]).astype("datetime64[ns]")
     for feature in features:
         lag = int(NATIVE_LAG_DAYS[feature])
         source = context[["observation_date", feature]].dropna().copy()
-        source["observation_date"] = pd.to_datetime(source["observation_date"])
+        source["observation_date"] = pd.to_datetime(source["observation_date"]).astype("datetime64[ns]")
         source = source.sort_values("observation_date").rename(columns={"observation_date": "source_date"})
         lookup = pd.DataFrame({
             "_row": out.index,
