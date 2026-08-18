@@ -468,7 +468,7 @@ def main() -> int:
     require(int(v3["rows_per_supported_group"]) == 10, "Expected 10 V3 holdout rows per group")
 
     v2_dates = {(g["asset_id"], int(g["horizon_days"])): set(g["v2_holdout_origin_dates"]) for g in v2["groups"]}
-    v3_dates = {(g["asset_id"], int(g["horizon_days"])): set(g["v3_holdout_origin_dates"]) for g in v3["groups"]}
+    v3_dates = {(g["asset_id"], int(g["horizon_days"])): set(g["v3_final_holdout_origin_dates"]) for g in v3["groups"]}
     require(set(v2_dates) == set(v3_dates), "V2/V3 supported group mismatch")
     require(all(v2_dates[k].isdisjoint(v3_dates[k]) for k in v2_dates), "V2/V3 holdout overlap detected")
 
