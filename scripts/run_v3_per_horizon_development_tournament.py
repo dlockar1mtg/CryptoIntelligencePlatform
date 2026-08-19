@@ -526,10 +526,20 @@ def main() -> int:
                     )
                     candidate_frame = features.dropna(subset=["target_return"]).reset_index(drop=False).rename(columns={"index": "_original_index"})
                     safe_indices = []
+                    selection_columns = sorted({
+                        column
+                        for family in contract["families"]
+                        for column in family_columns(family, contract)
+                    })
                     for candidate_pos in candidates:
                         original_idx = int(candidate_frame.iloc[candidate_pos]["_original_index"])
                         date_key = pd.Timestamp(features.iloc[original_idx]["observation_date"]).date().isoformat()
                         if date_key in v2_dates[key] or date_key in v3_dates[key]:
+                            continue
+                        current_probe = features.iloc[[original_idx]].copy()
+                        current_probe = attach_lagged_native(current_probe, context, contract["native"])
+                        current_probe = attach_relative(current_probe, relative, asset, contract["relative"])
+                        if current_probe[selection_columns].isna().any(axis=1).iloc[0]:
                             continue
                         safe_indices.append(original_idx)
                     required = DEVELOPMENT_FOLDS * ORIGINS_PER_FOLD
