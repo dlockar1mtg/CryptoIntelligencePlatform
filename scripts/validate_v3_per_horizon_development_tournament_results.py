@@ -53,7 +53,7 @@ def main() -> int:
         require(selected[horizon] == winner, f"Selected winner mismatch for {horizon}d")
 
         for family, metrics in candidates.items():
-            require(int(metrics.get("evaluation_rows", 0)) > 0, f"No evaluation rows for {horizon}d {family}")
+            require(int(metrics.get("development_rows", 0)) > 0, f"No development rows for {horizon}d {family}")
             require("directional_accuracy_pct" in metrics, f"Directional accuracy missing for {horizon}d {family}")
             require("model_minus_development_majority_accuracy_pct_points" in metrics, f"Baseline-adjusted skill missing for {horizon}d {family}")
             require("raw_brier_score" in metrics, f"Raw Brier missing for {horizon}d {family}")
