@@ -33,7 +33,7 @@ from scripts.v4_horizon_recovery_model_spec import (
 )
 
 EXPECTED_V3_RESULTS_SHA256 = "33b039fd83a27f868bc660584e775ea64743954e87bd70a8f120c952588b5fd1"
-EXPECTED_SUPERSEDED_V4_FILE_SHA256 = "dcaf32dccb8ab1031f7a6bea884e676deb0732466dc73a499d75e7d792f61b57"
+EXPECTED_SUPERSEDED_V4_CONTENT_SHA256 = "dc0d37dcb932cf39e9b5affb19d578d7b57e4db457bd39b5233005f5a57a0de0"
 DEVELOPMENT_ORIGINS = 50
 STANDARD_HOLDOUT_ORIGINS = 10
 AVALANCHE365_HOLDOUT_ORIGINS = 9
@@ -115,13 +115,15 @@ def main() -> int:
         require(path.is_file(), f"Required input missing: {path}")
     require(not output.exists(), f"Corrected V4 manifest already exists: {output}")
     require(sha256(paths["v3_results"]) == EXPECTED_V3_RESULTS_SHA256, "Unexpected preserved V3 results hash")
-    require(sha256(paths["superseded_v4"]) == EXPECTED_SUPERSEDED_V4_FILE_SHA256, "Unexpected superseded V4 manifest hash")
 
     before = {name: sha256(path) for name, path in paths.items()}
     v2 = json.loads(paths["v2"].read_text(encoding="utf-8"))
     v3 = json.loads(paths["v3"].read_text(encoding="utf-8"))
     v3_results = json.loads(paths["v3_results"].read_text(encoding="utf-8"))
     old_v4 = json.loads(paths["superseded_v4"].read_text(encoding="utf-8"))
+    require(old_v4.get("manifest_content_sha256") == EXPECTED_SUPERSEDED_V4_CONTENT_SHA256, "Unexpected superseded V4 manifest content hash")
+    require(canonical_hash(old_v4) == EXPECTED_SUPERSEDED_V4_CONTENT_SHA256, "Superseded V4 manifest canonical content hash mismatch")
+    require(old_v4.get("membership_rule_generation") == "EXACT_CALENDAR_TARGET_AVAILABILITY_V2", "Unexpected superseded V4 membership generation")
     require(v3_results.get("v3_final_holdout_outcomes_viewed") is False, "V3 final holdout was viewed")
     require(old_v4.get("holdout_outcomes_viewed_before_freeze") is False, "Superseded V4 manifest says holdout was viewed before freeze")
 
@@ -254,7 +256,7 @@ def main() -> int:
         "standard_final_holdout_origins_per_group": STANDARD_HOLDOUT_ORIGINS,
         "avalanche365_final_holdout_origins": AVALANCHE365_HOLDOUT_ORIGINS,
         "avalanche365_exception_governed": True,
-        "supersedes_manifest_file_sha256": EXPECTED_SUPERSEDED_V4_FILE_SHA256,
+        "supersedes_manifest_content_sha256": EXPECTED_SUPERSEDED_V4_CONTENT_SHA256,
         "v2_consumed_origins_excluded": True,
         "v3_development_origins_excluded": True,
         "v3_final_holdout_origins_excluded": True,

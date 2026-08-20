@@ -7,7 +7,7 @@ from pathlib import Path
 
 EXPECTED_EXPERIMENT = "CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4"
 EXPECTED_GROUPS = 17
-EXPECTED_SUPERSEDED_FILE_SHA256 = "dcaf32dccb8ab1031f7a6bea884e676deb0732466dc73a499d75e7d792f61b57"
+EXPECTED_SUPERSEDED_CONTENT_SHA256 = "dc0d37dcb932cf39e9b5affb19d578d7b57e4db457bd39b5233005f5a57a0de0"
 
 
 def require(condition: bool, message: str) -> None:
@@ -38,7 +38,7 @@ def main() -> int:
     require(int(payload.get("standard_final_holdout_origins_per_group", 0)) == 10, "Unexpected standard holdout count")
     require(int(payload.get("avalanche365_final_holdout_origins", 0)) == 9, "Avalanche365 holdout exception must be 9")
     require(payload.get("avalanche365_exception_governed") is True, "Avalanche365 exception is not governed")
-    require(payload.get("supersedes_manifest_file_sha256") == EXPECTED_SUPERSEDED_FILE_SHA256, "Unexpected superseded manifest hash")
+    require(payload.get("supersedes_manifest_content_sha256") == EXPECTED_SUPERSEDED_CONTENT_SHA256, "Unexpected superseded manifest content hash")
     require(payload.get("exact_calendar_target_availability_required") is True, "Exact calendar target availability not required")
     require(payload.get("strict_final_holdout_after_development_required") is True, "Strict chronological holdout boundary not required")
     require(payload.get("v3_final_holdout_reused") is False, "V3 final holdout was reused")
