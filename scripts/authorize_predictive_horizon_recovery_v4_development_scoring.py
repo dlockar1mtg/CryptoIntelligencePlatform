@@ -10,9 +10,11 @@ EXPECTED_V3_RESULTS_SHA256 = "33b039fd83a27f868bc660584e775ea64743954e87bd70a8f1
 EXPECTED_V4_MANIFEST_CONTENT_SHA256 = "510d121e1e4e8ea7e2079b1f61883b2ca01dfb6ce2c6baf6b9ba601eadeafd42"
 EXPECTED_GROUPS = 17
 EXPECTED_DEV_PER_GROUP = 50
-EXPECTED_HOLDOUT_PER_GROUP = 10
+STANDARD_HOLDOUT_PER_GROUP = 10
+AVALANCHE_365_HOLDOUT = 9
 EXPECTED_DEV_TOTAL = 850
-EXPECTED_HOLDOUT_TOTAL = 170
+EXPECTED_HOLDOUT_TOTAL = 169
+AVALANCHE_365_KEY = ("avalanche", 365)
 
 
 def require(condition: bool, message: str) -> None:
@@ -33,6 +35,10 @@ def manifest_content_hash(payload: dict) -> str:
     body.pop("manifest_content_sha256", None)
     canonical = json.dumps(body, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
+def expected_holdout_count(key: tuple[str, int]) -> int:
+    return AVALANCHE_365_HOLDOUT if key == AVALANCHE_365_KEY else STANDARD_HOLDOUT_PER_GROUP
 
 
 def main() -> int:
@@ -73,6 +79,11 @@ def main() -> int:
     require(v4.get("holdout_outcome_values_read_during_rebuild") is False, "V4 holdout outcome values were read during rebuild")
     require(v4.get("v3_final_holdout_reused") is False, "V3 final holdout was reused by V4")
     require(int(v4.get("supported_groups", 0)) == EXPECTED_GROUPS, "Unexpected V4 supported-group count")
+    require(int(v4.get("standard_final_holdout_origins_per_group", 0)) == STANDARD_HOLDOUT_PER_GROUP, "Unexpected standard V4 holdout count")
+    require(int(v4.get("avalanche365_final_holdout_origins", 0)) == AVALANCHE_365_HOLDOUT, "Unexpected Avalanche 365 V4 holdout count")
+    require(v4.get("avalanche365_exception_governed") is True, "Avalanche 365 V4 holdout exception is not governed")
+    require(v4.get("exact_calendar_target_availability_required") is True, "Exact-calendar target availability is not required")
+    require(v4.get("strict_final_holdout_after_development_required") is True, "Strict V4 final-holdout chronology is not required")
 
     groups = list(v4.get("groups", []))
     require(len(groups) == EXPECTED_GROUPS, "Unexpected V4 manifest group count")
@@ -85,8 +96,15 @@ def main() -> int:
         seen.add(key)
         dev = list(group["v4_development_origin_dates"])
         holdout = list(group["v4_final_holdout_origin_dates"])
+        expected_holdout = expected_holdout_count(key)
         require(len(dev) == EXPECTED_DEV_PER_GROUP, f"Unexpected V4 development count for {key}")
-        require(len(holdout) == EXPECTED_HOLDOUT_PER_GROUP, f"Unexpected V4 holdout count for {key}")
+        require(len(holdout) == expected_holdout, f"Unexpected V4 holdout count for {key}: expected {expected_holdout}, found {len(holdout)}")
+        require(int(group.get("development_origin_count", -1)) == EXPECTED_DEV_PER_GROUP, f"V4 declared development count mismatch for {key}")
+        require(int(group.get("final_holdout_origin_count", -1)) == expected_holdout, f"V4 declared holdout count mismatch for {key}")
+        if key == AVALANCHE_365_KEY:
+            require(group.get("allocation_exception") is not None, "Avalanche 365 governed allocation exception is missing")
+        else:
+            require(group.get("allocation_exception") is None, f"Unexpected V4 allocation exception for {key}")
         require(len(set(dev)) == len(dev), f"Duplicate V4 development dates for {key}")
         require(len(set(holdout)) == len(holdout), f"Duplicate V4 holdout dates for {key}")
         require(set(dev).isdisjoint(holdout), f"V4 development/holdout overlap for {key}")
@@ -121,6 +139,8 @@ def main() -> int:
     print(f"SUPPORTED_GROUPS={len(groups)}")
     print(f"DEVELOPMENT_ORIGINS={dev_total}")
     print(f"FINAL_HOLDOUT_ORIGINS={holdout_total}")
+    print("AVALANCHE_365_FINAL_HOLDOUT_ORIGINS=9")
+    print("AVALANCHE_365_EXCEPTION_GOVERNED=TRUE")
     print("V3_FINAL_HOLDOUT_OUTCOMES_VIEWED=FALSE")
     print("V4_FINAL_HOLDOUT_OUTCOMES_VIEWED=FALSE")
     print("V4_DEVELOPMENT_OUTPUT_ALREADY_EXISTS=FALSE")
