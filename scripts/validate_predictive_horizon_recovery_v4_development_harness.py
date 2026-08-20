@@ -17,8 +17,19 @@ def main() -> int:
     source = TARGET.read_text(encoding="utf-8")
     tree = ast.parse(source)
 
+    # The harness imports EXPERIMENT_ID from the frozen V4 model specification
+    # rather than duplicating the literal experiment string locally. Validate
+    # that governed binding structurally instead of requiring a copied literal.
+    require("EXPERIMENT_ID" in source, "V4 harness does not reference governed EXPERIMENT_ID")
+    imported_experiment_id = False
+    for node in tree.body:
+        if isinstance(node, ast.ImportFrom) and node.module == "scripts.v4_horizon_recovery_model_spec":
+            if any(alias.name == "EXPERIMENT_ID" for alias in node.names):
+                imported_experiment_id = True
+                break
+    require(imported_experiment_id, "V4 harness does not import EXPERIMENT_ID from governed model specification")
+
     required_literals = [
-        "CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4",
         "510d121e1e4e8ea7e2079b1f61883b2ca01dfb6ce2c6baf6b9ba601eadeafd42",
         "V4 final holdout outcomes viewed",
         "v4_final_holdout_origins_excluded",
