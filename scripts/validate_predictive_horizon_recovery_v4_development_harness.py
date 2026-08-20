@@ -31,7 +31,8 @@ def main() -> int:
 
     required_literals = [
         "510d121e1e4e8ea7e2079b1f61883b2ca01dfb6ce2c6baf6b9ba601eadeafd42",
-        "V4 final holdout outcomes viewed",
+        "holdout_outcomes_viewed_before_freeze",
+        "holdout_outcome_values_read_during_rebuild",
         "v4_final_holdout_origins_excluded",
         "v3_final_holdout_origins_excluded",
         "recommendation_policy_changed",
