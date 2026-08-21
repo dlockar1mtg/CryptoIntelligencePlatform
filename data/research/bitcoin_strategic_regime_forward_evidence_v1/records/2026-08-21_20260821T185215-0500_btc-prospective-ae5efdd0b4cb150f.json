@@ -1,0 +1,176 @@
+{
+  "asset_id": "bitcoin",
+  "cycle_context": {
+    "calendar_only_action_authorized": false,
+    "days_since_halving": 853,
+    "descriptive_phase": "POST_HALVING_RESET_ACCUMULATION_CONTEXT_HYPOTHESIS",
+    "estimated_next_halving_date": null,
+    "estimated_next_halving_distance_days": null,
+    "historical_interpretation": "PATTERN_SUPPORTED_DESCRIPTIVELY",
+    "most_recent_halving_date": "2024-04-20",
+    "normalized_cycle_position": null,
+    "sample_size_completed_cycles": 3,
+    "uncertainty_note": "Cycle phase is descriptive context only; next-halving timing and normalized cycle position remain missing because no separately governed uncertainty-aware estimate is supplied for this capture."
+  },
+  "decision_layers": {
+    "existing_position_reason": "Governed current personal Bitcoin holdings context is unavailable and no strategic distribution or risk-reduction state is established.",
+    "existing_position_state": "INSUFFICIENT_EVIDENCE",
+    "strategic_reason": "Raw FRED observations are current, but the governed derived macro regime remains dated 2026-07-28; current portfolio/deployment context and point-in-time-safe valuation/on-chain evidence are unavailable; cycle phase cannot independently select a strategic action.",
+    "strategic_state": "INSUFFICIENT_EVIDENCE",
+    "tactical_new_capital_state": "INSUFFICIENT_EVIDENCE",
+    "tactical_reason": "The positive V4 7-day forecast can support ACCELERATE only inside an already allowed strategic regime and governed deployment ceiling; neither prerequisite is currently established."
+  },
+  "deployment_context": {
+    "existing_position_sale_authorized_by_this_record": false,
+    "new_capital_deployment_authorized_by_this_record": false,
+    "planned_entry_or_tranche_structure": null,
+    "target_or_max_deployment_ceiling": null
+  },
+  "evidence_quality": {
+    "missing_evidence_synthesized": false,
+    "nearest_date_substitution_allowed": false,
+    "outcome_peeking_allowed": false,
+    "synthetic_neutral_allowed": false,
+    "synthetic_worst_case_allowed": false,
+    "synthetic_zero_allowed": false,
+    "uncertainty_notes": [
+      "Bitcoin recommendation-policy skill remains uncertified.",
+      "The V4 evidence class does not support a strict vintage point-in-time historical claim.",
+      "The current raw macro observations and derived macro-regime freshness differ and are recorded separately.",
+      "Portfolio and deployment context are missing rather than inferred."
+    ]
+  },
+  "ledger_id": "BITCOIN_STRATEGIC_REGIME_FORWARD_EVIDENCE_LEDGER_V1",
+  "macro_liquidity_evidence": {
+    "derived_macro_regime_current_for_operating_date": false,
+    "derived_macro_regime_latest_date": "2026-07-28",
+    "derived_regime_value_used_for_state_assignment": false,
+    "latest_derived_macro_regime_date": "2026-07-28",
+    "latest_macro_observations_latest_date": "2026-08-21",
+    "raw_fred_current_for_operating_date": true,
+    "raw_macro_observations_latest_date": "2026-08-21",
+    "source_evidence_sha256": "67626cb87b9c041d47a685bc9a41fd47ab15c07f6db419a0e3c0d92b028d65c9",
+    "stale_reason": "Derived macro regime remains dated 2026-07-28 after current FRED observations and Module 6 sync; it is preserved as stale evidence and not promoted to August 21."
+  },
+  "market_state": {
+    "drawdown_from_running_or_all_time_high": null,
+    "drawdown_missing_reason": "No separately governed current drawdown-from-high value was supplied to this capture.",
+    "medium_long_trend": {
+      "distance_sma20": 0.20918519897080468,
+      "distance_sma50": 0.21897964554124272,
+      "return_30d": 0.17919185885917677,
+      "return_7d": 0.23690039016416065
+    },
+    "volatility_state": {
+      "volatility_14d": 0.7530886612718355,
+      "volatility_30d": 0.5609123195123968,
+      "volatility_7d": 0.9830355178395163,
+      "volatility_ratio_7d_30d": 1.7525653897102362
+    }
+  },
+  "module42": {
+    "live_action": null,
+    "missing_reason": "No live governed Module42 action was produced for this capture; historical July 28 action was not reconstructed from later data.",
+    "module42_rerun_performed": false,
+    "recommendation_score": null
+  },
+  "observation_id": "btc-prospective-ae5efdd0b4cb150f",
+  "observation_timestamp": "2026-08-21T18:52:15.458560-05:00",
+  "observed_bitcoin_price": {
+    "observation_date": "2026-08-21",
+    "price_usd": 78345.0,
+    "source": "FRED_ENABLED_SCRATCH_REFRESH_AFTER_BITCOIN_SNAPSHOT",
+    "source_evidence_sha256": "67626cb87b9c041d47a685bc9a41fd47ab15c07f6db419a0e3c0d92b028d65c9"
+  },
+  "operating_date": "2026-08-21",
+  "operating_timezone": "America/Chicago",
+  "other_forecasts": {
+    "forecast_180d": null,
+    "forecast_30d": null,
+    "forecast_90d": null,
+    "missing_reason": "No governed current values were available for these horizons at capture time."
+  },
+  "outcomes": {
+    "return_1095d_exact": null,
+    "return_180d_exact": null,
+    "return_30d_exact": null,
+    "return_365d_exact": null,
+    "return_7d_exact": null,
+    "return_90d_exact": null,
+    "status": "UNMATURED_AT_INITIAL_CAPTURE"
+  },
+  "policy_authority": {
+    "autonomous_execution_authorized": false,
+    "bitcoin_recommendation_policy_skill_certified": false,
+    "btc_eth_recommendation_policy_skill_not_certified": true,
+    "canonical_database_write_authorized": false,
+    "production_policy_change_authorized": false
+  },
+  "portfolio_context": {
+    "current_bitcoin_portfolio_weight": null,
+    "governed_current_personal_portfolio_context_available": false,
+    "missing_reason": "No governed current personal Bitcoin holdings or undeployed-capital source was available at capture time.",
+    "undeployed_capital_available_to_bitcoin": null
+  },
+  "record_scope": "BOTH_NEW_CAPITAL_AND_EXISTING_HOLDINGS",
+  "schema_version": 1,
+  "source_authorities": {
+    "canonical_database_sha256_read_only": "0e5745889491c435d884cf7e3c9be080fb708d79dd9ba308f05006bcbb4657e3",
+    "capture_authorization": {
+      "id": "BITCOIN_FIRST_PROSPECTIVE_OBSERVATION_CAPTURE_AUTHORIZATION_V1",
+      "path": "docs/bitcoin_first_prospective_observation_capture_authorization_v1.md"
+    },
+    "extended_history_sha256": "549bc0172dbefaf9936705df9da58ead29cd583141c5eaf294dd2fed5a693961",
+    "fred_macro_refresh": {
+      "path": "data/research/bitcoin_strategic_regime_forward_evidence_v1/local_fred_macro_scratch_v1/local_fred_macro_refresh_evidence.json",
+      "run_id": "BITCOIN_FIRST_OBSERVATION_GITHUB_FRED_MACRO_REFRESH_V1",
+      "sha256": "67626cb87b9c041d47a685bc9a41fd47ab15c07f6db419a0e3c0d92b028d65c9"
+    },
+    "preserved_v2_result_sha256": "ed22cfb5eb83ac860527ca3c47c6b8d9e10a7cb3827ebb89ebd33fe8a324b9ca",
+    "v4_operationalization": {
+      "path": "data/research/bitcoin_strategic_regime_forward_evidence_v1/live_refresh_and_v4_operationalization.json",
+      "run_id": "BITCOIN_LIVE_REFRESH_AND_V4_OPERATIONALIZATION_V1",
+      "sha256": "4fb9c06cc69ac47e22bb881954e05b61f5b8dba0392133d601f5946807b739c2"
+    }
+  },
+  "transaction_cost_assumption": {
+    "basis_points": null,
+    "reason": "No deployment or sale action is authorized by this insufficient-evidence observation.",
+    "status": "NOT_APPLIED"
+  },
+  "v4_7d_tactical_evidence": {
+    "evidence_class": "HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME",
+    "feature_values": {
+      "asset_minus_btc_return_7d": 0.0,
+      "asset_minus_core_median_return_7d": -0.0526892688041406,
+      "core_breadth_positive_7d_pct": 100.0,
+      "core_return_dispersion_7d": 0.08807837572758324,
+      "distance_sma20": 0.20918519897080468,
+      "distance_sma50": 0.21897964554124272,
+      "return_14d": 0.22012219058807148,
+      "return_1d": 0.12997356708653962,
+      "return_30d": 0.17919185885917677,
+      "return_3d": 0.2169814163166215,
+      "return_7d": 0.23690039016416065,
+      "volatility_14d": 0.7530886612718355,
+      "volatility_30d": 0.5609123195123968,
+      "volatility_7d": 0.9830355178395163,
+      "volatility_ratio_7d_30d": 1.7525653897102362
+    },
+    "forecast_date": "2026-08-21",
+    "model_selection_reopened": false,
+    "post_holdout_tuning_performed": false,
+    "predicted_direction": "POSITIVE",
+    "raw_probability_positive": 0.7689586293159024,
+    "recomputed_for_capture": false,
+    "strict_point_in_time_claim_allowed": false,
+    "v4_source_bitcoin_date": "2026-08-21",
+    "v4_source_bitcoin_price_usd": 78441.0,
+    "winner": "V4_7D_VOLATILITY_STATE_EXTRA_TREES"
+  },
+  "valuation_onchain_evidence": {
+    "available": false,
+    "missing_reason": "No governed point-in-time-safe valuation/on-chain evidence was supplied at capture time.",
+    "value": null
+  }
+}
