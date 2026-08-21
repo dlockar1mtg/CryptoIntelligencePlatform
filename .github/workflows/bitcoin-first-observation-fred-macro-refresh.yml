@@ -8,7 +8,7 @@ on:
       - data/research/bitcoin_strategic_regime_forward_evidence_v1/github_fred_macro_refresh_trigger_v1.txt
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: bitcoin-first-observation-fred-macro-refresh
@@ -24,8 +24,11 @@ jobs:
       FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
       COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
       EVIDENCE_ROOT: data/operations/crypto/bitcoin_first_observation_macro_refresh
+      SUMMARY_PATH: data/research/bitcoin_strategic_regime_forward_evidence_v1/github_fred_macro_refresh_result_v1.json
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: phase-native-predictive-validation
 
       - uses: actions/setup-python@v5
         with:
@@ -89,6 +92,56 @@ jobs:
           print('GITHUB_FRED_MACRO_REFRESH_LEDGER_SAFETY=PASS')
           print('FIRST_PROSPECTIVE_OBSERVATION_CAPTURED=FALSE')
           PY
+
+      - name: Persist safe macro refresh summary to branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUTPUT="$EVIDENCE_ROOT/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}/macro_refresh_evidence.json"
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          output = Path(os.environ['EVIDENCE_ROOT']) / f"{os.environ['GITHUB_RUN_ID']}-{os.environ['GITHUB_RUN_ATTEMPT']}" / 'macro_refresh_evidence.json'
+          source = json.loads(output.read_text(encoding='utf-8'))
+          summary = {
+              'run_id': source['run_id'],
+              'captured_at_utc': source['captured_at_utc'],
+              'repository_sha': source['repository_sha'],
+              'github_run_id': source['github_run_id'],
+              'github_run_attempt': source['github_run_attempt'],
+              'environment': source['environment'],
+              'fred_api_key_configured': source['fred_api_key_configured'],
+              'fred_api_key_value_recorded': False,
+              'module1_incremental_refresh_executed': source['module1_incremental_refresh_executed'],
+              'module1_full_refresh_executed': source['module1_full_refresh_executed'],
+              'module6_sync_executed': source['module6_sync_executed'],
+              'module42_rerun_performed': source['module42_rerun_performed'],
+              'first_prospective_observation_captured': source['first_prospective_observation_captured'],
+              'ledger_record_count': source['ledger_record_count'],
+              'database_sha256_before': source['database_sha256_before'],
+              'database_sha256_after': source['database_sha256_after'],
+              'before': source['before'],
+              'after': source['after'],
+              'production_pipeline_executed': source['production_pipeline_executed'],
+              'production_policy_changed': source['production_policy_changed'],
+              'autonomous_execution_authorized': source['autonomous_execution_authorized'],
+              'next_gate': source['next_gate'],
+          }
+          target = Path(os.environ['SUMMARY_PATH'])
+          if target.exists():
+              raise RuntimeError('Summary path already exists; refusing overwrite')
+          target.parent.mkdir(parents=True, exist_ok=True)
+          target.write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8')
+          print(f'PERSISTED_SUMMARY_PATH={target}')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$SUMMARY_PATH"
+          git diff --cached --quiet && { echo "No summary file staged"; exit 1; }
+          git commit -m "Preserve governed Bitcoin FRED macro refresh evidence"
+          git push origin HEAD:phase-native-predictive-validation
 
       - name: Upload macro refresh evidence
         if: always()
