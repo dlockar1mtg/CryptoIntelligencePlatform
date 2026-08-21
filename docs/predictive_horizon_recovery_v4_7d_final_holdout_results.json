@@ -1,0 +1,81 @@
+{
+  "experiment_id": "CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4",
+  "evidence_class": "HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME",
+  "strict_point_in_time_claim_allowed": false,
+  "evaluation_scope": "7D_FINAL_HOLDOUT_ONLY",
+  "frozen_winner": "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+  "development_results_sha256": "a44e237112bf6521c8a770de120d4a0104731c280d7009568e6618cca1c1fbfb",
+  "v4_manifest_content_sha256": "6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2",
+  "final_holdout_metrics": {
+    "final_holdout_rows": 60,
+    "directional_accuracy_pct": 50.0,
+    "training_window_majority_baseline_accuracy_pct": 36.666666666666664,
+    "model_minus_baseline_accuracy_pct_points": 13.333333333333336,
+    "raw_brier_score": 0.2556813932500054,
+    "assets_nonnegative_baseline_adjusted_skill": 6,
+    "single_asset_explains_majority_of_positive_gain": false,
+    "mean_sign_strategy_return_pct_after_15bps_cost": 0.40798767741205105,
+    "turnover_units": 20.0,
+    "by_asset": {
+      "avalanche": {
+        "rows": 10,
+        "directional_accuracy_pct": 0.0,
+        "baseline_accuracy_pct": 0.0,
+        "baseline_adjusted_skill_pp": 0.0,
+        "net_correct_gain_vs_baseline": 0
+      },
+      "bitcoin": {
+        "rows": 10,
+        "directional_accuracy_pct": 80.0,
+        "baseline_accuracy_pct": 50.0,
+        "baseline_adjusted_skill_pp": 30.000000000000004,
+        "net_correct_gain_vs_baseline": 3
+      },
+      "chainlink": {
+        "rows": 10,
+        "directional_accuracy_pct": 60.0,
+        "baseline_accuracy_pct": 50.0,
+        "baseline_adjusted_skill_pp": 9.999999999999998,
+        "net_correct_gain_vs_baseline": 1
+      },
+      "ethereum": {
+        "rows": 10,
+        "directional_accuracy_pct": 90.0,
+        "baseline_accuracy_pct": 50.0,
+        "baseline_adjusted_skill_pp": 40.0,
+        "net_correct_gain_vs_baseline": 4
+      },
+      "solana": {
+        "rows": 10,
+        "directional_accuracy_pct": 20.0,
+        "baseline_accuracy_pct": 20.0,
+        "baseline_adjusted_skill_pp": 0.0,
+        "net_correct_gain_vs_baseline": 0
+      },
+      "xrp": {
+        "rows": 10,
+        "directional_accuracy_pct": 50.0,
+        "baseline_accuracy_pct": 50.0,
+        "baseline_adjusted_skill_pp": 0.0,
+        "net_correct_gain_vs_baseline": 0
+      }
+    },
+    "complete_prediction_coverage": true,
+    "final_holdout_confirmation_pass": true
+  },
+  "opened_v4_final_holdout_horizons": [
+    7
+  ],
+  "unopened_v4_final_holdout_horizons": [
+    30,
+    365
+  ],
+  "v4_7d_final_holdout_outcomes_viewed": true,
+  "v4_30d_final_holdout_outcomes_viewed": false,
+  "v4_365d_final_holdout_outcomes_viewed": false,
+  "v3_final_holdout_outcomes_viewed": false,
+  "post_holdout_tuning_allowed": false,
+  "recommendation_policy_changed": false,
+  "production_promotion_allowed": false,
+  "next_gate": "PRESERVE_AND_REVIEW_V4_7D_FINAL_HOLDOUT_RESULT_NO_TUNING"
+}
