@@ -148,7 +148,8 @@ def main() -> int:
         "ReferenceRateUSD",
         "PriceUSD",
         "source substitution",
-        "research-only",
+        "research-source substitution only",
+        "historical research evidence",
     ):
         require(fragment.lower() in recovery_text.lower(), f"V2 recovery addendum missing boundary: {fragment}")
 
