@@ -1,0 +1,728 @@
+{
+  "adequately_covered_completed_cycle_count": 3,
+  "autonomous_execution_allowed": false,
+  "calendar_only_execution_allowed": false,
+  "canonical_database_modified": false,
+  "completed_cycle_count": 3,
+  "completed_cycle_diagnostics": [
+    {
+      "accumulation_phase_diagnostics": {
+        "POST_HALVING_YEAR_2": {
+          "best_3y_return_pct": 2536.8765765139815,
+          "calendar_year": 2014,
+          "exact_3y_outcomes": 12,
+          "mean_3y_return_pct": 646.6141534313863,
+          "median_3y_return_pct": 273.20992782555334,
+          "median_origin_drawdown_from_running_high_pct": -53.89404438316145,
+          "missing_3y_outcomes": 0,
+          "monthly_anchor_detail": [
+            {
+              "drawdown_from_running_high_pct": -33.70489184577583,
+              "forward_1095d_exact_endpoint_date": "2016-12-31",
+              "forward_1095d_return_pct": 28.78319211262619,
+              "origin_date": "2014-01-01",
+              "origin_price_usd": 752.404549944594
+            },
+            {
+              "drawdown_from_running_high_pct": -28.346422184143616,
+              "forward_1095d_exact_endpoint_date": "2017-01-31",
+              "forward_1095d_return_pct": 19.094420024937577,
+              "origin_date": "2014-02-01",
+              "origin_price_usd": 813.219549216833
+            },
+            {
+              "drawdown_from_running_high_pct": -49.99399787976559,
+              "forward_1095d_exact_endpoint_date": "2017-02-28",
+              "forward_1095d_return_pct": 109.3970489396856,
+              "origin_date": "2014-03-01",
+              "origin_price_usd": 567.534235441262
+            },
+            {
+              "drawdown_from_running_high_pct": -57.79409088655731,
+              "forward_1095d_exact_endpoint_date": "2017-03-31",
+              "forward_1095d_return_pct": 125.82973124137263,
+              "origin_date": "2014-04-01",
+              "origin_price_usd": 479.008465867913
+            },
+            {
+              "drawdown_from_running_high_pct": -59.451790535918356,
+              "forward_1095d_exact_endpoint_date": "2017-04-30",
+              "forward_1095d_return_pct": 200.29819498880096,
+              "origin_date": "2014-05-01",
+              "origin_price_usd": 460.194698255991
+            },
+            {
+              "drawdown_from_running_high_pct": -44.48347342794627,
+              "forward_1095d_exact_endpoint_date": "2017-05-31",
+              "forward_1095d_return_pct": 264.94588419248817,
+              "origin_date": "2014-06-01",
+              "origin_price_usd": 630.074953535944
+            },
+            {
+              "drawdown_from_running_high_pct": -43.34845912131823,
+              "forward_1095d_exact_endpoint_date": "2017-06-30",
+              "forward_1095d_return_pct": 281.47397145861856,
+              "origin_date": "2014-07-01",
+              "origin_price_usd": 642.95659672706
+            },
+            {
+              "drawdown_from_running_high_pct": -47.44120019058526,
+              "forward_1095d_exact_endpoint_date": "2017-07-31",
+              "forward_1095d_return_pct": 379.89586818714434,
+              "origin_date": "2014-08-01",
+              "origin_price_usd": 596.506759205143
+            },
+            {
+              "drawdown_from_running_high_pct": -58.187680563039876,
+              "forward_1095d_exact_endpoint_date": "2017-08-31",
+              "forward_1095d_return_pct": 898.9339857271236,
+              "origin_date": "2014-09-01",
+              "origin_price_usd": 474.541489772063
+            },
+            {
+              "drawdown_from_running_high_pct": -66.26147751851306,
+              "forward_1095d_exact_endpoint_date": "2017-09-30",
+              "forward_1095d_return_pct": 1032.0027658980082,
+              "origin_date": "2014-10-01",
+              "origin_price_usd": 382.909365867914
+            },
+            {
+              "drawdown_from_running_high_pct": -71.41932300516712,
+              "forward_1095d_exact_endpoint_date": "2017-10-31",
+              "forward_1095d_return_pct": 1881.8382018918487,
+              "origin_date": "2014-11-01",
+              "origin_price_usd": 324.371315020456
+            },
+            {
+              "drawdown_from_running_high_pct": -66.59606903022548,
+              "forward_1095d_exact_endpoint_date": "2017-11-30",
+              "forward_1095d_return_pct": 2536.8765765139815,
+              "origin_date": "2014-12-01",
+              "origin_price_usd": 379.111978959673
+            }
+          ],
+          "monthly_anchor_rows": 12,
+          "positive_3y_return_rate": 1.0,
+          "worst_3y_return_pct": 19.094420024937577
+        },
+        "PRE_HALVING_YEAR": {
+          "best_3y_return_pct": 4325.185246306836,
+          "calendar_year": 2015,
+          "exact_3y_outcomes": 12,
+          "mean_3y_return_pct": 2982.7104540610017,
+          "median_3y_return_pct": 2841.119444526789,
+          "median_origin_drawdown_from_running_high_pct": -77.74191034371688,
+          "missing_3y_outcomes": 0,
+          "monthly_anchor_detail": [
+            {
+              "drawdown_from_running_high_pct": -72.26473410664897,
+              "forward_1095d_exact_endpoint_date": "2017-12-31",
+              "forward_1095d_return_pct": 4322.656037588433,
+              "origin_date": "2015-01-01",
+              "origin_price_usd": 314.77647194623
+            },
+            {
+              "drawdown_from_running_high_pct": -79.98899889308578,
+              "forward_1095d_exact_endpoint_date": "2018-01-31",
+              "forward_1095d_return_pct": 4325.185246306836,
+              "origin_date": "2015-02-01",
+              "origin_price_usd": 227.111301285798
+            },
+            {
+              "drawdown_from_running_high_pct": -77.03375376019802,
+              "forward_1095d_exact_endpoint_date": "2018-02-28",
+              "forward_1095d_return_pct": 3854.3342958317176,
+              "origin_date": "2015-03-01",
+              "origin_price_usd": 260.651330800701
+            },
+            {
+              "drawdown_from_running_high_pct": -78.2202132712037,
+              "forward_1095d_exact_endpoint_date": "2018-03-31",
+              "forward_1095d_return_pct": 2700.436252207754,
+              "origin_date": "2015-04-01",
+              "origin_price_usd": 247.185819403857
+            },
+            {
+              "drawdown_from_running_high_pct": -79.49246868088395,
+              "forward_1095d_exact_endpoint_date": "2018-04-30",
+              "forward_1095d_return_pct": 3865.139413249208,
+              "origin_date": "2015-05-01",
+              "origin_price_usd": 232.746582700175
+            },
+            {
+              "drawdown_from_running_high_pct": -80.3263405645003,
+              "forward_1095d_exact_endpoint_date": "2018-05-31",
+              "forward_1095d_return_pct": 3249.4497345455256,
+              "origin_date": "2015-06-01",
+              "origin_price_usd": 223.282701928697
+            },
+            {
+              "drawdown_from_running_high_pct": -77.26360741623006,
+              "forward_1095d_exact_endpoint_date": "2018-06-30",
+              "forward_1095d_return_pct": 2370.7315985829277,
+              "origin_date": "2015-07-01",
+              "origin_price_usd": 258.042647574518
+            },
+            {
+              "drawdown_from_running_high_pct": -75.18187970851412,
+              "forward_1095d_exact_endpoint_date": "2018-07-31",
+              "forward_1095d_return_pct": 2642.6295586929664,
+              "origin_date": "2015-08-01",
+              "origin_price_usd": 281.66884628872
+            },
+            {
+              "drawdown_from_running_high_pct": -79.91460950507869,
+              "forward_1095d_exact_endpoint_date": "2018-08-31",
+              "forward_1095d_return_pct": 2981.8026368458236,
+              "origin_date": "2015-09-01",
+              "origin_price_usd": 227.955570426651
+            },
+            {
+              "drawdown_from_running_high_pct": -79.0093357675573,
+              "forward_1095d_exact_endpoint_date": "2018-09-30",
+              "forward_1095d_return_pct": 2672.316748088269,
+              "origin_date": "2015-10-01",
+              "origin_price_usd": 238.229813851549
+            },
+            {
+              "drawdown_from_running_high_pct": -70.93621815758479,
+              "forward_1095d_exact_endpoint_date": "2018-10-31",
+              "forward_1095d_return_pct": 1811.8496604871257,
+              "origin_date": "2015-11-01",
+              "origin_price_usd": 329.854227644652
+            },
+            {
+              "drawdown_from_running_high_pct": -68.05691424237277,
+              "forward_1095d_exact_endpoint_date": "2018-11-30",
+              "forward_1095d_return_pct": 995.9942663054345,
+              "origin_date": "2015-12-01",
+              "origin_price_usd": 362.532375803624
+            }
+          ],
+          "monthly_anchor_rows": 12,
+          "positive_3y_return_rate": 1.0,
+          "worst_3y_return_pct": 995.9942663054345
+        }
+      },
+      "adequate_coverage": true,
+      "coverage_ratio": 1.0,
+      "cycle_start_halving": "2012-11-28",
+      "expected_calendar_days": 1319,
+      "next_halving": "2016-07-09",
+      "observed_daily_rows": 1319,
+      "peak_to_reset_drawdown_pct": -72.64664835113757,
+      "post_halving_expansion_peak_date": "2013-12-04",
+      "post_halving_expansion_peak_price_usd": 1134.93223088837,
+      "pre_halving_recovery_endpoint_date": "2015-12-31",
+      "pre_halving_recovery_return_pct": 38.40818824660703,
+      "refined_expansion_reset_ordering_match": true,
+      "reset_trough_date": "2014-12-30",
+      "reset_trough_price_usd": 310.442004091175
+    },
+    {
+      "accumulation_phase_diagnostics": {
+        "POST_HALVING_YEAR_2": {
+          "best_3y_return_pct": 1276.470539612372,
+          "calendar_year": 2018,
+          "exact_3y_outcomes": 12,
+          "mean_3y_return_pct": 547.0302565795996,
+          "median_3y_return_pct": 493.8450880400965,
+          "median_origin_drawdown_from_running_high_pct": -62.546325488300035,
+          "missing_3y_outcomes": 0,
+          "monthly_anchor_detail": [
+            {
+              "drawdown_from_running_high_pct": -31.444494316364178,
+              "forward_1095d_exact_endpoint_date": "2020-12-31",
+              "forward_1095d_return_pct": 115.54710763264478,
+              "origin_date": "2018-01-01",
+              "origin_price_usd": 13464.6536116306
+            },
+            {
+              "drawdown_from_running_high_pct": -53.97337804515385,
+              "forward_1095d_exact_endpoint_date": "2021-01-31",
+              "forward_1095d_return_pct": 266.7956578892041,
+              "origin_date": "2018-02-01",
+              "origin_price_usd": 9039.86507510228
+            },
+            {
+              "drawdown_from_running_high_pct": -44.38215350867969,
+              "forward_1095d_exact_endpoint_date": "2021-02-28",
+              "forward_1095d_return_pct": 315.24164207114006,
+              "origin_date": "2018-03-01",
+              "origin_price_usd": 10923.6308617767
+            },
+            {
+              "drawdown_from_running_high_pct": -65.3546494775732,
+              "forward_1095d_exact_endpoint_date": "2021-03-31",
+              "forward_1095d_return_pct": 764.0161638081171,
+              "origin_date": "2018-04-01",
+              "origin_price_usd": 6804.52487931035
+            },
+            {
+              "drawdown_from_running_high_pct": -53.80890331429256,
+              "forward_1095d_exact_endpoint_date": "2021-04-30",
+              "forward_1095d_return_pct": 536.4679269123142,
+              "origin_date": "2018-05-01",
+              "origin_price_usd": 9072.16875745178
+            },
+            {
+              "drawdown_from_running_high_pct": -61.71263245997209,
+              "forward_1095d_exact_endpoint_date": "2021-05-31",
+              "forward_1095d_return_pct": 396.19401540911036,
+              "origin_date": "2018-06-01",
+              "origin_price_usd": 7519.83573728814
+            },
+            {
+              "drawdown_from_running_high_pct": -67.61081417405133,
+              "forward_1095d_exact_endpoint_date": "2021-06-30",
+              "forward_1095d_return_pct": 451.2222491678789,
+              "origin_date": "2018-07-01",
+              "origin_price_usd": 6361.40253886616
+            },
+            {
+              "drawdown_from_running_high_pct": -61.32128692212384,
+              "forward_1095d_exact_endpoint_date": "2021-07-31",
+              "forward_1095d_return_pct": 450.15104828683803,
+              "origin_date": "2018-08-01",
+              "origin_price_usd": 7596.6980119813
+            },
+            {
+              "drawdown_from_running_high_pct": -63.38001851662798,
+              "forward_1095d_exact_endpoint_date": "2021-08-31",
+              "forward_1095d_return_pct": 556.5201584834489,
+              "origin_date": "2018-09-01",
+              "origin_price_usd": 7192.35254734074
+            },
+            {
+              "drawdown_from_running_high_pct": -66.59041677210223,
+              "forward_1095d_exact_endpoint_date": "2021-09-30",
+              "forward_1095d_return_pct": 567.2171313399882,
+              "origin_date": "2018-10-01",
+              "origin_price_usd": 6561.81383226184
+            },
+            {
+              "drawdown_from_running_high_pct": -67.70462556000128,
+              "forward_1095d_exact_endpoint_date": "2021-10-31",
+              "forward_1095d_return_pct": 868.5194383421381,
+              "origin_date": "2018-11-01",
+              "origin_price_usd": 6342.97750058445
+            },
+            {
+              "drawdown_from_running_high_pct": -78.88001428972457,
+              "forward_1095d_exact_endpoint_date": "2021-11-30",
+              "forward_1095d_return_pct": 1276.470539612372,
+              "origin_date": "2018-12-01",
+              "origin_price_usd": 4148.07372559906
+            }
+          ],
+          "monthly_anchor_rows": 12,
+          "positive_3y_return_rate": 1.0,
+          "worst_3y_return_pct": 115.54710763264478
+        },
+        "PRE_HALVING_YEAR": {
+          "best_3y_return_pct": 1117.2710871673958,
+          "calendar_year": 2019,
+          "exact_3y_outcomes": 12,
+          "mean_3y_return_pct": 479.0713144792706,
+          "median_3y_return_pct": 202.91857244301602,
+          "median_origin_drawdown_from_running_high_pct": -59.94942217515452,
+          "missing_3y_outcomes": 0,
+          "monthly_anchor_detail": [
+            {
+              "drawdown_from_running_high_pct": -80.6109053241439,
+              "forward_1095d_exact_endpoint_date": "2021-12-31",
+              "forward_1095d_return_pct": 1117.2710871673958,
+              "origin_date": "2019-01-01",
+              "origin_price_usd": 3808.11783167738
+            },
+            {
+              "drawdown_from_running_high_pct": -82.45947172388853,
+              "forward_1095d_exact_endpoint_date": "2022-01-31",
+              "forward_1095d_return_pct": 1016.4619850704115,
+              "origin_date": "2019-02-01",
+              "origin_price_usd": 3445.04989129164
+            },
+            {
+              "drawdown_from_running_high_pct": -80.59810086844081,
+              "forward_1095d_exact_endpoint_date": "2022-02-28",
+              "forward_1095d_return_pct": 1033.1255987525071,
+              "origin_date": "2019-03-01",
+              "origin_price_usd": 3810.63269257744
+            },
+            {
+              "drawdown_from_running_high_pct": -78.9291775547063,
+              "forward_1095d_exact_endpoint_date": "2022-03-31",
+              "forward_1095d_return_pct": 1000.9572446173213,
+              "origin_date": "2019-04-01",
+              "origin_price_usd": 4138.41780771479
+            },
+            {
+              "drawdown_from_running_high_pct": -72.93769724864849,
+              "forward_1095d_exact_endpoint_date": "2022-04-30",
+              "forward_1095d_return_pct": 609.5550503162884,
+              "origin_date": "2019-05-01",
+              "origin_price_usd": 5315.17532904734
+            },
+            {
+              "drawdown_from_running_high_pct": -56.443057547177574,
+              "forward_1095d_exact_endpoint_date": "2022-05-31",
+              "forward_1095d_return_pct": 272.08797695390723,
+              "origin_date": "2019-06-01",
+              "origin_price_usd": 8554.80732963179
+            },
+            {
+              "drawdown_from_running_high_pct": -46.184953250324114,
+              "forward_1095d_exact_endpoint_date": "2022-06-30",
+              "forward_1095d_return_pct": 82.91137246456977,
+              "origin_date": "2019-07-01",
+              "origin_price_usd": 10569.5517282291
+            },
+            {
+              "drawdown_from_running_high_pct": -47.04666549907811,
+              "forward_1095d_exact_endpoint_date": "2022-07-31",
+              "forward_1095d_return_pct": 124.57194955129536,
+              "origin_date": "2019-08-01",
+              "origin_price_usd": 10400.3070143776
+            },
+            {
+              "drawdown_from_running_high_pct": -50.29184768354072,
+              "forward_1095d_exact_endpoint_date": "2022-08-31",
+              "forward_1095d_return_pct": 105.10910307837604,
+              "origin_date": "2019-09-01",
+              "origin_price_usd": 9762.93655689655
+            },
+            {
+              "drawdown_from_running_high_pct": -57.66632462122345,
+              "forward_1095d_exact_endpoint_date": "2022-09-30",
+              "forward_1095d_return_pct": 133.7491679321248,
+              "origin_date": "2019-10-01",
+              "origin_price_usd": 8314.55139012273
+            },
+            {
+              "drawdown_from_running_high_pct": -52.89643973484522,
+              "forward_1095d_exact_endpoint_date": "2022-10-31",
+              "forward_1095d_return_pct": 121.4897163020062,
+              "origin_date": "2019-11-01",
+              "origin_price_usd": 9251.38129345412
+            },
+            {
+              "drawdown_from_running_high_pct": -62.23251972908558,
+              "forward_1095d_exact_endpoint_date": "2022-11-30",
+              "forward_1095d_return_pct": 131.56552154504357,
+              "origin_date": "2019-12-01",
+              "origin_price_usd": 7417.72720601987
+            }
+          ],
+          "monthly_anchor_rows": 12,
+          "positive_3y_return_rate": 1.0,
+          "worst_3y_return_pct": 82.91137246456977
+        }
+      },
+      "adequate_coverage": true,
+      "coverage_ratio": 1.0,
+      "cycle_start_halving": "2016-07-09",
+      "expected_calendar_days": 1402,
+      "next_halving": "2020-05-11",
+      "observed_daily_rows": 1402,
+      "peak_to_reset_drawdown_pct": -83.78314303412512,
+      "post_halving_expansion_peak_date": "2017-12-16",
+      "post_halving_expansion_peak_price_usd": 19640.5138834015,
+      "pre_halving_recovery_endpoint_date": "2019-12-31",
+      "pre_halving_recovery_return_pct": 125.0307200399865,
+      "refined_expansion_reset_ordering_match": true,
+      "reset_trough_date": "2018-12-15",
+      "reset_trough_price_usd": 3185.07404383402
+    },
+    {
+      "accumulation_phase_diagnostics": {
+        "POST_HALVING_YEAR_2": {
+          "best_3y_return_pct": 490.1644542823642,
+          "calendar_year": 2022,
+          "exact_3y_outcomes": 12,
+          "mean_3y_return_pct": 289.40705611191,
+          "median_3y_return_pct": 323.80004889912317,
+          "median_origin_drawdown_from_running_high_pct": -60.64851698308337,
+          "missing_3y_outcomes": 0,
+          "monthly_anchor_detail": [
+            {
+              "drawdown_from_running_high_pct": -29.58428601121198,
+              "forward_1095d_exact_endpoint_date": "2024-12-31",
+              "forward_1095d_return_pct": 96.36188851916174,
+              "origin_date": "2022-01-01",
+              "origin_price_usd": 47560.0093816482
+            },
+            {
+              "drawdown_from_running_high_pct": -42.5718745529069,
+              "forward_1095d_exact_endpoint_date": "2025-01-31",
+              "forward_1095d_return_pct": 163.64632970600775,
+              "origin_date": "2022-02-01",
+              "origin_price_usd": 38787.9640824079
+            },
+            {
+              "drawdown_from_running_high_pct": -34.359927057215636,
+              "forward_1095d_exact_endpoint_date": "2025-02-28",
+              "forward_1095d_return_pct": 90.01874051321064,
+              "origin_date": "2022-03-01",
+              "origin_price_usd": 44334.457582408
+            },
+            {
+              "drawdown_from_running_high_pct": -31.523342945623668,
+              "forward_1095d_exact_endpoint_date": "2025-03-31",
+              "forward_1095d_return_pct": 78.29372983320289,
+              "origin_date": "2022-04-01",
+              "origin_price_usd": 46250.3362878434
+            },
+            {
+              "drawdown_from_running_high_pct": -43.0585914005806,
+              "forward_1095d_exact_endpoint_date": "2025-04-30",
+              "forward_1095d_return_pct": 145.03023049694855,
+              "origin_date": "2022-05-01",
+              "origin_price_usd": 38459.226979135
+            },
+            {
+              "drawdown_from_running_high_pct": -55.84076550144537,
+              "forward_1095d_exact_endpoint_date": "2025-05-31",
+              "forward_1095d_return_pct": 251.06697942324493,
+              "origin_date": "2022-06-01",
+              "origin_price_usd": 29825.9221992987
+            },
+            {
+              "drawdown_from_running_high_pct": -71.3631027524354,
+              "forward_1095d_exact_endpoint_date": "2025-06-30",
+              "forward_1095d_return_pct": 453.9957575363336,
+              "origin_date": "2022-07-01",
+              "origin_price_usd": 19341.8631240795
+            },
+            {
+              "drawdown_from_running_high_pct": -65.45626846472136,
+              "forward_1095d_exact_endpoint_date": "2025-07-31",
+              "forward_1095d_return_pct": 396.53311837500144,
+              "origin_date": "2022-08-01",
+              "origin_price_usd": 23331.4426969608
+            },
+            {
+              "drawdown_from_running_high_pct": -70.23254362286822,
+              "forward_1095d_exact_endpoint_date": "2025-08-31",
+              "forward_1095d_return_pct": 438.7413809407516,
+              "origin_date": "2022-09-01",
+              "origin_price_usd": 20105.4626072472
+            },
+            {
+              "drawdown_from_running_high_pct": -71.40752193351202,
+              "forward_1095d_exact_endpoint_date": "2025-09-30",
+              "forward_1095d_return_pct": 490.1644542823642,
+              "origin_date": "2022-10-01",
+              "origin_price_usd": 19311.861629398
+            },
+            {
+              "drawdown_from_running_high_pct": -69.67214373263594,
+              "forward_1095d_exact_endpoint_date": "2025-10-31",
+              "forward_1095d_return_pct": 434.82922588276205,
+              "origin_date": "2022-11-01",
+              "origin_price_usd": 20483.966530976
+            },
+            {
+              "drawdown_from_running_high_pct": -74.8876947651245,
+              "forward_1095d_exact_endpoint_date": "2025-11-30",
+              "forward_1095d_return_pct": 434.20283783393023,
+              "origin_date": "2022-12-01",
+              "origin_price_usd": 16961.2918042081
+            }
+          ],
+          "monthly_anchor_rows": 12,
+          "positive_3y_return_rate": 1.0,
+          "worst_3y_return_pct": 78.29372983320289
+        },
+        "PRE_HALVING_YEAR": {
+          "best_3y_return_pct": 426.99635551716193,
+          "calendar_year": 2023,
+          "exact_3y_outcomes": 8,
+          "mean_3y_return_pct": 191.49699373241683,
+          "median_3y_return_pct": 172.87497750705944,
+          "median_origin_drawdown_from_running_high_pct": -59.32862262827814,
+          "missing_3y_outcomes": 4,
+          "monthly_anchor_detail": [
+            {
+              "drawdown_from_running_high_pct": -75.41261414024432,
+              "forward_1095d_exact_endpoint_date": "2025-12-31",
+              "forward_1095d_return_pct": 426.99635551716193,
+              "origin_date": "2023-01-01",
+              "origin_price_usd": 16606.7520432496
+            },
+            {
+              "drawdown_from_running_high_pct": -64.87031995390606,
+              "forward_1095d_exact_endpoint_date": "2026-01-31",
+              "forward_1095d_return_pct": 231.69685784038325,
+              "origin_date": "2023-02-01",
+              "origin_price_usd": 23727.2026075395
+            },
+            {
+              "drawdown_from_running_high_pct": -65.04287027683525,
+              "forward_1095d_exact_endpoint_date": "2026-02-28",
+              "forward_1095d_return_pct": 183.624591135166,
+              "origin_date": "2023-03-01",
+              "origin_price_usd": 23610.6590902981
+            },
+            {
+              "drawdown_from_running_high_pct": -57.811928825462935,
+              "forward_1095d_exact_endpoint_date": "2026-03-31",
+              "forward_1095d_return_pct": 139.39607677802184,
+              "origin_date": "2023-04-01",
+              "origin_price_usd": 28494.5638863238
+            },
+            {
+              "drawdown_from_running_high_pct": -58.37396736910193,
+              "forward_1095d_exact_endpoint_date": "2026-04-30",
+              "forward_1095d_return_pct": 171.38446797413985,
+              "origin_date": "2023-05-01",
+              "origin_price_usd": 28114.9531873174
+            },
+            {
+              "drawdown_from_running_high_pct": -60.283277887454354,
+              "forward_1095d_exact_endpoint_date": "2026-05-31",
+              "forward_1095d_return_pct": 174.36548703997903,
+              "origin_date": "2023-06-01",
+              "origin_price_usd": 26825.3713451198
+            },
+            {
+              "drawdown_from_running_high_pct": -54.721803223174504,
+              "forward_1095d_exact_endpoint_date": "2026-06-30",
+              "forward_1095d_return_pct": 91.3729337430488,
+              "origin_date": "2023-07-01",
+              "origin_price_usd": 30581.6889655172
+            },
+            {
+              "drawdown_from_running_high_pct": -56.32392537531816,
+              "forward_1095d_exact_endpoint_date": "2026-07-31",
+              "forward_1095d_return_pct": 113.13917983143394,
+              "origin_date": "2023-08-01",
+              "origin_price_usd": 29499.5875385739
+            },
+            {
+              "drawdown_from_running_high_pct": -61.79727883045444,
+              "forward_1095d_exact_endpoint_date": "2026-08-31",
+              "forward_1095d_return_pct": null,
+              "origin_date": "2023-09-01",
+              "origin_price_usd": 25802.7885298071
+            },
+            {
+              "drawdown_from_running_high_pct": -58.617976170233156,
+              "forward_1095d_exact_endpoint_date": "2026-09-30",
+              "forward_1095d_return_pct": null,
+              "origin_date": "2023-10-01",
+              "origin_price_usd": 27950.1453594389
+            },
+            {
+              "drawdown_from_running_high_pct": -47.540629960452726,
+              "forward_1095d_exact_endpoint_date": "2026-10-31",
+              "forward_1095d_return_pct": null,
+              "origin_date": "2023-11-01",
+              "origin_price_usd": 35431.9794532437
+            },
+            {
+              "drawdown_from_running_high_pct": -42.69684968823688,
+              "forward_1095d_exact_endpoint_date": "2026-11-30",
+              "forward_1095d_return_pct": null,
+              "origin_date": "2023-12-01",
+              "origin_price_usd": 38703.5536820573
+            }
+          ],
+          "monthly_anchor_rows": 12,
+          "positive_3y_return_rate": 1.0,
+          "worst_3y_return_pct": 91.3729337430488
+        }
+      },
+      "adequate_coverage": true,
+      "coverage_ratio": 1.0,
+      "cycle_start_halving": "2020-05-11",
+      "expected_calendar_days": 1440,
+      "next_halving": "2024-04-20",
+      "observed_daily_rows": 1440,
+      "peak_to_reset_drawdown_pct": -76.66881595920356,
+      "post_halving_expansion_peak_date": "2021-11-08",
+      "post_halving_expansion_peak_price_usd": 67541.7555081824,
+      "pre_halving_recovery_endpoint_date": "2023-12-31",
+      "pre_halving_recovery_return_pct": 167.90441955833185,
+      "refined_expansion_reset_ordering_match": true,
+      "reset_trough_date": "2022-11-09",
+      "reset_trough_price_usd": 15758.2912819988
+    }
+  ],
+  "cycle_policy_authority_granted": false,
+  "cycle_policy_promotion_recommendation_allowed": true,
+  "evidence_class": "EXTERNAL_HISTORICAL_RESEARCH_SNAPSHOT_NOT_STRICT_VINTAGE_POINT_IN_TIME",
+  "governed_source_hashes_before": {
+    "design": "4f6a577a1f4d22b11b43bdd3968cdb0b5c9372f4cba05db91051b6899f26fd0b",
+    "mandate_contract": "4a10529ce8e7ed238ec1eb3e7f52022a8bd391a84da9f032ef49c80cc83609fd",
+    "recovery_addendum": "fbb0f3415837d28e1538281a26f69d670c96982b4d97a895fc7ff38385b97156",
+    "snapshot": "549bc0172dbefaf9936705df9da58ead29cd583141c5eaf294dd2fed5a693961"
+  },
+  "interpretation_controls": {
+    "all_three_completed_cycles_adequately_covered": true,
+    "at_least_two_of_three_refined_ordering_matches": true,
+    "both_accumulation_phases_positive_median_in_each_cycle_where_available": true,
+    "independent_completed_cycle_sample_size": 3,
+    "monthly_anchor_observations_are_overlapping": true,
+    "no_single_cycle_is_sole_positive_source": true,
+    "small_sample_warning": true
+  },
+  "next_gate": "PRESERVE_AND_REVIEW_BITCOIN_CYCLE_STUDY_V2",
+  "phase_cycle_positive_evidence": {
+    "POST_HALVING_YEAR_2": [
+      {
+        "cycle_start_halving": "2012-11-28",
+        "exact_3y_outcomes": 12,
+        "median_3y_return_pct": 273.20992782555334,
+        "positive_3y_return_rate": 1.0
+      },
+      {
+        "cycle_start_halving": "2016-07-09",
+        "exact_3y_outcomes": 12,
+        "median_3y_return_pct": 493.8450880400965,
+        "positive_3y_return_rate": 1.0
+      },
+      {
+        "cycle_start_halving": "2020-05-11",
+        "exact_3y_outcomes": 12,
+        "median_3y_return_pct": 323.80004889912317,
+        "positive_3y_return_rate": 1.0
+      }
+    ],
+    "PRE_HALVING_YEAR": [
+      {
+        "cycle_start_halving": "2012-11-28",
+        "exact_3y_outcomes": 12,
+        "median_3y_return_pct": 2841.119444526789,
+        "positive_3y_return_rate": 1.0
+      },
+      {
+        "cycle_start_halving": "2016-07-09",
+        "exact_3y_outcomes": 12,
+        "median_3y_return_pct": 202.91857244301602,
+        "positive_3y_return_rate": 1.0
+      },
+      {
+        "cycle_start_halving": "2020-05-11",
+        "exact_3y_outcomes": 8,
+        "median_3y_return_pct": 172.87497750705944,
+        "positive_3y_return_rate": 1.0
+      }
+    ]
+  },
+  "production_policy_changed": false,
+  "recommendation_thresholds_changed": false,
+  "refined_expansion_reset_ordering_matches": 3,
+  "source_first_observation_date": "2011-01-01",
+  "source_last_observation_date": "2026-08-20",
+  "source_metric": "PriceUSD",
+  "source_provider": "Coin Metrics Community API",
+  "source_snapshot_id": "BITCOIN_EXTENDED_HISTORY_COINMETRICS_PRICEUSD_V2",
+  "source_snapshot_sha256": "549bc0172dbefaf9936705df9da58ead29cd583141c5eaf294dd2fed5a693961",
+  "source_unique_daily_rows": 5711,
+  "strict_vintage_point_in_time_claim_allowed": false,
+  "study_id": "BITCOIN_FOUR_YEAR_CYCLE_EXTENDED_HISTORY_V2",
+  "study_interpretation": "PATTERN_SUPPORTED_DESCRIPTIVELY",
+  "study_scope": "BITCOIN_THREE_COMPLETED_HALVING_CYCLE_EXTENDED_HISTORY_STUDY",
+  "v1_result_modified": false,
+  "v4_model_selection_affected": false
+}
