@@ -54,7 +54,7 @@ REQUIRED_CONTRACT_FRAGMENTS = (
 REQUIRED_LEDGER_FRAGMENTS = (
     "BITCOIN_STRATEGIC_REGIME_FORWARD_EVIDENCE_LEDGER_V1",
     "append-only",
-    "zero observations",
+    "The ledger begins with zero recommendation observations",
 )
 
 
