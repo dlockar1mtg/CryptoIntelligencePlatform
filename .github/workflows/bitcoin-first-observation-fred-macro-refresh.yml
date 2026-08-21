@@ -41,6 +41,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: data/crypto_intelligence.duckdb
+          key: crypto-db-${{ runner.os }}-bitcoin-fred-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             crypto-db-${{ runner.os }}-
 
@@ -150,4 +151,4 @@ jobs:
           name: bitcoin-first-observation-fred-macro-refresh-${{ github.run_id }}-${{ github.run_attempt }}
           path: data/operations/crypto/bitcoin_first_observation_macro_refresh/
           retention-days: 30
-          if-no-files-found: error
+          if-no-files-found: warn
