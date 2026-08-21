@@ -11,6 +11,7 @@ EXPECTED_EXPERIMENT_ID = "CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4"
 EXPECTED_GROUPS = 17
 EXPECTED_DEVELOPMENT_ORIGINS = 50
 EXPECTED_HOLDOUT_ORIGINS = 10
+EXPECTED_AVALANCHE365_HOLDOUT_ORIGINS = 9
 
 
 def require(condition: bool, message: str) -> None:
@@ -78,7 +79,13 @@ def main() -> int:
         development = list(group["v4_development_origin_dates"])
         holdout = list(group["v4_final_holdout_origin_dates"])
         require(len(development) == EXPECTED_DEVELOPMENT_ORIGINS, f"Unexpected development count for {asset} {horizon}d")
-        require(len(holdout) == EXPECTED_HOLDOUT_ORIGINS, f"Unexpected holdout count for {asset} {horizon}d")
+
+        expected_holdout = EXPECTED_HOLDOUT_ORIGINS
+        if asset == "avalanche" and horizon == 365:
+            require(manifest.get("avalanche365_exception_governed") is True, "Avalanche365 holdout exception is not governed")
+            expected_holdout = EXPECTED_AVALANCHE365_HOLDOUT_ORIGINS
+        require(len(holdout) == expected_holdout, f"Unexpected holdout count for {asset} {horizon}d")
+
         available_dates = dates_by_asset.get(asset, set())
 
         for origin in development:
