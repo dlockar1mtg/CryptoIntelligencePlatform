@@ -10,6 +10,7 @@ REQUIRED_FRAGMENTS = (
     'duckdb.connect(str(database), read_only=True)',
     "asset_id='bitcoin'",
     'timedelta(days=horizon)',
+    'endpoint_price = prices.get(endpoint)',
     'HORIZONS = (365, 730, 1095)',
     'POST_HALVING_YEAR_2',
     'PRE_HALVING_YEAR',
@@ -26,13 +27,22 @@ REQUIRED_FRAGMENTS = (
     'source_database_modified": False',
 )
 
+# Ban concrete mechanisms that could substitute a non-exact observation for the
+# required calendar endpoint. Do not ban the English word "nearest" globally,
+# because the runner intentionally verifies the governed design phrase
+# "No nearest-date endpoint".
 PROHIBITED_FRAGMENTS = (
     'fit(',
     'fit_predict(',
     'choose_winner',
     'fillna(0',
     'interpolate(',
-    'nearest',
+    "method='nearest'",
+    'method="nearest"',
+    "direction='nearest'",
+    'direction="nearest"',
+    "get_indexer([endpoint], method='nearest')",
+    'get_indexer([endpoint], method="nearest")',
     'read_only=False',
     'production_policy_changed": True',
     'cycle_policy_authority_granted": True',
@@ -96,6 +106,8 @@ def main() -> int:
     print('BITCOIN_FOUR_YEAR_CYCLE_HISTORICAL_STUDY_RUNNER_VALIDATION=PASS')
     print('STUDY_SCOPE=BITCOIN_ONLY_FOUR_YEAR_CYCLE_HISTORICAL_STUDY')
     print('DATABASE_OPEN_MODE=READ_ONLY')
+    print('EXACT_CALENDAR_ENDPOINT_LOOKUP=REQUIRED')
+    print('NEAREST_DATE_SUBSTITUTION_ALLOWED=FALSE')
     print('FORWARD_HORIZONS=365,730,1095')
     print('PRIMARY_HOLDING_DIAGNOSTIC_DAYS=1095')
     print('MONTHLY_ANCHOR_ROBUSTNESS=REQUIRED')
