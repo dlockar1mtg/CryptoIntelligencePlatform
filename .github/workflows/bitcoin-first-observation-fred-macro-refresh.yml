@@ -1,0 +1,100 @@
+name: Bitcoin First Observation FRED Macro Refresh
+
+on:
+  push:
+    branches:
+      - phase-native-predictive-validation
+    paths:
+      - data/research/bitcoin_strategic_regime_forward_evidence_v1/github_fred_macro_refresh_trigger_v1.txt
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bitcoin-first-observation-fred-macro-refresh
+  cancel-in-progress: false
+
+jobs:
+  fred-macro-refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    environment: staging
+    env:
+      CRYPTO_DATABASE_PATH: data/crypto_intelligence.duckdb
+      FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+      COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
+      EVIDENCE_ROOT: data/operations/crypto/bitcoin_first_observation_macro_refresh
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+          cache: pip
+
+      - run: pip install -r requirements.txt -r requirements-dev.txt
+
+      - name: Restore hosted Crypto database
+        uses: actions/cache/restore@v4
+        with:
+          path: data/crypto_intelligence.duckdb
+          restore-keys: |
+            crypto-db-${{ runner.os }}-
+
+      - name: Require hosted database and secret mapping
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f "$CRYPTO_DATABASE_PATH"
+          test -n "${FRED_API_KEY:-}"
+          test -f data/research/bitcoin_strategic_regime_forward_evidence_v1/manifest.json
+          RECORD_COUNT=$(find data/research/bitcoin_strategic_regime_forward_evidence_v1/records -type f -name '*.json' 2>/dev/null | wc -l | tr -d ' ')
+          test "$RECORD_COUNT" = "0"
+
+      - name: Validate narrow macro refresh controls
+        run: |
+          python -m py_compile \
+            scripts/run_bitcoin_github_fred_macro_refresh.py \
+            scripts/validate_bitcoin_github_fred_macro_refresh.py
+          python scripts/validate_bitcoin_github_fred_macro_refresh.py \
+            --runner scripts/run_bitcoin_github_fred_macro_refresh.py \
+            --workflow .github/workflows/bitcoin-first-observation-fred-macro-refresh.yml \
+            --manifest data/research/bitcoin_strategic_regime_forward_evidence_v1/manifest.json \
+            --records-dir data/research/bitcoin_strategic_regime_forward_evidence_v1/records
+
+      - name: Run governed FRED macro refresh
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUTPUT="$EVIDENCE_ROOT/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}/macro_refresh_evidence.json"
+          python scripts/run_bitcoin_github_fred_macro_refresh.py \
+            --repo-root . \
+            --database "$CRYPTO_DATABASE_PATH" \
+            --manifest data/research/bitcoin_strategic_regime_forward_evidence_v1/manifest.json \
+            --records-dir data/research/bitcoin_strategic_regime_forward_evidence_v1/records \
+            --output "$OUTPUT"
+          test -f "$OUTPUT"
+
+      - name: Verify no prospective observation was created
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          manifest = json.loads(Path('data/research/bitcoin_strategic_regime_forward_evidence_v1/manifest.json').read_text())
+          assert int(manifest['record_count']) == 0
+          records = list(Path('data/research/bitcoin_strategic_regime_forward_evidence_v1/records').rglob('*.json'))
+          assert len(records) == 0
+          print('GITHUB_FRED_MACRO_REFRESH_LEDGER_SAFETY=PASS')
+          print('FIRST_PROSPECTIVE_OBSERVATION_CAPTURED=FALSE')
+          PY
+
+      - name: Upload macro refresh evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bitcoin-first-observation-fred-macro-refresh-${{ github.run_id }}-${{ github.run_attempt }}
+          path: data/operations/crypto/bitcoin_first_observation_macro_refresh/
+          retention-days: 30
+          if-no-files-found: error
