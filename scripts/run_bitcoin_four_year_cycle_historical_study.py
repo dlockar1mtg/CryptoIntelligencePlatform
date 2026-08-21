@@ -12,12 +12,7 @@ import duckdb
 
 STUDY_ID = "BITCOIN_FOUR_YEAR_CYCLE_HISTORICAL_STUDY_V1"
 EVIDENCE_CLASS = "HISTORICAL_CANONICAL_PRICE_STUDY_NOT_STRICT_VINTAGE_POINT_IN_TIME"
-HALVINGS = [
-    date(2012, 11, 28),
-    date(2016, 7, 9),
-    date(2020, 5, 11),
-    date(2024, 4, 20),
-]
+HALVINGS = [date(2012, 11, 28), date(2016, 7, 9), date(2020, 5, 11), date(2024, 4, 20)]
 HORIZONS = (365, 730, 1095)
 PHASES = (
     "HALVING_YEAR",
@@ -102,11 +97,7 @@ def main() -> int:
     mandate = Path(args.mandate_contract).resolve()
     output = Path(args.output).resolve()
 
-    for name, path in {
-        "database": database,
-        "design": design,
-        "mandate_contract": mandate,
-    }.items():
+    for name, path in {"database": database, "design": design, "mandate_contract": mandate}.items():
         require(path.is_file(), f"Required governed input missing: {name}={path}")
     require(not output.exists(), "Bitcoin cycle study output already exists; refusing overwrite")
 
@@ -128,19 +119,25 @@ def main() -> int:
         "No nearest-date endpoint",
     ):
         require(required_text.lower() in design_text.lower(), f"Study design missing required boundary: {required_text}")
+
+    # Validate the actual frozen Markdown contract rather than synthetic marker strings.
     for required_text in (
-        "LONG_DURATION_ACCUMULATION",
-        "APPROXIMATE_NEW_BTC_HOLDING_THESIS_YEARS=3",
-        "SHORT_TERM_NEGATIVE_FORECAST_AUTOMATIC_SELL_ALLOWED=FALSE",
+        "long-duration accumulation assets",
+        "approximately three-year intended holding period",
+        "Short-term forecasts are primarily tactical entry-timing evidence",
+        "not automatic sell signals",
+        "four-year halving cycle is a research hypothesis",
+        "These year labels are not deterministic execution rules",
+        "No autonomous purchase or sale execution is authorized",
     ):
-        require(required_text in mandate_text, f"Mandate contract missing required boundary: {required_text}")
+        require(required_text.lower() in mandate_text.lower(), f"Mandate contract missing required boundary: {required_text}")
 
     conn = duckdb.connect(str(database), read_only=True)
     try:
-        table_exists = conn.execute(
+        exists = conn.execute(
             "SELECT count(*) FROM information_schema.tables WHERE lower(table_name)='canonical_market_daily'"
         ).fetchone()[0]
-        require(int(table_exists) >= 1, "canonical_market_daily is unavailable")
+        require(int(exists) >= 1, "canonical_market_daily is unavailable")
         raw_rows = conn.execute(
             """
             SELECT observation_date, price_usd
@@ -153,7 +150,6 @@ def main() -> int:
         conn.close()
 
     require(raw_rows, "No canonical Bitcoin price history is available")
-
     prices: dict[date, float] = {}
     for observation_date, price_usd in raw_rows:
         obs = observation_date if isinstance(observation_date, date) else datetime.fromisoformat(str(observation_date)[:10]).date()
@@ -163,64 +159,50 @@ def main() -> int:
         prices[obs] = price
 
     dates = sorted(prices)
-    first_date = dates[0]
-    last_date = dates[-1]
+    first_date, last_date = dates[0], dates[-1]
 
     running_peak = None
     drawdown_from_high: dict[date, float] = {}
     for obs in dates:
-        price = prices[obs]
-        running_peak = price if running_peak is None else max(running_peak, price)
-        drawdown_from_high[obs] = 100.0 * (price / running_peak - 1.0)
+        running_peak = prices[obs] if running_peak is None else max(running_peak, prices[obs])
+        drawdown_from_high[obs] = 100.0 * (prices[obs] / running_peak - 1.0)
 
-    yearly = []
     by_year: dict[int, list[date]] = defaultdict(list)
     for obs in dates:
         by_year[obs.year].append(obs)
 
+    yearly = []
     for year in sorted(by_year):
         year_dates = by_year[year]
-        first_obs = year_dates[0]
-        last_obs = year_dates[-1]
+        first_obs, last_obs = year_dates[0], year_dates[-1]
         min_obs = min(year_dates, key=lambda d: prices[d])
         max_obs = max(year_dates, key=lambda d: prices[d])
-        first_price = prices[first_obs]
-        last_price = prices[last_obs]
-        min_price = prices[min_obs]
-        max_price = prices[max_obs]
-        year_return = 100.0 * (last_price / first_price - 1.0)
-        drawdown = min(drawdown_from_high[d] for d in year_dates)
-        first_to_min = 100.0 * (min_price / first_price - 1.0)
-        min_to_last = 100.0 * (last_price / min_price - 1.0)
         yearly.append({
             "calendar_year": year,
             "phase": phase_for_year(year),
             "observation_rows": len(year_dates),
             "first_observation_date": first_obs.isoformat(),
             "last_observation_date": last_obs.isoformat(),
-            "first_price_usd": first_price,
-            "last_price_usd": last_price,
-            "calendar_year_return_pct": year_return,
-            "minimum_price_usd": min_price,
+            "first_price_usd": prices[first_obs],
+            "last_price_usd": prices[last_obs],
+            "calendar_year_return_pct": 100.0 * (prices[last_obs] / prices[first_obs] - 1.0),
+            "minimum_price_usd": prices[min_obs],
             "minimum_price_date": min_obs.isoformat(),
-            "maximum_price_usd": max_price,
+            "maximum_price_usd": prices[max_obs],
             "maximum_price_date": max_obs.isoformat(),
-            "maximum_drawdown_from_running_high_pct": drawdown,
-            "first_to_minimum_return_pct": first_to_min,
-            "minimum_to_last_return_pct": min_to_last,
+            "maximum_drawdown_from_running_high_pct": min(drawdown_from_high[d] for d in year_dates),
+            "first_to_minimum_return_pct": 100.0 * (prices[min_obs] / prices[first_obs] - 1.0),
+            "minimum_to_last_return_pct": 100.0 * (prices[last_obs] / prices[min_obs] - 1.0),
         })
 
-    completed_phase_years = [
-        row for row in yearly
-        if row["phase"] != "OTHER_OR_INCOMPLETE" and row["calendar_year"] < last_date.year
-    ]
+    completed = [r for r in yearly if r["phase"] != "OTHER_OR_INCOMPLETE" and r["calendar_year"] < last_date.year]
     phase_summary = {}
     for phase in PHASES[:-1]:
-        scoped = [row for row in completed_phase_years if row["phase"] == phase]
-        returns = [row["calendar_year_return_pct"] for row in scoped]
-        drawdowns = [row["maximum_drawdown_from_running_high_pct"] for row in scoped]
+        scoped = [r for r in completed if r["phase"] == phase]
+        returns = [r["calendar_year_return_pct"] for r in scoped]
+        drawdowns = [r["maximum_drawdown_from_running_high_pct"] for r in scoped]
         phase_summary[phase] = {
-            "represented_years": [row["calendar_year"] for row in scoped],
+            "represented_years": [r["calendar_year"] for r in scoped],
             "independent_phase_years": len(scoped),
             "mean_calendar_year_return_pct": finite_or_none(mean(returns)) if returns else None,
             "median_calendar_year_return_pct": finite_or_none(median(returns)) if returns else None,
@@ -234,14 +216,13 @@ def main() -> int:
     interval_diagnostics = []
     adequate_completed_intervals = []
     for idx in range(len(HALVINGS) - 1):
-        start = HALVINGS[idx]
-        end = HALVINGS[idx + 1]
+        start, end = HALVINGS[idx], HALVINGS[idx + 1]
         interval_dates = [d for d in dates if start <= d < end]
         expected_days = (end - start).days
-        coverage_ratio = len(interval_dates) / expected_days if expected_days > 0 else 0.0
-        endpoint_near_start = bool(interval_dates and (interval_dates[0] - start).days <= 7)
-        endpoint_near_end = bool(interval_dates and (end - interval_dates[-1]).days <= 7)
-        adequate = coverage_ratio >= 0.90 and endpoint_near_start and endpoint_near_end
+        coverage_ratio = len(interval_dates) / expected_days if expected_days else 0.0
+        near_start = bool(interval_dates and (interval_dates[0] - start).days <= 7)
+        near_end = bool(interval_dates and (end - interval_dates[-1]).days <= 7)
+        adequate = coverage_ratio >= 0.90 and near_start and near_end
         row = {
             "halving_start": start.isoformat(),
             "next_halving": end.isoformat(),
@@ -254,16 +235,14 @@ def main() -> int:
             peak_date = max(interval_dates, key=lambda d: prices[d])
             post_peak_dates = [d for d in interval_dates if d >= peak_date]
             trough_date = min(post_peak_dates, key=lambda d: prices[d])
-            peak_price = prices[peak_date]
-            trough_price = prices[trough_date]
             row.update({
                 "interval_peak_date": peak_date.isoformat(),
-                "interval_peak_price_usd": peak_price,
+                "interval_peak_price_usd": prices[peak_date],
                 "interval_peak_phase": phase_for_year(peak_date.year),
                 "post_peak_minimum_date": trough_date.isoformat(),
-                "post_peak_minimum_price_usd": trough_price,
+                "post_peak_minimum_price_usd": prices[trough_date],
                 "post_peak_minimum_phase": phase_for_year(trough_date.year),
-                "peak_to_subsequent_minimum_drawdown_pct": 100.0 * (trough_price / peak_price - 1.0),
+                "peak_to_subsequent_minimum_drawdown_pct": 100.0 * (prices[trough_date] / prices[peak_date] - 1.0),
             })
         interval_diagnostics.append(row)
         if adequate:
@@ -284,15 +263,11 @@ def main() -> int:
                 endpoint = origin + timedelta(days=horizon)
                 endpoint_price = prices.get(endpoint)
                 row[f"forward_{horizon}d_exact_endpoint_date"] = endpoint.isoformat()
-                row[f"forward_{horizon}d_return_pct"] = (
-                    100.0 * (endpoint_price / origin_price - 1.0)
-                    if endpoint_price is not None else None
-                )
+                row[f"forward_{horizon}d_return_pct"] = 100.0 * (endpoint_price / origin_price - 1.0) if endpoint_price is not None else None
             rows.append(row)
         return rows
 
     daily_forward = forward_rows(dates)
-
     monthly_anchor_dates = []
     seen_months = set()
     for obs in dates:
@@ -303,13 +278,13 @@ def main() -> int:
     monthly_forward = forward_rows(monthly_anchor_dates)
 
     def forward_summary(rows: list[dict]) -> dict:
-        output_summary = {}
+        result = {}
         for phase in PHASES:
-            scoped = [row for row in rows if row["origin_phase"] == phase]
+            scoped = [r for r in rows if r["origin_phase"] == phase]
             horizon_summary = {}
             for horizon in HORIZONS:
                 key = f"forward_{horizon}d_return_pct"
-                values = [row[key] for row in scoped if row[key] is not None]
+                values = [r[key] for r in scoped if r[key] is not None]
                 summary = numeric_summary(values)
                 summary.update({
                     "eligible_origin_rows": len(scoped),
@@ -317,17 +292,15 @@ def main() -> int:
                     "missing_exact_endpoint_rows": len(scoped) - len(values),
                 })
                 horizon_summary[str(horizon)] = summary
-            drawdowns = [row["drawdown_from_running_high_pct"] for row in scoped]
-            output_summary[phase] = {
+            result[phase] = {
                 "origin_rows": len(scoped),
-                "drawdown_from_running_high_pct": numeric_summary(drawdowns),
+                "drawdown_from_running_high_pct": numeric_summary([r["drawdown_from_running_high_pct"] for r in scoped]),
                 "forward_returns": horizon_summary,
             }
-        return output_summary
+        return result
 
     daily_summary = forward_summary(daily_forward)
     monthly_summary = forward_summary(monthly_forward)
-
     three_year = {}
     for phase in PHASES:
         summary = monthly_summary[phase]["forward_returns"]["1095"]
@@ -342,21 +315,14 @@ def main() -> int:
             "best_3y_return_pct": summary["best"],
         }
 
-    sequence_matches = 0
-    for row in adequate_completed_intervals:
-        if (
-            row.get("interval_peak_phase") == "POST_HALVING_YEAR_1"
-            and row.get("post_peak_minimum_phase") == "POST_HALVING_YEAR_2"
-        ):
-            sequence_matches += 1
-
-    accumulation_phases = ("POST_HALVING_YEAR_2", "PRE_HALVING_YEAR")
-    accumulation_3y = [three_year[p]["median_3y_return_pct"] for p in accumulation_phases]
-    accumulation_3y_observed = [v for v in accumulation_3y if v is not None]
-    three_year_not_contradictory = bool(
-        accumulation_3y_observed
-        and all(v > 0 for v in accumulation_3y_observed)
+    sequence_matches = sum(
+        1 for r in adequate_completed_intervals
+        if r.get("interval_peak_phase") == "POST_HALVING_YEAR_1"
+        and r.get("post_peak_minimum_phase") == "POST_HALVING_YEAR_2"
     )
+    accumulation_phases = ("POST_HALVING_YEAR_2", "PRE_HALVING_YEAR")
+    observed_medians = [three_year[p]["median_3y_return_pct"] for p in accumulation_phases if three_year[p]["median_3y_return_pct"] is not None]
+    three_year_not_contradictory = bool(observed_medians and all(v > 0 for v in observed_medians))
 
     if len(adequate_completed_intervals) < 2:
         interpretation = "INSUFFICIENT_CANONICAL_HISTORY"
@@ -394,10 +360,7 @@ def main() -> int:
         "monthly_anchor_exact_endpoint_summary_by_phase": monthly_summary,
         "three_year_accumulation_diagnostics": three_year,
         "interpretation_controls": {
-            "majority_peak_in_post_halving_year_1_and_reset_in_post_halving_year_2": (
-                sequence_matches > len(adequate_completed_intervals) / 2
-                if adequate_completed_intervals else False
-            ),
+            "majority_peak_in_post_halving_year_1_and_reset_in_post_halving_year_2": sequence_matches > len(adequate_completed_intervals) / 2 if adequate_completed_intervals else False,
             "accumulation_phase_3y_medians_positive_where_observed": three_year_not_contradictory,
             "independent_cycle_sample_size_warning": True,
             "daily_forward_rows_are_overlapping": True,
@@ -415,11 +378,7 @@ def main() -> int:
         "next_gate": "PRESERVE_AND_REVIEW_BITCOIN_FOUR_YEAR_CYCLE_HISTORICAL_STUDY",
     }
 
-    hashes_after = {
-        "database": sha256(database),
-        "design": sha256(design),
-        "mandate_contract": sha256(mandate),
-    }
+    hashes_after = {"database": sha256(database), "design": sha256(design), "mandate_contract": sha256(mandate)}
     require(hashes_after == hashes_before, "Governed source evidence or source database changed during Bitcoin cycle study")
 
     output.parent.mkdir(parents=True, exist_ok=True)
