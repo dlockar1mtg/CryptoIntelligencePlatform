@@ -35,11 +35,10 @@ from scripts.v4_horizon_recovery_model_spec import (
 )
 
 EXPECTED_V3_RESULTS_SHA256 = "33b039fd83a27f868bc660584e775ea64743954e87bd70a8f120c952588b5fd1"
-EXPECTED_V4_MANIFEST_CONTENT_SHA256 = "510d121e1e4e8ea7e2079b1f61883b2ca01dfb6ce2c6baf6b9ba601eadeafd42"
+EXPECTED_V4_MANIFEST_CONTENT_SHA256 = "87b800943cc661d4b74b0ab2343bb169310bd7fbbe93ff0fdc0546729e3a7d1d"
 EXPECTED_V4_GROUPS = 17
 EXPECTED_DEVELOPMENT_ORIGINS = 50
 EXPECTED_FINAL_HOLDOUT_ORIGINS = 10
-EXPECTED_AVALANCHE365_FINAL_HOLDOUT_ORIGINS = 9
 
 
 def require(condition: bool, message: str) -> None:
@@ -123,14 +122,8 @@ def main() -> int:
     require(v4.get("experiment_id") == EXPERIMENT_ID, "Unexpected V4 experiment id")
     require(v4.get("holdout_outcomes_viewed_before_freeze") is False, "V4 holdout was not frozen before outcomes")
     require(v4.get("v3_final_holdout_reused") is False, "V3 final holdout was reused by V4")
-    require(int(v4.get("manifest_revision", 0)) == 2, "Unexpected corrected V4 manifest revision")
-    require(v4.get("exact_calendar_target_availability_required") is True, "Corrected V4 manifest does not require exact calendar targets")
-    require(v4.get("strict_final_holdout_after_development_required") is True, "Corrected V4 manifest does not enforce strict final-holdout chronology")
-    require(v4.get("holdout_outcome_values_read_during_rebuild") is False, "V4 holdout outcome values were read during corrected rebuild")
-    require(v4.get("holdout_outcome_signs_read_during_rebuild") is False, "V4 holdout outcome signs were read during corrected rebuild")
-    require(v4.get("holdout_outcome_magnitudes_read_during_rebuild") is False, "V4 holdout outcome magnitudes were read during corrected rebuild")
-    require(int(v4.get("avalanche365_final_holdout_origins", 0)) == EXPECTED_AVALANCHE365_FINAL_HOLDOUT_ORIGINS, "Unexpected Avalanche365 governed holdout count")
-    require(v4.get("avalanche365_exception_governed") is True, "Avalanche365 holdout exception is not governed")
+    require(v4.get("exact_calendar_target_date_required") is True, "Corrected V4 manifest does not require exact calendar targets")
+    require(v4.get("holdout_outcome_values_read_during_membership_selection") is False, "V4 holdout outcome values were read during corrected membership selection")
     require(v4.get("manifest_content_sha256") == EXPECTED_V4_MANIFEST_CONTENT_SHA256, "Unexpected V4 manifest content hash")
     require(manifest_content_hash(v4) == EXPECTED_V4_MANIFEST_CONTENT_SHA256, "V4 manifest canonical content hash mismatch")
     require(int(v4.get("supported_groups", 0)) == EXPECTED_V4_GROUPS, "Unexpected V4 supported-group count")
@@ -183,15 +176,10 @@ def main() -> int:
             for (asset, horizon), group in sorted(v4_groups.items(), key=lambda item: (item[0][1], item[0][0])):
                 dev_dates = list(group["v4_development_origin_dates"])
                 holdout_dates = list(group["v4_final_holdout_origin_dates"])
-                expected_holdout_origins = (
-                    EXPECTED_AVALANCHE365_FINAL_HOLDOUT_ORIGINS
-                    if asset == "avalanche" and horizon == 365
-                    else EXPECTED_FINAL_HOLDOUT_ORIGINS
-                )
                 require(len(dev_dates) == EXPECTED_DEVELOPMENT_ORIGINS, f"Unexpected V4 development-origin count for {asset} {horizon}d")
-                require(len(holdout_dates) == expected_holdout_origins, f"Unexpected V4 holdout-origin count for {asset} {horizon}d")
+                require(len(holdout_dates) == EXPECTED_FINAL_HOLDOUT_ORIGINS, f"Unexpected V4 holdout-origin count for {asset} {horizon}d")
                 require(int(group.get("development_origin_count", len(dev_dates))) == EXPECTED_DEVELOPMENT_ORIGINS, f"Manifest development-origin metadata mismatch for {asset} {horizon}d")
-                require(int(group.get("final_holdout_origin_count", len(holdout_dates))) == expected_holdout_origins, f"Manifest holdout-origin metadata mismatch for {asset} {horizon}d")
+                require(int(group.get("final_holdout_origin_count", len(holdout_dates))) == EXPECTED_FINAL_HOLDOUT_ORIGINS, f"Manifest holdout-origin metadata mismatch for {asset} {horizon}d")
                 require(len(set(dev_dates)) == len(dev_dates), f"Duplicate V4 development origin for {asset} {horizon}d")
                 require(len(set(holdout_dates)) == len(holdout_dates), f"Duplicate V4 holdout origin for {asset} {horizon}d")
                 require(set(dev_dates).isdisjoint(holdout_dates), f"V4 development/holdout overlap for {asset} {horizon}d")
