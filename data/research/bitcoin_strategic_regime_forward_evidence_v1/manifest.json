@@ -1,0 +1,26 @@
+{
+  "ledger_id": "BITCOIN_STRATEGIC_REGIME_FORWARD_EVIDENCE_LEDGER_V1",
+  "schema_version": 1,
+  "asset_scope": [
+    "bitcoin"
+  ],
+  "records_directory": "data/research/bitcoin_strategic_regime_forward_evidence_v1/records",
+  "record_count": 0,
+  "initial_record_count": 0,
+  "synthetic_initial_observation_allowed": false,
+  "append_only_observation_records": true,
+  "correction_requires_separate_record": true,
+  "outcomes_unknown_at_initial_observation": true,
+  "nearest_date_substitution_allowed": false,
+  "missing_outcomes_synthesized": false,
+  "cycle_phase_strategic_regime_input_authorized": true,
+  "calendar_only_action_authorized": false,
+  "bitcoin_recommendation_policy_skill_certified": false,
+  "btc_eth_recommendation_policy_skill_not_certified": true,
+  "v4_model_selection_reopened": false,
+  "production_policy_change_authorized": false,
+  "autonomous_execution_authorized": false,
+  "governing_contract": "BITCOIN_STRATEGIC_REGIME_FORWARD_EVIDENCE_CONTRACT_V1",
+  "governing_ledger_specification": "BITCOIN_STRATEGIC_REGIME_FORWARD_EVIDENCE_LEDGER_V1",
+  "next_gate": "VALIDATE_ZERO_RECORD_BITCOIN_FORWARD_EVIDENCE_LEDGER"
+}
