@@ -11,6 +11,8 @@ EXPECTED_HORIZONS = [7, 30, 365]
 EXPECTED_SUPPORTED_GROUPS = 17
 EXPECTED_DEVELOPMENT_ORIGINS_PER_GROUP = 50
 EXPECTED_FINAL_HOLDOUT_ORIGINS_PER_GROUP = 10
+EXPECTED_AVALANCHE365_FINAL_HOLDOUT_ORIGINS = 9
+AVALANCHE365_KEY = ("avalanche", 365)
 
 
 def require(condition: bool, message: str) -> None:
@@ -39,7 +41,11 @@ def main() -> int:
     require(payload.get("recovery_horizons") == EXPECTED_HORIZONS, "Unexpected V4 recovery horizons")
     require(int(payload.get("supported_groups", 0)) == EXPECTED_SUPPORTED_GROUPS, "Unexpected supported-group count")
     require(int(payload.get("development_origins_per_group", 0)) == EXPECTED_DEVELOPMENT_ORIGINS_PER_GROUP, "Unexpected development-origin count")
-    require(int(payload.get("final_holdout_origins_per_group", 0)) == EXPECTED_FINAL_HOLDOUT_ORIGINS_PER_GROUP, "Unexpected final-holdout-origin count")
+    require(int(payload.get("final_holdout_origins_per_group", 0)) == EXPECTED_FINAL_HOLDOUT_ORIGINS_PER_GROUP, "Unexpected default final-holdout-origin count")
+    require(payload.get("avalanche365_exception_governed") is True, "Avalanche365 governed exception missing")
+    require(int(payload.get("avalanche365_development_origins", 0)) == EXPECTED_DEVELOPMENT_ORIGINS_PER_GROUP, "Unexpected Avalanche365 development-origin count")
+    require(int(payload.get("avalanche365_final_holdout_origins", 0)) == EXPECTED_AVALANCHE365_FINAL_HOLDOUT_ORIGINS, "Unexpected Avalanche365 final-holdout count")
+    require(payload.get("candidate_safe_membership_required") is True, "V4 candidate-safe membership control missing")
     require(payload.get("v2_consumed_origins_excluded") is True, "V2 consumed-origin exclusion missing")
     require(payload.get("v3_development_origins_excluded") is True, "V3 development-origin exclusion missing")
     require(payload.get("v3_final_holdout_origins_excluded") is True, "V3 final-holdout exclusion missing")
@@ -58,10 +64,19 @@ def main() -> int:
         key = (asset, horizon)
         require(key not in seen_groups, f"Duplicate V4 group: {key}")
         seen_groups.add(key)
+
         development = group.get("v4_development_origin_dates")
         final = group.get("v4_final_holdout_origin_dates")
+        expected_final = (
+            EXPECTED_AVALANCHE365_FINAL_HOLDOUT_ORIGINS
+            if key == AVALANCHE365_KEY
+            else EXPECTED_FINAL_HOLDOUT_ORIGINS_PER_GROUP
+        )
+
         require(isinstance(development, list) and len(development) == EXPECTED_DEVELOPMENT_ORIGINS_PER_GROUP, f"Unexpected development origins for {key}")
-        require(isinstance(final, list) and len(final) == EXPECTED_FINAL_HOLDOUT_ORIGINS_PER_GROUP, f"Unexpected final holdout origins for {key}")
+        require(isinstance(final, list) and len(final) == expected_final, f"Unexpected final holdout origins for {key}")
+        require(int(group.get("development_origin_count", len(development))) == EXPECTED_DEVELOPMENT_ORIGINS_PER_GROUP, f"Development-origin metadata mismatch for {key}")
+        require(int(group.get("final_holdout_origin_count", len(final))) == expected_final, f"Final-holdout metadata mismatch for {key}")
         require(len(set(development)) == len(development), f"Duplicate development origin for {key}")
         require(len(set(final)) == len(final), f"Duplicate final holdout origin for {key}")
         require(set(development).isdisjoint(final), f"Development/final overlap for {key}")
@@ -86,13 +101,15 @@ def main() -> int:
     print("CRYPTO_V4_FINAL_HOLDOUT_MANIFEST_VALIDATION=PASS")
     print(f"SUPPORTED_GROUPS={EXPECTED_SUPPORTED_GROUPS}")
     print(f"DEVELOPMENT_ORIGINS_PER_GROUP={EXPECTED_DEVELOPMENT_ORIGINS_PER_GROUP}")
-    print(f"FINAL_HOLDOUT_ORIGINS_PER_GROUP={EXPECTED_FINAL_HOLDOUT_ORIGINS_PER_GROUP}")
+    print(f"DEFAULT_FINAL_HOLDOUT_ORIGINS_PER_GROUP={EXPECTED_FINAL_HOLDOUT_ORIGINS_PER_GROUP}")
+    print(f"AVALANCHE365_FINAL_HOLDOUT_ORIGINS={EXPECTED_AVALANCHE365_FINAL_HOLDOUT_ORIGINS}")
     print(f"MANIFEST_CONTENT_SHA256={expected_hash}")
+    print("CANDIDATE_SAFE_MEMBERSHIP_REQUIRED=TRUE")
     print("EXACT_CALENDAR_TARGET_DATE_REQUIRED=TRUE")
     print("HOLDOUT_OUTCOME_VALUES_READ_DURING_MEMBERSHIP_SELECTION=FALSE")
     print("HOLDOUT_OUTCOMES_VIEWED_BEFORE_FREEZE=FALSE")
     print("V3_FINAL_HOLDOUT_REUSED=FALSE")
-    print("NEXT_GATE=PRESERVE_CORRECTED_V4_FINAL_HOLDOUT_MANIFEST_BEFORE_DEVELOPMENT_SCORING")
+    print("NEXT_GATE=PRESERVE_CANDIDATE_SAFE_V4_MANIFEST_BEFORE_DEVELOPMENT_PREFLIGHT")
     return 0
 
 
