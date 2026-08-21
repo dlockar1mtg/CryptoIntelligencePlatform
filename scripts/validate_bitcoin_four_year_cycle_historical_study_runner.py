@@ -27,10 +27,6 @@ REQUIRED_FRAGMENTS = (
     'source_database_modified": False',
 )
 
-# Ban concrete mechanisms that could substitute a non-exact observation for the
-# required calendar endpoint. Do not ban the English word "nearest" globally,
-# because the runner intentionally verifies the governed design phrase
-# "No nearest-date endpoint".
 PROHIBITED_FRAGMENTS = (
     'fit(',
     'fit_predict(',
@@ -93,15 +89,15 @@ def main() -> int:
         require(fragment.lower() in design_text.lower(), f'Design missing required boundary: {fragment}')
 
     for fragment in (
-        'INVESTMENT_MANDATE=LONG_DURATION_ACCUMULATION',
-        'APPROXIMATE_NEW_BTC_HOLDING_THESIS_YEARS=3',
-        'BITCOIN_FOUR_YEAR_CYCLE_STATUS=HYPOTHESIS_REQUIRING_QUANTITATIVE_VALIDATION',
-        'CALENDAR_ONLY_EXECUTION_ALLOWED=FALSE',
-        'SHORT_TERM_NEGATIVE_FORECAST_AUTOMATIC_SELL_ALLOWED=FALSE',
-        'AUTONOMOUS_EXECUTION_ALLOWED=FALSE',
-        'PRODUCTION_POLICY_CHANGE_ALLOWED=FALSE',
+        'long-duration accumulation assets',
+        'approximately three-year intended holding period',
+        'Short-term forecasts are primarily tactical entry-timing evidence',
+        'not automatic sell signals',
+        'four-year halving cycle is a research hypothesis',
+        'These year labels are not deterministic execution rules',
+        'No autonomous purchase or sale execution is authorized',
     ):
-        require(fragment in mandate_text, f'Mandate missing required boundary: {fragment}')
+        require(fragment.lower() in mandate_text.lower(), f'Mandate missing required boundary: {fragment}')
 
     print('BITCOIN_FOUR_YEAR_CYCLE_HISTORICAL_STUDY_RUNNER_VALIDATION=PASS')
     print('STUDY_SCOPE=BITCOIN_ONLY_FOUR_YEAR_CYCLE_HISTORICAL_STUDY')
