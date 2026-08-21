@@ -45,6 +45,8 @@ def main() -> int:
     require(payload.get("v3_final_holdout_origins_excluded") is True, "V3 final-holdout exclusion missing")
     require(payload.get("v3_final_holdout_reused") is False, "V3 final holdout was reused")
     require(payload.get("holdout_outcomes_viewed_before_freeze") is False, "V4 holdout outcomes were viewed before freeze")
+    require(payload.get("exact_calendar_target_date_required") is True, "Exact calendar target-date control missing")
+    require(payload.get("holdout_outcome_values_read_during_membership_selection") is False, "Holdout outcomes were read during membership selection")
 
     groups = payload.get("groups")
     require(isinstance(groups, list) and len(groups) == EXPECTED_SUPPORTED_GROUPS, "Unexpected V4 group manifest")
@@ -86,9 +88,11 @@ def main() -> int:
     print(f"DEVELOPMENT_ORIGINS_PER_GROUP={EXPECTED_DEVELOPMENT_ORIGINS_PER_GROUP}")
     print(f"FINAL_HOLDOUT_ORIGINS_PER_GROUP={EXPECTED_FINAL_HOLDOUT_ORIGINS_PER_GROUP}")
     print(f"MANIFEST_CONTENT_SHA256={expected_hash}")
+    print("EXACT_CALENDAR_TARGET_DATE_REQUIRED=TRUE")
+    print("HOLDOUT_OUTCOME_VALUES_READ_DURING_MEMBERSHIP_SELECTION=FALSE")
     print("HOLDOUT_OUTCOMES_VIEWED_BEFORE_FREEZE=FALSE")
     print("V3_FINAL_HOLDOUT_REUSED=FALSE")
-    print("NEXT_GATE=PRESERVE_V4_FINAL_HOLDOUT_MANIFEST_BEFORE_DEVELOPMENT_SCORING")
+    print("NEXT_GATE=PRESERVE_CORRECTED_V4_FINAL_HOLDOUT_MANIFEST_BEFORE_DEVELOPMENT_SCORING")
     return 0
 
 
