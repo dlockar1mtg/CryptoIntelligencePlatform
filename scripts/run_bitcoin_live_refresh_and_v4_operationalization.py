@@ -59,24 +59,14 @@ def json_load(path: Path) -> dict:
 
 
 def git_head(repo_root: Path) -> str:
-    proc = subprocess.run(
-        ["git", "rev-parse", "HEAD"], cwd=repo_root, text=True,
-        capture_output=True, check=False,
-    )
+    proc = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo_root, text=True, capture_output=True, check=False)
     require(proc.returncode == 0, f"Could not resolve repository HEAD: {proc.stderr.strip()}")
     return proc.stdout.strip()
 
 
 def run_command(command: list[str], repo_root: Path, env: dict[str, str]) -> dict:
-    proc = subprocess.run(
-        command, cwd=repo_root, env=env, text=True,
-        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False,
-    )
-    return {
-        "command": command,
-        "exit_code": int(proc.returncode),
-        "output": proc.stdout,
-    }
+    proc = subprocess.run(command, cwd=repo_root, env=env, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False)
+    return {"command": command, "exit_code": int(proc.returncode), "output": proc.stdout}
 
 
 def latest_bitcoin(conn: duckdb.DuckDBPyConnection, table: str) -> dict | None:
@@ -87,9 +77,7 @@ def latest_bitcoin(conn: duckdb.DuckDBPyConnection, table: str) -> dict | None:
     if not {"asset_id", "observation_date", "price_usd"}.issubset(columns):
         return None
     row = conn.execute(
-        f"SELECT observation_date, price_usd FROM {table} "
-        "WHERE asset_id='bitcoin' AND price_usd IS NOT NULL "
-        "ORDER BY observation_date DESC LIMIT 1"
+        f"SELECT observation_date, price_usd FROM {table} WHERE asset_id='bitcoin' AND price_usd IS NOT NULL ORDER BY observation_date DESC LIMIT 1"
     ).fetchone()
     if not row:
         return None
@@ -105,9 +93,7 @@ def latest_macro(conn: duckdb.DuckDBPyConnection) -> dict:
             continue
         cols = {row[1] for row in conn.execute(f"PRAGMA table_info('{table}')").fetchall()}
         time_col = next((c for c in ("observation_date", "regime_date", "calculation_date", "date") if c in cols), None)
-        latest = None
-        if time_col:
-            latest = conn.execute(f"SELECT MAX({time_col}) FROM {table}").fetchone()[0]
+        latest = conn.execute(f"SELECT MAX({time_col}) FROM {table}").fetchone()[0] if time_col else None
         report[table] = {"exists": True, "time_column": time_col, "latest_time": None if latest is None else str(latest)}
     return report
 
@@ -141,10 +127,7 @@ def main() -> int:
     decision_freeze_path = Path(args.decision_freeze).resolve()
     output = Path(args.output).resolve()
 
-    for path in (
-        repo_root, database, governance, ledger_manifest_path, v2_path, v3_path,
-        v3_results_path, v4_path, development_results_path, decision_freeze_path,
-    ):
+    for path in (repo_root, database, governance, ledger_manifest_path, v2_path, v3_path, v3_results_path, v4_path, development_results_path, decision_freeze_path):
         require(path.exists(), f"Required operationalization input missing: {path}")
     require(not output.exists(), "Operationalization output already exists; refusing overwrite")
 
@@ -194,14 +177,10 @@ def main() -> int:
     repo_head = git_head(repo_root)
     db_before = sha256(database)
     tracked_before = {
-        "governance": sha256(governance),
-        "ledger_manifest": sha256(ledger_manifest_path),
-        "v2_manifest": sha256(v2_path),
-        "v3_manifest": sha256(v3_path),
-        "v3_results": v3_results_hash,
-        "v4_manifest": sha256(v4_path),
-        "development_results": development_results_hash,
-        "decision_freeze": sha256(decision_freeze_path),
+        "governance": sha256(governance), "ledger_manifest": sha256(ledger_manifest_path),
+        "v2_manifest": sha256(v2_path), "v3_manifest": sha256(v3_path),
+        "v3_results": v3_results_hash, "v4_manifest": sha256(v4_path),
+        "development_results": development_results_hash, "decision_freeze": sha256(decision_freeze_path),
     }
 
     with duckdb.connect(str(database), read_only=True) as conn:
@@ -211,11 +190,9 @@ def main() -> int:
 
     env = dict(os.environ)
     env["CRYPTO_DATABASE_PATH"] = str(database)
-
     module1 = run_command([sys.executable, "run_module1.py"], repo_root, env)
     require(module1["exit_code"] == 0, "Module 1 incremental refresh failed")
     require("--full-refresh" not in module1["command"], "Full refresh was unexpectedly invoked")
-
     module6 = run_command([sys.executable, "run_module6.py", "--phase", "sync"], repo_root, env)
     require(module6["exit_code"] == 0, "Module 6 sync failed")
 
@@ -225,17 +202,13 @@ def main() -> int:
         asset_market_after = latest_bitcoin(conn, "asset_market_daily")
         macro_after = latest_macro(conn)
         prices = conn.execute(
-            "SELECT asset_id, observation_date, price_usd, market_cap_usd, volume_24h_usd "
-            "FROM canonical_market_daily "
-            "WHERE asset_id IN ('bitcoin','ethereum','solana','chainlink','xrp','avalanche') "
-            "AND price_usd IS NOT NULL ORDER BY observation_date, asset_id"
+            "SELECT asset_id, observation_date, price_usd, market_cap_usd, volume_24h_usd FROM canonical_market_daily "
+            "WHERE asset_id IN ('bitcoin','ethereum','solana','chainlink','xrp','avalanche') AND price_usd IS NOT NULL ORDER BY observation_date, asset_id"
         ).fetchdf()
         tables = {row[0] for row in conn.execute("SHOW TABLES").fetchall()}
         context = pd.DataFrame(columns=["observation_date"] + list(NATIVE_LAG_DAYS))
         if "crypto_features_daily" in tables:
-            context = conn.execute(
-                "SELECT observation_date," + ",".join(NATIVE_LAG_DAYS) + " FROM crypto_features_daily ORDER BY observation_date"
-            ).fetchdf()
+            context = conn.execute("SELECT observation_date," + ",".join(NATIVE_LAG_DAYS) + " FROM crypto_features_daily ORDER BY observation_date").fetchdf()
 
     require(price_after is not None, "No refreshed canonical Bitcoin price is available")
     require(prices.shape[0] > 0, "Canonical core price history is empty after refresh")
@@ -268,16 +241,8 @@ def main() -> int:
         v3_features, HORIZON, runner, context, relative_v3, "bitcoin",
         v2_dates[("bitcoin", HORIZON)], v3_final_dates[("bitcoin", HORIZON)],
     )
-    selected_v3_dates = {
-        pd.Timestamp(v3_features.iloc[index]["observation_date"]).date().isoformat()
-        for index in selected_v3_indices
-    }
-    excluded = (
-        set(v2_dates[("bitcoin", HORIZON)])
-        | set(v3_final_dates[("bitcoin", HORIZON)])
-        | selected_v3_dates
-        | holdout_dates
-    )
+    selected_v3_dates = {pd.Timestamp(v3_features.iloc[index]["observation_date"]).date().isoformat() for index in selected_v3_indices}
+    excluded = set(v2_dates[("bitcoin", HORIZON)]) | set(v3_final_dates[("bitcoin", HORIZON)]) | selected_v3_dates | holdout_dates
 
     features = build_price_features(bitcoin_prices, HORIZON).reset_index(drop=True)
     holdout_mask = pd.to_datetime(features["observation_date"]).dt.date.astype(str).isin(holdout_dates)
@@ -300,27 +265,22 @@ def main() -> int:
     require(len(complete_validation) >= int(runner.cfg.get("minimum_validation_rows", 30)), "Insufficient complete prospective V4 validation rows")
     require(len(current_f.dropna(subset=columns)) == 1, "Required current V4 features are missing; forecast must remain unavailable")
 
-    probability, predicted_return = fit_predict(
-        HORIZON, WINNER, train_f, validation_f, current_f, columns, random_state
-    )
+    probability, predicted_return = fit_predict(HORIZON, WINNER, train_f, validation_f, current_f, columns, random_state)
     require(predicted_return is None, "Frozen V4 7d classifier unexpectedly returned a regression prediction")
     predicted_positive = int(float(probability) >= 0.5)
 
     db_after_forecast = sha256(database)
     require(db_after_forecast == db_after_refresh, "V4 operational refit modified the canonical database")
     tracked_after = {
-        "governance": sha256(governance),
-        "ledger_manifest": sha256(ledger_manifest_path),
-        "v2_manifest": sha256(v2_path),
-        "v3_manifest": sha256(v3_path),
-        "v3_results": sha256(v3_results_path),
-        "v4_manifest": sha256(v4_path),
-        "development_results": sha256(development_results_path),
-        "decision_freeze": sha256(decision_freeze_path),
+        "governance": sha256(governance), "ledger_manifest": sha256(ledger_manifest_path),
+        "v2_manifest": sha256(v2_path), "v3_manifest": sha256(v3_path),
+        "v3_results": sha256(v3_results_path), "v4_manifest": sha256(v4_path),
+        "development_results": sha256(development_results_path), "decision_freeze": sha256(decision_freeze_path),
     }
     require(tracked_after == tracked_before, "Frozen governance/model evidence changed during live operationalization")
     require(int(json_load(ledger_manifest_path).get("record_count", -1)) == 0, "Ledger manifest changed during operationalization")
-    require(len(list(records_dir.rglob("*.json"))) if records_dir.exists() else 0 == 0, "Observation record unexpectedly created")
+    final_record_files = list(records_dir.rglob("*.json")) if records_dir.exists() else []
+    require(len(final_record_files) == 0, "Observation record unexpectedly created")
 
     feature_values = {name: float(current_f.iloc[0][name]) for name in columns}
     report = {
@@ -329,49 +289,33 @@ def main() -> int:
         "repository_commit_sha": repo_head,
         "asset_id": "bitcoin",
         "refresh": {
-            "module1_mode": "incremental",
-            "module1_full_refresh": False,
-            "module1_exit_code": module1["exit_code"],
-            "module1_output": module1["output"],
-            "module6_phase": "sync",
-            "module6_exit_code": module6["exit_code"],
-            "module6_output": module6["output"],
-            "database_sha256_before": db_before,
-            "database_sha256_after_refresh": db_after_refresh,
-            "canonical_bitcoin_before": price_before,
-            "canonical_bitcoin_after": price_after,
-            "asset_market_bitcoin_before": asset_market_before,
-            "asset_market_bitcoin_after": asset_market_after,
-            "macro_before": macro_before,
-            "macro_after": macro_after,
+            "module1_mode": "incremental", "module1_full_refresh": False,
+            "module1_exit_code": module1["exit_code"], "module1_output": module1["output"],
+            "module6_phase": "sync", "module6_exit_code": module6["exit_code"], "module6_output": module6["output"],
+            "database_sha256_before": db_before, "database_sha256_after_refresh": db_after_refresh,
+            "canonical_bitcoin_before": price_before, "canonical_bitcoin_after": price_after,
+            "asset_market_bitcoin_before": asset_market_before, "asset_market_bitcoin_after": asset_market_after,
+            "macro_before": macro_before, "macro_after": macro_after,
             "fred_api_key_configured": bool(os.getenv("FRED_API_KEY", "").strip()),
         },
         "v4_7d": {
-            "winner": WINNER,
-            "horizon_days": HORIZON,
+            "winner": WINNER, "horizon_days": HORIZON,
             "forecast_date": origin_date.date().isoformat(),
             "latest_canonical_bitcoin_source_date": price_after["observation_date"],
             "database_sha256_used": db_after_refresh,
-            "evidence_class": EVIDENCE_CLASS,
-            "strict_point_in_time_claim_allowed": False,
-            "feature_list": columns,
-            "feature_values": feature_values,
+            "evidence_class": EVIDENCE_CLASS, "strict_point_in_time_claim_allowed": False,
+            "feature_list": columns, "feature_values": feature_values,
             "training_window_start": pd.Timestamp(complete_train["observation_date"].iloc[0]).date().isoformat(),
             "training_window_end": pd.Timestamp(complete_train["observation_date"].iloc[-1]).date().isoformat(),
             "validation_window_start": pd.Timestamp(complete_validation["observation_date"].iloc[0]).date().isoformat(),
             "validation_window_end": pd.Timestamp(complete_validation["observation_date"].iloc[-1]).date().isoformat(),
-            "complete_training_rows": int(len(complete_train)),
-            "complete_validation_rows": int(len(complete_validation)),
-            "random_state": random_state,
-            "raw_probability_positive": float(probability),
+            "complete_training_rows": int(len(complete_train)), "complete_validation_rows": int(len(complete_validation)),
+            "random_state": random_state, "raw_probability_positive": float(probability),
             "predicted_positive": predicted_positive,
             "predicted_direction": "POSITIVE" if predicted_positive else "NEGATIVE_OR_FLAT",
-            "contract_preserving_operational_refit": True,
-            "model_selection_reopened": False,
-            "post_holdout_tuning_performed": False,
-            "hyperparameter_search_performed": False,
-            "feature_contract_changed": False,
-            "outcome_peeking_allowed": False,
+            "contract_preserving_operational_refit": True, "model_selection_reopened": False,
+            "post_holdout_tuning_performed": False, "hyperparameter_search_performed": False,
+            "feature_contract_changed": False, "outcome_peeking_allowed": False,
         },
         "module42_rerun_performed": False,
         "personal_portfolio_context_supplied": False,
