@@ -1,0 +1,38 @@
+{
+  "experiment_id": "CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4",
+  "evaluation_scope": "7D_FINAL_HOLDOUT_ONLY",
+  "development_results_sha256": "a44e237112bf6521c8a770de120d4a0104731c280d7009568e6618cca1c1fbfb",
+  "v4_manifest_content_sha256": "6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2",
+  "frozen_winner": "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+  "eligible_horizon_days": 7,
+  "ineligible_horizons_days": [30, 365],
+  "expected_assets": ["avalanche", "bitcoin", "chainlink", "ethereum", "solana", "xrp"],
+  "expected_holdout_origins_per_asset": 10,
+  "expected_total_holdout_predictions": 60,
+  "training_policy": {
+    "reuse_frozen_candidate_family_without_tuning": true,
+    "reuse_development_chronological_split_and_feature_contract": true,
+    "all_v4_7d_final_holdout_targets_masked_from_training_and_validation": true,
+    "v2_consumed_origins_excluded": true,
+    "v3_development_origins_excluded": true,
+    "v3_final_holdout_origins_excluded": true,
+    "post_holdout_tuning_allowed": false
+  },
+  "confirmation_gate": {
+    "aggregate_baseline_adjusted_directional_skill_gt_zero": true,
+    "assets_nonnegative_baseline_adjusted_skill_minimum": 4,
+    "single_asset_majority_positive_gain_allowed": false,
+    "mean_sign_strategy_return_after_15bps_cost_gt_zero": true,
+    "complete_prediction_coverage_required": true,
+    "fold_concentration_gate_applies": false
+  },
+  "baseline": "TRAINING_WINDOW_MAJORITY_CLASS_FOR_7D_DIRECTION",
+  "transaction_cost_bps": 15.0,
+  "evidence_class": "HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME",
+  "strict_point_in_time_claim_allowed": false,
+  "recommendation_policy_changed": false,
+  "production_promotion_allowed": false,
+  "v4_final_holdout_outcomes_viewed_before_contract": false,
+  "v3_final_holdout_outcomes_viewed": false,
+  "next_gate": "VALIDATE_7D_ONLY_FINAL_HOLDOUT_RUNNER_BEFORE_ONE_TIME_EXPOSURE"
+}
