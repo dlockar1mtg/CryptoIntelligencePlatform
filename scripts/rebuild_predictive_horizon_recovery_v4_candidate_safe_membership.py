@@ -1,0 +1,287 @@
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+import shutil
+import sys
+import tempfile
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from crypto_platform.module38 import ASSETS, Module38Runner
+from scripts.audit_predictive_horizon_recovery_v4_candidate_safe_capacity import (
+    exact_target_date_available,
+    family_safe_at_origin,
+)
+from scripts.audit_predictive_horizon_recovery_v4_fresh_evidence_capacity import (
+    EXPECTED_V3_RESULTS_SHA256,
+    V4_DEVELOPMENT_ORIGINS_PER_GROUP,
+    V4_FINAL_HOLDOUT_ORIGINS_PER_GROUP,
+    selected_v3_origins_for_group,
+)
+from scripts.run_v3_per_horizon_development_tournament import build_relative_market as build_v3_relative_market
+from scripts.v4_horizon_recovery_model_spec import (
+    CANDIDATE_CONTRACTS,
+    EVIDENCE_CLASS,
+    EXPERIMENT_ID,
+    NATIVE_LAG_DAYS,
+    RECOVERY_HORIZONS,
+    build_price_features,
+    build_relative_market,
+)
+
+EXPECTED_GROUPS = 17
+AVALANCHE365_KEY = ("avalanche", 365)
+AVALANCHE365_FINAL_HOLDOUT_ORIGINS = 9
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise RuntimeError(message)
+
+
+def sha256(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def canonical_hash(payload: dict) -> str:
+    body = dict(payload)
+    body.pop("manifest_content_sha256", None)
+    encoded = json.dumps(body, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--database", required=True)
+    parser.add_argument("--v2-manifest", required=True)
+    parser.add_argument("--v3-manifest", required=True)
+    parser.add_argument("--v3-results", required=True)
+    parser.add_argument("--output", required=True)
+    args = parser.parse_args()
+
+    source = Path(args.database).resolve()
+    v2_path = Path(args.v2_manifest).resolve()
+    v3_path = Path(args.v3_manifest).resolve()
+    v3_results_path = Path(args.v3_results).resolve()
+    output = Path(args.output).resolve()
+
+    for path in (source, v2_path, v3_path, v3_results_path):
+        require(path.is_file(), f"Required V4 candidate-safe rebuild input missing: {path}")
+    require(not output.exists(), f"Candidate-safe V4 output already exists: {output}")
+    require(sha256(v3_results_path) == EXPECTED_V3_RESULTS_SHA256, "Unexpected preserved V3 development-results hash")
+
+    before = {
+        "database": sha256(source),
+        "v2": sha256(v2_path),
+        "v3": sha256(v3_path),
+        "v3_results": sha256(v3_results_path),
+    }
+
+    v2 = json.loads(v2_path.read_text(encoding="utf-8"))
+    v3 = json.loads(v3_path.read_text(encoding="utf-8"))
+    v3_results = json.loads(v3_results_path.read_text(encoding="utf-8"))
+    require(v3_results.get("v3_final_holdout_outcomes_viewed") is False, "V3 final holdout has been viewed")
+
+    v2_dates = {(g["asset_id"], int(g["horizon_days"])): set(g["v2_holdout_origin_dates"]) for g in v2["groups"]}
+    v3_final_dates = {(g["asset_id"], int(g["horizon_days"])): set(g["v3_final_holdout_origin_dates"]) for g in v3["groups"]}
+    require(set(v2_dates) == set(v3_final_dates), "V2/V3 supported-group mismatch")
+
+    groups: list[dict] = []
+    prior_env = os.environ.get("CRYPTO_DATABASE_PATH")
+
+    with tempfile.TemporaryDirectory(prefix="crypto_v4_candidate_safe_rebuild_") as tmp:
+        temp_db = Path(tmp) / source.name
+        shutil.copy2(source, temp_db)
+        os.environ["CRYPTO_DATABASE_PATH"] = str(temp_db)
+        try:
+            from crypto_platform.platform import connect, load_all
+
+            settings, _ = load_all()
+            conn = connect(settings)
+            runner = object.__new__(Module38Runner)
+            runner.cfg = settings["module38"]
+
+            prices = conn.execute(
+                """
+                SELECT asset_id, observation_date, price_usd, market_cap_usd, volume_24h_usd
+                FROM canonical_market_daily
+                WHERE asset_id IN ('bitcoin','ethereum','solana','chainlink','xrp','avalanche')
+                  AND price_usd IS NOT NULL
+                ORDER BY observation_date, asset_id
+                """
+            ).fetchdf()
+            prices["observation_date"] = pd.to_datetime(prices["observation_date"])
+
+            context = conn.execute(
+                "SELECT observation_date," + ",".join(NATIVE_LAG_DAYS) + " FROM crypto_features_daily ORDER BY observation_date"
+            ).fetchdf()
+            context["observation_date"] = pd.to_datetime(context["observation_date"])
+
+            v4_relative = build_relative_market(prices)
+            v4_relative["observation_date"] = pd.to_datetime(v4_relative["observation_date"])
+            v3_relative = build_v3_relative_market(prices)
+            v3_relative["observation_date"] = pd.to_datetime(v3_relative["observation_date"])
+
+            for asset in ASSETS:
+                asset_frame = prices[prices["asset_id"] == asset].copy()
+                asset_dates = {pd.Timestamp(value).normalize() for value in asset_frame["observation_date"]}
+
+                for horizon in RECOVERY_HORIZONS:
+                    key = (asset, int(horizon))
+                    if key not in v3_final_dates:
+                        continue
+
+                    v3_features = runner.build_features(asset_frame, horizon).reset_index(drop=True)
+                    v3_mask = pd.to_datetime(v3_features["observation_date"]).dt.date.astype(str).isin(v3_final_dates[key])
+                    v3_features.loc[v3_mask, "target_return"] = np.nan
+                    selected_v3 = selected_v3_origins_for_group(
+                        v3_features,
+                        horizon,
+                        runner,
+                        context,
+                        v3_relative,
+                        asset,
+                        v2_dates[key],
+                        v3_final_dates[key],
+                    )
+                    selected_v3_dates = {
+                        pd.Timestamp(v3_features.iloc[idx]["observation_date"]).date().isoformat()
+                        for idx in selected_v3
+                    }
+                    prior_exclusions = set(v2_dates[key]) | set(v3_final_dates[key]) | selected_v3_dates
+
+                    features = build_price_features(asset_frame, horizon).reset_index(drop=True)
+                    families = list(CANDIDATE_CONTRACTS[horizon]["families"])
+                    common_safe_dates: list[str] = []
+
+                    for origin_idx, row in features[["observation_date"]].iterrows():
+                        origin_date = pd.Timestamp(row["observation_date"])
+                        date_key = origin_date.date().isoformat()
+                        if date_key in prior_exclusions:
+                            continue
+                        if not exact_target_date_available(asset_dates, origin_date, horizon):
+                            continue
+
+                        if all(
+                            family_safe_at_origin(
+                                features,
+                                int(origin_idx),
+                                horizon,
+                                runner,
+                                prior_exclusions,
+                                context,
+                                v4_relative,
+                                asset,
+                                family,
+                            )
+                            for family in families
+                        ):
+                            common_safe_dates.append(date_key)
+
+                    holdout_count = (
+                        AVALANCHE365_FINAL_HOLDOUT_ORIGINS
+                        if key == AVALANCHE365_KEY
+                        else V4_FINAL_HOLDOUT_ORIGINS_PER_GROUP
+                    )
+                    required = V4_DEVELOPMENT_ORIGINS_PER_GROUP + holdout_count
+                    require(len(common_safe_dates) >= required, f"Insufficient V4 candidate-safe capacity for {asset} {horizon}d")
+
+                    final_dates = common_safe_dates[-holdout_count:]
+                    development_pool = common_safe_dates[:-holdout_count]
+                    require(len(development_pool) >= V4_DEVELOPMENT_ORIGINS_PER_GROUP, f"Insufficient development pool for {asset} {horizon}d")
+
+                    positions = np.linspace(
+                        0,
+                        len(development_pool) - 1,
+                        V4_DEVELOPMENT_ORIGINS_PER_GROUP,
+                        dtype=int,
+                    )
+                    development_dates = [development_pool[int(pos)] for pos in positions]
+
+                    require(len(set(development_dates)) == V4_DEVELOPMENT_ORIGINS_PER_GROUP, f"Duplicate V4 development origin for {asset} {horizon}d")
+                    require(len(set(final_dates)) == holdout_count, f"Duplicate V4 final holdout origin for {asset} {horizon}d")
+                    require(set(development_dates).isdisjoint(final_dates), f"V4 development/final overlap for {asset} {horizon}d")
+                    require(max(development_dates) < min(final_dates), f"V4 final holdout not strictly after development for {asset} {horizon}d")
+                    require(set(development_dates).isdisjoint(prior_exclusions), f"V4 development overlaps prior evidence for {asset} {horizon}d")
+                    require(set(final_dates).isdisjoint(prior_exclusions), f"V4 final holdout overlaps prior evidence for {asset} {horizon}d")
+
+                    groups.append({
+                        "asset_id": asset,
+                        "horizon_days": int(horizon),
+                        "development_origin_count": len(development_dates),
+                        "final_holdout_origin_count": len(final_dates),
+                        "v4_development_origin_dates": development_dates,
+                        "v4_final_holdout_origin_dates": final_dates,
+                    })
+
+            conn.close()
+        finally:
+            if prior_env is None:
+                os.environ.pop("CRYPTO_DATABASE_PATH", None)
+            else:
+                os.environ["CRYPTO_DATABASE_PATH"] = prior_env
+
+    after = {
+        "database": sha256(source),
+        "v2": sha256(v2_path),
+        "v3": sha256(v3_path),
+        "v3_results": sha256(v3_results_path),
+    }
+    require(before == after, "Source evidence changed during V4 candidate-safe membership rebuild")
+    require(len(groups) == EXPECTED_GROUPS, f"Expected {EXPECTED_GROUPS} V4 groups, found {len(groups)}")
+
+    payload = {
+        "experiment_id": EXPERIMENT_ID,
+        "evidence_class": EVIDENCE_CLASS,
+        "recovery_horizons": list(RECOVERY_HORIZONS),
+        "supported_groups": EXPECTED_GROUPS,
+        "development_origins_per_group": V4_DEVELOPMENT_ORIGINS_PER_GROUP,
+        "final_holdout_origins_per_group": V4_FINAL_HOLDOUT_ORIGINS_PER_GROUP,
+        "avalanche365_exception_governed": True,
+        "avalanche365_development_origins": V4_DEVELOPMENT_ORIGINS_PER_GROUP,
+        "avalanche365_final_holdout_origins": AVALANCHE365_FINAL_HOLDOUT_ORIGINS,
+        "candidate_safe_membership_required": True,
+        "v2_consumed_origins_excluded": True,
+        "v3_development_origins_excluded": True,
+        "v3_final_holdout_origins_excluded": True,
+        "v3_final_holdout_reused": False,
+        "holdout_outcomes_viewed_before_freeze": False,
+        "exact_calendar_target_date_required": True,
+        "holdout_outcome_values_read_during_membership_selection": False,
+        "groups": sorted(groups, key=lambda row: (int(row["horizon_days"]), str(row["asset_id"]))),
+    }
+    payload["manifest_content_sha256"] = canonical_hash(payload)
+
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+
+    print("CRYPTO_V4_CANDIDATE_SAFE_MEMBERSHIP_REBUILD=PASS")
+    print(f"SUPPORTED_GROUPS={EXPECTED_GROUPS}")
+    print(f"DEVELOPMENT_ORIGINS_PER_GROUP={V4_DEVELOPMENT_ORIGINS_PER_GROUP}")
+    print(f"DEFAULT_FINAL_HOLDOUT_ORIGINS_PER_GROUP={V4_FINAL_HOLDOUT_ORIGINS_PER_GROUP}")
+    print(f"AVALANCHE365_FINAL_HOLDOUT_ORIGINS={AVALANCHE365_FINAL_HOLDOUT_ORIGINS}")
+    print(f"MANIFEST_CONTENT_SHA256={payload['manifest_content_sha256']}")
+    print("CANDIDATE_SAFE_MEMBERSHIP_REQUIRED=TRUE")
+    print("EXACT_CALENDAR_TARGET_DATE_REQUIRED=TRUE")
+    print("HOLDOUT_OUTCOME_VALUES_READ_DURING_MEMBERSHIP_SELECTION=FALSE")
+    print("V3_FINAL_HOLDOUT_REUSED=FALSE")
+    print("SOURCE_EVIDENCE_MODIFIED=FALSE")
+    print("NEXT_GATE=VALIDATE_CANDIDATE_SAFE_V4_MANIFEST_BEFORE_CANONICAL_REPLACEMENT")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
