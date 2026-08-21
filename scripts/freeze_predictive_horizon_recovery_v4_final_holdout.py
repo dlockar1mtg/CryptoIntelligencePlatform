@@ -55,6 +55,24 @@ def canonical_hash(payload: dict) -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
+def exact_target_available_indices(features: pd.DataFrame, indices: list[int], asset_frame: pd.DataFrame, horizon: int) -> list[int]:
+    """Filter origin indices by exact calendar target-date availability only.
+
+    This intentionally checks date membership, not future price values or outcomes.
+    """
+    available_dates = {
+        pd.Timestamp(value).date()
+        for value in pd.to_datetime(asset_frame["observation_date"])
+    }
+    exact_safe: list[int] = []
+    for idx in indices:
+        origin_date = pd.Timestamp(features.iloc[int(idx)]["observation_date"]).date()
+        target_date = (pd.Timestamp(origin_date) + pd.to_timedelta(int(horizon), unit="D")).date()
+        if target_date in available_dates:
+            exact_safe.append(int(idx))
+    return exact_safe
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--database", required=True)
@@ -161,11 +179,12 @@ def main() -> int:
                         asset,
                         prior_exclusions,
                     )
+                    exact_safe = exact_target_available_indices(features, feature_safe, asset_frame, horizon)
                     required = V4_DEVELOPMENT_ORIGINS_PER_GROUP + V4_FINAL_HOLDOUT_ORIGINS_PER_GROUP
-                    require(len(feature_safe) >= required, f"Insufficient fresh V4 capacity for {asset} {horizon}d")
+                    require(len(exact_safe) >= required, f"Insufficient exact-target-safe V4 capacity for {asset} {horizon}d")
 
-                    final_indices = feature_safe[-V4_FINAL_HOLDOUT_ORIGINS_PER_GROUP:]
-                    development_pool = feature_safe[:-V4_FINAL_HOLDOUT_ORIGINS_PER_GROUP]
+                    final_indices = exact_safe[-V4_FINAL_HOLDOUT_ORIGINS_PER_GROUP:]
+                    development_pool = exact_safe[:-V4_FINAL_HOLDOUT_ORIGINS_PER_GROUP]
                     require(len(development_pool) >= V4_DEVELOPMENT_ORIGINS_PER_GROUP, f"Insufficient V4 development pool for {asset} {horizon}d")
                     positions = np.linspace(0, len(development_pool) - 1, V4_DEVELOPMENT_ORIGINS_PER_GROUP, dtype=int)
                     development_indices = [development_pool[int(pos)] for pos in positions]
@@ -212,6 +231,8 @@ def main() -> int:
         "v3_final_holdout_origins_excluded": True,
         "v3_final_holdout_reused": False,
         "holdout_outcomes_viewed_before_freeze": False,
+        "exact_calendar_target_date_required": True,
+        "holdout_outcome_values_read_during_membership_selection": False,
         "groups": sorted(groups, key=lambda row: (int(row["horizon_days"]), str(row["asset_id"]))),
     }
     payload["manifest_content_sha256"] = canonical_hash(payload)
@@ -223,6 +244,8 @@ def main() -> int:
     print(f"DEVELOPMENT_ORIGINS_PER_GROUP={payload['development_origins_per_group']}")
     print(f"FINAL_HOLDOUT_ORIGINS_PER_GROUP={payload['final_holdout_origins_per_group']}")
     print(f"MANIFEST_CONTENT_SHA256={payload['manifest_content_sha256']}")
+    print("EXACT_CALENDAR_TARGET_DATE_REQUIRED=TRUE")
+    print("HOLDOUT_OUTCOME_VALUES_READ_DURING_MEMBERSHIP_SELECTION=FALSE")
     print("HOLDOUT_OUTCOMES_VIEWED_BEFORE_FREEZE=FALSE")
     print("V3_FINAL_HOLDOUT_REUSED=FALSE")
     print("SOURCE_EVIDENCE_MODIFIED=FALSE")
