@@ -11,9 +11,10 @@ from pathlib import Path
 SOURCE_ENDPOINT = "https://community-api.coinmetrics.io/v4/timeseries/asset-metrics"
 SOURCE_PROVIDER = "Coin Metrics Community API"
 SOURCE_ASSET = "btc"
-SOURCE_METRIC = "ReferenceRateUSD"
+SOURCE_METRIC = "PriceUSD"
 SOURCE_FREQUENCY = "1d"
 EVIDENCE_CLASS = "EXTERNAL_HISTORICAL_RESEARCH_SNAPSHOT_NOT_STRICT_VINTAGE_POINT_IN_TIME"
+SNAPSHOT_ID = "BITCOIN_EXTENDED_HISTORY_COINMETRICS_PRICEUSD_V2"
 
 
 def require(condition: bool, message: str) -> None:
@@ -88,7 +89,7 @@ def main() -> int:
             break
         require(page_count < 100, "Unexpected Coin Metrics pagination depth")
 
-    require(all_records, "Coin Metrics returned no Bitcoin ReferenceRateUSD observations")
+    require(all_records, "Coin Metrics returned no Bitcoin PriceUSD observations")
 
     by_date: dict[date, float] = {}
     raw_time_by_date: dict[date, str] = {}
@@ -100,7 +101,7 @@ def main() -> int:
         value = record.get(SOURCE_METRIC)
         require(value is not None, f"Coin Metrics observation missing {SOURCE_METRIC}: {raw_time}")
         price = float(value)
-        require(price > 0, f"Non-positive Coin Metrics Bitcoin reference rate: {raw_time}")
+        require(price > 0, f"Non-positive Coin Metrics Bitcoin PriceUSD: {raw_time}")
         require(obs_date not in by_date, f"Duplicate Coin Metrics UTC calendar date: {obs_date.isoformat()}")
         by_date[obs_date] = price
         raw_time_by_date[obs_date] = raw_time
@@ -122,13 +123,13 @@ def main() -> int:
         {
             "observation_date": obs_date.isoformat(),
             "source_time": raw_time_by_date[obs_date],
-            "reference_rate_usd": by_date[obs_date],
+            "price_usd": by_date[obs_date],
         }
         for obs_date in ordered_dates
     ]
 
     result = {
-        "snapshot_id": "BITCOIN_EXTENDED_HISTORY_COINMETRICS_V2",
+        "snapshot_id": SNAPSHOT_ID,
         "source_provider": SOURCE_PROVIDER,
         "source_endpoint": SOURCE_ENDPOINT,
         "source_asset": SOURCE_ASSET,
@@ -137,6 +138,7 @@ def main() -> int:
         "requested_start_date": start_date.isoformat(),
         "requested_end_date": end_date.isoformat(),
         "evidence_class": EVIDENCE_CLASS,
+        "source_recovery_reason": "ReferenceRateUSD did not satisfy required 2011 coverage; governed recovery uses PriceUSD",
         "strict_vintage_point_in_time_claim_allowed": False,
         "canonical_database_modified": False,
         "production_policy_changed": False,
