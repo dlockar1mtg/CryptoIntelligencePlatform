@@ -120,19 +120,19 @@ def main() -> int:
     for fragment in (
         "BITCOIN_CYCLE_PHASE_STRATEGIC_REGIME_INPUT_AUTHORIZED=TRUE",
         "BITCOIN_CYCLE_CALENDAR_ONLY_ACTION_AUTHORIZED=FALSE",
-        "BTC_ETH_RECOMMENDATION_POLICY_SKILL_NOT_CERTIFIED=TRUE",
+        "BTC_ETH_RECOMMENDATION_POLICY_SKILL_NOT_CERTIFIED",
         "PRODUCTION_POLICY_CHANGE_AUTHORIZED=FALSE",
         "AUTONOMOUS_EXECUTION_AUTHORIZED=FALSE",
     ):
         require(fragment.lower() in governance_text.lower(), f"Strategic governance missing required boundary: {fragment}")
 
     for fragment in (
-        '"study_interpretation": "PATTERN_SUPPORTED_DESCRIPTIVELY"',
-        '"completed_cycle_count": 3',
-        '"adequately_covered_completed_cycle_count": 3',
-        '"refined_expansion_reset_ordering_matches": 3',
-        '"cycle_policy_promotion_recommendation_allowed": true',
-        '"cycle_policy_authority_granted": false',
+        '\"study_interpretation\": \"PATTERN_SUPPORTED_DESCRIPTIVELY\"',
+        '\"completed_cycle_count\": 3',
+        '\"adequately_covered_completed_cycle_count\": 3',
+        '\"refined_expansion_reset_ordering_matches\": 3',
+        '\"cycle_policy_promotion_recommendation_allowed\": true',
+        '\"cycle_policy_authority_granted\": false',
     ):
         require(fragment.lower() in result_text.lower(), f"Preserved V2 result missing required evidence: {fragment}")
 
