@@ -6,7 +6,8 @@ import json
 import os
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
+from decimal import Decimal
 from pathlib import Path
 
 import duckdb
@@ -40,6 +41,16 @@ def run(command: list[str], cwd: Path, env: dict[str, str]) -> dict:
     return {"command": command, "exit_code": int(proc.returncode), "output": proc.stdout}
 
 
+def json_value(value):
+    if value is None or isinstance(value, (str, int, float, bool)):
+        return value
+    if isinstance(value, Decimal):
+        return float(value)
+    if isinstance(value, (datetime, date)):
+        return value.isoformat()
+    return str(value)
+
+
 def table_snapshot(conn: duckdb.DuckDBPyConnection, table: str) -> dict:
     tables = {row[0] for row in conn.execute("SHOW TABLES").fetchall()}
     if table not in tables:
@@ -50,13 +61,22 @@ def table_snapshot(conn: duckdb.DuckDBPyConnection, table: str) -> dict:
         None,
     )
     latest_time = None
+    latest_row = None
     if time_column:
         latest_time = conn.execute(f"SELECT MAX({time_column}) FROM {table}").fetchone()[0]
+        if latest_time is not None:
+            row = conn.execute(
+                f"SELECT * FROM {table} WHERE {time_column} = ? ORDER BY {time_column} DESC LIMIT 1",
+                [latest_time],
+            ).fetchone()
+            if row is not None:
+                latest_row = {name: json_value(value) for name, value in zip(columns, row)}
     return {
         "exists": True,
         "columns": columns,
         "time_column": time_column,
         "latest_time": None if latest_time is None else str(latest_time),
+        "latest_row": latest_row,
     }
 
 
