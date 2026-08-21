@@ -39,9 +39,23 @@ from scripts.v4_horizon_recovery_model_spec import (
 )
 
 EXPECTED_V3_RESULTS_SHA256 = "33b039fd83a27f868bc660584e775ea64743954e87bd70a8f120c952588b5fd1"
-EXPECTED_V4_MANIFEST_CONTENT_SHA256 = "510d121e1e4e8ea7e2079b1f61883b2ca01dfb6ce2c6baf6b9ba601eadeafd42"
+EXPECTED_V4_MANIFEST_CONTENT_SHA256 = "6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2"
 EXPECTED_GROUPS = 17
 EXPECTED_DEV_ORIGINS = 50
+DEFAULT_FINAL_HOLDOUT_ORIGINS = 10
+AVALANCHE365_FINAL_HOLDOUT_ORIGINS = 9
+
+CANDIDATE_SIMPLICITY_ORDER = {
+    "V4_7D_SHORT_TREND_REVERSAL_LOGIT": 0,
+    "V4_7D_RELATIVE_STRENGTH_GB": 1,
+    "V4_7D_VOLATILITY_STATE_EXTRA_TREES": 2,
+    "V4_30D_TREND_REVERSAL_LOGIT": 0,
+    "V4_30D_RELATIVE_CONTEXT_GB": 1,
+    "V4_30D_VOLATILITY_STATE_EXTRA_TREES": 2,
+    "V4_365D_LONG_TREND_LOGIT": 0,
+    "V4_365D_LONG_REGIME_GB": 1,
+    "V4_365D_RETURN_MAGNITUDE_ENSEMBLE": 2,
+}
 
 
 def require(condition: bool, message: str) -> None:
@@ -55,6 +69,19 @@ def sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             h.update(chunk)
     return h.hexdigest()
+
+
+def manifest_content_hash(payload: dict) -> str:
+    body = dict(payload)
+    body.pop("manifest_content_sha256", None)
+    canonical = json.dumps(body, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
+def expected_holdout_count(asset: str, horizon: int) -> int:
+    if asset == "avalanche" and int(horizon) == 365:
+        return AVALANCHE365_FINAL_HOLDOUT_ORIGINS
+    return DEFAULT_FINAL_HOLDOUT_ORIGINS
 
 
 def fit_predict(
@@ -153,19 +180,23 @@ def summarize(frame: pd.DataFrame, assets_required_nonnegative: int) -> dict:
 
     by_fold = {}
     positive_fold_gains = []
+    fold_skill_values = []
     for fold, group in frame.groupby("fold"):
         mc = (group["predicted_positive"].astype(int) == group["observed_positive"].astype(int)).astype(int)
         bc = (group["baseline_positive"].astype(int) == group["observed_positive"].astype(int)).astype(int)
         net_gain = int(mc.sum() - bc.sum())
+        fold_skill = float((mc.mean() - bc.mean()) * 100.0)
         by_fold[str(int(fold))] = {
             "rows": int(len(group)),
-            "baseline_adjusted_skill_pp": float((mc.mean() - bc.mean()) * 100.0),
+            "baseline_adjusted_skill_pp": fold_skill,
             "net_correct_gain_vs_baseline": net_gain,
         }
+        fold_skill_values.append(fold_skill)
         positive_fold_gains.append(max(0, net_gain))
     total_positive_fold_gain = int(sum(positive_fold_gains))
     max_positive_fold_gain = int(max(positive_fold_gains)) if positive_fold_gains else 0
     single_fold_majority = bool(total_positive_fold_gain > 0 and max_positive_fold_gain > total_positive_fold_gain / 2)
+    fold_skill_std = float(np.std(np.asarray(fold_skill_values, dtype=float), ddof=0)) if fold_skill_values else None
 
     ordered = frame.sort_values(["asset_id", "forecast_date"]).copy()
     ordered["position"] = np.where(ordered["predicted_positive"].astype(int) == 1, 1.0, -1.0)
@@ -199,9 +230,11 @@ def summarize(frame: pd.DataFrame, assets_required_nonnegative: int) -> dict:
         "development_majority_baseline_accuracy_pct": baseline_acc,
         "model_minus_development_majority_accuracy_pct_points": delta,
         "raw_brier_score": raw_brier,
+        "calibrated_brier_score": None,
         "assets_nonnegative_baseline_adjusted_skill": int(nonnegative_assets),
         "single_asset_explains_majority_of_positive_gain": single_asset_majority,
         "single_fold_explains_majority_of_positive_gain": single_fold_majority,
+        "fold_baseline_adjusted_skill_std_pp": fold_skill_std,
         "mean_sign_strategy_return_pct_after_15bps_cost": mean_economic,
         "turnover_units": float(ordered["turnover"].sum()),
         "by_asset": by_asset,
@@ -214,15 +247,23 @@ def choose_winner(candidate_results: dict) -> str | None:
     eligible = [(name, metrics) for name, metrics in candidate_results.items() if metrics["development_selection_gate_pass"]]
     if not eligible:
         return None
+
     def key(item):
         name, m = item
+        calibrated = m.get("calibrated_brier_score")
+        raw = m.get("raw_brier_score")
+        fold_std = m.get("fold_baseline_adjusted_skill_std_pp")
         return (
             float(m["model_minus_development_majority_accuracy_pct_points"]),
             float(m["directional_accuracy_pct"]),
             int(m["assets_nonnegative_baseline_adjusted_skill"]),
-            -(float(m["raw_brier_score"]) if m["raw_brier_score"] is not None else 999.0),
+            -(float(calibrated) if calibrated is not None else 999.0),
+            -(float(raw) if raw is not None else 999.0),
+            -(float(fold_std) if fold_std is not None else 999.0),
+            -int(CANDIDATE_SIMPLICITY_ORDER[name]),
             name,
         )
+
     return max(eligible, key=key)[0]
 
 
@@ -256,14 +297,30 @@ def main() -> int:
     v4 = json.loads(v4_path.read_text(encoding="utf-8"))
     require(v3_results.get("v3_final_holdout_outcomes_viewed") is False, "V3 final holdout has been viewed")
     require(v4.get("experiment_id") == EXPERIMENT_ID, "Unexpected V4 experiment id")
-    require(v4.get("manifest_content_sha256") == EXPECTED_V4_MANIFEST_CONTENT_SHA256, "Unexpected corrected V4 manifest hash")
+    require(v4.get("manifest_content_sha256") == EXPECTED_V4_MANIFEST_CONTENT_SHA256, "Unexpected candidate-safe V4 manifest hash")
+    require(manifest_content_hash(v4) == EXPECTED_V4_MANIFEST_CONTENT_SHA256, "V4 manifest canonical content hash mismatch")
+    require(v4.get("candidate_safe_membership_required") is True, "V4 candidate-safe membership control missing")
+    require(v4.get("avalanche365_exception_governed") is True, "Governed Avalanche365 allocation exception missing")
+    require(v4.get("exact_calendar_target_date_required") is True, "V4 exact-calendar target control missing")
     require(v4.get("holdout_outcomes_viewed_before_freeze") is False, "V4 holdout not frozen before outcomes")
-    require(v4.get("holdout_outcome_values_read_during_rebuild") is False, "V4 holdout outcomes were read during manifest rebuild")
+    require(v4.get("holdout_outcome_values_read_during_membership_selection") is False, "V4 holdout outcomes were read during membership selection")
+    require(v4.get("v3_final_holdout_reused") is False, "V3 final holdout was reused by V4")
 
     v2_dates = {(g["asset_id"], int(g["horizon_days"])): set(g["v2_holdout_origin_dates"]) for g in v2["groups"]}
     v3_final_dates = {(g["asset_id"], int(g["horizon_days"])): set(g["v3_final_holdout_origin_dates"]) for g in v3["groups"]}
     v4_groups = {(g["asset_id"], int(g["horizon_days"])): g for g in v4["groups"]}
     require(len(v4_groups) == EXPECTED_GROUPS, "Unexpected V4 group count")
+
+    for (asset, horizon), group in v4_groups.items():
+        dev_dates = list(group["v4_development_origin_dates"])
+        holdout_dates = list(group["v4_final_holdout_origin_dates"])
+        required_holdout = expected_holdout_count(asset, horizon)
+        require(len(dev_dates) == EXPECTED_DEV_ORIGINS, f"Unexpected V4 development count for {asset} {horizon}d")
+        require(len(holdout_dates) == required_holdout, f"Unexpected V4 holdout count for {asset} {horizon}d")
+        require(int(group.get("development_origin_count", len(dev_dates))) == EXPECTED_DEV_ORIGINS, f"V4 development count metadata mismatch for {asset} {horizon}d")
+        require(int(group.get("final_holdout_origin_count", len(holdout_dates))) == required_holdout, f"V4 holdout count metadata mismatch for {asset} {horizon}d")
+        require(set(dev_dates).isdisjoint(holdout_dates), f"V4 development/final overlap for {asset} {horizon}d")
+        require(max(dev_dates) < min(holdout_dates), f"V4 final holdout is not later than development for {asset} {horizon}d")
 
     prior_env = os.environ.get("CRYPTO_DATABASE_PATH")
     horizon_rows: dict[int, dict[str, list[dict]]] = {h: {family: [] for family in CANDIDATE_CONTRACTS[h]["families"]} for h in RECOVERY_HORIZONS}
@@ -274,6 +331,7 @@ def main() -> int:
         os.environ["CRYPTO_DATABASE_PATH"] = str(temp_db)
         try:
             from crypto_platform.platform import load_all, connect
+
             settings, _ = load_all()
             conn = connect(settings)
             runner = object.__new__(Module38Runner)
@@ -296,7 +354,6 @@ def main() -> int:
             for (asset, horizon), group in sorted(v4_groups.items(), key=lambda item: (item[0][1], item[0][0])):
                 dev_dates = list(group["v4_development_origin_dates"])
                 holdout_dates = set(group["v4_final_holdout_origin_dates"])
-                require(len(dev_dates) == EXPECTED_DEV_ORIGINS, f"Unexpected V4 development count for {asset} {horizon}d")
                 asset_frame = prices[prices["asset_id"] == asset].copy()
                 v3_features = runner.build_features(asset_frame, horizon).reset_index(drop=True)
                 v3_mask = pd.to_datetime(v3_features["observation_date"]).dt.date.astype(str).isin(v3_final_dates[(asset, horizon)])
@@ -314,6 +371,7 @@ def main() -> int:
                 date_to_index = {pd.Timestamp(row.observation_date).date().isoformat(): int(row.Index) for row in features[["observation_date"]].itertuples(index=True)}
 
                 for origin_number, date_key in enumerate(dev_dates):
+                    require(date_key in date_to_index, f"V4 development origin missing from feature frame: {asset} {horizon}d {date_key}")
                     origin_idx = date_to_index[date_key]
                     origin_date, train, validation, current = v4_split_origin(features, origin_idx, horizon, runner, excluded)
                     actual_return = float(features.iloc[origin_idx]["target_return"])
@@ -331,7 +389,8 @@ def main() -> int:
                             predicted_positive = int(probability >= 0.5)
                             raw_probability = probability
                         else:
-                            predicted_positive = int((predicted_return or 0.0) > 0)
+                            require(predicted_return is not None, f"Missing regression prediction for {family}")
+                            predicted_positive = int(predicted_return > 0)
                             raw_probability = None
                         horizon_rows[horizon][family].append({
                             "asset_id": asset,
@@ -343,6 +402,7 @@ def main() -> int:
                             "raw_probability_positive": raw_probability,
                             "predicted_return": predicted_return,
                             "observed_positive": int(actual_return > 0),
+                            "observed_exceeds_15pct": int(actual_return > 0.15),
                             "actual_return_pct": actual_return * 100.0,
                             "baseline_positive": train_majority,
                         })
@@ -367,6 +427,13 @@ def main() -> int:
             frame = pd.DataFrame(rows)
             require(len(frame) == expected_rows, f"Unexpected V4 development row count for {horizon}d {family}")
             candidate_results[family] = summarize(frame, int(CANDIDATE_CONTRACTS[horizon]["assets_required_nonnegative"]))
+            if horizon == 365:
+                candidate_results[family]["aux_observed_forward_return_exceeds_15pct_rate"] = float(frame["observed_exceeds_15pct"].mean())
+                if candidate_kind(horizon, family) == "regressor":
+                    predicted_exceeds = (frame["predicted_return"].astype(float) > 0.15).astype(int)
+                    candidate_results[family]["aux_predicted_exceeds_15pct_accuracy"] = float((predicted_exceeds == frame["observed_exceeds_15pct"].astype(int)).mean())
+                else:
+                    candidate_results[family]["aux_predicted_exceeds_15pct_accuracy"] = None
         winner = choose_winner(candidate_results)
         horizon_results[str(horizon)] = {
             "candidate_results": candidate_results,
@@ -380,6 +447,9 @@ def main() -> int:
         "evidence_class": EVIDENCE_CLASS,
         "strict_point_in_time_claim_allowed": False,
         "recovery_horizons": list(RECOVERY_HORIZONS),
+        "v4_manifest_content_sha256": EXPECTED_V4_MANIFEST_CONTENT_SHA256,
+        "candidate_safe_membership_required": True,
+        "avalanche365_exception_governed": True,
         "v2_consumed_origins_excluded": True,
         "v3_development_origins_excluded": True,
         "v3_final_holdout_origins_excluded": True,
@@ -400,6 +470,7 @@ def main() -> int:
         winner = selected_winners[str(horizon)] or "NO_QUALIFIED_WINNER"
         print(f"WINNER_{horizon}D={winner}")
     print("V4_FINAL_HOLDOUT_OUTCOMES_VIEWED=FALSE")
+    print("V3_FINAL_HOLDOUT_OUTCOMES_VIEWED=FALSE")
     print("SOURCE_DATABASE_MODIFIED=FALSE")
     print(f"NEXT_GATE={report['next_gate']}")
     return 0
