@@ -1,0 +1,100 @@
+{
+  "asset_id": "ethereum",
+  "asset_role": "SECONDARY_LONG_DURATION_CRYPTO_ASSET",
+  "bitcoin_cycle_context": {
+    "bitcoin_calendar_only_action_authorized": false,
+    "bitcoin_days_since_halving_at_btc_observation": 853,
+    "bitcoin_descriptive_phase": "POST_HALVING_RESET_ACCUMULATION_CONTEXT_HYPOTHESIS",
+    "context_role": "CROSS_MARKET_CONTEXT_ONLY_NOT_ETH_ACTION_RULE",
+    "historical_interpretation": "PATTERN_SUPPORTED_DESCRIPTIVELY",
+    "most_recent_bitcoin_halving_date": "2024-04-20",
+    "synthetic_ethereum_halving_cycle": null
+  },
+  "decision_layers": {
+    "existing_position_reason": "No governed current personal Ethereum holdings context is available and no strategic distribution or risk-reduction state is established.",
+    "existing_position_state": "INSUFFICIENT_EVIDENCE",
+    "strategic_reason": "Bitcoin cycle context is cross-market context only; no governed current Ethereum strategic policy combines ETH-specific trend, drawdown, macro, valuation/network, and portfolio evidence into a stronger state.",
+    "strategic_state": "INSUFFICIENT_EVIDENCE",
+    "tactical_new_capital_state": "INSUFFICIENT_EVIDENCE",
+    "tactical_reason": "No governed live Ethereum V4 tactical inference or other certified current tactical timing signal is available."
+  },
+  "deployment_context": {
+    "existing_position_sale_authorized_by_this_record": false,
+    "new_capital_deployment_authorized_by_this_record": false,
+    "target_or_max_deployment_ceiling": null
+  },
+  "ethereum_market_evidence": {
+    "drawdown_from_running_high": -0.47489937627533996,
+    "eth_minus_btc_return_30d_exact": 0.132504025139228,
+    "eth_minus_btc_return_7d_exact": 0.1053785376082812,
+    "missing_exact_feature_values_remain_null": true,
+    "return_30d_exact": 0.31169588399840475,
+    "return_7d_exact": 0.34227892777244184
+  },
+  "evidence_quality": {
+    "bitcoin_cycle_context_alone_can_select_eth_state": false,
+    "missing_evidence_synthesized": false,
+    "nearest_date_substitution_allowed_for_outcomes": false,
+    "outcome_peeking_allowed": false,
+    "synthetic_eth_halving_cycle_allowed": false
+  },
+  "ledger_id": "ETHEREUM_STRATEGIC_REGIME_FORWARD_EVIDENCE_LEDGER_V1",
+  "macro_liquidity_evidence": {
+    "derived_macro_regime_latest_date": "2026-07-28",
+    "derived_macro_regime_used_for_state_assignment": false,
+    "latest_derived_macro_regime_date": "2026-07-28",
+    "latest_macro_observations_latest_date": "2026-08-21",
+    "raw_macro_observations_latest_date": "2026-08-21"
+  },
+  "module42_context": {
+    "available": true,
+    "current_for_observation_date": false,
+    "final_btc_eth_authority": false,
+    "native_action": "WAIT",
+    "native_investment_score": 33.39768874695304,
+    "recommendation_date": "2026-07-28"
+  },
+  "observation_id": "eth-prospective-4abf754f4b730bf4",
+  "observation_timestamp": "2026-08-21T20:53:32.227605-05:00",
+  "observed_ethereum_price": {
+    "observation_date": "2026-08-21",
+    "price_usd": 2529.81,
+    "source": "canonical_market_daily"
+  },
+  "operating_date": "2026-08-21",
+  "operating_timezone": "America/Chicago",
+  "outcomes": {
+    "return_1095d_exact": null,
+    "return_180d_exact": null,
+    "return_30d_exact": null,
+    "return_365d_exact": null,
+    "return_7d_exact": null,
+    "return_90d_exact": null,
+    "status": "UNMATURED_AT_INITIAL_CAPTURE"
+  },
+  "policy_authority": {
+    "autonomous_execution_authorized": false,
+    "btc_eth_recommendation_policy_skill_certified": false,
+    "canonical_database_write_authorized": false,
+    "production_policy_change_authorized": false
+  },
+  "portfolio_context": {
+    "current_ethereum_portfolio_weight": null,
+    "governed_current_personal_portfolio_context_available": false,
+    "undeployed_capital_available_to_ethereum": null
+  },
+  "record_scope": "BOTH_NEW_CAPITAL_AND_EXISTING_HOLDINGS",
+  "schema_version": 1,
+  "source_authorities": {
+    "alignment_governance": "docs/btc_eth_strategic_alignment_uip_output_governance_v1.md",
+    "bitcoin_cycle_context_observation_id": "btc-prospective-ae5efdd0b4cb150f",
+    "bitcoin_cycle_context_observation_path": "data/research/bitcoin_strategic_regime_forward_evidence_v1/records/2026-08-21_20260821T185215-0500_btc-prospective-ae5efdd0b4cb150f.json",
+    "bitcoin_cycle_context_observation_sha256": "b43aaba705282e7b1ee630604623e2bd9bf1e582848270e085ed38cf3347725f",
+    "canonical_database_sha256_read_only": "0e5745889491c435d884cf7e3c9be080fb708d79dd9ba308f05006bcbb4657e3"
+  },
+  "v4_tactical_evidence": {
+    "live_ethereum_inference_available": false,
+    "missing_reason": "No separately governed live Ethereum V4 operational inference was produced for this observation.",
+    "value": null
+  }
+}
