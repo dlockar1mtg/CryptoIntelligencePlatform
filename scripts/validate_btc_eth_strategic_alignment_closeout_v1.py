@@ -10,6 +10,7 @@ EXPECTED_BTC_ID = "btc-prospective-ae5efdd0b4cb150f"
 EXPECTED_BTC_SHA256 = "b43aaba705282e7b1ee630604623e2bd9bf1e582848270e085ed38cf3347725f"
 EXPECTED_ETH_ID = "eth-prospective-4abf754f4b730bf4"
 EXPECTED_ETH_SHA256 = "99d2a4cad4a0faa8085f0b43968aca3a2c29d252a067bb32c6a5a9740f004986"
+EXPECTED_NEXT_GATE = "PROSPECTIVE_OUTCOME_MATURATION_WHEN_EXACT_ENDPOINT_AVAILABLE"
 
 
 def require(condition: bool, message: str) -> None:
@@ -44,6 +45,7 @@ def main() -> int:
     database = Path(args.database).resolve()
 
     closeout = repo / "docs/btc_eth_strategic_alignment_closeout_v1.md"
+    final_audit = repo / "docs/crypto_final_pre_maturation_audit_v1.md"
     governance = repo / "docs/btc_eth_strategic_alignment_uip_output_governance_v1.md"
     btc_manifest_path = repo / "data/research/bitcoin_strategic_regime_forward_evidence_v1/manifest.json"
     eth_manifest_path = repo / "data/research/ethereum_strategic_regime_forward_evidence_v1/manifest.json"
@@ -55,6 +57,7 @@ def main() -> int:
     for path in (
         database,
         closeout,
+        final_audit,
         governance,
         btc_manifest_path,
         eth_manifest_path,
@@ -73,10 +76,18 @@ def main() -> int:
     require(int(btc_manifest.get("record_count", -1)) == 1, "Bitcoin ledger record_count is not one")
     require(btc_manifest.get("first_observation_id") == EXPECTED_BTC_ID, "Bitcoin observation id mismatch")
     require(btc_manifest.get("first_observation_sha256") == EXPECTED_BTC_SHA256, "Bitcoin observation hash mismatch")
+    require(btc_manifest.get("last_observation_id") == EXPECTED_BTC_ID, "Bitcoin last observation id mismatch")
+    require(btc_manifest.get("last_observation_sha256") == EXPECTED_BTC_SHA256, "Bitcoin last observation hash mismatch")
+    require(btc_manifest.get("last_observation_file") == btc_manifest.get("first_observation_file"), "Bitcoin last observation file mismatch")
+    require(btc_manifest.get("next_gate") == EXPECTED_NEXT_GATE, "Bitcoin manifest next gate is stale")
 
     require(int(eth_manifest.get("record_count", -1)) == 1, "Ethereum ledger record_count is not one")
     require(eth_manifest.get("first_observation_id") == EXPECTED_ETH_ID, "Ethereum observation id mismatch")
     require(eth_manifest.get("first_observation_sha256") == EXPECTED_ETH_SHA256, "Ethereum observation hash mismatch")
+    require(eth_manifest.get("last_observation_id") == EXPECTED_ETH_ID, "Ethereum last observation id mismatch")
+    require(eth_manifest.get("last_observation_sha256") == EXPECTED_ETH_SHA256, "Ethereum last observation hash mismatch")
+    require(eth_manifest.get("last_observation_file") == eth_manifest.get("first_observation_file"), "Ethereum last observation file mismatch")
+    require(eth_manifest.get("next_gate") == EXPECTED_NEXT_GATE, "Ethereum manifest next gate is stale")
 
     btc_record = repo / str(btc_manifest.get("first_observation_file", ""))
     eth_record = repo / str(eth_manifest.get("first_observation_file", ""))
@@ -107,6 +118,7 @@ def main() -> int:
     package_text = read_text(package_builder)
     governance_text = read_text(governance)
     closeout_text = read_text(closeout)
+    final_audit_text = read_text(final_audit)
 
     require('ADAPTER_VERSION = "1.1.0"' in init_text, "Adapter version is not 1.1.0")
     require('CONTRACT_VERSION = "1.0.0"' in init_text, "Universal contract version changed")
@@ -135,13 +147,17 @@ def main() -> int:
         "FIXED_BTC_ETH_ALLOCATION_INVENTED=FALSE",
         "PRODUCTION_POLICY_CHANGED=FALSE",
         "AUTONOMOUS_EXECUTION_AUTHORIZED=FALSE",
-        "NEXT_GATE=PROSPECTIVE_OUTCOME_MATURATION_WHEN_EXACT_ENDPOINT_AVAILABLE",
+        f"NEXT_GATE={EXPECTED_NEXT_GATE}",
     )
     for marker in required_closeout:
         require(marker in closeout_text, f"Missing closeout marker: {marker}")
 
+    require("CRYPTO_PRE_7D_REPOSITORY_CLOSED=TRUE" in final_audit_text, "Final pre-maturation audit closure marker missing")
+    require(f"NEXT_GATE={EXPECTED_NEXT_GATE}" in final_audit_text, "Final pre-maturation audit next gate mismatch")
+
     print("BTC_ETH_STRATEGIC_ALIGNMENT_CLOSEOUT_V1_VALIDATION=PASS")
     print("BTC_ETH_STRATEGIC_ALIGNMENT_STRUCTURALLY_COMPLETE=TRUE")
+    print("CRYPTO_PRE_7D_REPOSITORY_CLOSED=TRUE")
     print("BTC_LEDGER_RECORD_COUNT=1")
     print("ETH_LEDGER_RECORD_COUNT=1")
     print("BTC_ASSET_ROLE=PRIMARY_LONG_DURATION_CRYPTO_ASSET")
@@ -156,7 +172,7 @@ def main() -> int:
     print("AUTONOMOUS_EXECUTION_AUTHORIZED=FALSE")
     print(f"CANONICAL_DATABASE_SHA256={EXPECTED_DB_SHA256}")
     print("CANONICAL_DATABASE_MODIFIED=FALSE")
-    print("NEXT_GATE=PROSPECTIVE_OUTCOME_MATURATION_WHEN_EXACT_ENDPOINT_AVAILABLE")
+    print(f"NEXT_GATE={EXPECTED_NEXT_GATE}")
     return 0
 
 
