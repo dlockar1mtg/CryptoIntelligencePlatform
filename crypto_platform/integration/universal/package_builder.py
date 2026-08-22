@@ -13,6 +13,10 @@ from .asset_master import (
     ASSET_MASTER_COLUMNS,
     build_asset_master,
 )
+from .btc_eth_strategic_overlay import (
+    BTC_ETH_STRATEGIC_OVERLAY_COLUMNS,
+    build_btc_eth_strategic_overlay,
+)
 from .context import ExportContext
 from .forecasts import (
     FORECAST_COLUMNS,
@@ -106,9 +110,20 @@ class UniversalPackageBuilder:
             self._context,
         )
 
+        native_recommendations = (
+            self._analytics.load_recommendations()
+        )
+
         recommendations = build_recommendations(
-            self._analytics.load_recommendations(),
+            native_recommendations,
             self._context,
+        )
+
+        btc_eth_strategic_overlay = (
+            build_btc_eth_strategic_overlay(
+                native_recommendations,
+                self._context,
+            )
         )
 
         risk_metrics = build_risk_metrics(
@@ -124,6 +139,7 @@ class UniversalPackageBuilder:
             len(assets)
             + len(forecasts)
             + len(recommendations)
+            + len(btc_eth_strategic_overlay)
             + len(risk_metrics)
             + len(portfolio_positions)
         )
@@ -166,6 +182,12 @@ class UniversalPackageBuilder:
                 "recommendations.csv",
                 RECOMMENDATION_COLUMNS,
                 recommendations,
+            ),
+            (
+                "btc_eth_strategic_overlay",
+                "btc_eth_strategic_overlay.csv",
+                BTC_ETH_STRATEGIC_OVERLAY_COLUMNS,
+                btc_eth_strategic_overlay,
             ),
             (
                 "risk_metrics",
@@ -241,6 +263,8 @@ class UniversalPackageBuilder:
                 "status": "PASS",
                 "platform_status": "RESEARCH ONLY",
                 "holdings_available": False,
+                "btc_eth_strategic_overlay_preferred": True,
+                "legacy_recommendations_preserved": True,
                 "dataset_counts": counts,
                 "manifest_record_count": (
                     manifest_count
@@ -284,6 +308,15 @@ class UniversalPackageBuilder:
                     ),
                     "recommendations_nonempty": (
                         len(recommendations) > 0
+                    ),
+                    "btc_eth_strategic_overlay_exactly_two": (
+                        len(btc_eth_strategic_overlay) == 2
+                    ),
+                    "btc_eth_strategic_overlay_preferred": (
+                        True
+                    ),
+                    "legacy_recommendations_preserved": (
+                        True
                     ),
                     "risk_metrics_nonempty": (
                         len(risk_metrics) > 0

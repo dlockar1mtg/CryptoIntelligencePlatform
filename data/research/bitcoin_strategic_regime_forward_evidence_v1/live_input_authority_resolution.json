@@ -1,0 +1,2173 @@
+{
+  "authority_decisions_deferred": true,
+  "autonomous_execution_authorized": false,
+  "canonical_database_modified": false,
+  "capture_performed": false,
+  "database_authorities": {
+    "macro": [
+      {
+        "columns": [
+          "series_key",
+          "observation_date",
+          "value",
+          "source",
+          "collected_at_utc"
+        ],
+        "date_column": "observation_date",
+        "exists": true,
+        "latest_rows": [
+          {
+            "collected_at_utc": "2026-07-28T18:25:37.190Z",
+            "observation_date": "2026-07-27T00:00:00.000",
+            "series_key": "FRED::BAMLH0A0HYM2",
+            "source": "fred_api",
+            "value": 2.81
+          },
+          {
+            "collected_at_utc": "2026-07-28T18:25:37.001Z",
+            "observation_date": "2026-07-27T00:00:00.000",
+            "series_key": "FRED::VIXCLS",
+            "source": "fred_api",
+            "value": 18.67
+          },
+          {
+            "collected_at_utc": "2026-07-28T18:25:36.378Z",
+            "observation_date": "2026-07-27T00:00:00.000",
+            "series_key": "FRED::T10YIE",
+            "source": "fred_api",
+            "value": 2.21
+          },
+          {
+            "collected_at_utc": "2026-07-28T18:25:36.132Z",
+            "observation_date": "2026-07-24T00:00:00.000",
+            "series_key": "FRED::DFII10",
+            "source": "fred_api",
+            "value": 2.43
+          },
+          {
+            "collected_at_utc": "2026-07-28T18:25:36.764Z",
+            "observation_date": "2026-07-24T00:00:00.000",
+            "series_key": "FRED::DTWEXBGS",
+            "source": "fred_api",
+            "value": 120.7105
+          }
+        ],
+        "latest_value": "2026-07-27",
+        "row_count": 9,
+        "table": "latest_macro_observations"
+      },
+      {
+        "columns": [
+          "observation_date",
+          "real_yield",
+          "nominal_yield",
+          "fed_funds_rate",
+          "breakeven_inflation",
+          "vix",
+          "high_yield_spread",
+          "dollar_index",
+          "dollar_90d_change_pct",
+          "m2_yoy_pct",
+          "unemployment_rate",
+          "unemployment_6m_change",
+          "liquidity_score",
+          "risk_appetite_score",
+          "macro_score",
+          "regime_label",
+          "confidence",
+          "calculated_at_utc"
+        ],
+        "date_column": "observation_date",
+        "exists": true,
+        "latest_rows": [
+          {
+            "breakeven_inflation": 2.21,
+            "calculated_at_utc": "2026-07-28T18:25:38.648Z",
+            "confidence": 100.0,
+            "dollar_90d_change_pct": 0.7324371958,
+            "dollar_index": 120.7105,
+            "fed_funds_rate": 3.63,
+            "high_yield_spread": 2.81,
+            "liquidity_score": 43.9243012414,
+            "m2_yoy_pct": 5.5449958293,
+            "macro_score": 63.9827812672,
+            "nominal_yield": 4.69,
+            "observation_date": "2026-07-28T00:00:00.000",
+            "real_yield": 2.43,
+            "regime_label": "SUPPORTIVE",
+            "risk_appetite_score": 88.4987012987,
+            "unemployment_6m_change": -0.2,
+            "unemployment_rate": 4.2,
+            "vix": 18.67
+          }
+        ],
+        "latest_value": "2026-07-28",
+        "row_count": 1,
+        "table": "latest_macro_regime"
+      },
+      {
+        "columns": [
+          "series_key",
+          "observation_date",
+          "value",
+          "source",
+          "collected_at_utc"
+        ],
+        "date_column": "observation_date",
+        "exists": true,
+        "latest_rows": [
+          {
+            "collected_at_utc": "2026-07-28T18:25:36.378Z",
+            "observation_date": "2026-07-27T00:00:00.000",
+            "series_key": "FRED::T10YIE",
+            "source": "fred_api",
+            "value": 2.21
+          },
+          {
+            "collected_at_utc": "2026-07-28T18:25:37.001Z",
+            "observation_date": "2026-07-27T00:00:00.000",
+            "series_key": "FRED::VIXCLS",
+            "source": "fred_api",
+            "value": 18.67
+          },
+          {
+            "collected_at_utc": "2026-07-28T18:25:37.190Z",
+            "observation_date": "2026-07-27T00:00:00.000",
+            "series_key": "FRED::BAMLH0A0HYM2",
+            "source": "fred_api",
+            "value": 2.81
+          },
+          {
+            "collected_at_utc": "2026-07-28T18:25:35.690Z",
+            "observation_date": "2026-07-24T00:00:00.000",
+            "series_key": "FRED::DFF",
+            "source": "fred_api",
+            "value": 3.63
+          },
+          {
+            "collected_at_utc": "2026-07-28T18:25:35.900Z",
+            "observation_date": "2026-07-24T00:00:00.000",
+            "series_key": "FRED::DGS10",
+            "source": "fred_api",
+            "value": 4.69
+          }
+        ],
+        "latest_value": "2026-07-27",
+        "row_count": 16505,
+        "table": "macro_observations"
+      },
+      {
+        "columns": [
+          "observation_date",
+          "real_yield",
+          "nominal_yield",
+          "fed_funds_rate",
+          "breakeven_inflation",
+          "vix",
+          "high_yield_spread",
+          "dollar_index",
+          "dollar_90d_change_pct",
+          "m2_yoy_pct",
+          "unemployment_rate",
+          "unemployment_6m_change",
+          "liquidity_score",
+          "risk_appetite_score",
+          "macro_score",
+          "regime_label",
+          "confidence",
+          "calculated_at_utc"
+        ],
+        "date_column": "observation_date",
+        "exists": true,
+        "latest_rows": [
+          {
+            "breakeven_inflation": 2.21,
+            "calculated_at_utc": "2026-07-28T18:25:38.648Z",
+            "confidence": 100.0,
+            "dollar_90d_change_pct": 0.7324371958,
+            "dollar_index": 120.7105,
+            "fed_funds_rate": 3.63,
+            "high_yield_spread": 2.81,
+            "liquidity_score": 43.9243012414,
+            "m2_yoy_pct": 5.5449958293,
+            "macro_score": 63.9827812672,
+            "nominal_yield": 4.69,
+            "observation_date": "2026-07-28T00:00:00.000",
+            "real_yield": 2.43,
+            "regime_label": "SUPPORTIVE",
+            "risk_appetite_score": 88.4987012987,
+            "unemployment_6m_change": -0.2,
+            "unemployment_rate": 4.2,
+            "vix": 18.67
+          },
+          {
+            "breakeven_inflation": 2.26,
+            "calculated_at_utc": "2026-07-26T18:35:08.371Z",
+            "confidence": 100.0,
+            "dollar_90d_change_pct": 1.5211559438,
+            "dollar_index": 120.5315,
+            "fed_funds_rate": 3.63,
+            "high_yield_spread": 2.77,
+            "liquidity_score": 42.8243682731,
+            "m2_yoy_pct": 5.5803131827,
+            "macro_score": 63.4730778749,
+            "nominal_yield": 4.71,
+            "observation_date": "2026-07-26T00:00:00.000",
+            "real_yield": 2.43,
+            "regime_label": "SUPPORTIVE",
+            "risk_appetite_score": 88.7103896104,
+            "unemployment_6m_change": -0.2,
+            "unemployment_rate": 4.2,
+            "vix": 18.7
+          },
+          {
+            "breakeven_inflation": 2.26,
+            "calculated_at_utc": "2026-07-25T22:35:14.766Z",
+            "confidence": 100.0,
+            "dollar_90d_change_pct": 1.5211559438,
+            "dollar_index": 120.5315,
+            "fed_funds_rate": 3.63,
+            "high_yield_spread": 2.77,
+            "liquidity_score": 42.8243682731,
+            "m2_yoy_pct": 5.5803131827,
+            "macro_score": 63.4730778749,
+            "nominal_yield": 4.71,
+            "observation_date": "2026-07-25T00:00:00.000",
+            "real_yield": 2.43,
+            "regime_label": "SUPPORTIVE",
+            "risk_appetite_score": 88.7103896104,
+            "unemployment_6m_change": -0.2,
+            "unemployment_rate": 4.2,
+            "vix": 18.7
+          }
+        ],
+        "latest_value": "2026-07-28",
+        "row_count": 3,
+        "table": "macro_regime_daily"
+      }
+    ],
+    "module42": [
+      {
+        "bitcoin_rows": 1,
+        "columns": [
+          "run_id",
+          "recommendation_date",
+          "asset_id",
+          "current_price",
+          "investment_score",
+          "best_action",
+          "current_portfolio_weight",
+          "best_current_portfolio_pct",
+          "weight_change_pct",
+          "suggested_timeline",
+          "entry_strategy",
+          "conviction",
+          "forecast_confidence",
+          "reliability_score",
+          "regime_alignment_score",
+          "risk_score",
+          "short_term_signal",
+          "medium_term_signal",
+          "long_term_signal",
+          "primary_reason",
+          "risk_warning",
+          "evidence_status",
+          "calculated_at_utc"
+        ],
+        "date_column": "recommendation_date",
+        "exists": true,
+        "latest_bitcoin_rows": [
+          {
+            "asset_id": "bitcoin",
+            "best_action": "WAIT",
+            "best_current_portfolio_pct": 0.733053554,
+            "calculated_at_utc": "2026-07-28T18:41:53.761Z",
+            "conviction": "LOW",
+            "current_portfolio_weight": 0.0073305355,
+            "current_price": 63656.0,
+            "entry_strategy": "Reassess after short-term signal improves",
+            "evidence_status": "ACCUMULATING_EVIDENCE",
+            "forecast_confidence": 0.4329801787,
+            "investment_score": 40.2562651855,
+            "long_term_signal": 48.0501877496,
+            "medium_term_signal": 47.7421277911,
+            "primary_reason": "7D -4.6%, 30D -23.9%, 3M -1.3%, 12M -5.3%; regime=RANGE_BOUND.",
+            "recommendation_date": "2026-07-28T00:00:00.000",
+            "regime_alignment_score": 49.8792425764,
+            "reliability_score": 21.6112315448,
+            "risk_score": 70.1322761527,
+            "risk_warning": "Long-range prices are scenario estimates with declining confidence.",
+            "run_id": "514e1646-e18f-444e-8fa4-4888960e6596",
+            "short_term_signal": 16.8820317093,
+            "suggested_timeline": "WAIT_7_TO_30_DAYS",
+            "weight_change_pct": 0.0
+          }
+        ],
+        "latest_value": "2026-07-28",
+        "row_count": 6,
+        "table": "latest_m42_asset_recommendations"
+      },
+      {
+        "bitcoin_rows": 1,
+        "columns": [
+          "run_id",
+          "recommendation_date",
+          "asset_id",
+          "target_weight",
+          "current_weight",
+          "trade_weight",
+          "trade_action",
+          "execution_stage",
+          "execution_window",
+          "tranche_pct",
+          "trigger_description",
+          "calculated_at_utc"
+        ],
+        "date_column": "recommendation_date",
+        "exists": true,
+        "latest_bitcoin_rows": [
+          {
+            "asset_id": "bitcoin",
+            "calculated_at_utc": "2026-07-28T18:41:53.762Z",
+            "current_weight": 0.0073305355,
+            "execution_stage": 1,
+            "execution_window": "WAIT_7_TO_30_DAYS",
+            "recommendation_date": "2026-07-28T00:00:00.000",
+            "run_id": "514e1646-e18f-444e-8fa4-4888960e6596",
+            "target_weight": 0.0073305355,
+            "trade_action": "HOLD",
+            "trade_weight": 0.0,
+            "tranche_pct": 100.0,
+            "trigger_description": "Reassess after short-term signal improves"
+          }
+        ],
+        "latest_value": "2026-07-28",
+        "row_count": 6,
+        "table": "latest_m42_portfolio_plan"
+      }
+    ],
+    "price": [
+      {
+        "bitcoin_rows": 1,
+        "columns": [
+          "asset_id",
+          "observation_date",
+          "price_usd",
+          "market_cap_usd",
+          "volume_24h_usd",
+          "circulating_supply",
+          "total_supply",
+          "max_supply",
+          "fully_diluted_value_usd",
+          "market_cap_rank",
+          "ath_usd",
+          "ath_change_pct",
+          "source",
+          "collected_at_utc"
+        ],
+        "date_column": "observation_date",
+        "exists": true,
+        "latest_bitcoin_rows": [
+          {
+            "asset_id": "bitcoin",
+            "ath_change_pct": -49.51101,
+            "ath_usd": 126080.0,
+            "circulating_supply": 20062484.0,
+            "collected_at_utc": "2026-07-28T18:23:23.520Z",
+            "fully_diluted_value_usd": 1277106783345.0,
+            "market_cap_rank": 1,
+            "market_cap_usd": 1277106783345.0,
+            "max_supply": 21000000.0,
+            "observation_date": "2026-07-28T00:00:00.000",
+            "price_usd": 63656.0,
+            "source": "coingecko",
+            "total_supply": 20062484.0,
+            "volume_24h_usd": 25822288783.0
+          }
+        ],
+        "latest_value": "2026-07-28",
+        "row_count": 6,
+        "table": "latest_asset_market"
+      },
+      {
+        "bitcoin_rows": 2402,
+        "columns": [
+          "asset_id",
+          "observation_date",
+          "price_usd",
+          "market_cap_usd",
+          "volume_24h_usd",
+          "price_source",
+          "market_cap_source",
+          "volume_source",
+          "source_priority",
+          "collected_at_utc"
+        ],
+        "date_column": "observation_date",
+        "exists": true,
+        "latest_bitcoin_rows": [
+          {
+            "asset_id": "bitcoin",
+            "collected_at_utc": "2026-07-28T18:25:42.411Z",
+            "market_cap_source": "coingecko",
+            "market_cap_usd": 1277106783345.0,
+            "observation_date": "2026-07-28T00:00:00.000",
+            "price_source": "coingecko",
+            "price_usd": 63656.0,
+            "source_priority": 1,
+            "volume_24h_usd": 25822288783.0,
+            "volume_source": "coingecko"
+          },
+          {
+            "asset_id": "bitcoin",
+            "collected_at_utc": "2026-07-28T18:25:42.411Z",
+            "market_cap_source": "coingecko",
+            "market_cap_usd": 1310344973471.4292,
+            "observation_date": "2026-07-27T00:00:00.000",
+            "price_source": "coingecko",
+            "price_usd": 65329.5375643887,
+            "source_priority": 1,
+            "volume_24h_usd": 14617812488.4181,
+            "volume_source": "coingecko"
+          },
+          {
+            "asset_id": "bitcoin",
+            "collected_at_utc": "2026-07-28T18:25:42.411Z",
+            "market_cap_source": "coingecko",
+            "market_cap_usd": 1290292266334.4731,
+            "observation_date": "2026-07-26T00:00:00.000",
+            "price_source": "coingecko",
+            "price_usd": 64309.437681613,
+            "source_priority": 1,
+            "volume_24h_usd": 14254211515.245165,
+            "volume_source": "coingecko"
+          }
+        ],
+        "latest_value": "2026-07-28",
+        "row_count": 12337,
+        "table": "canonical_market_daily"
+      },
+      {
+        "bitcoin_rows": 379,
+        "columns": [
+          "asset_id",
+          "observation_date",
+          "price_usd",
+          "market_cap_usd",
+          "volume_24h_usd",
+          "circulating_supply",
+          "total_supply",
+          "max_supply",
+          "fully_diluted_value_usd",
+          "market_cap_rank",
+          "ath_usd",
+          "ath_change_pct",
+          "source",
+          "collected_at_utc"
+        ],
+        "date_column": "observation_date",
+        "exists": true,
+        "latest_bitcoin_rows": [
+          {
+            "asset_id": "bitcoin",
+            "ath_change_pct": -49.51101,
+            "ath_usd": 126080.0,
+            "circulating_supply": 20062484.0,
+            "collected_at_utc": "2026-07-28T18:23:23.520Z",
+            "fully_diluted_value_usd": 1277106783345.0,
+            "market_cap_rank": 1,
+            "market_cap_usd": 1277106783345.0,
+            "max_supply": 21000000.0,
+            "observation_date": "2026-07-28T00:00:00.000",
+            "price_usd": 63656.0,
+            "source": "coingecko",
+            "total_supply": 20062484.0,
+            "volume_24h_usd": 25822288783.0
+          },
+          {
+            "asset_id": "bitcoin",
+            "ath_change_pct": null,
+            "ath_usd": null,
+            "circulating_supply": null,
+            "collected_at_utc": "2026-07-28T18:23:23.568Z",
+            "fully_diluted_value_usd": null,
+            "market_cap_rank": null,
+            "market_cap_usd": 1310344973471.4292,
+            "max_supply": null,
+            "observation_date": "2026-07-27T00:00:00.000",
+            "price_usd": 65329.5375643887,
+            "source": "coingecko",
+            "total_supply": null,
+            "volume_24h_usd": 14617812488.4181
+          },
+          {
+            "asset_id": "bitcoin",
+            "ath_change_pct": null,
+            "ath_usd": null,
+            "circulating_supply": null,
+            "collected_at_utc": "2026-07-28T18:23:23.568Z",
+            "fully_diluted_value_usd": null,
+            "market_cap_rank": null,
+            "market_cap_usd": 1290292266334.4731,
+            "max_supply": null,
+            "observation_date": "2026-07-26T00:00:00.000",
+            "price_usd": 64309.437681613,
+            "source": "coingecko",
+            "total_supply": null,
+            "volume_24h_usd": 14254211515.245165
+          }
+        ],
+        "latest_value": "2026-07-28",
+        "row_count": 2274,
+        "table": "asset_market_daily"
+      }
+    ]
+  },
+  "database_read_only": true,
+  "database_sha256": "3de0162f0845247721575d38b155a3b6ae0f902276801ca9f5338f21adedf3af",
+  "first_prospective_observation_captured": false,
+  "inspection_id": "BITCOIN_LIVE_INPUT_AUTHORITY_RESOLUTION_V1",
+  "inspection_timestamp": "2026-08-21T17:26:46.172461-05:00",
+  "ledger_record_count": 0,
+  "missing_evidence_synthesized": false,
+  "operating_timezone": "America/Chicago",
+  "outcome_peeking_allowed": false,
+  "preserved_gap_review_sha256": "fc4ebbce56cf0478007898bb77c9a38f286bae288ed9911c4ebe89425c91e3f8",
+  "production_policy_changed": false,
+  "repository_search": {
+    "price_refresh_hits": [
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "apply_v3_3_1_hotfix.py",
+        "snippets": [
+          "because zero assets were analyzed.'                 WHERE status='SUCCESS' AND assets_analyzed=0             \"\"\")         for table_name in [             \"research_market_daily\", \"canonical_market_daily\"         ]:             if table_name in tables:                 count = conn.execute(                     f\"SELECT COUNT(*) FROM {table_name}\"                 ).fetchone()[0]                 print(f\"{table_name}: {count} rows\")             else:                 print(f\"{table_name}: table not pres"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "apply_v3_3_2_hotfix.py",
+        "snippets": [
+          "E status='RUNNING'                    OR (status='SUCCESS' AND assets_analyzed=0)             \"\"\",[datetime.now(timezone.utc)])         for table_name in (\"research_market_daily\",\"canonical_market_daily\"):             if table_name in tables:                 count=conn.execute(                     f\"SELECT COUNT(*) FROM {table_name}\"                 ).fetchone()[0]                 columns=[                     row[1] for row in conn.execute(                         f\"PRAGMA table_info('{table_name"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "diagnose_and_recover_v3_3_5.py",
+        "snippets": [
+          "     )          counts = {             name: table_count(conn, name)             for name in [                 \"market_history\",                 \"exchange_ohlcv\",                 \"canonical_market_daily\",                 \"research_market_daily\",             ]         }     finally:         conn.close()      print(\"Warehouse counts\")     print(\"----------------\")     for name, count in counts.items():         print(f\"{name}: {count}\")      raw_rows = max(0, counts[\"market_history\"]) + max(         "
+        ]
+      },
+      {
+        "matched_terms": [
+          "latest_asset_market",
+          "asset_market_daily"
+        ],
+        "path": "export_module1.py",
+        "snippets": [
+          "from crypto_platform.platform import load_all, connect, path_for  EXPORTS = [     \"assets\", \"latest_asset_market\", \"asset_market_daily\", \"asset_ohlcv\",     \"crypto_global_daily\", \"stablecoin_supply_daily\",     \"latest_chain_metrics\", \"chain_metrics_daily\",     \"macro_series_catalog\", \"macro_observations\",     \"latest_macro_observations\", \"collection_runs\",     \"collection_results\", \"provider_health\",     \"lat",
+          "from crypto_platform.platform import load_all, connect, path_for  EXPORTS = [     \"assets\", \"latest_asset_market\", \"asset_market_daily\", \"asset_ohlcv\",     \"crypto_global_daily\", \"stablecoin_supply_daily\",     \"latest_chain_metrics\", \"chain_metrics_daily\",     \"macro_series_catalog\", \"macro_observations\",     \"latest_macro_observations\", \"collection_runs\",     \"collection_results\", \"provider_health\",     \"latest_provider_health\", "
+        ]
+      },
+      {
+        "matched_terms": [
+          "refresh"
+        ],
+        "path": "export_module19.py",
+        "snippets": [
+          "from crypto_platform.platform import (     load_all, connect, path_for ) from crypto_platform.module19 import MODULE19_SCHEMA  EXPORTS = {     \"latest_feature_validation_refreshed\":         \"SELECT * FROM \"         \"latest_feature_validation_refreshed\",     \"feature_validation_refreshed\":         \"SELECT * FROM feature_validation_refreshed\",     \"latest_feature_rolling_validation\":         \"SELECT * FROM \"         \"latest_feature_rolling_validation\",     \"feature_rolling_v"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "export_module6.py",
+        "snippets": [
+          "e5 import MODULE5_SCHEMA from crypto_platform.module6 import MODULE6_SCHEMA  EXPORTS = {     \"canonical_history_coverage\":         \"SELECT * FROM canonical_history_coverage\",     \"canonical_market_daily\":         \"SELECT * FROM canonical_market_daily ORDER BY asset_id,observation_date\",     \"latest_model_snapshots\":         \"SELECT * FROM latest_model_snapshots\",     \"model_snapshots_daily\":         \"SELECT * FROM model_snapshots_daily ORDER BY asset_id,observation_date\",     \"signal_forward_perfo"
+        ]
+      },
+      {
+        "matched_terms": [
+          "latest_asset_market"
+        ],
+        "path": "inspect_module1.py",
+        "snippets": [
+          "onn, \"LATEST MARKET\", '''         SELECT asset_id, observation_date, price_usd, market_cap_usd,                volume_24h_usd, market_cap_rank, ath_change_pct, source         FROM latest_asset_market         ORDER BY market_cap_usd DESC NULLS LAST     ''')     display(conn, \"OHLCV COVERAGE\", '''         SELECT asset_id, exchange, symbol, MIN(open_time_utc) first_time,                MAX(open_time_utc) latest_time, COUNT(*) row_count         FROM asset_ohlcv         GROUP BY asset_id, exchange, "
+        ]
+      },
+      {
+        "matched_terms": [
+          "refresh"
+        ],
+        "path": "inspect_module19.py",
+        "snippets": [
+          "ing_validation         GROUP BY feature_key,                  forward_horizon_days         ORDER BY ABS(             AVG(testing_spearman)         ) DESC     \"\"\")      show(conn, \"REFRESHED FEATURE VALIDATION\", \"\"\"         SELECT feature_key,                forward_horizon_days,                sample_count,                pearson_correlation,                spearman_correlation,                top_minus_bottom_pct,                directional_hit_rate_pct         FROM latest_feature_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko"
+        ],
+        "path": "README.md",
+        "snippets": [
+          "research information set without changing the live Module 13 portfolio methodology.  ## Module 17  Module 17 builds a daily feature warehouse containing:  - Bitcoin dominance from CoinGecko snapshots when available - A historical BTC-dominance proxy from canonical market capitalization - TOTAL2 and TOTAL3 market-cap proxies - Stablecoin supply and 30-day supply growth - Historical Fear & Greed observations - Validated manual ETF net flows - Core-market breadth above SMA-50 - Median 30"
+        ]
+      },
+      {
+        "matched_terms": [
+          "refresh"
+        ],
+        "path": "README_V11_0_1_MEMORY_PERSISTENCE.txt",
+        "snippets": [
+          "ython run_module40.py 5. Inspect:    python inspect_module40.py 6. Run Module 40 a second time:    python run_module40.py 7. Confirm forecasts remain 24 rather than increasing. 8. Refresh meta-learning:    python run_module41.py "
+        ]
+      },
+      {
+        "matched_terms": [
+          "refresh"
+        ],
+        "path": "README_V11_0_3_CANONICAL_MEMORY_REBUILD.txt",
+        "snippets": [
+          "anonical_memory_rebuild.bat 4. Run:    python run_module40.py 5. Inspect:    python inspect_module40.py 6. Run Module 40 again. 7. Confirm the forecast count remains unchanged. 8. Refresh Module 41:    python run_module41.py "
+        ]
+      },
+      {
+        "matched_terms": [
+          "refresh"
+        ],
+        "path": "README_V4_2_2.txt",
+        "snippets": [
+          "Crypto Intelligence Platform v4.2.2 Research Promotion Release ===================================  This is a safe overlay for an installed v4.2.1 platform.  Module 19 adds:  - Refreshed feature validation after stablecoin-history backfills - Rolling out-of-sample feature validation - Grouped permutation importance - Formal feature registry - Promotion and demotion audit history - Snapshot-only feature labeling - Research-only, watchlist, and shadow-promotion stages  Feature Grou"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily",
+          "asset_market_daily"
+        ],
+        "path": "recover_crypto_database.py",
+        "snippets": [
+          "database(path: Path) -> dict:     result = {         \"path\": path,         \"size_bytes\": path.stat().st_size if path.exists() else 0,         \"research_market_daily\": -1,         \"canonical_market_daily\": -1,         \"asset_ohlcv\": -1,         \"asset_market_daily\": -1,         \"research_universe\": -1,         \"latest_date\": None,         \"error\": None,     }     try:         conn = duckdb.connect(str(path), read_only=True)         try:             tables = {row[0] for row in conn.execute(\"SHOW TAB",
+          ",         \"size_bytes\": path.stat().st_size if path.exists() else 0,         \"research_market_daily\": -1,         \"canonical_market_daily\": -1,         \"asset_ohlcv\": -1,         \"asset_market_daily\": -1,         \"research_universe\": -1,         \"latest_date\": None,         \"error\": None,     }     try:         conn = duckdb.connect(str(path), read_only=True)         try:             tables = {row[0] for row in conn.execute(\"SHOW TABLES\").fetchall()}             for table in [                 "
+        ]
+      },
+      {
+        "matched_terms": [
+          "refresh"
+        ],
+        "path": "run_module1.py",
+        "snippets": [
+          "e__ import annotations import argparse from crypto_platform.platform import run_module1  def main() -> None:     parser = argparse.ArgumentParser()     parser.add_argument(\"--full-refresh\", action=\"store_true\")     args = parser.parse_args()      print(\"Crypto Intelligence Platform \u2014 Module 1 v2.0\")     print(\"Provider-aware data collection\\n\")     result = run_module1(args.full_refresh)      print(\"\\nCollection summary\")     print(\"------------------\")     print(f\"Successful collec"
+        ]
+      },
+      {
+        "matched_terms": [
+          "refresh"
+        ],
+        "path": "run_module19.py",
+        "snippets": [
+          "ult = run_module19()     print(\"Module 19 summary\")     print(\"-----------------\")     print(         f\"Status:                       {result['status']}\"     )     print(         \"Refreshed validation rows:    \"         f\"{result['refreshed_validation_rows']}\"     )     print(         \"Rolling validation rows:      \"         f\"{result['rolling_validation_rows']}\"     )     print(         \"Grouped permutation rows:     \"         f\"{result['grouped_permutation_rows']}\"     )     print"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coinbase"
+        ],
+        "path": "smoke_test.py",
+        "snippets": [
+          "inserted, updated = upsert(conn, \"assets\", asset_frame, [\"asset_id\"])         assert inserted == 6         sample = pd.DataFrame([{             \"asset_id\": \"bitcoin\", \"exchange\": \"coinbase\",             \"symbol\": \"BTC-USD\", \"interval\": \"1d\",             \"open_time_utc\": pd.Timestamp(\"2026-01-01\", tz=\"UTC\"),             \"close_time_utc\": pd.Timestamp(\"2026-01-01 23:59:59\", tz=\"UTC\"),             \"open\": 100000.0, \"high\": 101000.0, \"low\": 99000.0,             \"close\": 100500.0, \"base_v"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "asset_market_daily"
+        ],
+        "path": "smoke_test_v1_2.py",
+        "snippets": [
+          "\": None, \"fully_diluted_value_usd\": None,                     \"market_cap_rank\": i + 1, \"ath_usd\": float(prices[-1] * 1.1),                     \"ath_change_pct\": -9.09, \"source\": \"coingecko\",                     \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })         upsert(             conn, \"asset_market_daily\", pd.DataFrame(market_rows),             [\"asset_id\", \"observation_date\", \"source\"]         )          global_rows = pd.DataFrame([{             \"observatio",
+          "          \"ath_change_pct\": -9.09, \"source\": \"coingecko\",                     \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })         upsert(             conn, \"asset_market_daily\", pd.DataFrame(market_rows),             [\"asset_id\", \"observation_date\", \"source\"]         )          global_rows = pd.DataFrame([{             \"observation_date\": d.date(),             \"total_market_cap_usd\": 2e12 * (1.0005 ** n),             \"total_volume_usd\": 8e10 * (1.0003 ** n),             "
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "asset_market_daily"
+        ],
+        "path": "smoke_test_v1_2_1.py",
+        "snippets": [
+          "\": None, \"fully_diluted_value_usd\": None,                     \"market_cap_rank\": i + 1, \"ath_usd\": float(prices[-1] * 1.1),                     \"ath_change_pct\": -9.09, \"source\": \"coingecko\",                     \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })         upsert(             conn, \"asset_market_daily\", pd.DataFrame(market_rows),             [\"asset_id\", \"observation_date\", \"source\"]         )          global_rows = pd.DataFrame([{             \"observatio",
+          "          \"ath_change_pct\": -9.09, \"source\": \"coingecko\",                     \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })         upsert(             conn, \"asset_market_daily\", pd.DataFrame(market_rows),             [\"asset_id\", \"observation_date\", \"source\"]         )          global_rows = pd.DataFrame([{             \"observation_date\": d.date(),             \"total_market_cap_usd\": 2e12 * (1.0005 ** n),             \"total_volume_usd\": 8e10 * (1.0003 ** n),             "
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "asset_market_daily"
+        ],
+        "path": "smoke_test_v1_3.py",
+        "snippets": [
+          " 1,                     \"ath_usd\": float(max(prices) * 1.05),                     \"ath_change_pct\": float((price / (max(prices) * 1.05) - 1) * 100),                     \"source\": \"coingecko\",                     \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })                 ohlcv_rows.append({                     \"asset_id\": asset[\"asset_id\"], \"exchange\": \"coinbase\",                     \"symbol\": asset[\"coinbase_product\"], \"interval\": \"1d\",                     \"ope",
+          "             \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })                 ohlcv_rows.append({                     \"asset_id\": asset[\"asset_id\"], \"exchange\": \"coinbase\",                     \"symbol\": asset[\"coinbase_product\"], \"interval\": \"1d\",                     \"open_time_utc\": pd.Timestamp(date, tz=\"UTC\"),                     \"close_time_utc\": pd.Timestamp(date, tz=\"UTC\") + pd.Timedelta(days=1),                     \"open\": float(price * 0.995), \"high\": float(",
+          "ase_volume\": None,                     \"taker_buy_quote_volume\": None,                     \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })         upsert(conn, \"asset_market_daily\", pd.DataFrame(market_rows),                [\"asset_id\", \"observation_date\", \"source\"])         upsert(conn, \"asset_ohlcv\", pd.DataFrame(ohlcv_rows),                [\"exchange\", \"symbol\", \"interval\", \"open_time_utc\"])          global_rows = pd.DataFrame([{             \"observation_date\": d.date(), "
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "asset_market_daily"
+        ],
+        "path": "smoke_test_v1_4.py",
+        "snippets": [
+          " 1,                     \"ath_usd\": float(max(prices) * 1.05),                     \"ath_change_pct\": float((price / (max(prices) * 1.05) - 1) * 100),                     \"source\": \"coingecko\",                     \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })                 ohlcv_rows.append({                     \"asset_id\": asset[\"asset_id\"], \"exchange\": \"coinbase\",                     \"symbol\": asset[\"coinbase_product\"], \"interval\": \"1d\",                     \"ope",
+          "             \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })                 ohlcv_rows.append({                     \"asset_id\": asset[\"asset_id\"], \"exchange\": \"coinbase\",                     \"symbol\": asset[\"coinbase_product\"], \"interval\": \"1d\",                     \"open_time_utc\": pd.Timestamp(date, tz=\"UTC\"),                     \"close_time_utc\": pd.Timestamp(date, tz=\"UTC\") + pd.Timedelta(days=1),                     \"open\": float(price * 0.995), \"high\": float(",
+          "ase_volume\": None,                     \"taker_buy_quote_volume\": None,                     \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })         upsert(conn, \"asset_market_daily\", pd.DataFrame(market_rows),                [\"asset_id\", \"observation_date\", \"source\"])         upsert(conn, \"asset_ohlcv\", pd.DataFrame(ohlcv_rows),                [\"exchange\", \"symbol\", \"interval\", \"open_time_utc\"])          global_rows = pd.DataFrame([{             \"observation_date\": d.date(), "
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "asset_market_daily"
+        ],
+        "path": "smoke_test_v1_5.py",
+        "snippets": [
+          "e_usd\": None,                     \"market_cap_rank\": i + 1, \"ath_usd\": float(ath),                     \"ath_change_pct\": float((p / ath - 1) * 100),                     \"source\": \"coingecko\",                     \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })                 ohlcv_rows.append({                     \"asset_id\": asset[\"asset_id\"], \"exchange\": \"coinbase\",                     \"symbol\": asset[\"coinbase_product\"], \"interval\": \"1d\",                     \"ope",
+          "             \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })                 ohlcv_rows.append({                     \"asset_id\": asset[\"asset_id\"], \"exchange\": \"coinbase\",                     \"symbol\": asset[\"coinbase_product\"], \"interval\": \"1d\",                     \"open_time_utc\": pd.Timestamp(d, tz=\"UTC\"),                     \"close_time_utc\": pd.Timestamp(d, tz=\"UTC\") + pd.Timedelta(days=1),                     \"open\": float(p*0.995), \"high\": float(p*1.01),    ",
+          "ase_volume\": None,                     \"taker_buy_quote_volume\": None,                     \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })         upsert(conn, \"asset_market_daily\", pd.DataFrame(market_rows),                [\"asset_id\", \"observation_date\", \"source\"])         upsert(conn, \"asset_ohlcv\", pd.DataFrame(ohlcv_rows),                [\"exchange\", \"symbol\", \"interval\", \"open_time_utc\"])          global_rows = pd.DataFrame([{             \"observation_date\": d.date(), "
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "asset_market_daily"
+        ],
+        "path": "smoke_test_v1_6.py",
+        "snippets": [
+          "t_cap_rank\": i+1,                         \"ath_usd\": float(max(prices)),                         \"ath_change_pct\": float((p/max(prices)-1)*100),                         \"source\": \"coingecko\",                         \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                     })                 ohlcv_rows.append({                     \"asset_id\": asset[\"asset_id\"], \"exchange\": \"coinbase\",                     \"symbol\": asset[\"coinbase_product\"], \"interval\": \"1d\",                 ",
+          "         \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                     })                 ohlcv_rows.append({                     \"asset_id\": asset[\"asset_id\"], \"exchange\": \"coinbase\",                     \"symbol\": asset[\"coinbase_product\"], \"interval\": \"1d\",                     \"open_time_utc\": pd.Timestamp(d, tz=\"UTC\"),                     \"close_time_utc\": pd.Timestamp(d, tz=\"UTC\")+pd.Timedelta(days=1),                     \"open\": float(p*.995), \"high\": float(p*1.01), \"low\":",
+          "        \"taker_buy_base_volume\": None, \"taker_buy_quote_volume\": None,                     \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })         upsert(conn, \"asset_market_daily\", pd.DataFrame(market_rows),                [\"asset_id\",\"observation_date\",\"source\"])         upsert(conn, \"asset_ohlcv\", pd.DataFrame(ohlcv_rows),                [\"exchange\",\"symbol\",\"interval\",\"open_time_utc\"])          global_rows = pd.DataFrame([{             \"observation_date\": d.date(), \"tota"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "asset_market_daily"
+        ],
+        "path": "smoke_test_v1_7.py",
+        "snippets": [
+          "        \"fully_diluted_value_usd\":None,\"market_cap_rank\":i+1,                         \"ath_usd\":float(ath),\"ath_change_pct\":float((p/ath-1)*100),                         \"source\":\"coingecko\",                         \"collected_at_utc\":pd.Timestamp.now(tz=\"UTC\"),                     })                 ohlcv_rows.append({                     \"asset_id\":asset[\"asset_id\"],\"exchange\":\"coinbase\",                     \"symbol\":asset[\"coinbase_product\"],\"interval\":\"1d\",                     \"op",
+          "             \"collected_at_utc\":pd.Timestamp.now(tz=\"UTC\"),                     })                 ohlcv_rows.append({                     \"asset_id\":asset[\"asset_id\"],\"exchange\":\"coinbase\",                     \"symbol\":asset[\"coinbase_product\"],\"interval\":\"1d\",                     \"open_time_utc\":pd.Timestamp(d,tz=\"UTC\"),                     \"close_time_utc\":pd.Timestamp(d,tz=\"UTC\")+pd.Timedelta(days=1),                     \"open\":float(p*.995),\"high\":float(p*1.01),\"low\":float(p*.99",
+          "             \"taker_buy_base_volume\":None,\"taker_buy_quote_volume\":None,                     \"collected_at_utc\":pd.Timestamp.now(tz=\"UTC\"),                 })         upsert(conn,\"asset_market_daily\",pd.DataFrame(market_rows),                [\"asset_id\",\"observation_date\",\"source\"])         upsert(conn,\"asset_ohlcv\",pd.DataFrame(ohlcv_rows),                [\"exchange\",\"symbol\",\"interval\",\"open_time_utc\"])          global_rows=pd.DataFrame([{             \"observation_date\":d.date(),\"total_marke"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coinbase"
+        ],
+        "path": "smoke_test_v3_1.py",
+        "snippets": [
+          "date.date(),                     \"price_usd\": 100 + i * 0.05,                     \"market_cap_usd\": None,                     \"volume_24h_usd\": 1e7,                     \"source\": \"coinbase\",                     \"source_symbol\": asset[\"coinbase_product\"],                     \"collected_at_utc\": now,                 })         hf = pd.DataFrame(history)         conn.register(\"h\", hf)         conn.execute(\"INSERT INTO research_market_daily SELECT * FROM h\")         conn.unregister(\"h\") "
+        ]
+      },
+      {
+        "matched_terms": [
+          "coinbase"
+        ],
+        "path": "smoke_test_v3_3.py",
+        "snippets": [
+          "   for d,p in zip(dates,prices):     history.append({\"asset_id\":a[\"asset_id\"],\"observation_date\":d.date(),\"price_usd\":float(p),\"market_cap_usd\":None,\"volume_24h_usd\":1e8,\"source\":\"coinbase\",\"source_symbol\":a[\"coinbase_product\"],\"collected_at_utc\":now})   uf=pd.DataFrame(universe); hf=pd.DataFrame(history)   c.register(\"u\",uf); c.execute(\"INSERT INTO research_universe SELECT * FROM u\"); c.unregister(\"u\")   c.register(\"h\",hf); c.execute(\"INSERT INTO research_market_daily SELECT * FROM "
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "smoke_test_v3_3_4.py",
+        "snippets": [
+          "ted_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })         frame = pd.DataFrame(rows)         conn.register(\"stage\", frame)         conn.execute(             \"INSERT INTO canonical_market_daily SELECT * FROM stage\"         )         conn.unregister(\"stage\")         conn.close()          runner = Module14Runner()         runner.conn.close()         runner.settings = settings         runner.assets = assets         runner.config = settings[\"module14\"]         runner.conn = connect(settings) "
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "smoke_test_v4_0.py",
+        "snippets": [
+          "ted_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })         frame = pd.DataFrame(rows)         conn.register(\"stage\", frame)         conn.execute(             \"INSERT INTO canonical_market_daily SELECT * FROM stage\"         )         conn.unregister(\"stage\")         conn.close()          runner = Module15Runner()         runner.conn.close()         runner.settings = settings         runner.assets = assets         runner.config = settings[\"module15\"]         runner.conn = connect(settings) "
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "smoke_test_v4_1_0.py",
+        "snippets": [
+          "','market_cap_source':'test','volume_source':'test','source_rows':1,'collected_at_utc':pd.Timestamp.now(tz='UTC')})   f=pd.DataFrame(rows);c.register('s',f);c.execute('INSERT INTO canonical_market_daily SELECT * FROM s');c.unregister('s');c.close()   r=Module16Runner();r.conn.close();r.evaluator.conn.close();r.settings=settings;r.assets=assets;r.config=settings['module16'];r.conn=connect(settings);r.conn.execute(MODULE16_SCHEMA)   r.evaluator.settings=settings;r.evaluator.assets=assets;r.evaluator"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "smoke_test_v4_2.py",
+        "snippets": [
+          "            \"collected_at_utc\": pd.Timestamp.now(tz=\"UTC\"),                 })         frame = pd.DataFrame(rows)         c.register(\"stage\", frame)         c.execute(\"INSERT INTO canonical_market_daily SELECT * FROM stage\")         c.unregister(\"stage\")         c.close()          runner = Module17Runner()         runner.conn.close()         runner.settings = settings         runner.cfg = settings[\"module17\"]         runner.conn = connect(settings)         runner.conn.execute(MODULE17_SCHEMA)     "
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase"
+        ],
+        "path": "config/assets.yaml",
+        "snippets": [
+          "assets:   - asset_id: bitcoin     symbol: BTC     asset_name: Bitcoin     coingecko_id: bitcoin     coinbase_product: BTC-USD     kraken_pair: XBTUSD     binance_symbol: BTCUSDT     asset_tier: core     portfolio_enabled: true     research_enabled: true     native_chain: bitcoin    - asset_id: ethereum     symbol: ETH     asset_name: Ethereum     coingecko_id: ethereum     coinbas",
+          "assets:   - asset_id: bitcoin     symbol: BTC     asset_name: Bitcoin     coingecko_id: bitcoin     coinbase_product: BTC-USD     kraken_pair: XBTUSD     binance_symbol: BTCUSDT     asset_tier: core     portfolio_enabled: true     research_enabled: true     native_chain: bitcoin    - asset_id: ethereum     symbol: ETH     asset_name: Ethereum     coingecko_id: ethereum     coinbase_product: ETH-USD     kr"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v10_0_0.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v10_1_0.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v10_2_0.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v11_0_0.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v11_0_1.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v11_0_2.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v11_0_3.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v12_0_0.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v12_1_0.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v13_0_0.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v3_3_3_identifier_hotfix.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: \"2017-01-01\"   exchange_start_date: \"2020-01-01\"   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2  providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:       - coinbase       - kraken       - binance     enabled_providers:       coinbase: true       kraken: true  ",
+          "65   exchange_interval: 1d   provider_failure_threshold: 2  providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:       - coinbase       - kraken       - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:       - fred_api       - local_crypt",
+          "     core_asset_ids:       - bitcoin       - ethereum       - solana       - chainlink       - ripple       - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v4_2_1.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: \"2017-01-01\"   exchange_start_date: \"2020-01-01\"   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2  providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:       - coinbase       - kraken       - binance     enabled_providers:       coinbase: true       kraken: true  ",
+          "65   exchange_interval: 1d   provider_failure_threshold: 2  providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:       - coinbase       - kraken       - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:       - fred_api       - local_crypt",
+          "     core_asset_ids:       - bitcoin       - ethereum       - solana       - chainlink       - ripple       - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v4_2_2.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v4_2_3.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v5_0.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v5_1.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v5_1_1.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v6_0.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v7_0.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v7_0_3.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v7_1.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v7_2.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v7_3.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v7_3_1.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v8_0.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v8_1_0.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v8_1_1.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v8_2.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v8_3_0.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v8_3_1.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v8_4_0.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v9_1_0.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase",
+          "refresh"
+        ],
+        "path": "config/settings_before_v9_2_0.yaml",
+        "snippets": [
+          "ut_seconds: 60   max_retries: 5   backoff_seconds: 2   cache_ttl_minutes: 30   incremental_overlap_days: 5   default_start_date: '2017-01-01'   exchange_start_date: '2020-01-01'   coingecko_history_days: 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       bi",
+          ": 365   exchange_interval: 1d   provider_failure_threshold: 2 providers:   market:     enabled: true     primary: coingecko   exchange_ohlcv:     enabled: true     priority:     - coinbase     - kraken     - binance     enabled_providers:       coinbase: true       kraken: true       binance: false   stablecoins:     enabled: true     primary: defillama   chains:     enabled: true     primary: defillama   macro:     enabled: true     priority:     - fred_api     - local_crypto_cache ",
+          " 3x     - 5x     core_asset_ids:     - bitcoin     - ethereum     - solana     - chainlink     - ripple     - avalanche-2   discovery:     coingecko_pages: 2     per_page: 100     refresh_days: 1   history:     enabled: true     backfill_days: 1095     incremental_overlap_days: 5     binance_page_limit: 1000     max_assets_per_run: 50   derivatives:     enabled: true     funding_history_limit: 100     open_interest_enabled: true   sentiment:     enabled: true     fear_greed_history_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko"
+        ],
+        "path": "crypto_platform/module10.py",
+        "snippets": [
+          "ow()         self.session = requests.Session()         self.session.headers.update({             \"User-Agent\": \"CryptoIntelligencePlatform/4.0\"         })         key = os.getenv(\"COINGECKO_API_KEY\", \"\").strip()         if key:             self.session.headers.update({\"x-cg-demo-api-key\": key})      def upsert(self, table: str, frame: pd.DataFrame) -> None:         if frame.empty:             return         self.conn.register(\"_m10_stage\", frame)         columns = \",\".join(frame.colum"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coinbase"
+        ],
+        "path": "crypto_platform/module11.py",
+        "snippets": [
+          "ise RuntimeError(f\"{url}: {last_error}\")      def provider_symbols(self) -> dict[str, set[str]]:         result: dict[str, set[str]] = {             \"binance\": set(),             \"coinbase\": set(),             \"kraken\": set(),         }         try:             payload = self.get_json(                 \"https://api.binance.com/api/v3/exchangeInfo\"             )             result[\"binance\"] = {                 row[\"symbol\"]                 for row in payload.get(\"symbols\", [])        "
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase"
+        ],
+        "path": "crypto_platform/module12.py",
+        "snippets": [
+          "n_id=str(uuid.uuid4()); self.started=utcnow(); self.session=requests.Session(); self.session.headers.update({'User-Agent':'CryptoIntelligencePlatform/4.0'})         key=os.getenv('COINGECKO_API_KEY','').strip()         if key: self.session.headers['x-cg-demo-api-key']=key     def upsert(self,table,frame):         if frame.empty:return         self.conn.register('_stage',frame); cols=','.join(frame.columns); self.conn.execute(f'INSERT OR REPLACE INTO {table}({cols}) SELECT {cols} FROM ",
+          "=='TRADING' and c=='PERPETUAL','metadata_json':str(m),'collected_at_utc':now})         except Exception: pass         try:             for m in self.get_json('https://api.exchange.coinbase.com/products'):                 markets.append({'provider':'coinbase','provider_symbol':m['id'],'base_asset_code':m['base_currency'],'normalized_base_symbol':normalize_symbol(m['base_currency']),'quote_asset_code':m['quote_currency'],'normalized_quote_symbol':normalize_symbol(m['quote_currency']),'"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "coinbase"
+        ],
+        "path": "crypto_platform/module13.py",
+        "snippets": [
+          "       ORDER BY CASE source                     WHEN 'binance' THEN 1                     WHEN 'coinbase' THEN 2                     WHEN 'kraken' THEN 3                     WHEN 'coingecko_history' THEN 4                     ELSE 9 END             )=1             ORDER BY asset_id,observation_date         \"\"\").fetchdf()         if not frame.empty:             frame[\"observation_date\"] = pd.to_datetime(frame[\"observation_date\"])         return frame      def build_structure(self) -> p",
+          " ROW_NUMBER() OVER(                 PARTITION BY asset_id,observation_date                 ORDER BY CASE source                     WHEN 'binance' THEN 1                     WHEN 'coinbase' THEN 2                     WHEN 'kraken' THEN 3                     WHEN 'coingecko_history' THEN 4                     ELSE 9 END             )=1             ORDER BY asset_id,observation_date         \"\"\").fetchdf()         if not frame.empty:             frame[\"observation_date\"] = pd.to_datetim"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily",
+          "coingecko",
+          "coinbase"
+        ],
+        "path": "crypto_platform/module13_before_v3_3_2_hotfix.py",
+        "snippets": [
+          "_history\": 4,                     \"binance_spot\": 5,                     \"coingecko_snapshot\": 8,                 }).fillna(9)                 frames.append(research)          if \"canonical_market_daily\" in tables:             columns = {                 row[1]                 for row in self.conn.execute(                     \"PRAGMA table_info('canonical_market_daily')\"                 ).fetchall()             }             volume_column = (                 \"volume_24h_usd\"                 if \"vo",
+          "  research[\"source_priority\"] = research[\"source\"].map({                     \"binance\": 1,                     \"coinbase\": 2,                     \"kraken\": 3,                     \"coingecko_history\": 4,                     \"binance_spot\": 5,                     \"coingecko_snapshot\": 8,                 }).fillna(9)                 frames.append(research)          if \"canonical_market_daily\" in tables:             columns = {                 row[1]                 for row in self.conn.e",
+          "    \"\"\").fetchdf()             if not research.empty:                 research[\"source_priority\"] = research[\"source\"].map({                     \"binance\": 1,                     \"coinbase\": 2,                     \"kraken\": 3,                     \"coingecko_history\": 4,                     \"binance_spot\": 5,                     \"coingecko_snapshot\": 8,                 }).fillna(9)                 frames.append(research)          if \"canonical_market_daily\" in tables:             colu"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module14.py",
+        "snippets": [
+          "_m14_stage\")      def histories(self) -> dict[str, pd.Series]:         columns = {             row[1]             for row in self.conn.execute(                 \"PRAGMA table_info('canonical_market_daily')\"             ).fetchall()         }         if not columns:             raise RuntimeError(                 \"canonical_market_daily is missing. Run Module 6 sync.\"             )         frame = self.conn.execute(\"\"\"             SELECT asset_id,observation_date,price_usd             FROM canonical"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module14_before_v3_3_5_hotfix.py",
+        "snippets": [
+          "_m14_stage\")      def histories(self) -> dict[str, pd.Series]:         columns = {             row[1]             for row in self.conn.execute(                 \"PRAGMA table_info('canonical_market_daily')\"             ).fetchall()         }         if not columns:             raise RuntimeError(                 \"canonical_market_daily is missing. Run Module 6 sync.\"             )         frame = self.conn.execute(\"\"\"             SELECT asset_id,observation_date,price_usd             FROM canonical"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module15.py",
+        "snippets": [
+          "ister(\"_m15_stage\")      def histories(self) -> dict[str, pd.Series]:         frame = self.conn.execute(\"\"\"             SELECT asset_id,observation_date,price_usd             FROM canonical_market_daily             WHERE asset_id IN (                 'bitcoin','ethereum','solana',                 'chainlink','xrp','avalanche'             )               AND price_usd IS NOT NULL             ORDER BY asset_id,observation_date         \"\"\").fetchdf()         if frame.empty:             raise RuntimeE"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module17.py",
+        "snippets": [
+          "features(self):         market = self.conn.execute(\"\"\"             SELECT asset_id, observation_date, price_usd,                    market_cap_usd, volume_24h_usd             FROM canonical_market_daily             WHERE asset_id IN (                 'bitcoin','ethereum','solana','chainlink','xrp','avalanche'             )               AND price_usd IS NOT NULL             ORDER BY observation_date, asset_id         \"\"\").fetchdf()         if market.empty:             raise RuntimeError(          "
+        ]
+      },
+      {
+        "matched_terms": [
+          "refresh"
+        ],
+        "path": "crypto_platform/module19.py",
+        "snippets": [
+          "9_SCHEMA = r\"\"\" CREATE TABLE IF NOT EXISTS module19_runs(     run_id VARCHAR PRIMARY KEY,     started_at_utc TIMESTAMPTZ,     completed_at_utc TIMESTAMPTZ,     status VARCHAR,     refreshed_validation_rows INTEGER,     rolling_validation_rows INTEGER,     grouped_permutation_rows INTEGER,     registry_rows INTEGER,     promoted_features INTEGER,     demoted_features INTEGER,     notes VARCHAR,     platform_version VARCHAR );  CREATE TABLE IF NOT EXISTS feature_validation_refreshed( "
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "market data",
+          "asset_market_daily"
+        ],
+        "path": "crypto_platform/module2.py",
+        "snippets": [
+          "])         return row       def calculate_market_regime(self, signal_date: pd.Timestamp) -> dict[str, Any]:         \"\"\"         Calculate a broad tracked-universe regime.          CoinGecko's historical global market-cap chart is a paid endpoint, so         the free platform uses the six configured assets as a transparent         market proxy. The current global snapshot is still retained for total         market cap, volume, and dominance context.         \"\"\"         config = self.se",
+          "f.conn.execute(             \"SELECT MAX(observation_date) FROM asset_market_daily\"         ).fetchone()[0]         if latest_date is None:             raise RuntimeError(\"Module 1 market data is empty. Run Module 1 first.\")         signal_date = pd.Timestamp(latest_date)         macro = self.calculate_macro_regime(signal_date)         market = self.calculate_market_regime(signal_date)          rows = []         skipped = 0         for asset in self.assets:             row = self.score_a",
+          "          history = self.conn.execute(             \"\"\"             SELECT asset_id, observation_date, market_cap_usd, volume_24h_usd,                    price_usd             FROM asset_market_daily             WHERE source='coingecko'               AND observation_date <= ?             ORDER BY asset_id, observation_date             \"\"\",             [signal_date.date()],         ).fetchdf()          tracked_cap_change = None         tracked_volume_change = None         breadth_pct = None     "
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module22.py",
+        "snippets": [
+          "      self.conn.unregister(\"_m22_stage\")      def histories(self):         market = self.conn.execute(\"\"\"             SELECT asset_id, observation_date, price_usd             FROM canonical_market_daily             WHERE asset_id IN (                 'bitcoin','ethereum','solana','chainlink','xrp','avalanche'             ) AND price_usd IS NOT NULL             ORDER BY observation_date, asset_id         \"\"\").fetchdf()         if market.empty:             raise RuntimeError(\"Canonical market histor"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module22_before_v6_0.py",
+        "snippets": [
+          "      self.conn.unregister(\"_m22_stage\")      def histories(self):         market = self.conn.execute(\"\"\"             SELECT asset_id, observation_date, price_usd             FROM canonical_market_daily             WHERE asset_id IN (                 'bitcoin','ethereum','solana','chainlink','xrp','avalanche'             ) AND price_usd IS NOT NULL             ORDER BY observation_date, asset_id         \"\"\").fetchdf()         if market.empty:             raise RuntimeError(\"Canonical market histor"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module23.py",
+        "snippets": [
+          "ance_date']); f['next_rebalance_date']=pd.to_datetime(f['next_rebalance_date']); return f  def prices(self):   f=self.conn.execute(\"SELECT asset_id,observation_date,price_usd FROM canonical_market_daily WHERE asset_id IN ('bitcoin','ethereum','solana','chainlink','xrp','avalanche') AND price_usd IS NOT NULL ORDER BY observation_date,asset_id\").fetchdf()   f['observation_date']=pd.to_datetime(f['observation_date']); return f.pivot(index='observation_date',columns='asset_id',values='price_usd').sort"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module24.py",
+        "snippets": [
+          "onn.unregister(\"_m24_stage\")      def prices(self) -> pd.DataFrame:         frame = self.conn.execute(\"\"\"             SELECT asset_id, observation_date, price_usd             FROM canonical_market_daily             WHERE asset_id IN ('bitcoin','ethereum','solana','chainlink','xrp','avalanche')               AND price_usd IS NOT NULL             ORDER BY observation_date, asset_id         \"\"\").fetchdf()         if frame.empty:             raise RuntimeError(\"Canonical core price history is empty.\")"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module25.py",
+        "snippets": [
+          "onn.unregister(\"_m25_stage\")      def prices(self) -> pd.DataFrame:         frame = self.conn.execute(\"\"\"             SELECT asset_id, observation_date, price_usd             FROM canonical_market_daily             WHERE asset_id IN (                 'bitcoin','ethereum','solana',                 'chainlink','xrp','avalanche'             )               AND price_usd IS NOT NULL             ORDER BY observation_date, asset_id         \"\"\").fetchdf()         if frame.empty:             raise Runtime"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module25_before_v7_0_2_hotfix.py",
+        "snippets": [
+          "onn.unregister(\"_m25_stage\")      def prices(self) -> pd.DataFrame:         frame = self.conn.execute(\"\"\"             SELECT asset_id, observation_date, price_usd             FROM canonical_market_daily             WHERE asset_id IN (                 'bitcoin','ethereum','solana',                 'chainlink','xrp','avalanche'             )               AND price_usd IS NOT NULL             ORDER BY observation_date, asset_id         \"\"\").fetchdf()         if frame.empty:             raise Runtime"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module25_validation.py",
+        "snippets": [
+          " return frame.set_index(\"observation_date\")      def prices(self):         frame = self.conn.execute(             \"SELECT asset_id, observation_date, price_usd \"             \"FROM canonical_market_daily \"             \"WHERE asset_id IN ('bitcoin','ethereum','solana','chainlink','xrp','avalanche') \"             \"AND price_usd IS NOT NULL ORDER BY observation_date, asset_id\"         ).fetchdf()         frame[\"observation_date\"] = pd.to_datetime(frame[\"observation_date\"])         return frame.pivot( "
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module27.py",
+        "snippets": [
+          "onn.unregister(\"_m27_stage\")      def prices(self) -> pd.DataFrame:         frame = self.conn.execute(\"\"\"             SELECT asset_id, observation_date, price_usd             FROM canonical_market_daily             WHERE asset_id IN (                 'bitcoin','ethereum','solana',                 'chainlink','xrp','avalanche'             ) AND price_usd IS NOT NULL             ORDER BY observation_date, asset_id         \"\"\").fetchdf()         if frame.empty:             raise RuntimeError(\"Canonic"
+        ]
+      },
+      {
+        "matched_terms": [
+          "coingecko",
+          "asset_market_daily"
+        ],
+        "path": "crypto_platform/module3.py",
+        "snippets": [
+          "k_days\"])         frame = self.conn.execute(             \"\"\"             SELECT asset_id, observation_date, price_usd             FROM asset_market_daily             WHERE source='coingecko'               AND observation_date >= CURRENT_DATE - ? * INTERVAL 1 DAY             ORDER BY observation_date, asset_id             \"\"\",             [lookback + 20],         ).fetchdf()         if frame.empty:             raise RuntimeError(\"No price history is available for Module 3.\")         fr",
+          "  lookback = int(self.config[\"risk\"][\"lookback_days\"])         frame = self.conn.execute(             \"\"\"             SELECT asset_id, observation_date, price_usd             FROM asset_market_daily             WHERE source='coingecko'               AND observation_date >= CURRENT_DATE - ? * INTERVAL 1 DAY             ORDER BY observation_date, asset_id             \"\"\",             [lookback + 20],         ).fetchdf()         if frame.empty:             raise RuntimeError(\"No price history is "
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module31.py",
+        "snippets": [
+          "ate_probability_matrix(matrix.to_numpy(), self.classes)         return matrix,h      def prices(self):         f=self.conn.execute(\"SELECT asset_id,observation_date,price_usd FROM canonical_market_daily WHERE asset_id IN ('bitcoin','ethereum','solana','chainlink','xrp','avalanche') AND price_usd IS NOT NULL ORDER BY observation_date,asset_id\").fetchdf()         f['observation_date']=pd.to_datetime(f['observation_date'])         return f.pivot(index='observation_date',columns='asset_id',values='pri"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module32.py",
+        "snippets": [
+          "ix(matrix.to_numpy(),self.classes)         return matrix,history      def prices(self):         f = self.conn.execute(             \"SELECT asset_id,observation_date,price_usd FROM canonical_market_daily \"             \"WHERE asset_id IN ('bitcoin','ethereum','solana','chainlink','xrp','avalanche') \"             \"AND price_usd IS NOT NULL ORDER BY observation_date,asset_id\"         ).fetchdf()         f[\"observation_date\"] = pd.to_datetime(f[\"observation_date\"])         return f.pivot(index=\"observa"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module33.py",
+        "snippets": [
+          "    \"model_agreement\"         ]      def prices(self):         frame = self.conn.execute(             \"\"\"             SELECT asset_id, observation_date, price_usd             FROM canonical_market_daily             WHERE asset_id IN (                 'bitcoin','ethereum','solana',                 'chainlink','xrp','avalanche'             )               AND price_usd IS NOT NULL             ORDER BY observation_date, asset_id             \"\"\"         ).fetchdf()         frame[\"observation_date\"] = "
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module34.py",
+        "snippets": [
+          " return frame.set_index(\"observation_date\")[\"model_agreement\"]      def prices(self):         frame=self.conn.execute(             \"SELECT asset_id,observation_date,price_usd FROM canonical_market_daily \"             \"WHERE asset_id IN ('bitcoin','ethereum','solana','chainlink','xrp','avalanche') \"             \"AND price_usd IS NOT NULL ORDER BY observation_date,asset_id\"         ).fetchdf()         frame[\"observation_date\"]=pd.to_datetime(frame[\"observation_date\"])         return frame.pivot(inde"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module35.py",
+        "snippets": [
+          "xecute(f'INSERT OR REPLACE INTO {t}({c}) SELECT {c} FROM _s'); self.conn.unregister('_s')  def prices(self):   f=self.conn.execute(\"SELECT asset_id,observation_date,price_usd FROM canonical_market_daily WHERE asset_id IN ('bitcoin','ethereum','solana','chainlink','xrp','avalanche') AND price_usd IS NOT NULL ORDER BY observation_date,asset_id\").fetchdf(); f['observation_date']=pd.to_datetime(f['observation_date']); return f.pivot(index='observation_date',columns='asset_id',values='price_usd').reind"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module36.py",
+        "snippets": [
+          ",NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'9.1.0')\",[self.run_id,self.source,self.started])   try:    f=self.conn.execute(\"SELECT asset_id,observation_date,price_usd FROM canonical_market_daily WHERE asset_id IN ('bitcoin','ethereum','solana','chainlink','xrp','avalanche') AND price_usd IS NOT NULL ORDER BY observation_date,asset_id\").fetchdf(); f['observation_date']=pd.to_datetime(f['observation_date']); prices=f.pivot(index='observation_date',columns='asset_id',values='price_usd').reind"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module37.py",
+        "snippets": [
+          "f.conn.unregister(\"_m37_stage\")      def prices(self):         frame = self.conn.execute(             \"\"\"             SELECT asset_id, observation_date, price_usd             FROM canonical_market_daily             WHERE asset_id IN (                 'bitcoin','ethereum','solana',                 'chainlink','xrp','avalanche'             )               AND price_usd IS NOT NULL             ORDER BY observation_date, asset_id             \"\"\"         ).fetchdf()         frame[\"observation_date\"] = "
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module38.py",
+        "snippets": [
+          "f):         frame = self.conn.execute(             \"\"\"             SELECT asset_id, observation_date, price_usd,                    market_cap_usd, volume_24h_usd             FROM canonical_market_daily             WHERE asset_id IN (                 'bitcoin','ethereum','solana',                 'chainlink','xrp','avalanche'             )               AND price_usd IS NOT NULL             ORDER BY observation_date, asset_id             \"\"\"         ).fetchdf()         frame[\"observation_date\"] = "
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module39.py",
+        "snippets": [
+          "recasts(self):         return self.conn.execute(             \"\"\"             SELECT f.*, r.price_usd AS realized_price             FROM m38_asset_forecasts f             LEFT JOIN canonical_market_daily r               ON r.asset_id=f.asset_id              AND r.observation_date=CAST(f.forecast_date AS DATE)+f.horizon_days             WHERE f.run_id<>?             ORDER BY f.asset_id,f.horizon_days,f.forecast_date             \"\"\",[self.source_m38]         ).fetchdf()      def true_replay(self):   "
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module39_validation.py",
+        "snippets": [
+          "andidates = folds * TEST_ORIGINS_PER_FOLD      prices = conn.execute(         \"\"\"         SELECT asset_id, observation_date, price_usd, market_cap_usd, volume_24h_usd         FROM canonical_market_daily         WHERE asset_id IN ('bitcoin','ethereum','solana','chainlink','xrp','avalanche')           AND price_usd IS NOT NULL         ORDER BY observation_date, asset_id         \"\"\"     ).fetchdf()     prices[\"observation_date\"] = pd.to_datetime(prices[\"observation_date\"])      replay_rows = []     f"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module40.py",
+        "snippets": [
+          " 0          for _, row in pending.iterrows():             realized = self.conn.execute(                 \"\"\"                 SELECT observation_date, price_usd                 FROM canonical_market_daily                 WHERE asset_id=?                   AND observation_date>=?                   AND price_usd IS NOT NULL                 ORDER BY observation_date                 LIMIT 1                 \"\"\",                 [                     row[\"asset_id\"],                     row[\"outcome_due_d"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module42.py",
+        "snippets": [
+          "       arg_max(price_usd, observation_date)                        AS current_price,                    max(observation_date)                        AS price_date             FROM canonical_market_daily             WHERE asset_id IN (                 'bitcoin','ethereum','solana',                 'chainlink','xrp','avalanche'             )               AND price_usd IS NOT NULL             GROUP BY asset_id             \"\"\"         ).fetchdf()         return frame.set_index(\"asset_id\")      def hi"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily"
+        ],
+        "path": "crypto_platform/module44.py",
+        "snippets": [
+          "       ).fetchdf()      def price_on_or_after(self, asset, date):         return self.conn.execute(             \"\"\"             SELECT observation_date, price_usd             FROM canonical_market_daily             WHERE asset_id=? AND observation_date>=? AND price_usd IS NOT NULL             ORDER BY observation_date LIMIT 1             \"\"\",             [asset, date],         ).fetchone()      def outcomes(self, recs):         rows = []         today = pd.Timestamp.utcnow().date()         for _, "
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily",
+          "coingecko",
+          "asset_market_daily"
+        ],
+        "path": "crypto_platform/module5.py",
+        "snippets": [
+          "     def prices(self) -> pd.DataFrame:         tables = {             row[0] for row in self.conn.execute(\"SHOW TABLES\").fetchall()         }         source_table = (             \"canonical_market_daily\"             if \"canonical_market_daily\" in tables             and self.conn.execute(                 \"SELECT COUNT(*) FROM canonical_market_daily\"             ).fetchone()[0] > 0             else \"asset_market_daily\"         )         where = \"\" if source_table == \"canonical_market_daily\" else \"WH",
+          "al_market_daily\"             ).fetchone()[0] > 0             else \"asset_market_daily\"         )         where = \"\" if source_table == \"canonical_market_daily\" else \"WHERE source='coingecko'\"         frame = self.conn.execute(             f\"\"\"             SELECT asset_id, observation_date, price_usd             FROM {source_table}             {where}             ORDER BY observation_date, asset_id             \"\"\"         ).fetchdf()         frame[\"observation_date\"] = pd.to_datetime(f",
+          "anonical_market_daily\" in tables             and self.conn.execute(                 \"SELECT COUNT(*) FROM canonical_market_daily\"             ).fetchone()[0] > 0             else \"asset_market_daily\"         )         where = \"\" if source_table == \"canonical_market_daily\" else \"WHERE source='coingecko'\"         frame = self.conn.execute(             f\"\"\"             SELECT asset_id, observation_date, price_usd             FROM {source_table}             {where}             ORDER BY observation"
+        ]
+      },
+      {
+        "matched_terms": [
+          "canonical_market_daily",
+          "coingecko",
+          "coinbase",
+          "refresh",
+          "asset_market_daily"
+        ],
+        "path": "crypto_platform/module6.py",
+        "snippets": [
+          "se VARCHAR,     canonical_rows BIGINT,     snapshots_created BIGINT,     validations_created BIGINT,     notes VARCHAR,     platform_version VARCHAR );  CREATE TABLE IF NOT EXISTS canonical_market_daily(     asset_id VARCHAR,     observation_date DATE,     price_usd DOUBLE,     market_cap_usd DOUBLE,     volume_24h_usd DOUBLE,     price_source VARCHAR,     market_cap_source VARCHAR,     volume_source VARCHAR,     source_priority INTEGER,     collected_at_utc TIMESTAMPTZ,     PRIMARY KEY(asset_id, ",
+          "erage AS SELECT asset_id,        MIN(observation_date) AS first_date,        MAX(observation_date) AS latest_date,        COUNT(*) AS row_count,        SUM(CASE WHEN price_source='coingecko' THEN 1 ELSE 0 END) AS coingecko_rows,        SUM(CASE WHEN price_source<>'coingecko' THEN 1 ELSE 0 END) AS exchange_fallback_rows,        SUM(CASE WHEN market_cap_usd IS NOT NULL THEN 1 ELSE 0 END) AS market_cap_rows FROM canonical_market_daily GROUP BY asset_id;  CREATE OR REPLACE VIEW latest_mod",
+          "val='1d'             QUALIFY ROW_NUMBER() OVER(                 PARTITION BY asset_id, CAST(open_time_utc AS DATE)                 ORDER BY CASE exchange                     WHEN 'coinbase' THEN 1                     WHEN 'kraken' THEN 2                     WHEN 'binance' THEN 3                     ELSE 9 END             )=1             \"\"\"         ).fetchdf()         if not exchange.empty:             exchange[\"observation_date\"] = pd.to_datetime(                 exchange[\"observati",
+          "               \"calculated_at_utc\": utcnow(),                 })         validation = pd.DataFrame(rows)         self.upsert(\"signal_forward_performance\", validation)         self.refresh_validation_summary()         return len(validation)      def refresh_validation_summary(self) -> None:         frame = self.conn.execute(             \"\"\"             SELECT historical_signal, horizon_days, forward_return_pct,                    excess_vs_btc_pct, positive_return, outperformed_btc  "
+        ]
+      },
+      {
+        "matched_terms": [
+          "latest_asset_market",
+          "coingecko",
+          "coinbase",
+          "refresh",
+          "asset_market_daily"
+        ],
+        "path": "crypto_platform/platform.py",
+        "snippets": [
+          "ults ADD COLUMN IF NOT EXISTS provider_name VARCHAR\",     \"ALTER TABLE collection_results ADD COLUMN IF NOT EXISTS duration_seconds DOUBLE\", ]  VIEWS = r\"\"\" CREATE OR REPLACE VIEW latest_asset_market AS SELECT * EXCLUDE(rn) FROM (     SELECT *,         ROW_NUMBER() OVER(             PARTITION BY asset_id             ORDER BY observation_date DESC,             CASE WHEN source='coingecko' THEN 1 ELSE 2 END         ) rn     FROM asset_market_daily ) x WHERE rn=1;  CREATE OR REPLACE VIEW latest_ch",
+          "env  ROOT = Path(__file__).resolve().parents[1]  SCHEMA = r\"\"\" CREATE TABLE IF NOT EXISTS assets(     asset_id VARCHAR PRIMARY KEY,     symbol VARCHAR,     asset_name VARCHAR,     coingecko_id VARCHAR,     coinbase_product VARCHAR,     kraken_pair VARCHAR,     binance_symbol VARCHAR,     asset_tier VARCHAR,     portfolio_enabled BOOLEAN,     research_enabled BOOLEAN,     native_chain VARCHAR,     active BOOLEAN DEFAULT TRUE,     created_at_utc TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP ); ",
+          ".resolve().parents[1]  SCHEMA = r\"\"\" CREATE TABLE IF NOT EXISTS assets(     asset_id VARCHAR PRIMARY KEY,     symbol VARCHAR,     asset_name VARCHAR,     coingecko_id VARCHAR,     coinbase_product VARCHAR,     kraken_pair VARCHAR,     binance_symbol VARCHAR,     asset_tier VARCHAR,     portfolio_enabled BOOLEAN,     research_enabled BOOLEAN,     native_chain VARCHAR,     active BOOLEAN DEFAULT TRUE,     created_at_utc TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP );  CREATE TABLE IF NOT EXIS",
+          "ed observations exist for {series['series_id']}.\"             )         return self._finish(frame, series, \"local_crypto_cache\")   class Module1Runner:     def __init__(self, full_refresh: bool = False):         self.settings, self.assets = load_all()         self.full_refresh = full_refresh         self.log = configure_logger(self.settings)         self.http = HTTPClient(self.settings)         self.conn = connect(self.settings)         self.run_id = str(uuid.uuid4())         self.r"
+        ]
+      }
+    ],
+    "v4_hits": [
+      {
+        "matched_terms": [
+          "ExtraTrees"
+        ],
+        "path": "crypto_platform/module20.py",
+        "snippets": [
+          "_future__ import annotations  import uuid from datetime import datetime, timezone from typing import Any  import numpy as np import pandas as pd from sklearn.ensemble import (     ExtraTreesRegressor,     GradientBoostingRegressor,     HistGradientBoostingRegressor,     RandomForestRegressor, ) from sklearn.inspection import permutation_importance from sklearn.metrics import mean_absolute_error, r2_score  from crypto_platform.platform import load_all, connect from crypto_platform.modul"
+        ]
+      },
+      {
+        "matched_terms": [
+          "ExtraTrees"
+        ],
+        "path": "crypto_platform/module22.py",
+        "snippets": [
+          "port annotations  import math import uuid from datetime import datetime, timezone from typing import Any  import numpy as np import pandas as pd from sklearn.ensemble import (     ExtraTreesClassifier,     GradientBoostingClassifier,     HistGradientBoostingClassifier,     RandomForestClassifier, ) from sklearn.linear_model import LogisticRegression from sklearn.metrics import accuracy_score, brier_score_loss, roc_auc_score from sklearn.pipeline import Pipeline from sklearn.preprocessi"
+        ]
+      },
+      {
+        "matched_terms": [
+          "ExtraTrees"
+        ],
+        "path": "crypto_platform/module22_before_v6_0.py",
+        "snippets": [
+          "port annotations  import math import uuid from datetime import datetime, timezone from typing import Any  import numpy as np import pandas as pd from sklearn.ensemble import (     ExtraTreesClassifier,     GradientBoostingClassifier,     HistGradientBoostingClassifier,     RandomForestClassifier, ) from sklearn.linear_model import LogisticRegression from sklearn.metrics import accuracy_score, brier_score_loss, roc_auc_score from sklearn.pipeline import Pipeline from sklearn.preprocessi"
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "VOLATILITY_STATE_EXTRA_TREES"
+        ],
+        "path": "docs/btc_eth_forward_accumulation_cycle_policy_contract.md",
+        "snippets": [
+          "ion authority from this BTC/ETH mandate.  ## Relationship to frozen V4 predictive evidence  This contract does not alter the frozen V4 decisions.  Preserved state remains:  - 7d: `V4_7D_VOLATILITY_STATE_EXTRA_TREES` confirmed on the one-time final holdout; - 30d: `NO_QUALIFIED_WINNER`; - 365d: `NO_QUALIFIED_WINNER`; - 365d Long Trend: reserved as a future V5 challenger; - V4 30d and 365d final holdouts remain sealed; - V3 final holdout remains sealed; - post-holdout V4 tuning remains prohibited.  The 7d model",
+          "thority from this BTC/ETH mandate.  ## Relationship to frozen V4 predictive evidence  This contract does not alter the frozen V4 decisions.  Preserved state remains:  - 7d: `V4_7D_VOLATILITY_STATE_EXTRA_TREES` confirmed on the one-time final holdout; - 30d: `NO_QUALIFIED_WINNER`; - 365d: `NO_QUALIFIED_WINNER`; - 365d Long Trend: reserved as a future V5 challenger; - V4 30d and 365d final holdouts remain sealed; - V3 final holdout remains sealed; - post-holdout V4 tuning remains prohibited.  The 7d model"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "docs/predictive_horizon_recovery_v4_365d_auxiliary_diagnostic_addendum.md",
+        "snippets": [
+          "il closed if any source evidence or the source database changes.  ## Output requirements  The preserved diagnostic artifact MUST explicitly record:  - `experiment_id=CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4`; - `diagnostic_scope=365D_DEVELOPMENT_AUXILIARY_ONLY`; - `selection_neutral=true`; - `winner_gate_affected=false`; - `v4_365d_development_decision=NO_QUALIFIED_WINNER`; - `v4_7d_final_holdout_outcomes_viewed=true`; - `v4_30d_final_holdout_outcomes_viewed=false`; - `v4_365d_final_holdout_outcomes_v"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "docs/predictive_horizon_recovery_v4_365d_development_auxiliary_diagnostics.json",
+        "snippets": [
+          "3346746772     }   },   \"evidence_class\": \"HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME\",   \"exact_calendar_target_required\": true,   \"experiment_id\": \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\",   \"governed_source_hashes_before\": {     \"addendum\": \"91f89c39ed19b9877e2a528c4577b97dcaf96178a66d32995deb05430f1082c3\",     \"database\": \"3de0162f0845247721575d38b155a3b6ae0f902276801ca9f5338f21adedf3af\",     \"development_results\": \"a44e237112bf6521c8a770de120d4a0104731c280d7009568e6618cca1c1fbfb"
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "predictive_horizon_recovery_v4",
+          "VOLATILITY_STATE_EXTRA_TREES"
+        ],
+        "path": "docs/predictive_horizon_recovery_v4_7d_final_holdout_closeout.md",
+        "snippets": [
+          "st-holdout tuning, open the 30-day or 365-day V4 final holdouts, open the V3 final holdout, change recommendation policy, or authorize production promotion.  ## Frozen 7d winner  `V4_7D_VOLATILITY_STATE_EXTRA_TREES`  ## Preserved evidence  - Final-holdout result artifact: `docs/predictive_horizon_recovery_v4_7d_final_holdout_results.json` - Result SHA-256: `fe82f2b8cdfe817bfbb825cd2d97eb7d02711c8d1a2d3e5b3daf6c17fe756a48` - Preservation commit: `77d6d7c64f0287e54fcdfca2f4a59b33c7139c5b` - Development-results ",
+          "# Crypto Native Predictive Horizon Recovery V4 \u2014 7d Final Holdout Closeout  ## Experiment  `CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4`  ## Scope  This closeout certifies the one-time final-holdout evaluation of the frozen 7-day development winner only. It does not reopen V4 development, authorize post-holdout tuning, open the 30-day or 365-day V4 final holdouts, open the V3 final holdout, change recommendation policy, or authoriz",
+          "dout tuning, open the 30-day or 365-day V4 final holdouts, open the V3 final holdout, change recommendation policy, or authorize production promotion.  ## Frozen 7d winner  `V4_7D_VOLATILITY_STATE_EXTRA_TREES`  ## Preserved evidence  - Final-holdout result artifact: `docs/predictive_horizon_recovery_v4_7d_final_holdout_results.json` - Result SHA-256: `fe82f2b8cdfe817bfbb825cd2d97eb7d02711c8d1a2d3e5b3daf6c17fe756a48` - Preservation commit: `77d6d7c64f0287e54fcdfca2f4a59b33c7139c5b` - Development-results "
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "predictive_horizon_recovery_v4",
+          "VOLATILITY_STATE_EXTRA_TREES"
+        ],
+        "path": "docs/predictive_horizon_recovery_v4_7d_final_holdout_evaluation_contract.json",
+        "snippets": [
+          "112bf6521c8a770de120d4a0104731c280d7009568e6618cca1c1fbfb\",   \"v4_manifest_content_sha256\": \"6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2\",   \"frozen_winner\": \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",   \"eligible_horizon_days\": 7,   \"ineligible_horizons_days\": [30, 365],   \"expected_assets\": [\"avalanche\", \"bitcoin\", \"chainlink\", \"ethereum\", \"solana\", \"xrp\"],   \"expected_holdout_origins_per_asset\": 10,   \"expected_total_holdout_predictions\": 60,   \"training_policy\": {     \"reuse_frozen_candidat",
+          "{   \"experiment_id\": \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\",   \"evaluation_scope\": \"7D_FINAL_HOLDOUT_ONLY\",   \"development_results_sha256\": \"a44e237112bf6521c8a770de120d4a0104731c280d7009568e6618cca1c1fbfb\",   \"v4_manifest_content_sha256\": \"6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2\",   \"frozen_winner\": \"V4_7D_VOLATILITY_STATE_EXTRA_T",
+          "521c8a770de120d4a0104731c280d7009568e6618cca1c1fbfb\",   \"v4_manifest_content_sha256\": \"6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2\",   \"frozen_winner\": \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",   \"eligible_horizon_days\": 7,   \"ineligible_horizons_days\": [30, 365],   \"expected_assets\": [\"avalanche\", \"bitcoin\", \"chainlink\", \"ethereum\", \"solana\", \"xrp\"],   \"expected_holdout_origins_per_asset\": 10,   \"expected_total_holdout_predictions\": 60,   \"training_policy\": {     \"reuse_frozen_candidat"
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "predictive_horizon_recovery_v4",
+          "VOLATILITY_STATE_EXTRA_TREES"
+        ],
+        "path": "docs/predictive_horizon_recovery_v4_7d_final_holdout_results.json",
+        "snippets": [
+          "s\": \"HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME\",   \"strict_point_in_time_claim_allowed\": false,   \"evaluation_scope\": \"7D_FINAL_HOLDOUT_ONLY\",   \"frozen_winner\": \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",   \"development_results_sha256\": \"a44e237112bf6521c8a770de120d4a0104731c280d7009568e6618cca1c1fbfb\",   \"v4_manifest_content_sha256\": \"6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2\",   \"final_holdout_metrics\": {     \"final_holdout_rows\": 60,     \"directional_accuracy_pct\": 50.0, ",
+          "{   \"experiment_id\": \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\",   \"evidence_class\": \"HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME\",   \"strict_point_in_time_claim_allowed\": false,   \"evaluation_scope\": \"7D_FINAL_HOLDOUT_ONLY\",   \"frozen_winner\": \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",   \"development_results_sha256\": \"a44e237112bf6521c8a770de120d4a0",
+          "ISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME\",   \"strict_point_in_time_claim_allowed\": false,   \"evaluation_scope\": \"7D_FINAL_HOLDOUT_ONLY\",   \"frozen_winner\": \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",   \"development_results_sha256\": \"a44e237112bf6521c8a770de120d4a0104731c280d7009568e6618cca1c1fbfb\",   \"v4_manifest_content_sha256\": \"6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2\",   \"final_holdout_metrics\": {     \"final_holdout_rows\": 60,     \"directional_accuracy_pct\": 50.0, "
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "docs/predictive_horizon_recovery_v4_avalanche365_allocation_governance.md",
+        "snippets": [
+          "e Allocation Governance  ## Status  **Governed exception approved for pre-scoring evidence allocation.**  This document governs the `avalanche` 365-day group inside `CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4` after the preflight and allocation audits identified a genuine chronology bottleneck before any V4 development scoring or V4 final-holdout outcome viewing.  ## Evidence  The dedicated Avalanche365 bottleneck audit established:  - common development-safe origins: `59`; - 50th common development-saf"
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "predictive_horizon_recovery_v4",
+          "VOLATILITY_STATE_EXTRA_TREES",
+          "ExtraTrees"
+        ],
+        "path": "docs/predictive_horizon_recovery_v4_candidate_and_holdout_contract.md",
+        "snippets": [
+          "idate relative concepts: asset-minus-BTC returns, asset-minus-core-median returns, core breadth positive percentage, and cross-sectional return dispersion over short windows.  3. `V4_7D_VOLATILITY_STATE_EXTRA_TREES`    - ExtraTrees classifier;    - bounded short-horizon trend, volatility-state, and relative-market features;    - no external/native-context features unless separately proven available under the governed historical rule.  ### 7d development gate  A winner must:  - have aggregate baseline-adjusted",
+          "# Crypto Native Predictive Horizon Recovery V4 \u2014 Candidate and Holdout Contract  ## Experiment  `CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4`  ## Scope  This contract governs V4 recovery research for 7d, 30d, and 365d only. V3 remains preserved and authoritative for its own evidence set. V3 90d and 180d winners are not reopened. V3 final-holdout outcomes remain unopened and are not reused by V4.  ## Fresh-evidence capacity basis  The V4",
+          "relative concepts: asset-minus-BTC returns, asset-minus-core-median returns, core breadth positive percentage, and cross-sectional return dispersion over short windows.  3. `V4_7D_VOLATILITY_STATE_EXTRA_TREES`    - ExtraTrees classifier;    - bounded short-horizon trend, volatility-state, and relative-market features;    - no external/native-context features unless separately proven available under the governed historical rule.  ### 7d development gate  A winner must:  - have aggregate baseline-adjusted",
+          "returns, asset-minus-core-median returns, core breadth positive percentage, and cross-sectional return dispersion over short windows.  3. `V4_7D_VOLATILITY_STATE_EXTRA_TREES`    - ExtraTrees classifier;    - bounded short-horizon trend, volatility-state, and relative-market features;    - no external/native-context features unless separately proven available under the governed historical rule.  ### 7d development gate  A winner must:  - have aggregate baseline-adjusted directional skil"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "docs/predictive_horizon_recovery_v4_design.md",
+        "snippets": [
+          "# Crypto Native Predictive Horizon Recovery V4 \u2014 Design  ## Experiment  `CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4`  ## Purpose  V4 is a new, separately governed research experiment for the three horizons that did not produce a qualified winner in V3: 7d, 30d, and 365d.  V4 does not rewrite, reopen, or reinterpret V3. The preserved V3 result remains authoritative for the V3 candidate families and evidence set. "
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "predictive_horizon_recovery_v4",
+          "VOLATILITY_STATE_EXTRA_TREES"
+        ],
+        "path": "docs/predictive_horizon_recovery_v4_development_decision_freeze.json",
+        "snippets": [
+          "554df75ebb9b96e77b1f1e14fbaefad494e694a734e2\",   \"candidate_safe_membership_required\": true,   \"development_decisions_frozen\": true,   \"decisions\": {     \"7\": {       \"decision\": \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",       \"qualified_winner_exists\": true,       \"eligible_for_v4_final_holdout\": true     },     \"30\": {       \"decision\": \"NO_QUALIFIED_WINNER\",       \"qualified_winner_exists\": false,       \"eligible_for_v4_final_holdout\": false     },     \"365\": {       \"decision\": \"NO_QUALIFIED_WINNER\",       \"q",
+          "{   \"experiment_id\": \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\",   \"evidence_class\": \"HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME\",   \"development_results_sha256\": \"a44e237112bf6521c8a770de120d4a0104731c280d7009568e6618cca1c1fbfb\",   \"v4_manifest_content_sha256\": \"6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2\",   \"candidate_sa",
+          "5ebb9b96e77b1f1e14fbaefad494e694a734e2\",   \"candidate_safe_membership_required\": true,   \"development_decisions_frozen\": true,   \"decisions\": {     \"7\": {       \"decision\": \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",       \"qualified_winner_exists\": true,       \"eligible_for_v4_final_holdout\": true     },     \"30\": {       \"decision\": \"NO_QUALIFIED_WINNER\",       \"qualified_winner_exists\": false,       \"eligible_for_v4_final_holdout\": false     },     \"365\": {       \"decision\": \"NO_QUALIFIED_WINNER\",       \"q"
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "predictive_horizon_recovery_v4",
+          "VOLATILITY_STATE_EXTRA_TREES"
+        ],
+        "path": "docs/predictive_horizon_recovery_v4_development_results.json",
+        "snippets": [
+          "ed_skill_pp\": 3.3333333333333384,               \"net_correct_gain_vs_baseline\": 2             }           },           \"development_selection_gate_pass\": false         },         \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\": {           \"development_rows\": 300,           \"directional_accuracy_pct\": 52.33333333333333,           \"development_majority_baseline_accuracy_pct\": 49.0,           \"model_minus_development_majority_accuracy_pct_points\": 3.3333333333333286,           \"raw_brier_score\": 0.2612308228536378,       ",
+          "{   \"experiment_id\": \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\",   \"evidence_class\": \"HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME\",   \"strict_point_in_time_claim_allowed\": false,   \"recovery_horizons\": [     7,     30,     365   ],   \"v4_manifest_content_sha256\": \"6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2\",   \"candidate_sa",
+          "ll_pp\": 3.3333333333333384,               \"net_correct_gain_vs_baseline\": 2             }           },           \"development_selection_gate_pass\": false         },         \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\": {           \"development_rows\": 300,           \"directional_accuracy_pct\": 52.33333333333333,           \"development_majority_baseline_accuracy_pct\": 49.0,           \"model_minus_development_majority_accuracy_pct_points\": 3.3333333333333286,           \"raw_brier_score\": 0.2612308228536378,       "
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "predictive_horizon_recovery_v4",
+          "VOLATILITY_STATE_EXTRA_TREES"
+        ],
+        "path": "docs/predictive_horizon_recovery_v4_development_results.superseded_pre_candidate_safe.json",
+        "snippets": [
+          "ed_skill_pp\": 3.3333333333333384,               \"net_correct_gain_vs_baseline\": 2             }           },           \"development_selection_gate_pass\": false         },         \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\": {           \"development_rows\": 300,           \"directional_accuracy_pct\": 52.33333333333333,           \"development_majority_baseline_accuracy_pct\": 49.0,           \"model_minus_development_majority_accuracy_pct_points\": 3.3333333333333286,           \"raw_brier_score\": 0.2612308228536378,       ",
+          "{   \"experiment_id\": \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\",   \"evidence_class\": \"HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME\",   \"strict_point_in_time_claim_allowed\": false,   \"recovery_horizons\": [     7,     30,     365   ],   \"v2_consumed_origins_excluded\": true,   \"v3_development_origins_excluded\": true,   \"v3_final_holdout_origins_excl",
+          "ll_pp\": 3.3333333333333384,               \"net_correct_gain_vs_baseline\": 2             }           },           \"development_selection_gate_pass\": false         },         \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\": {           \"development_rows\": 300,           \"directional_accuracy_pct\": 52.33333333333333,           \"development_majority_baseline_accuracy_pct\": 49.0,           \"model_minus_development_majority_accuracy_pct_points\": 3.3333333333333286,           \"raw_brier_score\": 0.2612308228536378,       "
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "docs/predictive_horizon_recovery_v4_exact_target_membership_correction.md",
+        "snippets": []
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "docs/predictive_horizon_recovery_v4_final_holdout_manifest.json",
+        "snippets": [
+          "{   \"experiment_id\": \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\",   \"evidence_class\": \"HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME\",   \"recovery_horizons\": [     7,     30,     365   ],   \"supported_groups\": 17,   \"development_origins_per_group\": 50,   \"final_holdout_origins_per_group\": 10,   \"avalanche365_exception_governed\": true,   \"avalanche3"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/apply_v4_corrected_manifest_hash_to_preflight.py",
+        "snippets": [
+          "from __future__ import annotations  from pathlib import Path  ROOT = Path(__file__).resolve().parents[1] PREFLIGHT = ROOT / \"scripts\" / \"preflight_predictive_horizon_recovery_v4_development.py\"  OLD = 'EXPECTED_V4_MANIFEST_CONTENT_SHA256 = \"4b42d66a6cea1949b956fc5fe57545cb21abfe6b8cdddb0fe7f933b75734ca02\"' NEW = 'EXPECTED_V4_MANIFEST_CONTENT_SHA256 = \"dc0d37dcb932cf39e9b5affb19d578d7b57e4db457bd39b5233005f5a57a0de0\"'   def main() -> int:     text = PREFLIGHT.read_text(enco"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/apply_v4_corrected_membership_preflight_contract.py",
+        "snippets": [
+          "from __future__ import annotations  from pathlib import Path  ROOT = Path(__file__).resolve().parents[1] TARGET = ROOT / \"scripts\" / \"preflight_predictive_horizon_recovery_v4_development.py\"  OLD_HASH = \"dc0d37dcb932cf39e9b5affb19d578d7b57e4db457bd39b5233005f5a57a0de0\" NEW_HASH = \"510d121e1e4e8ea7e2079b1f61883b2ca01dfb6ce2c6baf6b9ba601eadeafd42\"   def require(condition: bool, message: str) -> None:     if not condition:         raise RuntimeError(message)   def replace_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/audit_predictive_horizon_recovery_v4_candidate_safe_capacity.py",
+        "snippets": [
+          "Path(__file__).resolve().parents[1] if str(ROOT) not in sys.path:     sys.path.insert(0, str(ROOT))  from crypto_platform.module38 import ASSETS, Module38Runner from scripts.audit_predictive_horizon_recovery_v4_fresh_evidence_capacity import (     EXPECTED_V3_RESULTS_SHA256,     V4_DEVELOPMENT_ORIGINS_PER_GROUP,     V4_FINAL_HOLDOUT_ORIGINS_PER_GROUP,     selected_v3_origins_for_group, ) from scripts.preflight_predictive_horizon_recovery_v4_development import v4_split_origin from scripts.run_v3_per_horizo"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/audit_predictive_horizon_recovery_v4_fresh_evidence_capacity.py",
+        "snippets": [
+          "for row in report_rows if int(row[\"fresh_v3_contract_feature_safe_origins\"]) == min_capacity]      report = {         \"status\": \"COMPLETE\",         \"experiment_id\": \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\",         \"recovery_horizons\": list(V4_HORIZONS),         \"supported_groups\": len(report_rows),         \"v4_development_origins_per_group_planning_assumption\": V4_DEVELOPMENT_ORIGINS_PER_GROUP,         \"v4_final_holdout_origins_per_group_planning_assumption\": V4_FINAL_HOLDOUT_ORIGINS_PER_GROUP,    "
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/audit_v4_avalanche365_allocation_bottleneck.py",
+        "snippets": [
+          " ROOT = Path(__file__).resolve().parents[1] if str(ROOT) not in sys.path:     sys.path.insert(0, str(ROOT))  from crypto_platform.module38 import Module38Runner from scripts.audit_predictive_horizon_recovery_v4_fresh_evidence_capacity import selected_v3_origins_for_group from scripts.preflight_predictive_horizon_recovery_v4_development import v4_split_origin from scripts.run_v3_per_horizon_development_tournament import build_relative_market as build_v3_relative_market from scripts.v4_horizon_recovery_mode"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/audit_v4_chronological_allocation_feasibility.py",
+        "snippets": [
+          "Path(__file__).resolve().parents[1] if str(ROOT) not in sys.path:     sys.path.insert(0, str(ROOT))  from crypto_platform.module38 import ASSETS, Module38Runner from scripts.audit_predictive_horizon_recovery_v4_fresh_evidence_capacity import selected_v3_origins_for_group from scripts.preflight_predictive_horizon_recovery_v4_development import v4_split_origin from scripts.run_v3_per_horizon_development_tournament import build_relative_market as build_v3_relative_market from scripts.v4_horizon_recovery_mode"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/audit_v4_exact_target_date_availability.py",
+        "snippets": [
+          "from __future__ import annotations  import argparse import hashlib import json from pathlib import Path  import duckdb  EXPECTED_EXPERIMENT_ID = \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\" EXPECTED_GROUPS = 17 EXPECTED_DEVELOPMENT_ORIGINS = 50 EXPECTED_HOLDOUT_ORIGINS = 10 EXPECTED_AVALANCHE365_HOLDOUT_ORIGINS = 9   def require(condition: bool, message: str) -> None:     if not condition:         raise RuntimeError(message)   def sha256(path: Path) -> str:     h = hashlib.sha256()  "
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/audit_v4_full_contract_membership_capacity.py",
+        "snippets": [
+          "Path(__file__).resolve().parents[1] if str(ROOT) not in sys.path:     sys.path.insert(0, str(ROOT))  from crypto_platform.module38 import ASSETS, Module38Runner from scripts.audit_predictive_horizon_recovery_v4_fresh_evidence_capacity import selected_v3_origins_for_group from scripts.preflight_predictive_horizon_recovery_v4_development import v4_split_origin from scripts.run_v3_per_horizon_development_tournament import build_relative_market as build_v3_relative_market from scripts.v4_horizon_recovery_mode"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/audit_v4_separate_development_and_holdout_capacity.py",
+        "snippets": [
+          "Path(__file__).resolve().parents[1] if str(ROOT) not in sys.path:     sys.path.insert(0, str(ROOT))  from crypto_platform.module38 import ASSETS, Module38Runner from scripts.audit_predictive_horizon_recovery_v4_fresh_evidence_capacity import selected_v3_origins_for_group from scripts.preflight_predictive_horizon_recovery_v4_development import v4_split_origin from scripts.run_v3_per_horizon_development_tournament import build_relative_market as build_v3_relative_market from scripts.v4_horizon_recovery_mode"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/authorize_predictive_horizon_recovery_v4_development_scoring.py",
+        "snippets": [
+          "from __future__ import annotations  import argparse import hashlib import json from pathlib import Path  EXPECTED_EXPERIMENT_ID = \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\" EXPECTED_V3_RESULTS_SHA256 = \"33b039fd83a27f868bc660584e775ea64743954e87bd70a8f120c952588b5fd1\" EXPECTED_V4_MANIFEST_CONTENT_SHA256 = \"510d121e1e4e8ea7e2079b1f61883b2ca01dfb6ce2c6baf6b9ba601eadeafd42\" EXPECTED_GROUPS = 17 EXPECTED_DEV_PER_GROUP = 50 STANDARD_HOLDOUT_PER_GROUP = 10 AVALANCHE_365_HO"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/correct_v4_exact_target_membership_gap.py",
+        "snippets": [
+          "from __future__ import annotations  import argparse import hashlib import json from pathlib import Path  import pandas as pd  EXPECTED_EXPERIMENT_ID = \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\" EXPECTED_OLD_CONTENT_SHA256 = \"4b42d66a6cea1949b956fc5fe57545cb21abfe6b8cdddb0fe7f933b75734ca02\" EXPECTED_GAP_ASSET = \"xrp\" EXPECTED_GAP_HORIZON = 7 EXPECTED_GAP_ORIGIN = \"2021-01-13\" EXPECTED_GAP_TARGET = \"2021-01-20\" CORRECTION_GENERATION = \"EXACT_CALENDAR_TARGET_AVAILABILITY_V2\"   def require(c"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/freeze_predictive_horizon_recovery_v4_final_holdout.py",
+        "snippets": [
+          "Path(__file__).resolve().parents[1] if str(ROOT) not in sys.path:     sys.path.insert(0, str(ROOT))  from crypto_platform.module38 import ASSETS, Module38Runner from scripts.audit_predictive_horizon_recovery_v4_fresh_evidence_capacity import (     EXPECTED_V3_RESULTS_SHA256,     V4_DEVELOPMENT_ORIGINS_PER_GROUP,     V4_FINAL_HOLDOUT_ORIGINS_PER_GROUP,     V4_HORIZONS,     fresh_capacity_for_group,     selected_v3_origins_for_group, ) from scripts.run_v3_per_horizon_development_tournament import (     DEVE"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/preflight_predictive_horizon_recovery_v4_development.py",
+        "snippets": [
+          "h:     sys.path.insert(0, str(ROOT))  from crypto_platform.module38 import ASSETS, Module38Runner from crypto_platform.module39_validation import split_capacity from scripts.audit_predictive_horizon_recovery_v4_fresh_evidence_capacity import selected_v3_origins_for_group from scripts.run_v3_per_horizon_development_tournament import build_relative_market as build_v3_relative_market from scripts.v4_horizon_recovery_model_spec import (     CANDIDATE_CONTRACTS,     EXPERIMENT_ID,     NATIVE_LAG_DAYS,     RECO"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/rebuild_predictive_horizon_recovery_v4_candidate_safe_membership.py",
+        "snippets": [
+          "Path(__file__).resolve().parents[1] if str(ROOT) not in sys.path:     sys.path.insert(0, str(ROOT))  from crypto_platform.module38 import ASSETS, Module38Runner from scripts.audit_predictive_horizon_recovery_v4_candidate_safe_capacity import (     exact_target_date_available,     family_safe_at_origin, ) from scripts.audit_predictive_horizon_recovery_v4_fresh_evidence_capacity import (     EXPECTED_V3_RESULTS_SHA256,     V4_DEVELOPMENT_ORIGINS_PER_GROUP,     V4_FINAL_HOLDOUT_ORIGINS_PER_GROUP,     selecte"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/rebuild_v4_membership_with_avalanche365_exception.py",
+        "snippets": [
+          "Path(__file__).resolve().parents[1] if str(ROOT) not in sys.path:     sys.path.insert(0, str(ROOT))  from crypto_platform.module38 import ASSETS, Module38Runner from scripts.audit_predictive_horizon_recovery_v4_fresh_evidence_capacity import selected_v3_origins_for_group from scripts.preflight_predictive_horizon_recovery_v4_development import v4_split_origin from scripts.run_v3_per_horizon_development_tournament import build_relative_market as build_v3_relative_market from scripts.v4_horizon_recovery_mode"
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "predictive_horizon_recovery_v4",
+          "VOLATILITY_STATE_EXTRA_TREES",
+          "ExtraTrees"
+        ],
+        "path": "scripts/run_bitcoin_live_input_authority_resolution.py",
+        "snippets": [
+          "daily\",         \"latest_asset_market\",         \"coingecko\",         \"coinbase\",         \"market data\",         \"refresh\",         \"asset_market_daily\",     ],     \"v4\": [         \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",         \"predictive_horizon_recovery_v4\",         \"VOLATILITY_STATE_EXTRA_TREES\",         \"ExtraTrees\",     ], }  MACRO_TABLES = [\"latest_macro_observations\", \"latest_macro_regime\", \"macro_observations\", \"macro_regime_daily\"] MODULE42_TABLES = [\"latest_m42_asset_recommendations\", \"latest_m42_port",
+          " \"coingecko\",         \"coinbase\",         \"market data\",         \"refresh\",         \"asset_market_daily\",     ],     \"v4\": [         \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",         \"predictive_horizon_recovery_v4\",         \"VOLATILITY_STATE_EXTRA_TREES\",         \"ExtraTrees\",     ], }  MACRO_TABLES = [\"latest_macro_observations\", \"latest_macro_regime\", \"macro_observations\", \"macro_regime_daily\"] MODULE42_TABLES = [\"latest_m42_asset_recommendations\", \"latest_m42_portfolio_plan\"] PRICE_TABLES = [\"latest_asset",
+          ",         \"latest_asset_market\",         \"coingecko\",         \"coinbase\",         \"market data\",         \"refresh\",         \"asset_market_daily\",     ],     \"v4\": [         \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",         \"predictive_horizon_recovery_v4\",         \"VOLATILITY_STATE_EXTRA_TREES\",         \"ExtraTrees\",     ], }  MACRO_TABLES = [\"latest_macro_observations\", \"latest_macro_regime\", \"macro_observations\", \"macro_regime_daily\"] MODULE42_TABLES = [\"latest_m42_asset_recommendations\", \"latest_m42_port",
+          "  \"asset_market_daily\",     ],     \"v4\": [         \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",         \"predictive_horizon_recovery_v4\",         \"VOLATILITY_STATE_EXTRA_TREES\",         \"ExtraTrees\",     ], }  MACRO_TABLES = [\"latest_macro_observations\", \"latest_macro_regime\", \"macro_observations\", \"macro_regime_daily\"] MODULE42_TABLES = [\"latest_m42_asset_recommendations\", \"latest_m42_portfolio_plan\"] PRICE_TABLES = [\"latest_asset_market\", \"canonical_market_daily\", \"asset_market_daily\"]  SKI"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/run_predictive_horizon_recovery_v4_365d_development_auxiliary_diagnostics.py",
+        "snippets": [
+          "port hashlib import json from datetime import date, datetime, timedelta from pathlib import Path from statistics import mean, median  import duckdb  EXPERIMENT_ID = \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\" DIAGNOSTIC_SCOPE = \"365D_DEVELOPMENT_AUXILIARY_ONLY\" EXPECTED_DEVELOPMENT_RESULTS_SHA256 = \"a44e237112bf6521c8a770de120d4a0104731c280d7009568e6618cca1c1fbfb\" EXPECTED_V4_MANIFEST_CONTENT_SHA256 = \"6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2\" EXPECTED_V4_7D_FINAL_RESULTS_SHA256"
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "predictive_horizon_recovery_v4",
+          "VOLATILITY_STATE_EXTRA_TREES"
+        ],
+        "path": "scripts/run_predictive_horizon_recovery_v4_7d_final_holdout.py",
+        "snippets": [
+          "NATIVE_LAG_DAYS,     TRANSACTION_COST_BPS,     attach_lagged_native,     attach_relative,     build_price_features,     build_relative_market,     candidate_features, )  WINNER = \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\" ELIGIBLE_HORIZON = 7 INELIGIBLE_HORIZONS = (30, 365) EXPECTED_ASSETS = (\"avalanche\", \"bitcoin\", \"chainlink\", \"ethereum\", \"solana\", \"xrp\") EXPECTED_HOLDOUT_ORIGINS_PER_ASSET = 10 EXPECTED_TOTAL_HOLDOUT_PREDICTIONS = 60 EXPECTED_V3_RESULTS_SHA256 = \"33b039fd83a27f868bc660584e775ea64743954e87bd70a8f1",
+          " ROOT = Path(__file__).resolve().parents[1] if str(ROOT) not in sys.path:     sys.path.insert(0, str(ROOT))  from crypto_platform.module38 import Module38Runner from scripts.audit_predictive_horizon_recovery_v4_fresh_evidence_capacity import selected_v3_origins_for_group from scripts.preflight_predictive_horizon_recovery_v4_development import v4_split_origin from scripts.run_predictive_horizon_recovery_v4_development import fit_predict, manifest_content_hash from scripts.run_v3_per_horizon_development_tou",
+          "_LAG_DAYS,     TRANSACTION_COST_BPS,     attach_lagged_native,     attach_relative,     build_price_features,     build_relative_market,     candidate_features, )  WINNER = \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\" ELIGIBLE_HORIZON = 7 INELIGIBLE_HORIZONS = (30, 365) EXPECTED_ASSETS = (\"avalanche\", \"bitcoin\", \"chainlink\", \"ethereum\", \"solana\", \"xrp\") EXPECTED_HOLDOUT_ORIGINS_PER_ASSET = 10 EXPECTED_TOTAL_HOLDOUT_PREDICTIONS = 60 EXPECTED_V3_RESULTS_SHA256 = \"33b039fd83a27f868bc660584e775ea64743954e87bd70a8f1"
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "predictive_horizon_recovery_v4",
+          "VOLATILITY_STATE_EXTRA_TREES"
+        ],
+        "path": "scripts/run_predictive_horizon_recovery_v4_development.py",
+        "snippets": [
+          "AL_HOLDOUT_ORIGINS = 10 AVALANCHE365_FINAL_HOLDOUT_ORIGINS = 9  CANDIDATE_SIMPLICITY_ORDER = {     \"V4_7D_SHORT_TREND_REVERSAL_LOGIT\": 0,     \"V4_7D_RELATIVE_STRENGTH_GB\": 1,     \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\": 2,     \"V4_30D_TREND_REVERSAL_LOGIT\": 0,     \"V4_30D_RELATIVE_CONTEXT_GB\": 1,     \"V4_30D_VOLATILITY_STATE_EXTRA_TREES\": 2,     \"V4_365D_LONG_TREND_LOGIT\": 0,     \"V4_365D_LONG_REGIME_GB\": 1,     \"V4_365D_RETURN_MAGNITUDE_ENSEMBLE\": 2, }   def require(condition: bool, message: str) -> None:     i",
+          "Path(__file__).resolve().parents[1] if str(ROOT) not in sys.path:     sys.path.insert(0, str(ROOT))  from crypto_platform.module38 import ASSETS, Module38Runner from scripts.audit_predictive_horizon_recovery_v4_fresh_evidence_capacity import selected_v3_origins_for_group from scripts.preflight_predictive_horizon_recovery_v4_development import v4_split_origin from scripts.run_v3_per_horizon_development_tournament import build_relative_market as build_v3_relative_market from scripts.v4_horizon_recovery_mode",
+          "DOUT_ORIGINS = 10 AVALANCHE365_FINAL_HOLDOUT_ORIGINS = 9  CANDIDATE_SIMPLICITY_ORDER = {     \"V4_7D_SHORT_TREND_REVERSAL_LOGIT\": 0,     \"V4_7D_RELATIVE_STRENGTH_GB\": 1,     \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\": 2,     \"V4_30D_TREND_REVERSAL_LOGIT\": 0,     \"V4_30D_RELATIVE_CONTEXT_GB\": 1,     \"V4_30D_VOLATILITY_STATE_EXTRA_TREES\": 2,     \"V4_365D_LONG_TREND_LOGIT\": 0,     \"V4_365D_LONG_REGIME_GB\": 1,     \"V4_365D_RETURN_MAGNITUDE_ENSEMBLE\": 2, }   def require(condition: bool, message: str) -> None:     i"
+        ]
+      },
+      {
+        "matched_terms": [
+          "ExtraTrees"
+        ],
+        "path": "scripts/run_v3_per_horizon_development_tournament.py",
+        "snippets": [
+          "e import hashlib import json import os import shutil import sys import tempfile from pathlib import Path  import numpy as np import pandas as pd from sklearn.ensemble import (     ExtraTreesClassifier,     GradientBoostingClassifier,     HistGradientBoostingClassifier,     RandomForestClassifier, ) from sklearn.linear_model import LogisticRegression from sklearn.metrics import brier_score_loss from sklearn.preprocessing import StandardScaler  ROOT = Path(__file__).resolve().parents[1] "
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "predictive_horizon_recovery_v4",
+          "VOLATILITY_STATE_EXTRA_TREES",
+          "ExtraTrees"
+        ],
+        "path": "scripts/v4_horizon_recovery_model_spec.py",
+        "snippets": [
+          "adth_positive_30d_pct\",                     \"core_return_dispersion_7d\", \"core_return_dispersion_14d\", \"core_return_dispersion_30d\",                 ],             },             \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\": {                 \"kind\": \"classifier\",                 \"features\": [                     \"return_1d\", \"return_3d\", \"return_7d\", \"return_14d\", \"return_30d\",                     \"volatility_7d\", \"volatility_14d\", \"volatility_30d\", \"volatility_ratio_7d_30d\",                     \"distance_sma20\", \"d",
+          "er, GradientBoostingClassifier, GradientBoostingRegressor, RandomForestRegressor from sklearn.linear_model import BayesianRidge, LogisticRegression  EXPERIMENT_ID = \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\" EVIDENCE_CLASS = \"HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME\" RECOVERY_HORIZONS = (7, 30, 365) TRANSACTION_COST_BPS = 15.0  NATIVE_LAG_DAYS = {     \"btc_return_30d_pct\": 1,     \"core_breadth_above_sma50_pct\": 1,     \"core_median_return_30d_pct\": 1,     \"fear_greed_index\": 1,     \"s",
+          "ositive_30d_pct\",                     \"core_return_dispersion_7d\", \"core_return_dispersion_14d\", \"core_return_dispersion_30d\",                 ],             },             \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\": {                 \"kind\": \"classifier\",                 \"features\": [                     \"return_1d\", \"return_3d\", \"return_7d\", \"return_14d\", \"return_30d\",                     \"volatility_7d\", \"volatility_14d\", \"volatility_30d\", \"volatility_ratio_7d_30d\",                     \"distance_sma20\", \"d",
+          "from __future__ import annotations  import math from typing import Iterable  import numpy as np import pandas as pd from sklearn.ensemble import ExtraTreesClassifier, GradientBoostingClassifier, GradientBoostingRegressor, RandomForestRegressor from sklearn.linear_model import BayesianRidge, LogisticRegression  EXPERIMENT_ID = \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\" EVIDENCE_CLASS = \"HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME\" RE"
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "predictive_horizon_recovery_v4",
+          "VOLATILITY_STATE_EXTRA_TREES"
+        ],
+        "path": "scripts/validate_and_summarize_predictive_horizon_recovery_v4_development_results.py",
+        "snippets": [
+          "T_VINTAGE_POINT_IN_TIME\" EXPECTED_HORIZONS = (7, 30, 365) EXPECTED_FAMILIES = {     7: {         \"V4_7D_SHORT_TREND_REVERSAL_LOGIT\",         \"V4_7D_RELATIVE_STRENGTH_GB\",         \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",     },     30: {         \"V4_30D_TREND_REVERSAL_LOGIT\",         \"V4_30D_RELATIVE_CONTEXT_GB\",         \"V4_30D_VOLATILITY_STATE_EXTRA_TREES\",     },     365: {         \"V4_365D_LONG_TREND_LOGIT\",         \"V4_365D_LONG_REGIME_GB\",         \"V4_365D_RETURN_MAGNITUDE_ENSEMBLE\",     }, } EXPECTED_ROWS ",
+          "from __future__ import annotations  import argparse import hashlib import json from pathlib import Path  EXPECTED_EXPERIMENT = \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\" EXPECTED_EVIDENCE_CLASS = \"HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME\" EXPECTED_HORIZONS = (7, 30, 365) EXPECTED_FAMILIES = {     7: {         \"V4_7D_SHORT_TREND_REVERSAL_LOGIT\",         \"V4_7D_RELATIVE_STRENGTH_GB\",         \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",     },     30: {   ",
+          "AGE_POINT_IN_TIME\" EXPECTED_HORIZONS = (7, 30, 365) EXPECTED_FAMILIES = {     7: {         \"V4_7D_SHORT_TREND_REVERSAL_LOGIT\",         \"V4_7D_RELATIVE_STRENGTH_GB\",         \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",     },     30: {         \"V4_30D_TREND_REVERSAL_LOGIT\",         \"V4_30D_RELATIVE_CONTEXT_GB\",         \"V4_30D_VOLATILITY_STATE_EXTRA_TREES\",     },     365: {         \"V4_365D_LONG_TREND_LOGIT\",         \"V4_365D_LONG_REGIME_GB\",         \"V4_365D_RETURN_MAGNITUDE_ENSEMBLE\",     }, } EXPECTED_ROWS "
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "VOLATILITY_STATE_EXTRA_TREES"
+        ],
+        "path": "scripts/validate_bitcoin_live_input_authority_resolution.py",
+        "snippets": [
+          "__future__ import annotations  import argparse from pathlib import Path  REQUIRED_RUNNER_FRAGMENTS = (     \"BITCOIN_LIVE_INPUT_AUTHORITY_RESOLUTION_V1\",     \"read_only=True\",     \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",     \"canonical_market_daily\",     \"latest_asset_market\",     \"latest_m42_asset_recommendations\",     \"latest_m42_portfolio_plan\",     \"latest_macro_observations\",     \"latest_macro_regime\",     \"record_count\",     \"FIRST_PROSPECTIVE_OBSERVATION_CAPTURED=FALSE\",     \"MISSING_EVIDENCE_SYNTHESIZED=F",
+          "re__ import annotations  import argparse from pathlib import Path  REQUIRED_RUNNER_FRAGMENTS = (     \"BITCOIN_LIVE_INPUT_AUTHORITY_RESOLUTION_V1\",     \"read_only=True\",     \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",     \"canonical_market_daily\",     \"latest_asset_market\",     \"latest_m42_asset_recommendations\",     \"latest_m42_portfolio_plan\",     \"latest_macro_observations\",     \"latest_macro_regime\",     \"record_count\",     \"FIRST_PROSPECTIVE_OBSERVATION_CAPTURED=FALSE\",     \"MISSING_EVIDENCE_SYNTHESIZED=F"
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "VOLATILITY_STATE_EXTRA_TREES"
+        ],
+        "path": "scripts/validate_btc_eth_forward_accumulation_cycle_policy_contract.py",
+        "snippets": [
+          "rtification\",         \"`INSUFFICIENT_EVIDENCE_FOR_POLICY_SKILL`\",         \"Primary capital-decision certification scope:\",         \"- Bitcoin\",         \"- Ethereum\",         \"7d: `V4_7D_VOLATILITY_STATE_EXTRA_TREES` confirmed on the one-time final holdout\",         \"30d: `NO_QUALIFIED_WINNER`\",         \"365d: `NO_QUALIFIED_WINNER`\",         \"V4 30d and 365d final holdouts remain sealed\",         \"V3 final holdout remains sealed\",         \"post-holdout V4 tuning remains prohibited\",         \"does not itself ce",
+          "ation\",         \"`INSUFFICIENT_EVIDENCE_FOR_POLICY_SKILL`\",         \"Primary capital-decision certification scope:\",         \"- Bitcoin\",         \"- Ethereum\",         \"7d: `V4_7D_VOLATILITY_STATE_EXTRA_TREES` confirmed on the one-time final holdout\",         \"30d: `NO_QUALIFIED_WINNER`\",         \"365d: `NO_QUALIFIED_WINNER`\",         \"V4 30d and 365d final holdouts remain sealed\",         \"V3 final holdout remains sealed\",         \"post-holdout V4 tuning remains prohibited\",         \"does not itself ce"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/validate_predictive_horizon_recovery_v4_365d_auxiliary_diagnostic_runner.py",
+        "snippets": [
+          "from __future__ import annotations  import argparse import ast import hashlib import json from pathlib import Path  EXPERIMENT_ID = \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\" EXPECTED_DEVELOPMENT_RESULTS_SHA256 = \"a44e237112bf6521c8a770de120d4a0104731c280d7009568e6618cca1c1fbfb\" EXPECTED_V4_MANIFEST_CONTENT_SHA256 = \"6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2\" EXPECTED_V4_7D_FINAL_RESULTS_SHA256 = \"fe82f2b8cdfe817bfbb825cd2d97eb7d02711c8d1a2d3e5b3"
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "predictive_horizon_recovery_v4",
+          "VOLATILITY_STATE_EXTRA_TREES"
+        ],
+        "path": "scripts/validate_predictive_horizon_recovery_v4_7d_final_holdout_runner.py",
+        "snippets": [
+          " \"a44e237112bf6521c8a770de120d4a0104731c280d7009568e6618cca1c1fbfb\" EXPECTED_MANIFEST_CONTENT_SHA256 = \"6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2\" WINNER = \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\" EXPECTED_ASSETS = [\"avalanche\", \"bitcoin\", \"chainlink\", \"ethereum\", \"solana\", \"xrp\"]   def require(condition: bool, message: str) -> None:     if not condition:         raise RuntimeError(message)   def sha256(path: Path) -> str:     h = hashlib.sha256()     with path.open(\"rb\") as handle:        ",
+          "237112bf6521c8a770de120d4a0104731c280d7009568e6618cca1c1fbfb\" EXPECTED_MANIFEST_CONTENT_SHA256 = \"6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2\" WINNER = \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\" EXPECTED_ASSETS = [\"avalanche\", \"bitcoin\", \"chainlink\", \"ethereum\", \"solana\", \"xrp\"]   def require(condition: bool, message: str) -> None:     if not condition:         raise RuntimeError(message)   def sha256(path: Path) -> str:     h = hashlib.sha256()     with path.open(\"rb\") as handle:        "
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "predictive_horizon_recovery_v4",
+          "VOLATILITY_STATE_EXTRA_TREES"
+        ],
+        "path": "scripts/validate_predictive_horizon_recovery_v4_candidate_and_holdout_contract.py",
+        "snippets": [
+          "OVERY_V4\",         \"V4 development origins: 50\",         \"V4 final-holdout origins: 10\",         \"V4_7D_SHORT_TREND_REVERSAL_LOGIT\",         \"V4_7D_RELATIVE_STRENGTH_GB\",         \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",         \"V4_30D_TREND_REVERSAL_LOGIT\",         \"V4_30D_RELATIVE_CONTEXT_GB\",         \"V4_30D_VOLATILITY_STATE_EXTRA_TREES\",         \"V4_365D_LONG_TREND_LOGIT\",         \"V4_365D_LONG_REGIME_GB\",         \"V4_365D_RETURN_MAGNITUDE_ENSEMBLE\",         \"GradientBoostingRegressor\",         \"RandomForest",
+          "from pathlib import Path  ROOT = Path(__file__).resolve().parents[1] CONTRACT = ROOT / \"docs\" / \"predictive_horizon_recovery_v4_candidate_and_holdout_contract.md\"   def require(condition: bool, message: str) -> None:     if not condition:         raise RuntimeError(message)   def main() -> int:     text = CONTRACT.read_text(encoding=\"utf-8\")      required = [         \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\",         \"",
+          "V4\",         \"V4 development origins: 50\",         \"V4 final-holdout origins: 10\",         \"V4_7D_SHORT_TREND_REVERSAL_LOGIT\",         \"V4_7D_RELATIVE_STRENGTH_GB\",         \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",         \"V4_30D_TREND_REVERSAL_LOGIT\",         \"V4_30D_RELATIVE_CONTEXT_GB\",         \"V4_30D_VOLATILITY_STATE_EXTRA_TREES\",         \"V4_365D_LONG_TREND_LOGIT\",         \"V4_365D_LONG_REGIME_GB\",         \"V4_365D_RETURN_MAGNITUDE_ENSEMBLE\",         \"GradientBoostingRegressor\",         \"RandomForest"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/validate_predictive_horizon_recovery_v4_design.py",
+        "snippets": [
+          "from __future__ import annotations  from pathlib import Path  EXPECTED_EXPERIMENT = \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\" EXPECTED_V3_HASH = \"33b039fd83a27f868bc660584e775ea64743954e87bd70a8f120c952588b5fd1\" EXPECTED_NEXT_GATE = \"AUDIT_V4_FRESH_EVIDENCE_CAPACITY_AND_FREEZE_HORIZON_SPECIFIC_CANDIDATE_CONTRACTS\"   def require(condition: bool, message: str) -> None:     if not condition:         raise RuntimeError(messa"
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "predictive_horizon_recovery_v4",
+          "VOLATILITY_STATE_EXTRA_TREES"
+        ],
+        "path": "scripts/validate_predictive_horizon_recovery_v4_development_decision_freeze.py",
+        "snippets": [
+          "0de120d4a0104731c280d7009568e6618cca1c1fbfb\" EXPECTED_MANIFEST_CONTENT_SHA256 = \"6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2\" EXPECTED_DECISIONS = {     \"7\": \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",     \"30\": \"NO_QUALIFIED_WINNER\",     \"365\": \"NO_QUALIFIED_WINNER\", }   def require(condition: bool, message: str) -> None:     if not condition:         raise RuntimeError(message)   def sha256(path: Path) -> str:     h = hashlib.sha256()     with path.open(\"rb\") as handle:         for chunk in i",
+          "= json.loads(freeze_path.read_text(encoding=\"utf-8\"))     results = json.loads(results_path.read_text(encoding=\"utf-8\"))      require(freeze.get(\"experiment_id\") == \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\", \"Unexpected freeze experiment id\")     require(freeze.get(\"development_results_sha256\") == EXPECTED_RESULTS_SHA256, \"Freeze is not pinned to authoritative results\")     require(freeze.get(\"v4_manifest_content_sha256\") == EXPECTED_MANIFEST_CONTENT_SHA256, \"Freeze is not pinned to candidate-safe ma",
+          "d4a0104731c280d7009568e6618cca1c1fbfb\" EXPECTED_MANIFEST_CONTENT_SHA256 = \"6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2\" EXPECTED_DECISIONS = {     \"7\": \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",     \"30\": \"NO_QUALIFIED_WINNER\",     \"365\": \"NO_QUALIFIED_WINNER\", }   def require(condition: bool, message: str) -> None:     if not condition:         raise RuntimeError(message)   def sha256(path: Path) -> str:     h = hashlib.sha256()     with path.open(\"rb\") as handle:         for chunk in i"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/validate_predictive_horizon_recovery_v4_development_harness.py",
+        "snippets": [
+          "e__ import annotations  import argparse import ast import hashlib import json from pathlib import Path  ROOT = Path(__file__).resolve().parents[1] TARGET = ROOT / \"scripts\" / \"run_predictive_horizon_recovery_v4_development.py\" EXPECTED_EXPERIMENT_ID = \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\" EXPECTED_V4_MANIFEST_CONTENT_SHA256 = \"6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2\" EXPECTED_GROUPS = 17 EXPECTED_DEV_ORIGINS = 50 DEFAULT_FINAL_HOLDOUT_ORIGINS = 10 AVALANCHE365_FINAL_HOLDO"
+        ]
+      },
+      {
+        "matched_terms": [
+          "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+          "predictive_horizon_recovery_v4",
+          "VOLATILITY_STATE_EXTRA_TREES"
+        ],
+        "path": "scripts/validate_predictive_horizon_recovery_v4_development_results.py",
+        "snippets": [
+          "_ID = \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\"  EXPECTED_CANDIDATES = {     \"7\": [         \"V4_7D_SHORT_TREND_REVERSAL_LOGIT\",         \"V4_7D_RELATIVE_STRENGTH_GB\",         \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",     ],     \"30\": [         \"V4_30D_TREND_REVERSAL_LOGIT\",         \"V4_30D_RELATIVE_CONTEXT_GB\",         \"V4_30D_VOLATILITY_STATE_EXTRA_TREES\",     ],     \"365\": [         \"V4_365D_LONG_TREND_LOGIT\",         \"V4_365D_LONG_REGIME_GB\",         \"V4_365D_RETURN_MAGNITUDE_ENSEMBLE\",     ], }  EXPECTED_",
+          "4a0104731c280d7009568e6618cca1c1fbfb\" EXPECTED_MANIFEST_CONTENT_SHA256 = \"6e68fcd60d179ba8d510554df75ebb9b96e77b1f1e14fbaefad494e694a734e2\" EXPECTED_EXPERIMENT_ID = \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\"  EXPECTED_CANDIDATES = {     \"7\": [         \"V4_7D_SHORT_TREND_REVERSAL_LOGIT\",         \"V4_7D_RELATIVE_STRENGTH_GB\",         \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",     ],     \"30\": [         \"V4_30D_TREND_REVERSAL_LOGIT\",         \"V4_30D_RELATIVE_CONTEXT_GB\",         \"V4_30D_VOLATILITY_STATE_EXTRA",
+          "\"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\"  EXPECTED_CANDIDATES = {     \"7\": [         \"V4_7D_SHORT_TREND_REVERSAL_LOGIT\",         \"V4_7D_RELATIVE_STRENGTH_GB\",         \"V4_7D_VOLATILITY_STATE_EXTRA_TREES\",     ],     \"30\": [         \"V4_30D_TREND_REVERSAL_LOGIT\",         \"V4_30D_RELATIVE_CONTEXT_GB\",         \"V4_30D_VOLATILITY_STATE_EXTRA_TREES\",     ],     \"365\": [         \"V4_365D_LONG_TREND_LOGIT\",         \"V4_365D_LONG_REGIME_GB\",         \"V4_365D_RETURN_MAGNITUDE_ENSEMBLE\",     ], }  EXPECTED_"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/validate_predictive_horizon_recovery_v4_final_holdout_manifest.py",
+        "snippets": [
+          "from __future__ import annotations  import argparse import hashlib import json from pathlib import Path  EXPECTED_EXPERIMENT_ID = \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\" EXPECTED_EVIDENCE_CLASS = \"HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME\" EXPECTED_HORIZONS = [7, 30, 365] EXPECTED_SUPPORTED_GROUPS = 17 EXPECTED_DEVELOPMENT_ORIGINS_PER_GROUP = 50 EXPECTED_FINAL_HOLDOUT_ORIGINS_PER_GROUP = 10 EXPECTED_AVALANCHE365_FINAL_HOLDOUT_ORIGINS = 9 AVALANCHE"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/validate_v4_corrected_membership_manifest.py",
+        "snippets": [
+          "from __future__ import annotations  import argparse import hashlib import json from pathlib import Path  EXPECTED_EXPERIMENT = \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\" EXPECTED_GROUPS = 17 EXPECTED_SUPERSEDED_CONTENT_SHA256 = \"dc0d37dcb932cf39e9b5affb19d578d7b57e4db457bd39b5233005f5a57a0de0\"   def require(condition: bool, message: str) -> None:     if not condition:         raise RuntimeError(message)   def canonical_hash(payload: dict) -> str:     body = dict(p"
+        ]
+      },
+      {
+        "matched_terms": [
+          "predictive_horizon_recovery_v4"
+        ],
+        "path": "scripts/validate_v4_exact_target_corrected_manifest.py",
+        "snippets": [
+          "from __future__ import annotations  import argparse import hashlib import json from pathlib import Path  import duckdb import pandas as pd  EXPECTED_EXPERIMENT_ID = \"CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4\" EXPECTED_OLD_CONTENT_SHA256 = \"4b42d66a6cea1949b956fc5fe57545cb21abfe6b8cdddb0fe7f933b75734ca02\" EXPECTED_GENERATION = \"EXACT_CALENDAR_TARGET_AVAILABILITY_V2\" EXPECTED_GROUPS = 17 EXPECTED_DEVELOPMENT = 50 EXPECTED_HOLDOUT = 10   def require(condition: bool, message: str) -> None:     if not condi"
+        ]
+      }
+    ]
+  }
+}

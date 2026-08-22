@@ -1,0 +1,1665 @@
+{
+  "experiment_id": "CRYPTO_NATIVE_PREDICTIVE_MODEL_TOURNAMENT_V3",
+  "evidence_class": "HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME",
+  "strict_point_in_time_claim_allowed": false,
+  "development_folds": 5,
+  "origins_per_fold_per_supported_asset": 10,
+  "v2_consumed_origins_excluded_from_selection_training_and_validation": true,
+  "v3_final_holdout_origins_excluded_from_selection_training_and_validation": true,
+  "v3_final_holdout_outcomes_viewed": false,
+  "governed_native_context_lags_enforced": true,
+  "recommendation_policy_changed": false,
+  "production_promotion_allowed": false,
+  "horizon_results": {
+    "7": {
+      "candidate_results": {
+        "PRICE_ONLY_DIRECTION_FIRST": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 49.333333333333336,
+          "development_majority_baseline_accuracy_pct": 49.333333333333336,
+          "model_minus_development_majority_accuracy_pct_points": 0.0,
+          "raw_brier_score": 0.2691686420596296,
+          "leakage_safe_calibrated_brier_score": 0.25137778246044024,
+          "assets_nonnegative_baseline_adjusted_skill": 3,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -0.41695231205492206,
+          "turnover_units": 260.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 57.99999999999999,
+              "baseline_adjusted_skill_pp": -3.9999999999999925,
+              "net_correct_gain_vs_baseline": -2
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 46.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": -3.9999999999999982,
+              "net_correct_gain_vs_baseline": -2
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 40.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": -1.9999999999999962,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 44.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 52.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 57.99999999999999,
+              "baseline_accuracy_pct": 52.0,
+              "baseline_adjusted_skill_pp": 5.999999999999995,
+              "net_correct_gain_vs_baseline": 3
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "GRADIENT_BOOSTED_DIRECTION": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 51.66666666666667,
+          "development_majority_baseline_accuracy_pct": 49.333333333333336,
+          "model_minus_development_majority_accuracy_pct_points": 2.3333333333333357,
+          "raw_brier_score": 0.2946917788090452,
+          "leakage_safe_calibrated_brier_score": 0.2512397290279922,
+          "assets_nonnegative_baseline_adjusted_skill": 5,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -0.15168015256474143,
+          "turnover_units": 232.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 60.0,
+              "baseline_accuracy_pct": 57.99999999999999,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 46.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": -3.9999999999999982,
+              "net_correct_gain_vs_baseline": -2
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 42.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 44.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 62.0,
+              "baseline_accuracy_pct": 52.0,
+              "baseline_adjusted_skill_pp": 9.999999999999998,
+              "net_correct_gain_vs_baseline": 5
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 56.00000000000001,
+              "baseline_accuracy_pct": 52.0,
+              "baseline_adjusted_skill_pp": 4.0000000000000036,
+              "net_correct_gain_vs_baseline": 2
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "HIST_GRADIENT_BOOSTED_DIRECTION": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 47.0,
+          "development_majority_baseline_accuracy_pct": 49.333333333333336,
+          "model_minus_development_majority_accuracy_pct_points": -2.3333333333333357,
+          "raw_brier_score": 0.36475859377687947,
+          "leakage_safe_calibrated_brier_score": 0.25220323558473284,
+          "assets_nonnegative_baseline_adjusted_skill": 2,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -0.6180522291381478,
+          "turnover_units": 252.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 52.0,
+              "baseline_accuracy_pct": 57.99999999999999,
+              "baseline_adjusted_skill_pp": -5.999999999999995,
+              "net_correct_gain_vs_baseline": -3
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 44.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": -6.0,
+              "net_correct_gain_vs_baseline": -3
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 44.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 38.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": -3.9999999999999982,
+              "net_correct_gain_vs_baseline": -2
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 52.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 52.0,
+              "baseline_adjusted_skill_pp": -2.0000000000000018,
+              "net_correct_gain_vs_baseline": -1
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "EXTRA_TREES_DIRECTION": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 48.66666666666667,
+          "development_majority_baseline_accuracy_pct": 49.333333333333336,
+          "model_minus_development_majority_accuracy_pct_points": -0.6666666666666643,
+          "raw_brier_score": 0.27287963273770144,
+          "leakage_safe_calibrated_brier_score": 0.25231972097003963,
+          "assets_nonnegative_baseline_adjusted_skill": 4,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "mean_sign_strategy_return_pct_after_15bps_cost": 0.01727400139636643,
+          "turnover_units": 254.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 57.99999999999999,
+              "baseline_adjusted_skill_pp": -9.999999999999998,
+              "net_correct_gain_vs_baseline": -5
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 28.000000000000004,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": -13.999999999999996,
+              "net_correct_gain_vs_baseline": -7
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 46.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": 4.0000000000000036,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 60.0,
+              "baseline_accuracy_pct": 52.0,
+              "baseline_adjusted_skill_pp": 7.9999999999999964,
+              "net_correct_gain_vs_baseline": 4
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 60.0,
+              "baseline_accuracy_pct": 52.0,
+              "baseline_adjusted_skill_pp": 7.9999999999999964,
+              "net_correct_gain_vs_baseline": 4
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "RELATIVE_MARKET_DIRECTION": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 46.33333333333333,
+          "development_majority_baseline_accuracy_pct": 49.333333333333336,
+          "model_minus_development_majority_accuracy_pct_points": -3.000000000000007,
+          "raw_brier_score": 0.27432595439314694,
+          "leakage_safe_calibrated_brier_score": 0.2509436878645807,
+          "assets_nonnegative_baseline_adjusted_skill": 2,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -0.941738438111257,
+          "turnover_units": 264.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 56.00000000000001,
+              "baseline_accuracy_pct": 57.99999999999999,
+              "baseline_adjusted_skill_pp": -1.9999999999999907,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 46.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": -3.9999999999999982,
+              "net_correct_gain_vs_baseline": -2
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 34.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": -7.9999999999999964,
+              "net_correct_gain_vs_baseline": -4
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 34.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": -7.9999999999999964,
+              "net_correct_gain_vs_baseline": -4
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 52.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 52.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            }
+          },
+          "development_selection_gate_pass": false
+        }
+      },
+      "selected_development_winner": null,
+      "qualified_winner_exists": false
+    },
+    "30": {
+      "candidate_results": {
+        "PRICE_ONLY_DIRECTION_FIRST": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 51.66666666666667,
+          "development_majority_baseline_accuracy_pct": 53.666666666666664,
+          "model_minus_development_majority_accuracy_pct_points": -1.999999999999993,
+          "raw_brier_score": 0.3029069215628126,
+          "leakage_safe_calibrated_brier_score": 0.24922310999769662,
+          "assets_nonnegative_baseline_adjusted_skill": 3,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -0.8563555719750954,
+          "turnover_units": 154.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 57.99999999999999,
+              "baseline_adjusted_skill_pp": -3.9999999999999925,
+              "net_correct_gain_vs_baseline": -2
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": -6.000000000000005,
+              "net_correct_gain_vs_baseline": -3
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 62.0,
+              "baseline_adjusted_skill_pp": -7.9999999999999964,
+              "net_correct_gain_vs_baseline": -4
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 52.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 3.9999999999999982,
+              "net_correct_gain_vs_baseline": 2
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "NATIVE_CONTEXT_DIRECTION_FIRST": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 52.33333333333333,
+          "development_majority_baseline_accuracy_pct": 53.666666666666664,
+          "model_minus_development_majority_accuracy_pct_points": -1.3333333333333357,
+          "raw_brier_score": 0.30015796330377764,
+          "leakage_safe_calibrated_brier_score": 0.2483670599637616,
+          "assets_nonnegative_baseline_adjusted_skill": 2,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -1.3477368710899822,
+          "turnover_units": 180.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 60.0,
+              "baseline_accuracy_pct": 57.99999999999999,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": -6.000000000000005,
+              "net_correct_gain_vs_baseline": -3
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 57.99999999999999,
+              "baseline_accuracy_pct": 62.0,
+              "baseline_adjusted_skill_pp": -4.0000000000000036,
+              "net_correct_gain_vs_baseline": -2
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 46.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": -3.9999999999999982,
+              "net_correct_gain_vs_baseline": -2
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 52.0,
+              "baseline_adjusted_skill_pp": -2.0000000000000018,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 52.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 6.0,
+              "net_correct_gain_vs_baseline": 3
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "GRADIENT_BOOSTED_DIRECTION": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 50.0,
+          "development_majority_baseline_accuracy_pct": 53.666666666666664,
+          "model_minus_development_majority_accuracy_pct_points": -3.6666666666666643,
+          "raw_brier_score": 0.34241170889568184,
+          "leakage_safe_calibrated_brier_score": 0.24920042203056922,
+          "assets_nonnegative_baseline_adjusted_skill": 2,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -3.7900671522276554,
+          "turnover_units": 168.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 57.99999999999999,
+              "baseline_adjusted_skill_pp": -3.9999999999999925,
+              "net_correct_gain_vs_baseline": -2
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 52.0,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": -2.0000000000000018,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 62.0,
+              "baseline_adjusted_skill_pp": -14.000000000000002,
+              "net_correct_gain_vs_baseline": -7
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 52.0,
+              "baseline_accuracy_pct": 52.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 44.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": -2.0000000000000018,
+              "net_correct_gain_vs_baseline": -1
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "HIST_GRADIENT_BOOSTED_DIRECTION": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 52.0,
+          "development_majority_baseline_accuracy_pct": 53.666666666666664,
+          "model_minus_development_majority_accuracy_pct_points": -1.6666666666666643,
+          "raw_brier_score": 0.39791625229830735,
+          "leakage_safe_calibrated_brier_score": 0.24864466752596684,
+          "assets_nonnegative_baseline_adjusted_skill": 3,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": 0.1652036517067194,
+          "turnover_units": 160.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 60.0,
+              "baseline_accuracy_pct": 57.99999999999999,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 62.0,
+              "baseline_adjusted_skill_pp": -7.9999999999999964,
+              "net_correct_gain_vs_baseline": -4
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": -2.0000000000000018,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 52.0,
+              "baseline_adjusted_skill_pp": -2.0000000000000018,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 46.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "EXTRA_TREES_DIRECTION": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 51.66666666666667,
+          "development_majority_baseline_accuracy_pct": 53.666666666666664,
+          "model_minus_development_majority_accuracy_pct_points": -1.999999999999993,
+          "raw_brier_score": 0.2949061750865235,
+          "leakage_safe_calibrated_brier_score": 0.24910746983967927,
+          "assets_nonnegative_baseline_adjusted_skill": 1,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -0.9701282099953623,
+          "turnover_units": 190.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 52.0,
+              "baseline_accuracy_pct": 57.99999999999999,
+              "baseline_adjusted_skill_pp": -5.999999999999995,
+              "net_correct_gain_vs_baseline": -3
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": -4.0000000000000036,
+              "net_correct_gain_vs_baseline": -2
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 57.99999999999999,
+              "baseline_accuracy_pct": 62.0,
+              "baseline_adjusted_skill_pp": -4.0000000000000036,
+              "net_correct_gain_vs_baseline": -2
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 44.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": -6.0,
+              "net_correct_gain_vs_baseline": -3
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 52.0,
+              "baseline_adjusted_skill_pp": -2.0000000000000018,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 56.00000000000001,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 10.000000000000004,
+              "net_correct_gain_vs_baseline": 5
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "RELATIVE_MARKET_DIRECTION": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 50.33333333333333,
+          "development_majority_baseline_accuracy_pct": 53.666666666666664,
+          "model_minus_development_majority_accuracy_pct_points": -3.3333333333333357,
+          "raw_brier_score": 0.30835520279682016,
+          "leakage_safe_calibrated_brier_score": 0.24893010322458328,
+          "assets_nonnegative_baseline_adjusted_skill": 2,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -2.007046621755945,
+          "turnover_units": 182.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 56.00000000000001,
+              "baseline_accuracy_pct": 57.99999999999999,
+              "baseline_adjusted_skill_pp": -1.9999999999999907,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 44.0,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": -10.000000000000004,
+              "net_correct_gain_vs_baseline": -5
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 62.0,
+              "baseline_adjusted_skill_pp": -7.9999999999999964,
+              "net_correct_gain_vs_baseline": -4
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 52.0,
+              "baseline_adjusted_skill_pp": -2.0000000000000018,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 1.9999999999999962,
+              "net_correct_gain_vs_baseline": 1
+            }
+          },
+          "development_selection_gate_pass": false
+        }
+      },
+      "selected_development_winner": null,
+      "qualified_winner_exists": false
+    },
+    "90": {
+      "candidate_results": {
+        "PRICE_ONLY_DIRECTION_FIRST": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 46.666666666666664,
+          "development_majority_baseline_accuracy_pct": 45.666666666666664,
+          "model_minus_development_majority_accuracy_pct_points": 1.0,
+          "raw_brier_score": 0.3838177161526019,
+          "leakage_safe_calibrated_brier_score": 0.27373140426733517,
+          "assets_nonnegative_baseline_adjusted_skill": 3,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": 3.930797399499512,
+          "turnover_units": 90.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 66.0,
+              "baseline_accuracy_pct": 66.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 8.000000000000002,
+              "net_correct_gain_vs_baseline": 4
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 42.0,
+              "baseline_accuracy_pct": 44.0,
+              "baseline_adjusted_skill_pp": -2.0000000000000018,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 40.0,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": -7.9999999999999964,
+              "net_correct_gain_vs_baseline": -4
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 38.0,
+              "baseline_accuracy_pct": 28.000000000000004,
+              "baseline_adjusted_skill_pp": 9.999999999999998,
+              "net_correct_gain_vs_baseline": 5
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 40.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": -1.9999999999999962,
+              "net_correct_gain_vs_baseline": -1
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "NATIVE_CONTEXT_DIRECTION_FIRST": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 49.666666666666664,
+          "development_majority_baseline_accuracy_pct": 45.666666666666664,
+          "model_minus_development_majority_accuracy_pct_points": 4.0,
+          "raw_brier_score": 0.39354590844427134,
+          "leakage_safe_calibrated_brier_score": 0.2761967672696187,
+          "assets_nonnegative_baseline_adjusted_skill": 6,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "mean_sign_strategy_return_pct_after_15bps_cost": 2.4065883988890815,
+          "turnover_units": 88.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 66.0,
+              "baseline_accuracy_pct": 66.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 52.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 6.0,
+              "net_correct_gain_vs_baseline": 3
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 44.0,
+              "baseline_adjusted_skill_pp": 6.0,
+              "net_correct_gain_vs_baseline": 3
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 57.99999999999999,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": 9.999999999999998,
+              "net_correct_gain_vs_baseline": 5
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 28.000000000000004,
+              "baseline_accuracy_pct": 28.000000000000004,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 44.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            }
+          },
+          "development_selection_gate_pass": true
+        },
+        "GRADIENT_BOOSTED_DIRECTION": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 50.0,
+          "development_majority_baseline_accuracy_pct": 45.666666666666664,
+          "model_minus_development_majority_accuracy_pct_points": 4.333333333333336,
+          "raw_brier_score": 0.4076621117514301,
+          "leakage_safe_calibrated_brier_score": 0.27768947632096563,
+          "assets_nonnegative_baseline_adjusted_skill": 6,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "mean_sign_strategy_return_pct_after_15bps_cost": 2.848155639840831,
+          "turnover_units": 82.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 66.0,
+              "baseline_accuracy_pct": 66.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 46.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 44.0,
+              "baseline_adjusted_skill_pp": 3.9999999999999982,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 60.0,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": 12.0,
+              "net_correct_gain_vs_baseline": 6
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 30.0,
+              "baseline_accuracy_pct": 28.000000000000004,
+              "baseline_adjusted_skill_pp": 1.9999999999999962,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": 8.000000000000002,
+              "net_correct_gain_vs_baseline": 4
+            }
+          },
+          "development_selection_gate_pass": true
+        },
+        "HIST_GRADIENT_BOOSTED_DIRECTION": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 49.666666666666664,
+          "development_majority_baseline_accuracy_pct": 45.666666666666664,
+          "model_minus_development_majority_accuracy_pct_points": 4.0,
+          "raw_brier_score": 0.464598966725855,
+          "leakage_safe_calibrated_brier_score": 0.27561902741062555,
+          "assets_nonnegative_baseline_adjusted_skill": 6,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "mean_sign_strategy_return_pct_after_15bps_cost": 2.1340178796971663,
+          "turnover_units": 72.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 68.0,
+              "baseline_accuracy_pct": 66.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 1.9999999999999962,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 44.0,
+              "baseline_adjusted_skill_pp": 3.9999999999999982,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 56.00000000000001,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": 8.000000000000007,
+              "net_correct_gain_vs_baseline": 4
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 32.0,
+              "baseline_accuracy_pct": 28.000000000000004,
+              "baseline_adjusted_skill_pp": 3.9999999999999982,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 46.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": 4.0000000000000036,
+              "net_correct_gain_vs_baseline": 2
+            }
+          },
+          "development_selection_gate_pass": true
+        },
+        "EXTRA_TREES_DIRECTION": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 47.66666666666667,
+          "development_majority_baseline_accuracy_pct": 45.666666666666664,
+          "model_minus_development_majority_accuracy_pct_points": 2.000000000000007,
+          "raw_brier_score": 0.3659456410416846,
+          "leakage_safe_calibrated_brier_score": 0.2740996840498536,
+          "assets_nonnegative_baseline_adjusted_skill": 4,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "mean_sign_strategy_return_pct_after_15bps_cost": 2.0466838104892138,
+          "turnover_units": 92.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 74.0,
+              "baseline_accuracy_pct": 66.0,
+              "baseline_adjusted_skill_pp": 7.9999999999999964,
+              "net_correct_gain_vs_baseline": 4
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 40.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": -6.0,
+              "net_correct_gain_vs_baseline": -3
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 44.0,
+              "baseline_adjusted_skill_pp": 3.9999999999999982,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 52.0,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": 4.0000000000000036,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 32.0,
+              "baseline_accuracy_pct": 28.000000000000004,
+              "baseline_adjusted_skill_pp": 3.9999999999999982,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 40.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": -1.9999999999999962,
+              "net_correct_gain_vs_baseline": -1
+            }
+          },
+          "development_selection_gate_pass": true
+        },
+        "RELATIVE_MARKET_DIRECTION": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 50.66666666666667,
+          "development_majority_baseline_accuracy_pct": 45.666666666666664,
+          "model_minus_development_majority_accuracy_pct_points": 5.000000000000007,
+          "raw_brier_score": 0.388708804711024,
+          "leakage_safe_calibrated_brier_score": 0.2763942402460438,
+          "assets_nonnegative_baseline_adjusted_skill": 6,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "mean_sign_strategy_return_pct_after_15bps_cost": 3.549582449969024,
+          "turnover_units": 78.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 68.0,
+              "baseline_accuracy_pct": 66.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 46.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 52.0,
+              "baseline_accuracy_pct": 44.0,
+              "baseline_adjusted_skill_pp": 8.000000000000002,
+              "net_correct_gain_vs_baseline": 4
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 62.0,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": 14.000000000000002,
+              "net_correct_gain_vs_baseline": 7
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 30.0,
+              "baseline_accuracy_pct": 28.000000000000004,
+              "baseline_adjusted_skill_pp": 1.9999999999999962,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 46.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": 4.0000000000000036,
+              "net_correct_gain_vs_baseline": 2
+            }
+          },
+          "development_selection_gate_pass": true
+        }
+      },
+      "selected_development_winner": "RELATIVE_MARKET_DIRECTION",
+      "qualified_winner_exists": true
+    },
+    "180": {
+      "candidate_results": {
+        "PRICE_ONLY_DIRECTION_FIRST": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 44.333333333333336,
+          "development_majority_baseline_accuracy_pct": 47.0,
+          "model_minus_development_majority_accuracy_pct_points": -2.6666666666666643,
+          "raw_brier_score": 0.40260565411379257,
+          "leakage_safe_calibrated_brier_score": 0.30872269958106574,
+          "assets_nonnegative_baseline_adjusted_skill": 2,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -8.053230234130524,
+          "turnover_units": 88.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 70.0,
+              "baseline_accuracy_pct": 76.0,
+              "baseline_adjusted_skill_pp": -6.000000000000005,
+              "net_correct_gain_vs_baseline": -3
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 62.0,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": 14.000000000000002,
+              "net_correct_gain_vs_baseline": 7
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 28.000000000000004,
+              "baseline_accuracy_pct": 38.0,
+              "baseline_adjusted_skill_pp": -9.999999999999998,
+              "net_correct_gain_vs_baseline": -5
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 38.0,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": -9.999999999999998,
+              "net_correct_gain_vs_baseline": -5
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 14.000000000000002,
+              "baseline_accuracy_pct": 22.0,
+              "baseline_adjusted_skill_pp": -7.999999999999999,
+              "net_correct_gain_vs_baseline": -4
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": 4.0000000000000036,
+              "net_correct_gain_vs_baseline": 2
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "NATIVE_CONTEXT_DIRECTION_FIRST": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 52.666666666666664,
+          "development_majority_baseline_accuracy_pct": 47.0,
+          "model_minus_development_majority_accuracy_pct_points": 5.666666666666664,
+          "raw_brier_score": 0.37490036707857355,
+          "leakage_safe_calibrated_brier_score": 0.319683769990127,
+          "assets_nonnegative_baseline_adjusted_skill": 4,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -2.626602256229365,
+          "turnover_units": 90.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 72.0,
+              "baseline_accuracy_pct": 76.0,
+              "baseline_adjusted_skill_pp": -4.0000000000000036,
+              "net_correct_gain_vs_baseline": -2
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 32.0,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": -15.999999999999998,
+              "net_correct_gain_vs_baseline": -8
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 38.0,
+              "baseline_adjusted_skill_pp": 12.0,
+              "net_correct_gain_vs_baseline": 6
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 42.0,
+              "baseline_accuracy_pct": 22.0,
+              "baseline_adjusted_skill_pp": 20.0,
+              "net_correct_gain_vs_baseline": 10
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 72.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": 21.999999999999996,
+              "net_correct_gain_vs_baseline": 11
+            }
+          },
+          "development_selection_gate_pass": true
+        },
+        "GRADIENT_BOOSTED_DIRECTION": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 48.66666666666667,
+          "development_majority_baseline_accuracy_pct": 47.0,
+          "model_minus_development_majority_accuracy_pct_points": 1.6666666666666714,
+          "raw_brier_score": 0.4464257654956345,
+          "leakage_safe_calibrated_brier_score": 0.3105813703432579,
+          "assets_nonnegative_baseline_adjusted_skill": 4,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -8.468439545587838,
+          "turnover_units": 44.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 76.0,
+              "baseline_accuracy_pct": 76.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 24.0,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": -24.0,
+              "net_correct_gain_vs_baseline": -12
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 44.0,
+              "baseline_accuracy_pct": 38.0,
+              "baseline_adjusted_skill_pp": 6.0,
+              "net_correct_gain_vs_baseline": 3
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 46.0,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": -1.9999999999999962,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 32.0,
+              "baseline_accuracy_pct": 22.0,
+              "baseline_adjusted_skill_pp": 10.0,
+              "net_correct_gain_vs_baseline": 5
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 70.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": 19.999999999999996,
+              "net_correct_gain_vs_baseline": 10
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "HIST_GRADIENT_BOOSTED_DIRECTION": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 47.333333333333336,
+          "development_majority_baseline_accuracy_pct": 47.0,
+          "model_minus_development_majority_accuracy_pct_points": 0.3333333333333357,
+          "raw_brier_score": 0.4951677042071093,
+          "leakage_safe_calibrated_brier_score": 0.3123649354047907,
+          "assets_nonnegative_baseline_adjusted_skill": 4,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -8.58742995495222,
+          "turnover_units": 56.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 76.0,
+              "baseline_accuracy_pct": 76.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 20.0,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": -27.999999999999996,
+              "net_correct_gain_vs_baseline": -14
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 40.0,
+              "baseline_accuracy_pct": 38.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 46.0,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": -1.9999999999999962,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 34.0,
+              "baseline_accuracy_pct": 22.0,
+              "baseline_adjusted_skill_pp": 12.000000000000002,
+              "net_correct_gain_vs_baseline": 6
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 68.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": 18.000000000000004,
+              "net_correct_gain_vs_baseline": 9
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "EXTRA_TREES_DIRECTION": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 52.666666666666664,
+          "development_majority_baseline_accuracy_pct": 47.0,
+          "model_minus_development_majority_accuracy_pct_points": 5.666666666666664,
+          "raw_brier_score": 0.35807039081203856,
+          "leakage_safe_calibrated_brier_score": 0.31367749317153215,
+          "assets_nonnegative_baseline_adjusted_skill": 4,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -4.9541586237792945,
+          "turnover_units": 62.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 74.0,
+              "baseline_accuracy_pct": 76.0,
+              "baseline_adjusted_skill_pp": -2.0000000000000018,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 36.0,
+              "baseline_accuracy_pct": 38.0,
+              "baseline_adjusted_skill_pp": -2.0000000000000018,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 52.0,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": 4.0000000000000036,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 36.0,
+              "baseline_accuracy_pct": 22.0,
+              "baseline_adjusted_skill_pp": 13.999999999999998,
+              "net_correct_gain_vs_baseline": 7
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 70.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": 19.999999999999996,
+              "net_correct_gain_vs_baseline": 10
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "RELATIVE_MARKET_DIRECTION": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 51.0,
+          "development_majority_baseline_accuracy_pct": 47.0,
+          "model_minus_development_majority_accuracy_pct_points": 4.0,
+          "raw_brier_score": 0.38610949144645107,
+          "leakage_safe_calibrated_brier_score": 0.31506849419824245,
+          "assets_nonnegative_baseline_adjusted_skill": 3,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -5.530311899456404,
+          "turnover_units": 70.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 74.0,
+              "baseline_accuracy_pct": 76.0,
+              "baseline_adjusted_skill_pp": -2.0000000000000018,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 32.0,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": -15.999999999999998,
+              "net_correct_gain_vs_baseline": -8
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 46.0,
+              "baseline_accuracy_pct": 38.0,
+              "baseline_adjusted_skill_pp": 8.000000000000002,
+              "net_correct_gain_vs_baseline": 4
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 46.0,
+              "baseline_accuracy_pct": 48.0,
+              "baseline_adjusted_skill_pp": -1.9999999999999962,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 40.0,
+              "baseline_accuracy_pct": 22.0,
+              "baseline_adjusted_skill_pp": 18.000000000000004,
+              "net_correct_gain_vs_baseline": 9
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 68.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": 18.000000000000004,
+              "net_correct_gain_vs_baseline": 9
+            }
+          },
+          "development_selection_gate_pass": true
+        }
+      },
+      "selected_development_winner": "NATIVE_CONTEXT_DIRECTION_FIRST",
+      "qualified_winner_exists": true
+    },
+    "365": {
+      "candidate_results": {
+        "PRICE_ONLY_DIRECTION_FIRST": {
+          "development_rows": 250,
+          "directional_accuracy_pct": 66.8,
+          "development_majority_baseline_accuracy_pct": 73.6,
+          "model_minus_development_majority_accuracy_pct_points": -6.799999999999997,
+          "raw_brier_score": 0.23981775344035985,
+          "leakage_safe_calibrated_brier_score": 0.4131693065806449,
+          "assets_nonnegative_baseline_adjusted_skill": 2,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": 29.702303745625937,
+          "turnover_units": 53.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 68.0,
+              "baseline_accuracy_pct": 100.0,
+              "baseline_adjusted_skill_pp": -31.999999999999996,
+              "net_correct_gain_vs_baseline": -16
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 70.0,
+              "baseline_accuracy_pct": 62.0,
+              "baseline_adjusted_skill_pp": 7.9999999999999964,
+              "net_correct_gain_vs_baseline": 4
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 64.0,
+              "baseline_accuracy_pct": 72.0,
+              "baseline_adjusted_skill_pp": -7.9999999999999964,
+              "net_correct_gain_vs_baseline": -4
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 68.0,
+              "baseline_accuracy_pct": 64.0,
+              "baseline_adjusted_skill_pp": 4.0000000000000036,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 64.0,
+              "baseline_accuracy_pct": 70.0,
+              "baseline_adjusted_skill_pp": -5.999999999999995,
+              "net_correct_gain_vs_baseline": -3
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "NATIVE_CONTEXT_DIRECTION_FIRST": {
+          "development_rows": 250,
+          "directional_accuracy_pct": 64.4,
+          "development_majority_baseline_accuracy_pct": 73.6,
+          "model_minus_development_majority_accuracy_pct_points": -9.199999999999989,
+          "raw_brier_score": 0.29150941600632846,
+          "leakage_safe_calibrated_brier_score": 0.45577382371268926,
+          "assets_nonnegative_baseline_adjusted_skill": 2,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": 18.409225306786915,
+          "turnover_units": 35.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 92.0,
+              "baseline_accuracy_pct": 100.0,
+              "baseline_adjusted_skill_pp": -7.9999999999999964,
+              "net_correct_gain_vs_baseline": -4
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 30.0,
+              "baseline_accuracy_pct": 62.0,
+              "baseline_adjusted_skill_pp": -32.0,
+              "net_correct_gain_vs_baseline": -16
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 57.99999999999999,
+              "baseline_accuracy_pct": 72.0,
+              "baseline_adjusted_skill_pp": -14.000000000000002,
+              "net_correct_gain_vs_baseline": -7
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 72.0,
+              "baseline_accuracy_pct": 64.0,
+              "baseline_adjusted_skill_pp": 7.9999999999999964,
+              "net_correct_gain_vs_baseline": 4
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 70.0,
+              "baseline_accuracy_pct": 70.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "GRADIENT_BOOSTED_DIRECTION": {
+          "development_rows": 250,
+          "directional_accuracy_pct": 63.6,
+          "development_majority_baseline_accuracy_pct": 73.6,
+          "model_minus_development_majority_accuracy_pct_points": -9.999999999999993,
+          "raw_brier_score": 0.35565377419442024,
+          "leakage_safe_calibrated_brier_score": 0.4753029113921569,
+          "assets_nonnegative_baseline_adjusted_skill": 3,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": 13.162032301001101,
+          "turnover_units": 23.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 100.0,
+              "baseline_accuracy_pct": 100.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 26.0,
+              "baseline_accuracy_pct": 62.0,
+              "baseline_adjusted_skill_pp": -36.0,
+              "net_correct_gain_vs_baseline": -18
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 56.00000000000001,
+              "baseline_accuracy_pct": 72.0,
+              "baseline_adjusted_skill_pp": -15.999999999999993,
+              "net_correct_gain_vs_baseline": -8
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 66.0,
+              "baseline_accuracy_pct": 64.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 70.0,
+              "baseline_accuracy_pct": 70.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "HIST_GRADIENT_BOOSTED_DIRECTION": {
+          "development_rows": 250,
+          "directional_accuracy_pct": 64.8,
+          "development_majority_baseline_accuracy_pct": 73.6,
+          "model_minus_development_majority_accuracy_pct_points": -8.799999999999997,
+          "raw_brier_score": 0.3407716663792121,
+          "leakage_safe_calibrated_brier_score": 0.458889849524267,
+          "assets_nonnegative_baseline_adjusted_skill": 3,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "mean_sign_strategy_return_pct_after_15bps_cost": 15.37475084921749,
+          "turnover_units": 25.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 100.0,
+              "baseline_accuracy_pct": 100.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 32.0,
+              "baseline_accuracy_pct": 62.0,
+              "baseline_adjusted_skill_pp": -30.0,
+              "net_correct_gain_vs_baseline": -15
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 57.99999999999999,
+              "baseline_accuracy_pct": 72.0,
+              "baseline_adjusted_skill_pp": -14.000000000000002,
+              "net_correct_gain_vs_baseline": -7
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 64.0,
+              "baseline_accuracy_pct": 64.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 70.0,
+              "baseline_accuracy_pct": 70.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "EXTRA_TREES_DIRECTION": {
+          "development_rows": 250,
+          "directional_accuracy_pct": 64.4,
+          "development_majority_baseline_accuracy_pct": 73.6,
+          "model_minus_development_majority_accuracy_pct_points": -9.199999999999989,
+          "raw_brier_score": 0.2625728580339999,
+          "leakage_safe_calibrated_brier_score": 0.49027090644148674,
+          "assets_nonnegative_baseline_adjusted_skill": 2,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": 15.737691508039703,
+          "turnover_units": 19.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 86.0,
+              "baseline_accuracy_pct": 100.0,
+              "baseline_adjusted_skill_pp": -14.000000000000002,
+              "net_correct_gain_vs_baseline": -7
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 34.0,
+              "baseline_accuracy_pct": 62.0,
+              "baseline_adjusted_skill_pp": -27.999999999999996,
+              "net_correct_gain_vs_baseline": -14
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 66.0,
+              "baseline_accuracy_pct": 72.0,
+              "baseline_adjusted_skill_pp": -5.999999999999995,
+              "net_correct_gain_vs_baseline": -3
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 66.0,
+              "baseline_accuracy_pct": 64.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 70.0,
+              "baseline_accuracy_pct": 70.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "RELATIVE_MARKET_DIRECTION": {
+          "development_rows": 250,
+          "directional_accuracy_pct": 65.2,
+          "development_majority_baseline_accuracy_pct": 73.6,
+          "model_minus_development_majority_accuracy_pct_points": -8.399999999999991,
+          "raw_brier_score": 0.3003831408855233,
+          "leakage_safe_calibrated_brier_score": 0.45752633194197,
+          "assets_nonnegative_baseline_adjusted_skill": 3,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": 19.30962582965398,
+          "turnover_units": 37.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 100.0,
+              "baseline_accuracy_pct": 100.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 32.0,
+              "baseline_accuracy_pct": 62.0,
+              "baseline_adjusted_skill_pp": -30.0,
+              "net_correct_gain_vs_baseline": -15
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 56.00000000000001,
+              "baseline_accuracy_pct": 72.0,
+              "baseline_adjusted_skill_pp": -15.999999999999993,
+              "net_correct_gain_vs_baseline": -8
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 68.0,
+              "baseline_accuracy_pct": 64.0,
+              "baseline_adjusted_skill_pp": 4.0000000000000036,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 70.0,
+              "baseline_accuracy_pct": 70.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            }
+          },
+          "development_selection_gate_pass": false
+        }
+      },
+      "selected_development_winner": null,
+      "qualified_winner_exists": false
+    }
+  },
+  "selected_winners": {
+    "7": null,
+    "30": null,
+    "90": "RELATIVE_MARKET_DIRECTION",
+    "180": "NATIVE_CONTEXT_DIRECTION_FIRST",
+    "365": null
+  },
+  "all_five_horizons_have_qualified_winners": false,
+  "next_gate": "REVIEW_HORIZONS_WITH_NO_QUALIFIED_DEVELOPMENT_WINNER_WITHOUT_VIEWING_V3_HOLDOUT"
+}

@@ -1,0 +1,780 @@
+{
+  "experiment_id": "CRYPTO_NATIVE_PREDICTIVE_HORIZON_RECOVERY_V4",
+  "evidence_class": "HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME",
+  "strict_point_in_time_claim_allowed": false,
+  "recovery_horizons": [
+    7,
+    30,
+    365
+  ],
+  "v2_consumed_origins_excluded": true,
+  "v3_development_origins_excluded": true,
+  "v3_final_holdout_origins_excluded": true,
+  "v4_final_holdout_origins_excluded": true,
+  "v3_final_holdout_outcomes_viewed": false,
+  "v4_final_holdout_outcomes_viewed": false,
+  "recommendation_policy_changed": false,
+  "production_promotion_allowed": false,
+  "horizon_results": {
+    "7": {
+      "candidate_results": {
+        "V4_7D_SHORT_TREND_REVERSAL_LOGIT": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 46.666666666666664,
+          "development_majority_baseline_accuracy_pct": 49.0,
+          "model_minus_development_majority_accuracy_pct_points": -2.3333333333333357,
+          "raw_brier_score": 0.2608756716865891,
+          "assets_nonnegative_baseline_adjusted_skill": 3,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "single_fold_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -0.8450512695030103,
+          "turnover_units": 256.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 42.0,
+              "baseline_accuracy_pct": 56.00000000000001,
+              "baseline_adjusted_skill_pp": -14.000000000000007,
+              "net_correct_gain_vs_baseline": -7
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 3.9999999999999982,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": -2.0000000000000018,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 1.9999999999999962,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 44.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": -6.000000000000005,
+              "net_correct_gain_vs_baseline": -3
+            }
+          },
+          "by_fold": {
+            "1": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 4.999999999999993,
+              "net_correct_gain_vs_baseline": 3
+            },
+            "2": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": -3.3333333333333326,
+              "net_correct_gain_vs_baseline": -2
+            },
+            "3": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": -13.333333333333336,
+              "net_correct_gain_vs_baseline": -8
+            },
+            "4": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "5": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "V4_7D_RELATIVE_STRENGTH_GB": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 49.333333333333336,
+          "development_majority_baseline_accuracy_pct": 49.0,
+          "model_minus_development_majority_accuracy_pct_points": 0.3333333333333357,
+          "raw_brier_score": 0.29397911581816394,
+          "assets_nonnegative_baseline_adjusted_skill": 3,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "single_fold_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -0.7839960680883487,
+          "turnover_units": 244.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 60.0,
+              "baseline_accuracy_pct": 56.00000000000001,
+              "baseline_adjusted_skill_pp": 3.9999999999999925,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 3.9999999999999982,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": -2.0000000000000018,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 40.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": -6.0,
+              "net_correct_gain_vs_baseline": -3
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": 8.000000000000002,
+              "net_correct_gain_vs_baseline": 4
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": -6.000000000000005,
+              "net_correct_gain_vs_baseline": -3
+            }
+          },
+          "by_fold": {
+            "1": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": -6.6666666666666705,
+              "net_correct_gain_vs_baseline": -4
+            },
+            "2": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 3.3333333333333384,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "3": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": -8.333333333333337,
+              "net_correct_gain_vs_baseline": -5
+            },
+            "4": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 9.999999999999998,
+              "net_correct_gain_vs_baseline": 6
+            },
+            "5": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 3.3333333333333384,
+              "net_correct_gain_vs_baseline": 2
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "V4_7D_VOLATILITY_STATE_EXTRA_TREES": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 52.33333333333333,
+          "development_majority_baseline_accuracy_pct": 49.0,
+          "model_minus_development_majority_accuracy_pct_points": 3.3333333333333286,
+          "raw_brier_score": 0.2612308228536378,
+          "assets_nonnegative_baseline_adjusted_skill": 5,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "single_fold_explains_majority_of_positive_gain": false,
+          "mean_sign_strategy_return_pct_after_15bps_cost": 0.2449216039110891,
+          "turnover_units": 272.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 56.00000000000001,
+              "baseline_adjusted_skill_pp": -6.000000000000005,
+              "net_correct_gain_vs_baseline": -3
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 8.000000000000002,
+              "net_correct_gain_vs_baseline": 4
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 50.0,
+              "baseline_adjusted_skill_pp": 4.0000000000000036,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 3.9999999999999982,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": 6.0,
+              "net_correct_gain_vs_baseline": 3
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 57.99999999999999,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": 3.9999999999999925,
+              "net_correct_gain_vs_baseline": 2
+            }
+          },
+          "by_fold": {
+            "1": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 11.666666666666659,
+              "net_correct_gain_vs_baseline": 7
+            },
+            "2": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 6.6666666666666705,
+              "net_correct_gain_vs_baseline": 4
+            },
+            "3": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": -15.000000000000002,
+              "net_correct_gain_vs_baseline": -9
+            },
+            "4": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 5.000000000000004,
+              "net_correct_gain_vs_baseline": 3
+            },
+            "5": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 8.333333333333332,
+              "net_correct_gain_vs_baseline": 5
+            }
+          },
+          "development_selection_gate_pass": true
+        }
+      },
+      "selected_development_winner": "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+      "qualified_winner_exists": true
+    },
+    "30": {
+      "candidate_results": {
+        "V4_30D_TREND_REVERSAL_LOGIT": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 47.333333333333336,
+          "development_majority_baseline_accuracy_pct": 49.333333333333336,
+          "model_minus_development_majority_accuracy_pct_points": -2.0,
+          "raw_brier_score": 0.3117615917632224,
+          "assets_nonnegative_baseline_adjusted_skill": 3,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "single_fold_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -1.502068451611959,
+          "turnover_units": 250.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": -6.000000000000005,
+              "net_correct_gain_vs_baseline": -3
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": -4.0000000000000036,
+              "net_correct_gain_vs_baseline": -2
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 40.0,
+              "baseline_adjusted_skill_pp": 7.9999999999999964,
+              "net_correct_gain_vs_baseline": 4
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 44.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 3.9999999999999982,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 44.0,
+              "baseline_accuracy_pct": 60.0,
+              "baseline_adjusted_skill_pp": -15.999999999999998,
+              "net_correct_gain_vs_baseline": -8
+            }
+          },
+          "by_fold": {
+            "1": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": -1.6666666666666718,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "2": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 4.999999999999999,
+              "net_correct_gain_vs_baseline": 3
+            },
+            "3": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": -5.000000000000004,
+              "net_correct_gain_vs_baseline": -3
+            },
+            "4": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": -10.000000000000004,
+              "net_correct_gain_vs_baseline": -6
+            },
+            "5": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 1.6666666666666663,
+              "net_correct_gain_vs_baseline": 1
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "V4_30D_RELATIVE_CONTEXT_GB": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 54.333333333333336,
+          "development_majority_baseline_accuracy_pct": 49.333333333333336,
+          "model_minus_development_majority_accuracy_pct_points": 5.0,
+          "raw_brier_score": 0.342440809847562,
+          "assets_nonnegative_baseline_adjusted_skill": 4,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "single_fold_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -0.2932954308299321,
+          "turnover_units": 172.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 46.0,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": -8.000000000000002,
+              "net_correct_gain_vs_baseline": -4
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 56.00000000000001,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 40.0,
+              "baseline_adjusted_skill_pp": 14.000000000000002,
+              "net_correct_gain_vs_baseline": 7
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 64.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": 22.000000000000004,
+              "net_correct_gain_vs_baseline": 11
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 56.00000000000001,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 10.000000000000004,
+              "net_correct_gain_vs_baseline": 5
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 50.0,
+              "baseline_accuracy_pct": 60.0,
+              "baseline_adjusted_skill_pp": -9.999999999999998,
+              "net_correct_gain_vs_baseline": -5
+            }
+          },
+          "by_fold": {
+            "1": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 1.6666666666666607,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "2": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 16.666666666666668,
+              "net_correct_gain_vs_baseline": 10
+            },
+            "3": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": -6.666666666666665,
+              "net_correct_gain_vs_baseline": -4
+            },
+            "4": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 4.999999999999993,
+              "net_correct_gain_vs_baseline": 3
+            },
+            "5": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 8.333333333333337,
+              "net_correct_gain_vs_baseline": 5
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "V4_30D_VOLATILITY_STATE_EXTRA_TREES": {
+          "development_rows": 300,
+          "directional_accuracy_pct": 52.666666666666664,
+          "development_majority_baseline_accuracy_pct": 49.333333333333336,
+          "model_minus_development_majority_accuracy_pct_points": 3.3333333333333286,
+          "raw_brier_score": 0.30257642029131737,
+          "assets_nonnegative_baseline_adjusted_skill": 4,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "single_fold_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -0.9137828300733967,
+          "turnover_units": 190.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 44.0,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": -10.000000000000004,
+              "net_correct_gain_vs_baseline": -5
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 56.00000000000001,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": 2.0000000000000018,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 40.0,
+              "baseline_adjusted_skill_pp": 7.9999999999999964,
+              "net_correct_gain_vs_baseline": 4
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 60.0,
+              "baseline_accuracy_pct": 42.0,
+              "baseline_adjusted_skill_pp": 18.0,
+              "net_correct_gain_vs_baseline": 9
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 46.0,
+              "baseline_adjusted_skill_pp": 8.000000000000002,
+              "net_correct_gain_vs_baseline": 4
+            },
+            "xrp": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 60.0,
+              "baseline_adjusted_skill_pp": -5.999999999999995,
+              "net_correct_gain_vs_baseline": -3
+            }
+          },
+          "by_fold": {
+            "1": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 3.3333333333333326,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "2": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 11.666666666666664,
+              "net_correct_gain_vs_baseline": 7
+            },
+            "3": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": -1.6666666666666718,
+              "net_correct_gain_vs_baseline": -1
+            },
+            "4": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 1.6666666666666607,
+              "net_correct_gain_vs_baseline": 1
+            },
+            "5": {
+              "rows": 60,
+              "baseline_adjusted_skill_pp": 1.6666666666666663,
+              "net_correct_gain_vs_baseline": 1
+            }
+          },
+          "development_selection_gate_pass": false
+        }
+      },
+      "selected_development_winner": null,
+      "qualified_winner_exists": false
+    },
+    "365": {
+      "candidate_results": {
+        "V4_365D_LONG_TREND_LOGIT": {
+          "development_rows": 250,
+          "directional_accuracy_pct": 87.6,
+          "development_majority_baseline_accuracy_pct": 76.0,
+          "model_minus_development_majority_accuracy_pct_points": 11.599999999999994,
+          "raw_brier_score": 0.12077229370134752,
+          "assets_nonnegative_baseline_adjusted_skill": 5,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "single_fold_explains_majority_of_positive_gain": false,
+          "mean_sign_strategy_return_pct_after_15bps_cost": 39.822126376623395,
+          "turnover_units": 33.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 100.0,
+              "baseline_accuracy_pct": 100.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 94.0,
+              "baseline_accuracy_pct": 62.0,
+              "baseline_adjusted_skill_pp": 31.999999999999996,
+              "net_correct_gain_vs_baseline": 16
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 72.0,
+              "baseline_accuracy_pct": 64.0,
+              "baseline_adjusted_skill_pp": 7.9999999999999964,
+              "net_correct_gain_vs_baseline": 4
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 72.0,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": 17.999999999999993,
+              "net_correct_gain_vs_baseline": 9
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 100.0,
+              "baseline_accuracy_pct": 100.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            }
+          },
+          "by_fold": {
+            "1": {
+              "rows": 50,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "2": {
+              "rows": 50,
+              "baseline_adjusted_skill_pp": 3.9999999999999925,
+              "net_correct_gain_vs_baseline": 2
+            },
+            "3": {
+              "rows": 50,
+              "baseline_adjusted_skill_pp": 14.000000000000002,
+              "net_correct_gain_vs_baseline": 7
+            },
+            "4": {
+              "rows": 50,
+              "baseline_adjusted_skill_pp": 14.000000000000002,
+              "net_correct_gain_vs_baseline": 7
+            },
+            "5": {
+              "rows": 50,
+              "baseline_adjusted_skill_pp": 25.99999999999999,
+              "net_correct_gain_vs_baseline": 13
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "V4_365D_LONG_REGIME_GB": {
+          "development_rows": 250,
+          "directional_accuracy_pct": 54.400000000000006,
+          "development_majority_baseline_accuracy_pct": 76.0,
+          "model_minus_development_majority_accuracy_pct_points": -21.599999999999994,
+          "raw_brier_score": 0.44058086402932295,
+          "assets_nonnegative_baseline_adjusted_skill": 1,
+          "single_asset_explains_majority_of_positive_gain": false,
+          "single_fold_explains_majority_of_positive_gain": true,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -5.209178098843051,
+          "turnover_units": 23.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 26.0,
+              "baseline_accuracy_pct": 100.0,
+              "baseline_adjusted_skill_pp": -74.0,
+              "net_correct_gain_vs_baseline": -37
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 42.0,
+              "baseline_accuracy_pct": 62.0,
+              "baseline_adjusted_skill_pp": -20.0,
+              "net_correct_gain_vs_baseline": -10
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 52.0,
+              "baseline_accuracy_pct": 64.0,
+              "baseline_adjusted_skill_pp": -12.0,
+              "net_correct_gain_vs_baseline": -6
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 54.0,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": 0.0,
+              "net_correct_gain_vs_baseline": 0
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 98.0,
+              "baseline_accuracy_pct": 100.0,
+              "baseline_adjusted_skill_pp": -2.0000000000000018,
+              "net_correct_gain_vs_baseline": -1
+            }
+          },
+          "by_fold": {
+            "1": {
+              "rows": 50,
+              "baseline_adjusted_skill_pp": -34.0,
+              "net_correct_gain_vs_baseline": -17
+            },
+            "2": {
+              "rows": 50,
+              "baseline_adjusted_skill_pp": -36.00000000000001,
+              "net_correct_gain_vs_baseline": -18
+            },
+            "3": {
+              "rows": 50,
+              "baseline_adjusted_skill_pp": -26.0,
+              "net_correct_gain_vs_baseline": -13
+            },
+            "4": {
+              "rows": 50,
+              "baseline_adjusted_skill_pp": -15.999999999999993,
+              "net_correct_gain_vs_baseline": -8
+            },
+            "5": {
+              "rows": 50,
+              "baseline_adjusted_skill_pp": 3.9999999999999925,
+              "net_correct_gain_vs_baseline": 2
+            }
+          },
+          "development_selection_gate_pass": false
+        },
+        "V4_365D_RETURN_MAGNITUDE_ENSEMBLE": {
+          "development_rows": 250,
+          "directional_accuracy_pct": 53.6,
+          "development_majority_baseline_accuracy_pct": 76.0,
+          "model_minus_development_majority_accuracy_pct_points": -22.4,
+          "raw_brier_score": null,
+          "assets_nonnegative_baseline_adjusted_skill": 1,
+          "single_asset_explains_majority_of_positive_gain": true,
+          "single_fold_explains_majority_of_positive_gain": false,
+          "mean_sign_strategy_return_pct_after_15bps_cost": -2.3723162897465464,
+          "turnover_units": 45.0,
+          "by_asset": {
+            "avalanche": {
+              "rows": 50,
+              "directional_accuracy_pct": 42.0,
+              "baseline_accuracy_pct": 100.0,
+              "baseline_adjusted_skill_pp": -58.00000000000001,
+              "net_correct_gain_vs_baseline": -29
+            },
+            "bitcoin": {
+              "rows": 50,
+              "directional_accuracy_pct": 38.0,
+              "baseline_accuracy_pct": 62.0,
+              "baseline_adjusted_skill_pp": -24.0,
+              "net_correct_gain_vs_baseline": -12
+            },
+            "chainlink": {
+              "rows": 50,
+              "directional_accuracy_pct": 48.0,
+              "baseline_accuracy_pct": 64.0,
+              "baseline_adjusted_skill_pp": -16.000000000000004,
+              "net_correct_gain_vs_baseline": -8
+            },
+            "ethereum": {
+              "rows": 50,
+              "directional_accuracy_pct": 74.0,
+              "baseline_accuracy_pct": 54.0,
+              "baseline_adjusted_skill_pp": 19.999999999999996,
+              "net_correct_gain_vs_baseline": 10
+            },
+            "solana": {
+              "rows": 50,
+              "directional_accuracy_pct": 66.0,
+              "baseline_accuracy_pct": 100.0,
+              "baseline_adjusted_skill_pp": -34.0,
+              "net_correct_gain_vs_baseline": -17
+            }
+          },
+          "by_fold": {
+            "1": {
+              "rows": 50,
+              "baseline_adjusted_skill_pp": -38.0,
+              "net_correct_gain_vs_baseline": -19
+            },
+            "2": {
+              "rows": 50,
+              "baseline_adjusted_skill_pp": -28.000000000000004,
+              "net_correct_gain_vs_baseline": -14
+            },
+            "3": {
+              "rows": 50,
+              "baseline_adjusted_skill_pp": -6.000000000000005,
+              "net_correct_gain_vs_baseline": -3
+            },
+            "4": {
+              "rows": 50,
+              "baseline_adjusted_skill_pp": -13.99999999999999,
+              "net_correct_gain_vs_baseline": -7
+            },
+            "5": {
+              "rows": 50,
+              "baseline_adjusted_skill_pp": -26.000000000000007,
+              "net_correct_gain_vs_baseline": -13
+            }
+          },
+          "development_selection_gate_pass": false
+        }
+      },
+      "selected_development_winner": null,
+      "qualified_winner_exists": false
+    }
+  },
+  "selected_winners": {
+    "7": "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+    "30": null,
+    "365": null
+  },
+  "all_recovery_horizons_have_qualified_winners": false,
+  "next_gate": "VALIDATE_AND_REVIEW_V4_DEVELOPMENT_RESULTS_BEFORE_ANY_FINAL_HOLDOUT_EXPOSURE"
+}

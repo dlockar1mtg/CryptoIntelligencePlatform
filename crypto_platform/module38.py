@@ -46,6 +46,8 @@ CREATE TABLE IF NOT EXISTS module38_runs(
     platform_version VARCHAR
 );
 
+ALTER TABLE module38_runs ADD COLUMN IF NOT EXISTS methodology_generation VARCHAR;
+
 CREATE TABLE IF NOT EXISTS m38_asset_forecasts(
     run_id VARCHAR,
     forecast_date DATE,
@@ -213,6 +215,8 @@ REGIMES = [
     "RECOVERY",
     "VOLATILITY_SHOCK",
 ]
+
+PREDICTIVE_METHODOLOGY_GENERATION = "M38_PURGED_FEATURE_STABLE_V1"
 
 
 def utcnow():
@@ -457,10 +461,43 @@ class Module38Runner:
         features["target_return"] = (
             price.shift(-horizon) / price - 1
         )
-        return features.replace(
+        features = features.replace(
             [np.inf, -np.inf],
             np.nan,
-        ).dropna()
+        )
+
+        # Keep the point-in-time price-derived feature set authoritative.
+        # Market-cap and volume history are optional provider features with
+        # materially shorter coverage than canonical price history. Do not
+        # discard otherwise valid long-horizon training origins merely because
+        # an optional provider feature is unavailable. Missing optional features
+        # remain missing; if an optional feature is not complete for the
+        # eligible historical frame, exclude that feature from this fit rather
+        # than synthesizing a value.
+        required_columns = [
+            "observation_date",
+            "return_1d",
+            "return_7d",
+            "return_30d",
+            "return_90d",
+            "volatility_30d",
+            "volatility_90d",
+            "distance_sma50",
+            "distance_sma200",
+            "target_return",
+        ]
+        usable = features.dropna(subset=required_columns).copy()
+        optional_columns = [
+            "volume_change_30d",
+            "market_cap_change_30d",
+        ]
+        for optional_column in optional_columns:
+            if (
+                optional_column in usable.columns
+                and usable[optional_column].isna().any()
+            ):
+                usable = usable.drop(columns=[optional_column])
+        return usable
 
     def model_suite(self, random_state):
         return {
@@ -570,22 +607,73 @@ class Module38Runner:
         )
         validation_rows = adaptive_validation
 
-        train = features.iloc[
-            :usable_rows - validation_rows
-        ]
-        validation = features.iloc[
-            usable_rows - validation_rows:
-        ]
+        # Purge forward-label overlap at the train/validation boundary.
+        # build_features() defines target_return with price.shift(-horizon),
+        # so the final `horizon` training origins would otherwise use labels
+        # whose target prices fall inside the validation origin window.
+        validation_start_index = usable_rows - validation_rows
+        purge_rows = int(horizon)
+        train_end_index = validation_start_index - purge_rows
+
+        if train_end_index < absolute_minimum:
+            raise InsufficientForecastHistory(
+                asset_id=asset_id,
+                horizon_days=horizon,
+                usable_rows=usable_rows,
+                required_rows=(
+                    absolute_minimum
+                    + validation_rows
+                    + purge_rows
+                ),
+            )
+
+        train = features.iloc[:train_end_index]
+        validation = features.iloc[validation_start_index:]
+
+        if train.empty or validation.empty:
+            raise RuntimeError(
+                f"Purged holdout produced an empty split for "
+                f"{asset_id} horizon {horizon}."
+            )
+
+        last_train_origin = pd.Timestamp(
+            train["observation_date"].iloc[-1]
+        )
+        first_validation_origin = pd.Timestamp(
+            validation["observation_date"].iloc[0]
+        )
+        if not last_train_origin < first_validation_origin:
+            raise RuntimeError(
+                f"Purged holdout origin ordering failed for "
+                f"{asset_id} horizon {horizon}."
+            )
+
+        # Bound validation/live extrapolation to the feature support observed
+        # in the training window. This is fit-time-only information and therefore
+        # does not introduce lookahead. It prevents provider-ratio pathologies
+        # (for example a percentage change divided by a near-zero prior value)
+        # from generating unbounded standardized inputs and explosive linear
+        # predictions. Training values themselves are not clipped.
+        x_train_frame = train[columns].astype(float).copy()
+        x_validation_frame = validation[columns].astype(float).copy()
+        x_current_frame = current_features[columns].astype(float).copy()
+        training_min = x_train_frame.min(axis=0)
+        training_max = x_train_frame.max(axis=0)
+        x_validation_frame = x_validation_frame.clip(
+            lower=training_min,
+            upper=training_max,
+            axis=1,
+        )
+        x_current_frame = x_current_frame.clip(
+            lower=training_min,
+            upper=training_max,
+            axis=1,
+        )
+
         scaler = StandardScaler()
-        x_train = scaler.fit_transform(
-            train[columns]
-        )
-        x_validation = scaler.transform(
-            validation[columns]
-        )
-        x_current = scaler.transform(
-            current_features[columns]
-        )
+        x_train = scaler.fit_transform(x_train_frame)
+        x_validation = scaler.transform(x_validation_frame)
+        x_current = scaler.transform(x_current_frame)
         y_train = train["target_return"].to_numpy()
         y_validation = validation[
             "target_return"
@@ -887,6 +975,10 @@ class Module38Runner:
                 self.source_m30,
                 self.started,
             ],
+        )
+        self.conn.execute(
+            "UPDATE module38_runs SET methodology_generation=? WHERE run_id=?",
+            [PREDICTIVE_METHODOLOGY_GENERATION, self.run_id],
         )
 
         try:

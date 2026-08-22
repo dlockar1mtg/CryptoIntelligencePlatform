@@ -1,0 +1,31 @@
+{
+  "append_only_observation_records": true,
+  "asset_scope": [
+    "ethereum"
+  ],
+  "autonomous_execution_authorized": false,
+  "bitcoin_cycle_context_action_rule_allowed": false,
+  "bitcoin_cycle_context_allowed": true,
+  "btc_eth_recommendation_policy_skill_not_certified": true,
+  "correction_requires_separate_record": true,
+  "first_observation_file": "data/research/ethereum_strategic_regime_forward_evidence_v1/records/2026-08-21_20260821T205332-0500_eth-prospective-4abf754f4b730bf4.json",
+  "first_observation_id": "eth-prospective-4abf754f4b730bf4",
+  "first_observation_sha256": "99d2a4cad4a0faa8085f0b43968aca3a2c29d252a067bb32c6a5a9740f004986",
+  "governing_alignment": "CRYPTO_BTC_ETH_STRATEGIC_ALIGNMENT_UIP_OUTPUT_V1",
+  "governing_contract": "CRYPTO_BTC_ETH_FORWARD_ACCUMULATION_CYCLE_POLICY_V1",
+  "initial_record_count": 0,
+  "last_observation_file": "data/research/ethereum_strategic_regime_forward_evidence_v1/records/2026-08-21_20260821T205332-0500_eth-prospective-4abf754f4b730bf4.json",
+  "last_observation_id": "eth-prospective-4abf754f4b730bf4",
+  "last_observation_sha256": "99d2a4cad4a0faa8085f0b43968aca3a2c29d252a067bb32c6a5a9740f004986",
+  "ledger_id": "ETHEREUM_STRATEGIC_REGIME_FORWARD_EVIDENCE_LEDGER_V1",
+  "missing_outcomes_synthesized": false,
+  "nearest_date_substitution_allowed": false,
+  "next_gate": "BUILD_AND_VALIDATE_BTC_ETH_UIP_STRATEGIC_OVERLAY_V1",
+  "outcomes_unknown_at_initial_observation": true,
+  "production_policy_change_authorized": false,
+  "record_count": 1,
+  "records_directory": "data/research/ethereum_strategic_regime_forward_evidence_v1/records",
+  "schema_version": 1,
+  "synthetic_eth_halving_cycle_allowed": false,
+  "synthetic_initial_observation_allowed": false
+}

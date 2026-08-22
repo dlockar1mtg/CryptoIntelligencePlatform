@@ -1,0 +1,314 @@
+{
+  "run_id": "BITCOIN_FIRST_OBSERVATION_GITHUB_FRED_MACRO_REFRESH_V1",
+  "captured_at_utc": "2026-08-21T23:40:49.606310+00:00",
+  "repository_sha": null,
+  "github_run_id": null,
+  "github_run_attempt": null,
+  "environment": "staging",
+  "fred_api_key_configured": true,
+  "fred_api_key_value_recorded": false,
+  "module1_incremental_refresh_executed": true,
+  "module1_full_refresh_executed": false,
+  "module6_sync_executed": true,
+  "module42_rerun_performed": false,
+  "first_prospective_observation_captured": false,
+  "ledger_record_count": 0,
+  "database_sha256_before": "0e5745889491c435d884cf7e3c9be080fb708d79dd9ba308f05006bcbb4657e3",
+  "database_sha256_after": "0a6a75d7b5dd942f4e39a0cfd5f0b92587960386111155d5facf74f81d8258d5",
+  "before": {
+    "bitcoin": {
+      "observation_date": "2026-08-21",
+      "price_usd": 78441.0
+    },
+    "macro_tables": {
+      "macro_observations": {
+        "exists": true,
+        "columns": [
+          "series_key",
+          "observation_date",
+          "value",
+          "source",
+          "collected_at_utc"
+        ],
+        "time_column": "observation_date",
+        "latest_time": "2026-08-21",
+        "latest_row": {
+          "series_key": "FRED::T10YIE",
+          "observation_date": "2026-08-21",
+          "value": 2.34,
+          "source": "fred_api",
+          "collected_at_utc": "2026-08-21T17:41:48.904145-05:00"
+        }
+      },
+      "latest_macro_observations": {
+        "exists": true,
+        "columns": [
+          "series_key",
+          "observation_date",
+          "value",
+          "source",
+          "collected_at_utc"
+        ],
+        "time_column": "observation_date",
+        "latest_time": "2026-08-21",
+        "latest_row": {
+          "series_key": "FRED::T10YIE",
+          "observation_date": "2026-08-21",
+          "value": 2.34,
+          "source": "fred_api",
+          "collected_at_utc": "2026-08-21T17:41:48.904145-05:00"
+        }
+      },
+      "macro_regime_daily": {
+        "exists": true,
+        "columns": [
+          "observation_date",
+          "real_yield",
+          "nominal_yield",
+          "fed_funds_rate",
+          "breakeven_inflation",
+          "vix",
+          "high_yield_spread",
+          "dollar_index",
+          "dollar_90d_change_pct",
+          "m2_yoy_pct",
+          "unemployment_rate",
+          "unemployment_6m_change",
+          "liquidity_score",
+          "risk_appetite_score",
+          "macro_score",
+          "regime_label",
+          "confidence",
+          "calculated_at_utc"
+        ],
+        "time_column": "observation_date",
+        "latest_time": "2026-07-28",
+        "latest_row": {
+          "observation_date": "2026-07-28",
+          "real_yield": 2.43,
+          "nominal_yield": 4.69,
+          "fed_funds_rate": 3.63,
+          "breakeven_inflation": 2.21,
+          "vix": 18.67,
+          "high_yield_spread": 2.81,
+          "dollar_index": 120.7105,
+          "dollar_90d_change_pct": 0.7324371958261855,
+          "m2_yoy_pct": 5.54499582928798,
+          "unemployment_rate": 4.2,
+          "unemployment_6m_change": -0.20000000000000018,
+          "liquidity_score": 43.92430124135151,
+          "risk_appetite_score": 88.49870129870129,
+          "macro_score": 63.98278126715891,
+          "regime_label": "SUPPORTIVE",
+          "confidence": 100.0,
+          "calculated_at_utc": "2026-07-28T13:25:38.648002-05:00"
+        }
+      },
+      "latest_macro_regime": {
+        "exists": true,
+        "columns": [
+          "observation_date",
+          "real_yield",
+          "nominal_yield",
+          "fed_funds_rate",
+          "breakeven_inflation",
+          "vix",
+          "high_yield_spread",
+          "dollar_index",
+          "dollar_90d_change_pct",
+          "m2_yoy_pct",
+          "unemployment_rate",
+          "unemployment_6m_change",
+          "liquidity_score",
+          "risk_appetite_score",
+          "macro_score",
+          "regime_label",
+          "confidence",
+          "calculated_at_utc"
+        ],
+        "time_column": "observation_date",
+        "latest_time": "2026-07-28",
+        "latest_row": {
+          "observation_date": "2026-07-28",
+          "real_yield": 2.43,
+          "nominal_yield": 4.69,
+          "fed_funds_rate": 3.63,
+          "breakeven_inflation": 2.21,
+          "vix": 18.67,
+          "high_yield_spread": 2.81,
+          "dollar_index": 120.7105,
+          "dollar_90d_change_pct": 0.7324371958261855,
+          "m2_yoy_pct": 5.54499582928798,
+          "unemployment_rate": 4.2,
+          "unemployment_6m_change": -0.20000000000000018,
+          "liquidity_score": 43.92430124135151,
+          "risk_appetite_score": 88.49870129870129,
+          "macro_score": 63.98278126715891,
+          "regime_label": "SUPPORTIVE",
+          "confidence": 100.0,
+          "calculated_at_utc": "2026-07-28T13:25:38.648002-05:00"
+        }
+      }
+    },
+    "macro_series_freshness": []
+  },
+  "after": {
+    "bitcoin": {
+      "observation_date": "2026-08-21",
+      "price_usd": 78345.0
+    },
+    "macro_tables": {
+      "macro_observations": {
+        "exists": true,
+        "columns": [
+          "series_key",
+          "observation_date",
+          "value",
+          "source",
+          "collected_at_utc"
+        ],
+        "time_column": "observation_date",
+        "latest_time": "2026-08-21",
+        "latest_row": {
+          "series_key": "FRED::T10YIE",
+          "observation_date": "2026-08-21",
+          "value": 2.34,
+          "source": "fred_api",
+          "collected_at_utc": "2026-08-21T18:40:39.574166-05:00"
+        }
+      },
+      "latest_macro_observations": {
+        "exists": true,
+        "columns": [
+          "series_key",
+          "observation_date",
+          "value",
+          "source",
+          "collected_at_utc"
+        ],
+        "time_column": "observation_date",
+        "latest_time": "2026-08-21",
+        "latest_row": {
+          "series_key": "FRED::T10YIE",
+          "observation_date": "2026-08-21",
+          "value": 2.34,
+          "source": "fred_api",
+          "collected_at_utc": "2026-08-21T18:40:39.574166-05:00"
+        }
+      },
+      "macro_regime_daily": {
+        "exists": true,
+        "columns": [
+          "observation_date",
+          "real_yield",
+          "nominal_yield",
+          "fed_funds_rate",
+          "breakeven_inflation",
+          "vix",
+          "high_yield_spread",
+          "dollar_index",
+          "dollar_90d_change_pct",
+          "m2_yoy_pct",
+          "unemployment_rate",
+          "unemployment_6m_change",
+          "liquidity_score",
+          "risk_appetite_score",
+          "macro_score",
+          "regime_label",
+          "confidence",
+          "calculated_at_utc"
+        ],
+        "time_column": "observation_date",
+        "latest_time": "2026-07-28",
+        "latest_row": {
+          "observation_date": "2026-07-28",
+          "real_yield": 2.43,
+          "nominal_yield": 4.69,
+          "fed_funds_rate": 3.63,
+          "breakeven_inflation": 2.21,
+          "vix": 18.67,
+          "high_yield_spread": 2.81,
+          "dollar_index": 120.7105,
+          "dollar_90d_change_pct": 0.7324371958261855,
+          "m2_yoy_pct": 5.54499582928798,
+          "unemployment_rate": 4.2,
+          "unemployment_6m_change": -0.20000000000000018,
+          "liquidity_score": 43.92430124135151,
+          "risk_appetite_score": 88.49870129870129,
+          "macro_score": 63.98278126715891,
+          "regime_label": "SUPPORTIVE",
+          "confidence": 100.0,
+          "calculated_at_utc": "2026-07-28T13:25:38.648002-05:00"
+        }
+      },
+      "latest_macro_regime": {
+        "exists": true,
+        "columns": [
+          "observation_date",
+          "real_yield",
+          "nominal_yield",
+          "fed_funds_rate",
+          "breakeven_inflation",
+          "vix",
+          "high_yield_spread",
+          "dollar_index",
+          "dollar_90d_change_pct",
+          "m2_yoy_pct",
+          "unemployment_rate",
+          "unemployment_6m_change",
+          "liquidity_score",
+          "risk_appetite_score",
+          "macro_score",
+          "regime_label",
+          "confidence",
+          "calculated_at_utc"
+        ],
+        "time_column": "observation_date",
+        "latest_time": "2026-07-28",
+        "latest_row": {
+          "observation_date": "2026-07-28",
+          "real_yield": 2.43,
+          "nominal_yield": 4.69,
+          "fed_funds_rate": 3.63,
+          "breakeven_inflation": 2.21,
+          "vix": 18.67,
+          "high_yield_spread": 2.81,
+          "dollar_index": 120.7105,
+          "dollar_90d_change_pct": 0.7324371958261855,
+          "m2_yoy_pct": 5.54499582928798,
+          "unemployment_rate": 4.2,
+          "unemployment_6m_change": -0.20000000000000018,
+          "liquidity_score": 43.92430124135151,
+          "risk_appetite_score": 88.49870129870129,
+          "macro_score": 63.98278126715891,
+          "regime_label": "SUPPORTIVE",
+          "confidence": 100.0,
+          "calculated_at_utc": "2026-07-28T13:25:38.648002-05:00"
+        }
+      }
+    },
+    "macro_series_freshness": []
+  },
+  "module1": {
+    "command": [
+      "C:\\Users\\DevonLockard\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+      "run_module1.py"
+    ],
+    "exit_code": 0,
+    "output": "2026-08-21 18:38:27,079 | INFO | crypto_platform | provider_health::coingecko status=ONLINE latency_ms=275\nC:\\Users\\DevonLockard\\Crypto\\crypto_platform\\platform.py:1043: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.\n  return pd.concat([history, current], ignore_index=True).drop_duplicates(\n2026-08-21 18:38:27,393 | INFO | crypto_platform | market_history::BTC provider=coingecko received=365 inserted=0 updated=365\nC:\\Users\\DevonLockard\\Crypto\\crypto_platform\\platform.py:1043: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.\n  return pd.concat([history, current], ignore_index=True).drop_duplicates(\n2026-08-21 18:38:27,492 | INFO | crypto_platform | market_history::ETH provider=coingecko received=365 inserted=0 updated=365\nC:\\Users\\DevonLockard\\Crypto\\crypto_platform\\platform.py:1043: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.\n  return pd.concat([history, current], ignore_index=True).drop_duplicates(\n2026-08-21 18:38:27,582 | INFO | crypto_platform | market_history::SOL provider=coingecko received=365 inserted=0 updated=365\nC:\\Users\\DevonLockard\\Crypto\\crypto_platform\\platform.py:1043: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.\n  return pd.concat([history, current], ignore_index=True).drop_duplicates(\n2026-08-21 18:39:32,475 | INFO | crypto_platform | market_history::LINK provider=coingecko received=365 inserted=0 updated=365\nC:\\Users\\DevonLockard\\Crypto\\crypto_platform\\platform.py:1043: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.\n  return pd.concat([history, current], ignore_index=True).drop_duplicates(\n2026-08-21 18:39:32,645 | INFO | crypto_platform | market_history::XRP provider=coingecko received=365 inserted=0 updated=365\nC:\\Users\\DevonLockard\\Crypto\\crypto_platform\\platform.py:1043: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.\n  return pd.concat([history, current], ignore_index=True).drop_duplicates(\n2026-08-21 18:39:32,735 | INFO | crypto_platform | market_history::AVAX provider=coingecko received=365 inserted=0 updated=365\n2026-08-21 18:40:33,456 | INFO | crypto_platform | global_market::global provider=coingecko received=1 inserted=0 updated=1\n2026-08-21 18:40:33,837 | INFO | crypto_platform | provider_health::coinbase status=ONLINE latency_ms=367\n2026-08-21 18:40:34,097 | INFO | crypto_platform | provider_health::kraken status=ONLINE latency_ms=259\n2026-08-21 18:40:35,845 | INFO | crypto_platform | exchange_ohlcv::BTC:1d provider=coinbase received=6 inserted=0 updated=6\n2026-08-21 18:40:36,184 | INFO | crypto_platform | exchange_ohlcv::ETH:1d provider=coinbase received=6 inserted=0 updated=6\n2026-08-21 18:40:36,504 | INFO | crypto_platform | exchange_ohlcv::SOL:1d provider=coinbase received=6 inserted=0 updated=6\n2026-08-21 18:40:36,856 | INFO | crypto_platform | exchange_ohlcv::LINK:1d provider=coinbase received=6 inserted=0 updated=6\n2026-08-21 18:40:37,318 | INFO | crypto_platform | exchange_ohlcv::XRP:1d provider=coinbase received=6 inserted=0 updated=6\n2026-08-21 18:40:37,666 | INFO | crypto_platform | exchange_ohlcv::AVAX:1d provider=coinbase received=6 inserted=0 updated=6\n2026-08-21 18:40:37,833 | INFO | crypto_platform | provider_health::defillama status=ONLINE latency_ms=166\n2026-08-21 18:40:38,130 | INFO | crypto_platform | stablecoins::stablecoins provider=defillama received=1620 inserted=0 updated=1620\n2026-08-21 18:40:38,200 | INFO | crypto_platform | chains::chains provider=defillama received=461 inserted=0 updated=461\n2026-08-21 18:40:38,202 | INFO | crypto_platform | provider_health::fred_api status=AVAILABLE latency_ms=0\n2026-08-21 18:40:38,964 | INFO | crypto_platform | macro::DFF provider=fred_api received=6 inserted=0 updated=6\n2026-08-21 18:40:39,159 | INFO | crypto_platform | macro::DGS10 provider=fred_api received=4 inserted=0 updated=4\n2026-08-21 18:40:39,383 | INFO | crypto_platform | macro::DFII10 provider=fred_api received=4 inserted=0 updated=4\n2026-08-21 18:40:39,584 | INFO | crypto_platform | macro::T10YIE provider=fred_api received=5 inserted=0 updated=5\n2026-08-21 18:40:39,913 | INFO | crypto_platform | macro::M2SL provider=fred_api received=2 inserted=0 updated=2\n2026-08-21 18:40:40,141 | INFO | crypto_platform | macro::DTWEXBGS provider=fred_api received=5 inserted=0 updated=5\n2026-08-21 18:40:40,328 | INFO | crypto_platform | macro::VIXCLS provider=fred_api received=4 inserted=0 updated=4\n2026-08-21 18:40:40,522 | INFO | crypto_platform | macro::BAMLH0A0HYM2 provider=fred_api received=4 inserted=0 updated=4\n2026-08-21 18:40:40,700 | INFO | crypto_platform | macro::UNRATE provider=fred_api received=2 inserted=0 updated=2\nCrypto Intelligence Platform \u2014 Module 1 v2.0\nProvider-aware data collection\n\n\nCollection summary\n------------------\nSuccessful collectors: 24\nFailed collectors:     0\nRows received:         4344\nRows inserted:         0\nRows updated:          4344\nStatus:                SUCCESS\nDatabase:              C:\\Users\\DevonLockard\\Crypto\\data\\research\\bitcoin_strategic_regime_forward_evidence_v1\\local_fred_macro_scratch_v1\\crypto_intelligence_fred_scratch.duckdb\nRun ID:                36fd1cf4-482c-4efd-bbd2-25fd69ce04a2\n"
+  },
+  "module6": {
+    "command": [
+      "C:\\Users\\DevonLockard\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+      "run_module6.py",
+      "--phase",
+      "sync"
+    ],
+    "exit_code": 0,
+    "output": "Crypto Intelligence Platform \u2014 Module 6 v6.0\nHistorical warehouse, model snapshots, and validation\n\nModule 6 summary\n----------------\nStatus:               SUCCESS\nPhase:                sync\nCanonical rows:       12481\nSnapshots created:    0\nValidations created:  0\nRun ID:               beb6645f-0b2a-4b56-841c-4fa2d7c021a5\n"
+  },
+  "production_pipeline_executed": false,
+  "production_policy_changed": false,
+  "autonomous_execution_authorized": false,
+  "next_gate": "REVIEW_GITHUB_FRED_MACRO_REFRESH_FOR_FIRST_BITCOIN_OBSERVATION"
+}

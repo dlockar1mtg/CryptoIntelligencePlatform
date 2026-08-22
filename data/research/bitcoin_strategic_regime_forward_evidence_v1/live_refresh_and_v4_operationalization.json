@@ -1,0 +1,145 @@
+{
+  "run_id": "BITCOIN_LIVE_REFRESH_AND_V4_OPERATIONALIZATION_V1",
+  "generated_at_utc": "2026-08-21T22:42:20.162000+00:00",
+  "repository_commit_sha": "4d9f5d1cbb748828b62e28ed74c4e85c59dace12",
+  "asset_id": "bitcoin",
+  "refresh": {
+    "module1_mode": "incremental",
+    "module1_full_refresh": false,
+    "module1_exit_code": 0,
+    "module1_output": "2026-08-21 17:40:41,043 | INFO | crypto_platform | provider_health::coingecko status=ONLINE latency_ms=367\nC:\\Users\\DevonLockard\\Crypto\\crypto_platform\\platform.py:1043: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.\n  return pd.concat([history, current], ignore_index=True).drop_duplicates(\n2026-08-21 17:40:41,338 | INFO | crypto_platform | market_history::BTC provider=coingecko received=365 inserted=24 updated=341\nC:\\Users\\DevonLockard\\Crypto\\crypto_platform\\platform.py:1043: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.\n  return pd.concat([history, current], ignore_index=True).drop_duplicates(\n2026-08-21 17:40:41,451 | INFO | crypto_platform | market_history::ETH provider=coingecko received=365 inserted=24 updated=341\nC:\\Users\\DevonLockard\\Crypto\\crypto_platform\\platform.py:1043: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.\n  return pd.concat([history, current], ignore_index=True).drop_duplicates(\n2026-08-21 17:40:41,580 | INFO | crypto_platform | market_history::SOL provider=coingecko received=365 inserted=24 updated=341\nC:\\Users\\DevonLockard\\Crypto\\crypto_platform\\platform.py:1043: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.\n  return pd.concat([history, current], ignore_index=True).drop_duplicates(\n2026-08-21 17:41:41,756 | INFO | crypto_platform | market_history::LINK provider=coingecko received=365 inserted=24 updated=341\nC:\\Users\\DevonLockard\\Crypto\\crypto_platform\\platform.py:1043: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.\n  return pd.concat([history, current], ignore_index=True).drop_duplicates(\n2026-08-21 17:41:41,903 | INFO | crypto_platform | market_history::XRP provider=coingecko received=365 inserted=24 updated=341\nC:\\Users\\DevonLockard\\Crypto\\crypto_platform\\platform.py:1043: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.\n  return pd.concat([history, current], ignore_index=True).drop_duplicates(\n2026-08-21 17:41:42,015 | INFO | crypto_platform | market_history::AVAX provider=coingecko received=365 inserted=24 updated=341\n2026-08-21 17:41:42,112 | INFO | crypto_platform | global_market::global provider=coingecko received=1 inserted=1 updated=0\n2026-08-21 17:41:42,342 | INFO | crypto_platform | provider_health::coinbase status=ONLINE latency_ms=229\n2026-08-21 17:41:42,667 | INFO | crypto_platform | provider_health::kraken status=ONLINE latency_ms=324\n2026-08-21 17:41:45,011 | INFO | crypto_platform | exchange_ohlcv::BTC:1d provider=coinbase received=30 inserted=24 updated=6\n2026-08-21 17:41:45,574 | INFO | crypto_platform | exchange_ohlcv::ETH:1d provider=coinbase received=30 inserted=24 updated=6\n2026-08-21 17:41:45,915 | INFO | crypto_platform | exchange_ohlcv::SOL:1d provider=coinbase received=30 inserted=24 updated=6\n2026-08-21 17:41:46,246 | INFO | crypto_platform | exchange_ohlcv::LINK:1d provider=coinbase received=30 inserted=24 updated=6\n2026-08-21 17:41:46,641 | INFO | crypto_platform | exchange_ohlcv::XRP:1d provider=coinbase received=30 inserted=24 updated=6\n2026-08-21 17:41:47,139 | INFO | crypto_platform | exchange_ohlcv::AVAX:1d provider=coinbase received=30 inserted=24 updated=6\n2026-08-21 17:41:47,310 | INFO | crypto_platform | provider_health::defillama status=ONLINE latency_ms=171\n2026-08-21 17:41:47,587 | INFO | crypto_platform | stablecoins::stablecoins provider=defillama received=1620 inserted=1620 updated=0\n2026-08-21 17:41:47,651 | INFO | crypto_platform | chains::chains provider=defillama received=461 inserted=461 updated=0\n2026-08-21 17:41:47,652 | INFO | crypto_platform | provider_health::fred_api status=AVAILABLE latency_ms=0\n2026-08-21 17:41:48,238 | INFO | crypto_platform | macro::DFF provider=fred_api received=33 inserted=27 updated=6\n2026-08-21 17:41:48,455 | INFO | crypto_platform | macro::DGS10 provider=fred_api received=24 inserted=19 updated=5\n2026-08-21 17:41:48,670 | INFO | crypto_platform | macro::DFII10 provider=fred_api received=24 inserted=19 updated=5\n2026-08-21 17:41:48,912 | INFO | crypto_platform | macro::T10YIE provider=fred_api received=23 inserted=19 updated=4\n2026-08-21 17:41:49,115 | INFO | crypto_platform | macro::M2SL provider=fred_api received=2 inserted=0 updated=2\n2026-08-21 17:41:49,354 | INFO | crypto_platform | macro::DTWEXBGS provider=fred_api received=20 inserted=15 updated=5\n2026-08-21 17:41:49,546 | INFO | crypto_platform | macro::VIXCLS provider=fred_api received=22 inserted=18 updated=4\n2026-08-21 17:41:49,764 | INFO | crypto_platform | macro::BAMLH0A0HYM2 provider=fred_api received=22 inserted=18 updated=4\n2026-08-21 17:41:50,006 | INFO | crypto_platform | macro::UNRATE provider=fred_api received=3 inserted=1 updated=2\nCrypto Intelligence Platform \u2014 Module 1 v2.0\nProvider-aware data collection\n\n\nCollection summary\n------------------\nSuccessful collectors: 24\nFailed collectors:     0\nRows received:         4625\nRows inserted:         2506\nRows updated:          2119\nStatus:                SUCCESS\nDatabase:              C:\\Users\\DevonLockard\\Crypto\\data\\crypto_intelligence.duckdb\nRun ID:                dc96b62f-8bf8-4173-8543-028d2aa0c38a\n",
+    "module6_phase": "sync",
+    "module6_exit_code": 0,
+    "module6_output": "Crypto Intelligence Platform \u2014 Module 6 v6.0\nHistorical warehouse, model snapshots, and validation\n\nModule 6 summary\n----------------\nStatus:               SUCCESS\nPhase:                sync\nCanonical rows:       12481\nSnapshots created:    0\nValidations created:  0\nRun ID:               d79965d4-4d92-4d2f-9e15-2f9884f2050a\n",
+    "database_sha256_before": "3de0162f0845247721575d38b155a3b6ae0f902276801ca9f5338f21adedf3af",
+    "database_sha256_after_refresh": "0e5745889491c435d884cf7e3c9be080fb708d79dd9ba308f05006bcbb4657e3",
+    "canonical_bitcoin_before": {
+      "observation_date": "2026-07-28",
+      "price_usd": 63656.0
+    },
+    "canonical_bitcoin_after": {
+      "observation_date": "2026-08-21",
+      "price_usd": 78441.0
+    },
+    "asset_market_bitcoin_before": {
+      "observation_date": "2026-07-28",
+      "price_usd": 63656.0
+    },
+    "asset_market_bitcoin_after": {
+      "observation_date": "2026-08-21",
+      "price_usd": 78441.0
+    },
+    "macro_before": {
+      "macro_observations": {
+        "exists": true,
+        "time_column": "observation_date",
+        "latest_time": "2026-07-27"
+      },
+      "latest_macro_observations": {
+        "exists": true,
+        "time_column": "observation_date",
+        "latest_time": "2026-07-27"
+      },
+      "macro_regime_daily": {
+        "exists": true,
+        "time_column": "observation_date",
+        "latest_time": "2026-07-28"
+      },
+      "latest_macro_regime": {
+        "exists": true,
+        "time_column": "observation_date",
+        "latest_time": "2026-07-28"
+      }
+    },
+    "macro_after": {
+      "macro_observations": {
+        "exists": true,
+        "time_column": "observation_date",
+        "latest_time": "2026-08-21"
+      },
+      "latest_macro_observations": {
+        "exists": true,
+        "time_column": "observation_date",
+        "latest_time": "2026-08-21"
+      },
+      "macro_regime_daily": {
+        "exists": true,
+        "time_column": "observation_date",
+        "latest_time": "2026-07-28"
+      },
+      "latest_macro_regime": {
+        "exists": true,
+        "time_column": "observation_date",
+        "latest_time": "2026-07-28"
+      }
+    },
+    "fred_api_key_configured": false
+  },
+  "v4_7d": {
+    "winner": "V4_7D_VOLATILITY_STATE_EXTRA_TREES",
+    "horizon_days": 7,
+    "forecast_date": "2026-08-21",
+    "latest_canonical_bitcoin_source_date": "2026-08-21",
+    "database_sha256_used": "0e5745889491c435d884cf7e3c9be080fb708d79dd9ba308f05006bcbb4657e3",
+    "evidence_class": "HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME",
+    "strict_point_in_time_claim_allowed": false,
+    "feature_list": [
+      "return_1d",
+      "return_3d",
+      "return_7d",
+      "return_14d",
+      "return_30d",
+      "volatility_7d",
+      "volatility_14d",
+      "volatility_30d",
+      "volatility_ratio_7d_30d",
+      "distance_sma20",
+      "distance_sma50",
+      "asset_minus_btc_return_7d",
+      "asset_minus_core_median_return_7d",
+      "core_breadth_positive_7d_pct",
+      "core_return_dispersion_7d"
+    ],
+    "feature_values": {
+      "return_1d": 0.12997356708653962,
+      "return_3d": 0.2169814163166215,
+      "return_7d": 0.23690039016416065,
+      "return_14d": 0.22012219058807148,
+      "return_30d": 0.17919185885917677,
+      "volatility_7d": 0.9830355178395163,
+      "volatility_14d": 0.7530886612718355,
+      "volatility_30d": 0.5609123195123968,
+      "volatility_ratio_7d_30d": 1.7525653897102362,
+      "distance_sma20": 0.20918519897080468,
+      "distance_sma50": 0.21897964554124272,
+      "asset_minus_btc_return_7d": 0.0,
+      "asset_minus_core_median_return_7d": -0.0526892688041406,
+      "core_breadth_positive_7d_pct": 100.0,
+      "core_return_dispersion_7d": 0.08807837572758324
+    },
+    "training_window_start": "2020-02-18",
+    "training_window_end": "2026-03-06",
+    "validation_window_start": "2026-03-14",
+    "validation_window_end": "2026-08-13",
+    "complete_training_rows": 2163,
+    "complete_validation_rows": 120,
+    "random_state": 1000,
+    "raw_probability_positive": 0.7689586293159024,
+    "predicted_positive": 1,
+    "predicted_direction": "POSITIVE",
+    "contract_preserving_operational_refit": true,
+    "model_selection_reopened": false,
+    "post_holdout_tuning_performed": false,
+    "hyperparameter_search_performed": false,
+    "feature_contract_changed": false,
+    "outcome_peeking_allowed": false
+  },
+  "module42_rerun_performed": false,
+  "personal_portfolio_context_supplied": false,
+  "first_prospective_observation_captured": false,
+  "ledger_record_count": 0,
+  "btc_eth_recommendation_policy_skill_certified": false,
+  "production_policy_changed": false,
+  "autonomous_execution_authorized": false,
+  "next_gate": "REVIEW_BITCOIN_LIVE_REFRESH_AND_V4_OPERATIONALIZATION_RESULTS"
+}
