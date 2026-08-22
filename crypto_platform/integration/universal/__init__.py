@@ -1,6 +1,6 @@
 """Universal Investment Platform export adapter for crypto data."""
 
-ADAPTER_VERSION = "1.0.0"
+ADAPTER_VERSION = "1.1.0"
 CONTRACT_VERSION = "1.0.0"
 PLATFORM_ID = "crypto"
 PLATFORM_NAME = "Crypto Intelligence Platform"
@@ -13,6 +13,11 @@ from .asset_master import (
     UniversalAssetRecord,
     build_asset_master,
     transform_asset,
+)
+from .btc_eth_strategic_overlay import (
+    BTC_ETH_STRATEGIC_OVERLAY_COLUMNS,
+    BtcEthStrategicOverlayRecord,
+    build_btc_eth_strategic_overlay,
 )
 from .context import ExportContext
 from .forecasts import (
@@ -63,6 +68,8 @@ from .source_repository import (
 __all__ = [
     "ADAPTER_VERSION",
     "ASSET_MASTER_COLUMNS",
+    "BTC_ETH_STRATEGIC_OVERLAY_COLUMNS",
+    "BtcEthStrategicOverlayRecord",
     "CONTRACT_VERSION",
     "CryptoAnalyticsRepository",
     "CryptoSourceRepository",
@@ -87,6 +94,7 @@ __all__ = [
     "UniversalRecommendationRecord",
     "UniversalRiskMetricRecord",
     "build_asset_master",
+    "build_btc_eth_strategic_overlay",
     "build_empty_portfolio_positions",
     "build_forecasts",
     "build_platform_status",
