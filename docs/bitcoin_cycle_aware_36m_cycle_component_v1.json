@@ -1,0 +1,56 @@
+{
+  "artifact_id": "BITCOIN_CYCLE_AWARE_36M_CYCLE_COMPONENT_V1",
+  "corroborating_evidence_required": [
+    "NATIVE_PREDICTIVE",
+    "TREND_RISK",
+    "MACRO_LIQUIDITY",
+    "VALUATION_ONCHAIN_WHEN_AVAILABLE"
+  ],
+  "current_incomplete_cycle_outcomes_used": false,
+  "current_incomplete_cycle_used_for_selection": false,
+  "current_price": 63656.0,
+  "cycle_component_prices": {
+    "center_p50": 150434.80478178983,
+    "lower_p25": 100086.34850484459,
+    "p10_diagnostic": 90994.47132786918,
+    "p90_extreme_upside_diagnostic": 370932.49663024227,
+    "upper_p75": 224740.01284981557
+  },
+  "cycle_component_returns_pct": {
+    "center_p50": 136.32462734351805,
+    "lower_p25": 57.23003095520388,
+    "p10_diagnostic": 42.9472026641152,
+    "p90_extreme_upside_diagnostic": 482.7141143493814,
+    "upper_p75": 253.05393497834544
+  },
+  "ensemble": {
+    "method": "EQUAL_WEIGHT_WEALTH_POWER_ENSEMBLE",
+    "weights": {
+      "WEALTH_POWER_033": 0.3333333333333333,
+      "WEALTH_POWER_050": 0.3333333333333333,
+      "WEALTH_POWER_067": 0.3333333333333333
+    },
+    "weights_optimized_after_validation": false
+  },
+  "final_strategic_forecast": false,
+  "historical_cycle_phase_observation_count": 68,
+  "independent_completed_cycle_count": 3,
+  "module42_changed": false,
+  "native_m36_comparison": {
+    "bear_price": 24399.01026696101,
+    "bull_price": 119945.30637748781,
+    "confidence": 0.06864252451805394,
+    "evidence_status": "SCENARIO_ONLY",
+    "median_price": 54097.567059694185,
+    "method": "LONG_RANGE_SCENARIO_MODEL"
+  },
+  "next_gate": "INVENTORY_CURRENT_BTC_STRATEGIC_CORROBORATING_EVIDENCE",
+  "phase_observation_counts": {
+    "POST_HALVING_YEAR_2": 36,
+    "PRE_HALVING_YEAR": 32
+  },
+  "production_forecast_change_authorized": false,
+  "recommendation_date": "2026-07-28",
+  "status": "RESEARCH_COMPONENT_ONLY",
+  "strategic_horizon_date": "2029-07-28"
+}

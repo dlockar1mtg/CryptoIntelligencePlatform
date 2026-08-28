@@ -1,0 +1,82 @@
+{
+  "artifact_id": "BITCOIN_36M_STRATEGIC_CORROBORATING_EVIDENCE_INVENTORY_2026_08_28",
+  "blocking_categories": [
+    "trend_risk",
+    "macro_liquidity",
+    "valuation_onchain"
+  ],
+  "categories": {
+    "cycle_evidence": {
+      "center_price": 150434.80478178983,
+      "historical_phase_observations": 68,
+      "independent_completed_cycles": 3,
+      "lower_price": 100086.34850484459,
+      "method": "EQUAL_WEIGHT_WEALTH_POWER_ENSEMBLE",
+      "reason": "Governed cycle component is available but is not itself the final strategic forecast.",
+      "status": "AVAILABLE_CONTEXT_ONLY",
+      "upper_price": 224740.01284981557
+    },
+    "live_recommendation_policy": {
+      "reason": "No live governed Module42 action was produced for this capture; historical July 28 action was not reconstructed from later data.",
+      "status": "MISSING"
+    },
+    "macro_liquidity": {
+      "derived_macro_regime_current_for_record_date": false,
+      "derived_macro_regime_date": "2026-07-28",
+      "raw_fred_current_for_record_date": true,
+      "raw_macro_date": "2026-08-21",
+      "reason": "Raw macro observations existed through 2026-08-21, but the governed derived macro regime remained dated 2026-07-28 and cannot be treated as current.",
+      "stale_reason": "Derived macro regime remains dated 2026-07-28 after current FRED observations and Module 6 sync; it is preserved as stale evidence and not promoted to August 21.",
+      "status": "STALE"
+    },
+    "native_predictive": {
+      "bear_price": 24399.01026696101,
+      "bull_price": 119945.30637748781,
+      "confidence": 0.06864252451805394,
+      "evidence_status": "SCENARIO_ONLY",
+      "horizon_date": "2029-07-28",
+      "median_price": 54097.567059694185,
+      "method": "LONG_RANGE_SCENARIO_MODEL",
+      "reason": "Native M36 statistical scenario exists, but is SCENARIO_ONLY and is not explicitly Bitcoin-cycle-aware.",
+      "recommendation_date": "2026-07-28",
+      "status": "AVAILABLE_CONTEXT_ONLY"
+    },
+    "tactical_v4": {
+      "forecast_date": "2026-08-21",
+      "predicted_direction": "POSITIVE",
+      "raw_probability_positive": 0.7689586293159024,
+      "reason": "V4 evidence is tactical entry-timing evidence from 2026-08-21, not current long-duration strategic evidence for 2026-08-28.",
+      "status": "STALE",
+      "strict_point_in_time_claim_allowed": false,
+      "winner": "V4_7D_VOLATILITY_STATE_EXTRA_TREES"
+    },
+    "trend_risk": {
+      "evidence_date": "2026-08-21",
+      "medium_long_trend": {
+        "distance_sma20": 0.20918519897080468,
+        "distance_sma50": 0.21897964554124272,
+        "return_30d": 0.17919185885917677,
+        "return_7d": 0.23690039016416065
+      },
+      "reason": "Governed prospective trend/risk evidence exists for 2026-08-21, but is not current for the 2026-08-28 strategic operating date.",
+      "status": "STALE",
+      "volatility_state": {
+        "volatility_14d": 0.7530886612718355,
+        "volatility_30d": 0.5609123195123968,
+        "volatility_7d": 0.9830355178395163,
+        "volatility_ratio_7d_30d": 1.7525653897102362
+      }
+    },
+    "valuation_onchain": {
+      "reason": "No governed point-in-time-safe valuation/on-chain evidence was supplied at capture time.",
+      "status": "MISSING"
+    }
+  },
+  "forecast_values_changed": false,
+  "missing_evidence_synthesized": false,
+  "next_gate": "REFRESH_OR_RECONSTRUCT_CURRENT_BTC_STRATEGIC_CORROBORATING_EVIDENCE",
+  "operating_date": "2026-08-28",
+  "production_forecast_change_authorized": false,
+  "ready_for_strategic_blending": false,
+  "stale_evidence_promoted_to_current": false
+}
