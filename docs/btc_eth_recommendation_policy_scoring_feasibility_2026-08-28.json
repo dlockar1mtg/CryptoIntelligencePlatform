@@ -1,0 +1,85 @@
+{
+  "adjudication": {
+    "bitcoin": "INSUFFICIENT_EVIDENCE_FOR_POLICY_SKILL_CERTIFICATION",
+    "ethereum": "INSUFFICIENT_EVIDENCE_FOR_POLICY_SKILL_CERTIFICATION",
+    "pooled": "INSUFFICIENT_EVIDENCE_FOR_POLICY_SKILL_CERTIFICATION",
+    "reason": "Complete 7-day and 30-day outcome coverage is available, but only two distinct recommendation dates exist per asset and Ethereum has no action variation. Certification-quality scoring would overstate the available independent evidence.",
+    "recommendation_policy_skill": "NOT_CERTIFIED"
+  },
+  "authorized_next_work": {
+    "autonomous_execution": false,
+    "certification_scoring": false,
+    "descriptive_7d_30d_outcome_summary": true,
+    "descriptive_analysis_must_be_grouped_by_distinct_date": true,
+    "policy_promotion": false,
+    "threshold_optimization": false
+  },
+  "database_modified": false,
+  "decision_date": "2026-08-28",
+  "decision_scope": "BTC_ETH_RECOMMENDATION_POLICY_SCORING_FEASIBILITY",
+  "experiment_id": "CRYPTO_BTC_ETH_RECOMMENDATION_POLICY_VALIDATION_V1",
+  "facts": {
+    "bitcoin": {
+      "action_classes": [
+        "HOLD",
+        "WAIT"
+      ],
+      "action_counts": {
+        "HOLD": 7,
+        "WAIT": 5
+      },
+      "distinct_recommendation_dates": 2,
+      "exact_180d_rows": 0,
+      "exact_30d_rows": 12,
+      "exact_7d_rows": 12,
+      "exact_90d_rows": 0,
+      "recommendation_rows": 12
+    },
+    "ethereum": {
+      "action_classes": [
+        "WAIT"
+      ],
+      "action_counts": {
+        "WAIT": 12
+      },
+      "distinct_recommendation_dates": 2,
+      "exact_180d_rows": 0,
+      "exact_30d_rows": 12,
+      "exact_7d_rows": 12,
+      "exact_90d_rows": 0,
+      "recommendation_rows": 12
+    }
+  },
+  "feasibility": {
+    "180d_scoring": false,
+    "90d_scoring": false,
+    "bitcoin_hold_vs_wait_descriptive_comparison": true,
+    "bounded_descriptive_30d_analysis": true,
+    "bounded_descriptive_7d_analysis": true,
+    "broad_action_ordering_test": false,
+    "certification_quality_policy_scoring": false,
+    "ethereum_action_ordering_test": false,
+    "policy_winner_selection": false,
+    "production_policy_change": false,
+    "threshold_optimization": false
+  },
+  "future_revisit_conditions": [
+    "Accumulate additional independent recommendation dates prospectively.",
+    "Accumulate action diversity sufficient to evaluate the claimed action hierarchy.",
+    "Allow exact 90-day and 180-day endpoints to mature when useful, without treating maturity alone as sufficient certification evidence."
+  ],
+  "limitations": [
+    "Bitcoin has only two distinct recommendation dates; the 12 stored rows must not be treated as 12 independent temporal observations.",
+    "Bitcoin contains only HOLD and WAIT actions, so the full governed action hierarchy cannot be tested.",
+    "Ethereum contains only WAIT recommendations, so within-asset action ordering cannot be evaluated.",
+    "Exact 90-day and 180-day outcomes are not yet mature.",
+    "Additional horizon maturity alone will not solve the two-date sample-size or Ethereum action-diversity limitations."
+  ],
+  "next_gate": "CLOSE_BTC_ETH_RECOMMENDATION_POLICY_VALIDATION_AS_INSUFFICIENT_EVIDENCE_AND_PRESERVE_FUTURE_REVISIT",
+  "policy_winner_selected": false,
+  "production_policy_changed": false,
+  "source_evidence_class": "HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME",
+  "source_inventory": "btc_eth_recommendation_policy_evidence_inventory_2026-08-28.json",
+  "strict_point_in_time_claim_allowed": false,
+  "threshold_optimization_performed": false
+}
