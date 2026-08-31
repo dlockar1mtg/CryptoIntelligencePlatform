@@ -1,0 +1,61 @@
+﻿{
+    "artifact_id":  "BITCOIN_36M_SCENARIO_CONDITIONED_STRATEGIC_FORECAST_V2_AUDIT",
+    "governed_head":  "7f024a54716e74f892089f058a3c0975a72a94bc",
+    "v2_forecast_sha256":  "3648a36d3712e2345c6bad128ee1cab5ec553f9845af9a5da4f7b2f29ed5ee91",
+    "v2_design_sha256":  "8f770a85621ab80654ca2fbdd7b09f7018cc69d17103e24170fc898763e1c9ff",
+    "v1_forecast_sha256":  "d637853e20ae350ff25f49b8d467d754bc6e05e37dd60ea71c153c29bdfb7559",
+    "v1_semantic_audit_sha256":  "bcb3b65b41e6607f0aa3bfacf4b9f6368f6e129d40a8e66329a4e99e270e2c45",
+    "database_sha256":  "e4b7706d12ab97b4f2f66d2eaf6dd22189ed25901f8c21d4e20365d52e39cd8f",
+    "audit_status":  "PASS",
+    "forecast_disposition":  "ELIGIBLE_FOR_GOVERNED_RESEARCH_FREEZE",
+    "strategic_operating_date":  "2026-08-28",
+    "strategic_horizon_date":  "2029-08-28",
+    "strategic_result":  {
+                             "bear_return":  -0.023576777277267761,
+                             "bear_return_pct":  -2.357677727726776,
+                             "bear_price_usd":  77535.815269966726,
+                             "base_return":  0.88213743574435854,
+                             "base_return_pct":  88.213743574435853,
+                             "base_price_usd":  149456.769497588,
+                             "bull_return":  2.063189611704987,
+                             "bull_return_pct":  206.31896117049871,
+                             "bull_price_usd":  243241.76068626961,
+                             "strategic_confidence":  0.39779637867770812
+                         },
+    "methodology_validation":  {
+                                   "methodology_frozen_before_v2_prices":  true,
+                                   "structural_weights_changed":  false,
+                                   "cycle_method_changed":  false,
+                                   "module42_changed":  false,
+                                   "strategic_confidence_method_changed":  false,
+                                   "scenario_severity_selected_after_output":  false,
+                                   "desired_price_target_used":  false
+                               },
+    "semantic_validation":  {
+                                "bear_conditioned_on_adverse_evidence":  true,
+                                "base_conditioned_on_current_evidence":  true,
+                                "bull_conditioned_on_favorable_evidence":  true,
+                                "positive_bear_review_required":  false,
+                                "semantic_contract_satisfied":  true
+                            },
+    "diagnostic_validation":  {
+                                  "stress_diagnostics_separate":  true,
+                                  "p90_extreme_upside_separate":  true,
+                                  "prior_high_used_as_price_floor":  false,
+                                  "valuation_onchain_synthesized":  false
+                              },
+    "authority":  {
+                      "final_research_authority_authorized":  true,
+                      "production_promotion_authorized":  false,
+                      "autonomous_execution_authorized":  false
+                  },
+    "mutation_boundary":  {
+                              "v2_recalculated":  false,
+                              "v2_modified":  false,
+                              "v1_modified":  false,
+                              "database_modified":  false,
+                              "network_call_performed":  false,
+                              "module42_rerun_performed":  false
+                          },
+    "next_gate":  "FREEZE_BTC_36M_SCENARIO_CONDITIONED_STRATEGIC_FORECAST_V2"
+}
