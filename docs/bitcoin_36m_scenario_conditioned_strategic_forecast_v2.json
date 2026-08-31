@@ -1,0 +1,151 @@
+{
+  "artifact_id": "BITCOIN_36M_SCENARIO_CONDITIONED_STRATEGIC_FORECAST_V2",
+  "current_price_anchor_usd": 79408.0,
+  "cycle_extreme_upside_diagnostic": {
+    "classification": "EXTREME_UPSIDE_DIAGNOSTIC",
+    "cycle_p90_return": 4.827141143493814,
+    "included_in_standard_bull": false,
+    "production_target": false,
+    "reanchored_price_usd": 462721.6239225568
+  },
+  "evidence_weights": {
+    "bitcoin_cycle": 0.5,
+    "macro_liquidity": 0.1,
+    "native_module42": 0.3,
+    "trend_risk": 0.1,
+    "valuation_onchain": 0.0
+  },
+  "forecast_family": "BTC_CYCLE_AWARE_SCENARIO_CONDITIONED_STRATEGIC_SCENARIO",
+  "governance": {
+    "autonomous_execution_authorized": false,
+    "database_write_performed": false,
+    "desired_price_target_used": false,
+    "module1_rerun_performed": false,
+    "module2_execution_performed": false,
+    "module42_changed": false,
+    "module42_rerun_performed": false,
+    "module6_execution_performed": false,
+    "network_call_performed": false,
+    "production_forecast_change_authorized": false,
+    "scenario_severity_selected_after_viewing_v2_prices": false,
+    "v1_forecast_modified": false,
+    "v1_semantic_audit_modified": false,
+    "v2_methodology_changed_during_calculation": false
+  },
+  "horizon_months": 36,
+  "methodology_correction": {
+    "correction": "SCENARIO_CONDITIONED_CURRENT_STATE_MODIFIERS",
+    "cycle_method_changed": false,
+    "evidence_weights_changed": false,
+    "module42_changed": false,
+    "source_v1_failure_class": "SCENARIO_SEMANTIC_IMPLEMENTATION_DEFECT",
+    "strategic_confidence_method_changed": false,
+    "structural_method_changed": false
+  },
+  "next_gate": "AUDIT_AND_FREEZE_BTC_36M_SCENARIO_CONDITIONED_STRATEGIC_FORECAST_V2",
+  "prior_high_plausibility_review": {
+    "automatic_price_replacement_performed": false,
+    "bull_below_reference": false,
+    "reference_price_usd": 124739.81088811433,
+    "reference_used_as_price_floor": false,
+    "review_required": false
+  },
+  "scenario_conditioning": {
+    "base": {
+      "combined_adjustment": 0.08641761929337242,
+      "conditioned_on_current_evidence": true,
+      "evidence_state": "CURRENT_GOVERNED_STATE",
+      "macro_liquidity_adjustment": 0.03633633217017189,
+      "trend_risk_adjustment": 0.050081287123200535
+    },
+    "bear": {
+      "combined_adjustment": -0.15000000000000002,
+      "conditioned_on_adverse_evidence": true,
+      "evidence_state": "MATERIALLY_UNFAVORABLE",
+      "macro_liquidity_adjustment": -0.07500000000000001,
+      "trend_risk_adjustment": -0.07500000000000001
+    },
+    "bull": {
+      "combined_adjustment": 0.15000000000000002,
+      "conditioned_on_favorable_evidence": true,
+      "evidence_state": "MATERIALLY_FAVORABLE",
+      "macro_liquidity_adjustment": 0.07500000000000001,
+      "trend_risk_adjustment": 0.07500000000000001
+    },
+    "standard_scenario_severity": 0.75
+  },
+  "semantic_validation": {
+    "automatic_bear_price_replacement_performed": false,
+    "base_scenario_conditioned_on_current_evidence": true,
+    "bear_base_bull_ordering_valid": true,
+    "bear_scenario_conditioned_on_adverse_evidence": true,
+    "bull_scenario_conditioned_on_favorable_evidence": true,
+    "positive_bear": false,
+    "positive_bear_review_required": false,
+    "semantic_contract_satisfied": true
+  },
+  "status": "RESEARCH_STRATEGIC_FORECAST",
+  "strategic_confidence": {
+    "method_changed_from_v1": false,
+    "score": 0.3977963786777081,
+    "source": "PRESERVED_V1_STRATEGIC_CONFIDENCE_METHODOLOGY"
+  },
+  "strategic_horizon_date": "2029-08-28",
+  "strategic_operating_date": "2026-08-28",
+  "strategic_scenario": {
+    "base": {
+      "price_usd": 149456.76949758801,
+      "return": 0.8821374357443585,
+      "return_pct": 88.21374357443585
+    },
+    "bear": {
+      "price_usd": 77535.81526996673,
+      "return": -0.023576777277267758,
+      "return_pct": -2.3576777277267755
+    },
+    "bull": {
+      "price_usd": 243241.7606862696,
+      "return": 2.063189611704987,
+      "return_pct": 206.3189611704987
+    }
+  },
+  "stress_diagnostics": {
+    "adverse_full_bound": {
+      "combined_adjustment": -0.2,
+      "price_usd": 73565.41526996672,
+      "return": -0.07357677727726775,
+      "return_pct": -7.357677727726775,
+      "standard_bear": false
+    },
+    "favorable_full_bound": {
+      "combined_adjustment": 0.2,
+      "price_usd": 247212.16068626964,
+      "return": 2.1131896117049873,
+      "return_pct": 211.31896117049874,
+      "standard_bull": false
+    }
+  },
+  "structural_blend_returns": {
+    "base": 0.7957198164509861,
+    "bear": 0.12642322272273226,
+    "bull": 1.9131896117049871
+  },
+  "structural_weights": {
+    "cycle_share": 0.625,
+    "native_share": 0.37499999999999994
+  },
+  "v1_comparison": {
+    "v1_base_price_usd": 149456.76949758801,
+    "v1_bear_price_usd": 96309.26558281484,
+    "v1_bull_price_usd": 238192.8109991177,
+    "v1_modified": false,
+    "v1_replaced": false,
+    "v1_status": "FAILED_RESEARCH_IMPLEMENTATION"
+  },
+  "valuation_onchain": {
+    "status": "MISSING",
+    "synthetic_evidence_created": false,
+    "weight": 0.0
+  },
+  "version": 2
+}
