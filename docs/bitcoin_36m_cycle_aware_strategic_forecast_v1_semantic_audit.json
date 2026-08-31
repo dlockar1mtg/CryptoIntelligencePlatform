@@ -1,0 +1,69 @@
+﻿{
+    "artifact_id":  "BITCOIN_36M_CYCLE_AWARE_STRATEGIC_FORECAST_V1_SEMANTIC_AUDIT",
+    "governed_head":  "95995d3649d61f29731d1653d2bd97080633d99e",
+    "strategic_forecast_contract_sha256":  "19c32d298ed84382f78487aa74a5cd11ebba49d7929ec69a51966045966da656",
+    "strategic_blend_design_sha256":  "78a3d599874376334a0816e37d35ed06725b980b4659ea2ba4e5851fb7b0c82e",
+    "forecast_v1_sha256":  "d637853e20ae350ff25f49b8d467d754bc6e05e37dd60ea71c153c29bdfb7559",
+    "strategic_operating_date":  "2026-08-28",
+    "strategic_horizon_date":  "2029-08-28",
+    "audit_status":  "FAIL",
+    "preexisting_contract_requirement":  {
+                                             "strategic_bear":  "defensible adverse long-duration outcome under materially unfavorable strategic evidence",
+                                             "requirement_preexisted_before_v1_prices":  true
+                                         },
+    "observed_v1":  {
+                        "structural_bear_return":  0.12642322272273226,
+                        "structural_base_return":  0.79571981645098611,
+                        "structural_bull_return":  1.9131896117049871,
+                        "bear_return":  0.2128408420161047,
+                        "bear_return_pct":  21.284084201610469,
+                        "bear_price_usd":  96309.265582814842,
+                        "base_return":  0.88213743574435854,
+                        "base_price_usd":  149456.769497588,
+                        "bull_return":  1.9996072309983597,
+                        "bull_price_usd":  238192.8109991177,
+                        "trend_adjustment":  0.050081287123200535,
+                        "macro_adjustment":  0.036336332170171889,
+                        "combined_current_state_adjustment":  0.086417619293372425,
+                        "current_state_adjustment_direction":  "SUPPORTIVE"
+                    },
+    "implementation_diagnostics":  {
+                                       "same_current_state_modifier_applied_to_bear_base_bull":  true,
+                                       "bear_is_positive":  true,
+                                       "bear_uses_supportive_current_state_adjustment":  true,
+                                       "bear_scenario_conditioned_on_adverse_evidence":  false
+                                   },
+    "adjudication":  {
+                         "arithmetic_calculation_valid":  true,
+                         "scenario_ordering_valid":  true,
+                         "evidence_weights_match_frozen_v1_design":  true,
+                         "semantic_contract_satisfied":  false,
+                         "failure_class":  "SCENARIO_SEMANTIC_IMPLEMENTATION_DEFECT",
+                         "failure_is_desired_price_tuning":  false,
+                         "failure_was_detectable_from_preexisting_contract":  true,
+                         "forecast_disposition":  "PRESERVE_AS_FAILED_RESEARCH_IMPLEMENTATION"
+                     },
+    "remediation_boundary":  {
+                                 "overwrite_v1_authorized":  false,
+                                 "delete_v1_authorized":  false,
+                                 "preserve_v1_as_audit_evidence":  true,
+                                 "v2_methodology_design_authorized":  true,
+                                 "v2_final_prices_authorized":  false,
+                                 "post_hoc_target_price_selection_authorized":  false,
+                                 "original_cycle_weight_change_authorized":  false,
+                                 "original_native_weight_change_authorized":  false,
+                                 "original_trend_weight_change_authorized":  false,
+                                 "original_macro_weight_change_authorized":  false,
+                                 "scenario_conditioned_modifier_design_authorized":  true
+                             },
+    "database_write_performed":  false,
+    "network_call_performed":  false,
+    "module1_rerun_performed":  false,
+    "module2_execution_performed":  false,
+    "module6_execution_performed":  false,
+    "module42_rerun_performed":  false,
+    "forecast_v1_recalculated":  false,
+    "forecast_v1_modified":  false,
+    "production_forecast_change_authorized":  false,
+    "next_gate":  "DESIGN_BTC_36M_SCENARIO_CONDITIONED_MODIFIER_V2"
+}
