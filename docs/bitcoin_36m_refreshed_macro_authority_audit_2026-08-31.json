@@ -1,0 +1,158 @@
+{
+  "all_required_series_fresh_asof": true,
+  "all_required_series_present": true,
+  "artifact_id": "BITCOIN_36M_REFRESHED_MACRO_AUTHORITY_AUDIT_2026_08_31",
+  "component_scores": {
+    "liquidity_components": {
+      "dollar_90d": 51.559356731816386,
+      "m2_yoy": 61.988277536587255,
+      "real_yield": 16.500000000000004
+    },
+    "risk_components": {
+      "high_yield_spread": 97.63636363636364,
+      "unemployment_6m_change": 100.0,
+      "vix": 91.03571428571429
+    }
+  },
+  "current_asof_series": [
+    "fed",
+    "nominal",
+    "real",
+    "breakeven",
+    "m2",
+    "dollar",
+    "vix",
+    "hy",
+    "unemployment"
+  ],
+  "database_write_performed": false,
+  "forecast_blend_performed": false,
+  "formula_reconstructable": true,
+  "macro_authority_status": "CURRENT_ASOF_RESEARCH_AUTHORITY",
+  "macro_blocker_closed": true,
+  "method": "EXISTING_MODULE2_FORMULA_CADENCE_AWARE_READ_ONLY_RECONSTRUCTION",
+  "missing_series": [],
+  "module1_rerun_performed": false,
+  "module2_asof_inputs": {
+    "breakeven_inflation": 2.31,
+    "dollar_90d_change_pct": -0.2494970770906213,
+    "dollar_index": 118.0628,
+    "fed_funds_rate": 3.63,
+    "high_yield_spread": 2.63,
+    "m2_yoy_pct": 5.438593304390471,
+    "nominal_yield": 4.67,
+    "real_yield": 2.34,
+    "unemployment_6m_change": -0.20000000000000018,
+    "unemployment_rate": 4.1,
+    "vix": 14.51
+  },
+  "module2_execution_performed": false,
+  "module42_rerun_performed": false,
+  "module6_execution_performed": false,
+  "network_refresh_performed": false,
+  "next_gate": "DESIGN_BTC_STRATEGIC_FORECAST_BLEND",
+  "previous_derived_regime": {
+    "confidence": 100.0,
+    "liquidity_score": 43.92430124135151,
+    "macro_score": 63.98278126715891,
+    "observation_date": "2026-07-28",
+    "regime_label": "SUPPORTIVE",
+    "risk_appetite_score": 88.49870129870129
+  },
+  "production_forecast_change_authorized": false,
+  "reconstructed_regime": {
+    "liquidity_score": 45.73456407441836,
+    "liquidity_weight_available": 1.0,
+    "macro_score": 68.16816608508594,
+    "module2_confidence": 100.0,
+    "regime_label": "SUPPORTIVE",
+    "risk_appetite_score": 95.587012987013,
+    "risk_weight_available": 1.0
+  },
+  "required_blend_blockers": [],
+  "series_inventory": {
+    "breakeven": {
+      "age_days": 0,
+      "cadence": "DAILY",
+      "latest_observation_date": "2026-08-28",
+      "latest_value": 2.31,
+      "max_age_days": 7,
+      "series_key": "FRED::T10YIE",
+      "status": "CURRENT_ASOF"
+    },
+    "dollar": {
+      "age_days": 7,
+      "cadence": "NEAR_DAILY_LAGGED",
+      "latest_observation_date": "2026-08-21",
+      "latest_value": 118.0628,
+      "max_age_days": 10,
+      "series_key": "FRED::DTWEXBGS",
+      "status": "CURRENT_ASOF"
+    },
+    "fed": {
+      "age_days": 1,
+      "cadence": "DAILY",
+      "latest_observation_date": "2026-08-27",
+      "latest_value": 3.63,
+      "max_age_days": 7,
+      "series_key": "FRED::DFF",
+      "status": "CURRENT_ASOF"
+    },
+    "hy": {
+      "age_days": 1,
+      "cadence": "DAILY",
+      "latest_observation_date": "2026-08-27",
+      "latest_value": 2.63,
+      "max_age_days": 7,
+      "series_key": "FRED::BAMLH0A0HYM2",
+      "status": "CURRENT_ASOF"
+    },
+    "m2": {
+      "age_days": 58,
+      "cadence": "MONTHLY",
+      "latest_observation_date": "2026-07-01",
+      "latest_value": 23218.0,
+      "max_age_days": 70,
+      "series_key": "FRED::M2SL",
+      "status": "CURRENT_ASOF"
+    },
+    "nominal": {
+      "age_days": 1,
+      "cadence": "DAILY",
+      "latest_observation_date": "2026-08-27",
+      "latest_value": 4.67,
+      "max_age_days": 7,
+      "series_key": "FRED::DGS10",
+      "status": "CURRENT_ASOF"
+    },
+    "real": {
+      "age_days": 1,
+      "cadence": "DAILY",
+      "latest_observation_date": "2026-08-27",
+      "latest_value": 2.34,
+      "max_age_days": 7,
+      "series_key": "FRED::DFII10",
+      "status": "CURRENT_ASOF"
+    },
+    "unemployment": {
+      "age_days": 58,
+      "cadence": "MONTHLY",
+      "latest_observation_date": "2026-07-01",
+      "latest_value": 4.1,
+      "max_age_days": 70,
+      "series_key": "FRED::UNRATE",
+      "status": "CURRENT_ASOF"
+    },
+    "vix": {
+      "age_days": 1,
+      "cadence": "DAILY",
+      "latest_observation_date": "2026-08-27",
+      "latest_value": 14.51,
+      "max_age_days": 7,
+      "series_key": "FRED::VIXCLS",
+      "status": "CURRENT_ASOF"
+    }
+  },
+  "stale_series": [],
+  "strategic_operating_date": "2026-08-28"
+}
