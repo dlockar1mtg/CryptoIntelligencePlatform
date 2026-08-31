@@ -1,0 +1,74 @@
+﻿{
+    "artifact_id":  "BITCOIN_36M_STRATEGIC_FORECAST_RESEARCH_CLOSEOUT_V1",
+    "status":  "CLOSED",
+    "governed_head":  "c668fdc3fc70f836b32dd0364e8f89f1028ce7eb",
+    "strategic_operating_date":  "2026-08-28",
+    "strategic_horizon_date":  "2029-08-28",
+    "research_authority":  {
+                               "forecast_version":  "V2",
+                               "forecast_family":  "BTC_CYCLE_AWARE_SCENARIO_CONDITIONED_STRATEGIC_SCENARIO",
+                               "forecast_sha256":  "3648a36d3712e2345c6bad128ee1cab5ec553f9845af9a5da4f7b2f29ed5ee91",
+                               "audit_sha256":  "433197d06693e5548dce35f0b5f862e52edf0284c8d869760f65708a34143cfe",
+                               "final_research_authority_frozen":  true,
+                               "production_authority":  false
+                           },
+    "final_strategic_scenario":  {
+                                     "bear_price_usd":  77535.815269966726,
+                                     "bear_return_pct":  -2.3576777277267755,
+                                     "base_price_usd":  149456.769497588,
+                                     "base_return_pct":  88.213743574435853,
+                                     "bull_price_usd":  243241.76068626961,
+                                     "bull_return_pct":  206.31896117049871,
+                                     "strategic_confidence":  0.39779637867770812
+                                 },
+    "methodology_lineage":  {
+                                "module42_preserved_as_independent_native_scenario":  true,
+                                "bitcoin_cycle_evidence_integrated":  true,
+                                "diminishing_return_transformation_used":  true,
+                                "v1_created":  true,
+                                "v1_disposition":  "FAILED_RESEARCH_IMPLEMENTATION",
+                                "v1_failure_class":  "SCENARIO_SEMANTIC_IMPLEMENTATION_DEFECT",
+                                "v2_created_as_governed_remediation":  true,
+                                "v2_scenario_conditioning":  {
+                                                                 "bear":  "MATERIALLY_UNFAVORABLE",
+                                                                 "base":  "CURRENT_GOVERNED_STATE",
+                                                                 "bull":  "MATERIALLY_FAVORABLE"
+                                                             },
+                                "structural_weights_changed_during_v2_remediation":  false,
+                                "module42_changed":  false
+                            },
+    "evidence_boundary":  {
+                              "bitcoin_cycle_weight":  0.5,
+                              "native_module42_weight":  0.3,
+                              "trend_risk_weight":  0.1,
+                              "macro_liquidity_weight":  0.1,
+                              "valuation_onchain_weight":  0,
+                              "valuation_onchain_status":  "MISSING",
+                              "valuation_onchain_synthesized":  false,
+                              "p90_used_as_standard_bull":  false
+                          },
+    "governance":  {
+                       "strategic_forecast_research_lane_closed":  true,
+                       "recommendation_policy_validation_reopened":  false,
+                       "module42_rerun_required":  false,
+                       "database_write_performed":  false,
+                       "network_call_performed":  false,
+                       "production_forecast_change_authorized":  false,
+                       "autonomous_execution_authorized":  false,
+                       "future_research_revision_requires_new_governance_gate":  true
+                   },
+    "remaining_crypto_validation":  {
+                                        "bitcoin_36m_strategic_forecast_blocker_closed":  true,
+                                        "point_forecast_lineage_blocker_remaining":  true,
+                                        "affected_assets":  [
+                                                                "AVAX",
+                                                                "BTC",
+                                                                "ETH",
+                                                                "LINK",
+                                                                "SOL",
+                                                                "XRP"
+                                                            ],
+                                        "point_forecast_synthesis_authorized":  false
+                                    },
+    "next_gate":  "RESOLVE_CRYPTO_POINT_FORECAST_LINEAGE_AND_MISSING_FORECASTS"
+}
