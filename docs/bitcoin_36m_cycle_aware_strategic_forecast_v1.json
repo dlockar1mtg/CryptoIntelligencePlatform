@@ -1,0 +1,164 @@
+{
+  "artifact_id": "BITCOIN_36M_CYCLE_AWARE_STRATEGIC_FORECAST_V1",
+  "combined_current_state_adjustment": 0.08641761929337242,
+  "current_price_anchor_usd": 79408.0,
+  "cycle_evidence": {
+    "base_return": 1.3632462734351805,
+    "bear_return": 0.5723003095520388,
+    "bull_return": 2.5305393497834543,
+    "historical_phase_observation_count": 68,
+    "independent_completed_cycle_count": 3,
+    "method": "EQUAL_WEIGHT_WEALTH_POWER_ENSEMBLE",
+    "monthly_phase_observations_are_independent_cycles": false,
+    "original_component_absolute_prices_used_directly": false,
+    "original_component_anchor_usd": 63656.0,
+    "p90_extreme_return": 4.827141143493814,
+    "sample_warning": true
+  },
+  "evidence_weights": {
+    "bitcoin_cycle": 0.5,
+    "macro_liquidity": 0.1,
+    "native_module42": 0.3,
+    "trend_risk": 0.1,
+    "valuation_onchain": 0.0
+  },
+  "extreme_upside_diagnostic": {
+    "classification": "EXTREME_UPSIDE_DIAGNOSTIC",
+    "cycle_p90_return": 4.827141143493814,
+    "included_in_standard_bull": false,
+    "production_target": false,
+    "reanchored_price_usd": 462721.6239225568
+  },
+  "forecast_family": "BTC_CYCLE_AWARE_STRATEGIC_SCENARIO",
+  "governance": {
+    "autonomous_execution_authorized": false,
+    "database_write_performed": false,
+    "desired_price_target_used": false,
+    "module1_rerun_performed": false,
+    "module2_execution_performed": false,
+    "module42_changed": false,
+    "module42_rerun_performed": false,
+    "module6_execution_performed": false,
+    "network_call_performed": false,
+    "production_forecast_change_authorized": false,
+    "recommendation_policy_reopened": false,
+    "v3_v4_validation_reopened": false,
+    "weights_optimized_after_seeing_output": false
+  },
+  "horizon_months": 36,
+  "macro_liquidity_modifier": {
+    "authority_status": "CURRENT_ASOF_RESEARCH_AUTHORITY",
+    "formula_frozen_before_price_calculation": true,
+    "macro_score": 68.16816608508594,
+    "maximum_absolute_adjustment": 0.1,
+    "normalized_score": 0.36336332170171887,
+    "regime_label": "SUPPORTIVE",
+    "return_adjustment": 0.03633633217017189
+  },
+  "native_forecast_family_preserved": "BTC_NATIVE_LONG_RANGE_STATISTICAL_SCENARIO",
+  "native_module42": {
+    "bear_price_usd": 24399.01026696101,
+    "bear_return": -0.6167052553261121,
+    "bull_price_usd": 119945.30637748781,
+    "bull_return": 0.8842733815742083,
+    "changed": false,
+    "confidence": 0.06864252451805394,
+    "evidence_status": "SCENARIO_ONLY",
+    "median_price_usd": 54097.567059694185,
+    "median_return": -0.1501576118560044,
+    "method": "LONG_RANGE_SCENARIO_MODEL",
+    "original_current_price_anchor_usd": 63656.0
+  },
+  "next_gate": "AUDIT_AND_FREEZE_BTC_36M_CYCLE_AWARE_STRATEGIC_FORECAST",
+  "prior_high_plausibility_review": {
+    "automatic_price_replacement_performed": false,
+    "bull_price_below_reference": false,
+    "reference_is_price_floor": false,
+    "reference_price_usd": 124739.81088811433,
+    "reference_type": "CURRENT_GOVERNED_RUNNING_HIGH_PRICE",
+    "review_required": false
+  },
+  "rationale": "The strategic scenario gives primary long-horizon authority to diminished Bitcoin cycle evidence while preserving native Module 42 as an independent statistical anchor. Current trend/risk and macro evidence provide a bounded supportive return adjustment rather than standalone long-range price targets. The cycle sample remains limited to three completed cycles, native and cycle center estimates materially disagree, and valuation/on-chain evidence remains unavailable; these limitations are reflected in strategic confidence. The P90 cycle outcome is reported separately as an extreme-upside diagnostic and is not used as the normal bull scenario.",
+  "status": "RESEARCH_STRATEGIC_FORECAST",
+  "strategic_confidence": {
+    "component_scores": {
+      "cycle_native_agreement": 0.0,
+      "cycle_sample": 0.5,
+      "halving_timing_certainty": 0.75,
+      "horizon_certainty": 0.5,
+      "macro_availability": 1.0,
+      "native_quality": 0.06864252451805394,
+      "trend_availability": 1.0,
+      "valuation_availability": 0.0
+    },
+    "component_weights": {
+      "cycle_native_agreement": 0.2,
+      "cycle_sample": 0.2,
+      "halving_timing_certainty": 0.05,
+      "horizon_certainty": 0.1,
+      "macro_availability": 0.1,
+      "native_quality": 0.15,
+      "trend_availability": 0.1,
+      "valuation_availability": 0.1
+    },
+    "distinct_from_module42_confidence": true,
+    "formula_frozen_before_price_calculation": true,
+    "score": 0.3977963786777081
+  },
+  "strategic_horizon_date": "2029-08-28",
+  "strategic_operating_date": "2026-08-28",
+  "strategic_scenario": {
+    "base": {
+      "price_usd": 149456.76949758801,
+      "return": 0.8821374357443585,
+      "return_pct": 88.21374357443585
+    },
+    "bear": {
+      "price_usd": 96309.26558281484,
+      "return": 0.2128408420161047,
+      "return_pct": 21.28408420161047
+    },
+    "bull": {
+      "price_usd": 238192.8109991177,
+      "return": 1.9996072309983595,
+      "return_pct": 199.96072309983595
+    }
+  },
+  "structural_blend_returns": {
+    "base": 0.7957198164509861,
+    "bear": 0.12642322272273226,
+    "bull": 1.9131896117049871
+  },
+  "structural_weights": {
+    "cycle_share": 0.625,
+    "native_share": 0.37499999999999994
+  },
+  "trend_risk_modifier": {
+    "drawdown_risk_score": 0.4845479088604659,
+    "formula_frozen_before_price_calculation": true,
+    "input_distance_sma20": 0.13974435165644228,
+    "input_distance_sma50": 0.19567701350047373,
+    "input_drawdown": -0.36341093164534943,
+    "input_return_30d": 0.24304296211919896,
+    "input_return_7d": 0.08746879830300869,
+    "input_volatility_30d": 0.4192502587337869,
+    "maximum_absolute_adjustment": 0.1,
+    "normalized_score": 0.5008128712320054,
+    "return_adjustment": 0.050081287123200535,
+    "risk_penalty_score": 0.32745271066865217,
+    "trend_component_normalized": {
+      "distance_sma20": 0.9316290110429486,
+      "distance_sma50": 0.7827080540018949,
+      "return_30d": 0.8101432070639966,
+      "return_7d": 0.583125322020058
+    },
+    "trend_direction_score": 0.7769013985322245,
+    "volatility_risk_score": 0.17035751247683847
+  },
+  "valuation_onchain": {
+    "blocks_research_forecast": false,
+    "status": "MISSING",
+    "synthetic_evidence_created": false,
+    "weight": 0.0
+  }
+}
