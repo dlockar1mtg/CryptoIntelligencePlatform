@@ -1,0 +1,292 @@
+{
+  "adjudication": {
+    "output_mapping_change_authorized": false,
+    "preinvestigation_point_forecast_requirement_proven": false,
+    "prior_baseline_result_superseded": true,
+    "prior_consumer_result_superseded": true,
+    "production_promotion_authorized": false,
+    "reason": "The only pre-investigation point-forecast reference must be adjudicated by its actual semantics. An explicit disclaimer cannot establish a required singular forecast contract.",
+    "repair_authorized": false,
+    "status": "PREINVESTIGATION_POINT_FORECAST_REFERENCE_IS_DISCLAIMER_NOT_REQUIREMENT",
+    "unsupported_consumer_assumption_proven": true,
+    "validator_change_authorized": false
+  },
+  "artifact_id": "CRYPTO_POINT_FORECAST_PREINVESTIGATION_REQUIREMENT_SEMANTIC_ADJUDICATION_2026_09_01",
+  "baseline_authority": {
+    "commit": "3215bbd2fbba75c69f6bcbfe0d43fb63b5981620",
+    "commit_patch_hit_windows": [
+      [
+        "+",
+        "+A staged execution plan containing:",
+        "+",
+        "+- Target weight",
+        "+- Current weight",
+        "+- Trade weight",
+        "+- Buy/sell/hold action",
+        "+- Execution stage",
+        "+- Execution window",
+        "+- Tranche percentage",
+        "+- Entry trigger",
+        "+",
+        "+Projection methodology",
+        "+----------------------",
+        "+",
+        "+7D and 30D:",
+        "+- Module 39 calibrated forecast",
+        "+- Module 41 adaptive feedback when available",
+        "+- Conformal bear/bull intervals",
+        "+",
+        "+3M and 6M:",
+        "+- Uses calibrated Module 38/39 forecasts where available",
+        "+- Blends Module 41 adaptive expected returns",
+        "+",
+        "+9M through 48M:",
+        "+- Scenario model, not a precise point forecast",
+        "+- Blends predictive forecasts, historical return, a conservative prior,",
+        "+  regime alignment, and historical volatility",
+        "+- Bear and bull paths expand with the square root of time",
+        "+- Confidence declines as the horizon lengthens",
+        "+- Long-range annual returns are capped to prevent unrealistic compounding",
+        "+",
+        "+Portfolio safeguards",
+        "+--------------------",
+        "+",
+        "+Default constraints:",
+        "+",
+        "+- Minimum cash: 75% of total portfolio",
+        "+- Maximum one asset: 8% of total portfolio",
+        "+- Recommendations remain conservative while Module 40/41 evidence is sparse",
+        "+",
+        "+The percentages are percentages of the total portfolio, not merely the",
+        "+crypto sleeve.",
+        "+",
+        "+Installation",
+        "+------------",
+        "+",
+        "+1. Extract into C:\\Users\\DevonLockard\\Crypto",
+        "+2. Run install_v12_0_0_windows.bat",
+        "+3. Run python run_module42.py",
+        "+4. Run python inspect_module42.py"
+      ]
+    ],
+    "literal_hit_count": 1,
+    "literal_hits": [
+      {
+        "context": [
+          {
+            "line_number": 100,
+            "text": "- Trade weight"
+          },
+          {
+            "line_number": 101,
+            "text": "- Buy/sell/hold action"
+          },
+          {
+            "line_number": 102,
+            "text": "- Execution stage"
+          },
+          {
+            "line_number": 103,
+            "text": "- Execution window"
+          },
+          {
+            "line_number": 104,
+            "text": "- Tranche percentage"
+          },
+          {
+            "line_number": 105,
+            "text": "- Entry trigger"
+          },
+          {
+            "line_number": 106,
+            "text": ""
+          },
+          {
+            "line_number": 107,
+            "text": "Projection methodology"
+          },
+          {
+            "line_number": 108,
+            "text": "----------------------"
+          },
+          {
+            "line_number": 109,
+            "text": ""
+          },
+          {
+            "line_number": 110,
+            "text": "7D and 30D:"
+          },
+          {
+            "line_number": 111,
+            "text": "- Module 39 calibrated forecast"
+          },
+          {
+            "line_number": 112,
+            "text": "- Module 41 adaptive feedback when available"
+          },
+          {
+            "line_number": 113,
+            "text": "- Conformal bear/bull intervals"
+          },
+          {
+            "line_number": 114,
+            "text": ""
+          },
+          {
+            "line_number": 115,
+            "text": "3M and 6M:"
+          },
+          {
+            "line_number": 116,
+            "text": "- Uses calibrated Module 38/39 forecasts where available"
+          },
+          {
+            "line_number": 117,
+            "text": "- Blends Module 41 adaptive expected returns"
+          },
+          {
+            "line_number": 118,
+            "text": ""
+          },
+          {
+            "line_number": 119,
+            "text": "9M through 48M:"
+          },
+          {
+            "line_number": 120,
+            "text": "- Scenario model, not a precise point forecast"
+          },
+          {
+            "line_number": 121,
+            "text": "- Blends predictive forecasts, historical return, a conservative prior,"
+          },
+          {
+            "line_number": 122,
+            "text": "  regime alignment, and historical volatility"
+          },
+          {
+            "line_number": 123,
+            "text": "- Bear and bull paths expand with the square root of time"
+          },
+          {
+            "line_number": 124,
+            "text": "- Confidence declines as the horizon lengthens"
+          },
+          {
+            "line_number": 125,
+            "text": "- Long-range annual returns are capped to prevent unrealistic compounding"
+          },
+          {
+            "line_number": 126,
+            "text": ""
+          },
+          {
+            "line_number": 127,
+            "text": "Portfolio safeguards"
+          },
+          {
+            "line_number": 128,
+            "text": "--------------------"
+          },
+          {
+            "line_number": 129,
+            "text": ""
+          },
+          {
+            "line_number": 130,
+            "text": "Default constraints:"
+          },
+          {
+            "line_number": 131,
+            "text": ""
+          },
+          {
+            "line_number": 132,
+            "text": "- Minimum cash: 75% of total portfolio"
+          },
+          {
+            "line_number": 133,
+            "text": "- Maximum one asset: 8% of total portfolio"
+          },
+          {
+            "line_number": 134,
+            "text": "- Recommendations remain conservative while Module 40/41 evidence is sparse"
+          },
+          {
+            "line_number": 135,
+            "text": ""
+          },
+          {
+            "line_number": 136,
+            "text": "The percentages are percentages of the total portfolio, not merely the"
+          },
+          {
+            "line_number": 137,
+            "text": "crypto sleeve."
+          },
+          {
+            "line_number": 138,
+            "text": ""
+          },
+          {
+            "line_number": 139,
+            "text": "Installation"
+          },
+          {
+            "line_number": 140,
+            "text": "------------"
+          }
+        ],
+        "line": "- Scenario model, not a precise point forecast",
+        "line_number": 120
+      }
+    ],
+    "readme_path": "README_V12_0_0.txt"
+  },
+  "governance": {
+    "baseline_artifact_modified": false,
+    "btc_strategic_forecast_reopened": false,
+    "database_opened": false,
+    "database_write_performed": false,
+    "forecast_execution_performed": false,
+    "forecast_synthesis_performed": false,
+    "network_call_performed": false,
+    "output_mapping_changed": false,
+    "package_modified": false,
+    "prior_consumer_artifact_modified": false,
+    "repair_performed": false,
+    "validator_modified": false
+  },
+  "history": {
+    "history_match_is_same_baseline_reference": true,
+    "regex_matches": [
+      "3215bbd chore: freeze Crypto Intelligence Platform v13.0.0 baseline"
+    ]
+  },
+  "independent_authorities": {
+    "effective_current_nonself_literal_hit_count": 0,
+    "independent_point_forecast_requirement_found": false,
+    "package_requirement_found": false,
+    "validator_requirement_found": false
+  },
+  "next_gate": "CONSIDER_POINT_FORECAST_VALIDATOR_ASSUMPTION_CORRECTION",
+  "semantic_classification": {
+    "baseline_reference_is_disclaimer": true,
+    "disclaimer_evidence": [
+      {
+        "explicit_negative_point_forecast": true,
+        "line": "- Scenario model, not a precise point forecast",
+        "line_number": 120,
+        "matched_disclaimer_phrases": [
+          "not a precise point forecast",
+          "scenario model"
+        ]
+      }
+    ],
+    "disclaimer_evidence_count": 1,
+    "requirement_evidence": [],
+    "requirement_evidence_count": 0
+  },
+  "status": "READ_ONLY_PREINVESTIGATION_REQUIREMENT_ADJUDICATION"
+}

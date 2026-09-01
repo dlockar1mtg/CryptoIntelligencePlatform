@@ -1,0 +1,220 @@
+{
+  "adjudication": {
+    "baseline_literal_requirement_found": true,
+    "output_mapping_change_authorized": false,
+    "package_literal_requirement_found": false,
+    "preinvestigation_history_requirement_found": true,
+    "prior_consumer_result_superseded": false,
+    "production_promotion_authorized": false,
+    "repair_authorized": false,
+    "status": "PREINVESTIGATION_POINT_FORECAST_REQUIREMENT_EVIDENCE_FOUND",
+    "unsupported_consumer_assumption_proven": false,
+    "validator_change_authorized": false,
+    "validator_literal_requirement_found": false
+  },
+  "artifact_id": "CRYPTO_POINT_FORECAST_CONSUMER_BASELINE_PROVENANCE_ADJUDICATION_2026_09_01",
+  "baseline": {
+    "commit": "3215bbd2fbba75c69f6bcbfe0d43fb63b5981620",
+    "literal_point_forecast_hit_count": 1,
+    "literal_point_forecast_hits": [
+      {
+        "context": [
+          "",
+          "Projection methodology",
+          "----------------------",
+          "",
+          "7D and 30D:",
+          "- Module 39 calibrated forecast",
+          "- Module 41 adaptive feedback when available",
+          "- Conformal bear/bull intervals",
+          "",
+          "3M and 6M:",
+          "- Uses calibrated Module 38/39 forecasts where available",
+          "- Blends Module 41 adaptive expected returns",
+          "",
+          "9M through 48M:",
+          "- Scenario model, not a precise point forecast",
+          "- Blends predictive forecasts, historical return, a conservative prior,",
+          "  regime alignment, and historical volatility",
+          "- Bear and bull paths expand with the square root of time",
+          "- Confidence declines as the horizon lengthens",
+          "- Long-range annual returns are capped to prevent unrealistic compounding",
+          "",
+          "Portfolio safeguards",
+          "--------------------",
+          "",
+          "Default constraints:",
+          "",
+          "- Minimum cash: 75% of total portfolio",
+          "- Maximum one asset: 8% of total portfolio",
+          "- Recommendations remain conservative while Module 40/41 evidence is sparse",
+          ""
+        ],
+        "line": "- Scenario model, not a precise point forecast",
+        "line_number": 120,
+        "path": "README_V12_0_0.txt"
+      }
+    ],
+    "related_forecast_hit_count": 1,
+    "related_forecast_hits": [
+      {
+        "line": "print(\"v11.0.0 schema and forecast-memory idempotency preflight passed.\")",
+        "line_number": 20,
+        "path": "test_v11_0_0_schema_and_memory.py"
+      }
+    ]
+  },
+  "current_tree_nonself": {
+    "effective_nonself_literal_hit_count": 0,
+    "literal_hits": [
+      {
+        "context": [
+          "",
+          "7D and 30D:",
+          "- Module 39 calibrated forecast",
+          "- Module 41 adaptive feedback when available",
+          "- Conformal bear/bull intervals",
+          "",
+          "3M and 6M:",
+          "- Uses calibrated Module 38/39 forecasts where available",
+          "- Blends Module 41 adaptive expected returns",
+          "",
+          "9M through 48M:",
+          "- Scenario model, not a precise point forecast",
+          "- Blends predictive forecasts, historical return, a conservative prior,",
+          "  regime alignment, and historical volatility",
+          "- Bear and bull paths expand with the square root of time",
+          "- Confidence declines as the horizon lengthens",
+          "- Long-range annual returns are capped to prevent unrealistic compounding",
+          "",
+          "Portfolio safeguards",
+          "--------------------",
+          "",
+          "Default constraints:",
+          "",
+          "- Minimum cash: 75% of total portfolio"
+        ],
+        "line": "- Scenario model, not a precise point forecast",
+        "line_number": 120,
+        "path": "README_V12_0_0.txt"
+      }
+    ],
+    "literal_point_forecast_hit_count": 1,
+    "readme_disclaimer_hit_count": 1
+  },
+  "governance": {
+    "btc_strategic_forecast_reopened": false,
+    "database_opened": false,
+    "database_write_performed": false,
+    "forecast_execution_performed": false,
+    "forecast_synthesis_performed": false,
+    "network_call_performed": false,
+    "output_mapping_changed": false,
+    "package_modified": false,
+    "prior_consumer_artifact_modified": false,
+    "repair_performed": false,
+    "validator_modified": false
+  },
+  "next_gate": "ADJUDICATE_PREINVESTIGATION_POINT_FORECAST_REQUIREMENT",
+  "packages": {
+    "forecast_file_count": 9,
+    "forecast_files": [
+      "data/exports/universal/crypto_validation_20260814_current/forecasts.csv",
+      "data/operations/crypto/production_runs/crypto-prod-20260728T164900Z-d9050993/universal_package/forecasts.csv",
+      "data/operations/crypto/production_runs/crypto-prod-20260728T171154Z-e4d91112/universal_package/forecasts.csv",
+      "data/operations/crypto/production_runs/crypto-prod-20260728T180031Z-09b5ea0b/universal_package/forecasts.csv",
+      "data/operations/crypto/production_runs/crypto-prod-20260728T182322Z-b66fe227/universal_package/forecasts.csv",
+      "data/operations/crypto/uip_delivery/crypto-prod-20260728T164900Z-d9050993/forecasts.csv",
+      "data/operations/crypto/uip_delivery/crypto-prod-20260728T171154Z-e4d91112/forecasts.csv",
+      "data/operations/crypto/uip_delivery/crypto-prod-20260728T180031Z-09b5ea0b/forecasts.csv",
+      "data/operations/crypto/uip_delivery/crypto-prod-20260728T182322Z-b66fe227/forecasts.csv"
+    ],
+    "literal_point_forecast_hit_count": 0,
+    "literal_point_forecast_hits": []
+  },
+  "preinvestigation_history": {
+    "regex_match_count": 1,
+    "regex_matches": [
+      "3215bbd chore: freeze Crypto Intelligence Platform v13.0.0 baseline"
+    ],
+    "string_match_count": 0,
+    "string_matches": []
+  },
+  "prior_consumer_adjudication": {
+    "preserved": true,
+    "prior_expectation_validated": true,
+    "reason": "Prior result counted governance artifacts created by the point_forecast investigation itself as independent consumer evidence.",
+    "superseded": false
+  },
+  "status": "READ_ONLY_BASELINE_PROVENANCE_ADJUDICATION",
+  "validators": {
+    "files": [
+      {
+        "exists": true,
+        "path": "scripts/audit_native_predictive_validation_readiness.py",
+        "point_forecast_hits": [],
+        "related_forecast_hits": [
+          {
+            "line": "\"forecast\",",
+            "line_number": 13
+          },
+          {
+            "line": "if \"forecast\" in item[\"table\"].lower() or \"prediction\" in item[\"table\"].lower()",
+            "line_number": 130
+          }
+        ]
+      },
+      {
+        "exists": true,
+        "path": "scripts/integration/audit_universal_contract_compatibility.py",
+        "point_forecast_hits": [],
+        "related_forecast_hits": [
+          {
+            "line": "\"forecast\",",
+            "line_number": 39
+          },
+          {
+            "line": "\"price_projection\",",
+            "line_number": 46
+          },
+          {
+            "line": "\"price_projections\",",
+            "line_number": 47
+          }
+        ]
+      },
+      {
+        "exists": true,
+        "path": "scripts/integration/validate_real_crypto_transformations.py",
+        "point_forecast_hits": [],
+        "related_forecast_hits": [
+          {
+            "line": "\"Forecast output contains no records.\",",
+            "line_number": 148
+          },
+          {
+            "line": "\"Forecast horizon is not positive.\",",
+            "line_number": 154
+          },
+          {
+            "line": "\"Forecast date precedes its origin.\",",
+            "line_number": 160
+          },
+          {
+            "line": "\"Forecast probability is out of range.\",",
+            "line_number": 168
+          },
+          {
+            "line": "\"Forecast confidence is out of range.\",",
+            "line_number": 176
+          },
+          {
+            "line": "\"price_projections\": len(",
+            "line_number": 417
+          }
+        ]
+      }
+    ],
+    "literal_requirement_found": false
+  }
+}
