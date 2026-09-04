@@ -1,0 +1,153 @@
+﻿{
+    "artifact_id":  "BITCOIN_36M_BOUNDED_INCREMENTAL_MACRO_REFRESH_2026_08_31",
+    "strategic_operating_date":  "2026-08-28",
+    "execution_date":  "2026-08-31",
+    "governed_head":  "de57fb97512110125095c7c28c3b65d765e829b0",
+    "credential_resolution":  "PLATFORM_LOAD_DOTENV_ROOT_ENV",
+    "module1_incremental_refresh_executed":  true,
+    "module1_full_refresh_executed":  false,
+    "module2_execution_performed":  false,
+    "module6_execution_performed":  false,
+    "module42_rerun_performed":  false,
+    "network_refresh_performed":  true,
+    "fred_api_key_configured":  true,
+    "fred_api_key_value_recorded":  false,
+    "database_sha256_before":  "586fcc96f25dc54c8809fb13ae716b2108b661e2bd4f58c668189a9ad60eeb03",
+    "database_sha256_after":  "e4b7706d12ab97b4f2f66d2eaf6dd22189ed25901f8c21d4e20365d52e39cd8f",
+    "database_changed":  true,
+    "canonical_bitcoin_2026_08_28":  {
+                                         "observation_date":  "2026-08-28",
+                                         "price_usd":  79408.0
+                                     },
+    "module42_before":  {
+                            "bear_price":  24399.01026696101,
+                            "bull_price":  119945.30637748781,
+                            "current_price":  63656.0,
+                            "evidence_status":  "SCENARIO_ONLY",
+                            "median_price":  54097.567059694185,
+                            "projection_confidence":  0.06864252451805394,
+                            "projection_date":  "2029-07-28",
+                            "projection_method":  "LONG_RANGE_SCENARIO_MODEL",
+                            "recommendation_date":  "2026-07-28"
+                        },
+    "module42_after":  {
+                           "bear_price":  24399.01026696101,
+                           "bull_price":  119945.30637748781,
+                           "current_price":  63656.0,
+                           "evidence_status":  "SCENARIO_ONLY",
+                           "median_price":  54097.567059694185,
+                           "projection_confidence":  0.06864252451805394,
+                           "projection_date":  "2029-07-28",
+                           "projection_method":  "LONG_RANGE_SCENARIO_MODEL",
+                           "recommendation_date":  "2026-07-28"
+                       },
+    "module42_changed":  false,
+    "macro_series_before":  {
+                                "FRED::BAMLH0A0HYM2":  {
+                                                           "latest_any_date":  "2026-08-20",
+                                                           "latest_asof_operating_date":  "2026-08-20",
+                                                           "row_count":  813
+                                                       },
+                                "FRED::DFF":  {
+                                                  "latest_any_date":  "2026-08-20",
+                                                  "latest_asof_operating_date":  "2026-08-20",
+                                                  "row_count":  3519
+                                              },
+                                "FRED::DFII10":  {
+                                                     "latest_any_date":  "2026-08-20",
+                                                     "latest_asof_operating_date":  "2026-08-20",
+                                                     "row_count":  2409
+                                                 },
+                                "FRED::DGS10":  {
+                                                    "latest_any_date":  "2026-08-20",
+                                                    "latest_asof_operating_date":  "2026-08-20",
+                                                    "row_count":  2409
+                                                },
+                                "FRED::DTWEXBGS":  {
+                                                       "latest_any_date":  "2026-08-14",
+                                                       "latest_asof_operating_date":  "2026-08-14",
+                                                       "row_count":  2400
+                                                   },
+                                "FRED::M2SL":  {
+                                                   "latest_any_date":  "2026-06-01",
+                                                   "latest_asof_operating_date":  "2026-06-01",
+                                                   "row_count":  114
+                                               },
+                                "FRED::T10YIE":  {
+                                                     "latest_any_date":  "2026-08-21",
+                                                     "latest_asof_operating_date":  "2026-08-21",
+                                                     "row_count":  2410
+                                                 },
+                                "FRED::UNRATE":  {
+                                                     "latest_any_date":  "2026-07-01",
+                                                     "latest_asof_operating_date":  "2026-07-01",
+                                                     "row_count":  114
+                                                 },
+                                "FRED::VIXCLS":  {
+                                                     "latest_any_date":  "2026-08-20",
+                                                     "latest_asof_operating_date":  "2026-08-20",
+                                                     "row_count":  2453
+                                                 }
+                            },
+    "macro_series_after":  {
+                               "FRED::BAMLH0A0HYM2":  {
+                                                          "latest_any_date":  "2026-08-27",
+                                                          "latest_asof_operating_date":  "2026-08-27",
+                                                          "row_count":  818
+                                                      },
+                               "FRED::DFF":  {
+                                                 "latest_any_date":  "2026-08-27",
+                                                 "latest_asof_operating_date":  "2026-08-27",
+                                                 "row_count":  3526
+                                             },
+                               "FRED::DFII10":  {
+                                                    "latest_any_date":  "2026-08-27",
+                                                    "latest_asof_operating_date":  "2026-08-27",
+                                                    "row_count":  2414
+                                                },
+                               "FRED::DGS10":  {
+                                                   "latest_any_date":  "2026-08-27",
+                                                   "latest_asof_operating_date":  "2026-08-27",
+                                                   "row_count":  2414
+                                               },
+                               "FRED::DTWEXBGS":  {
+                                                      "latest_any_date":  "2026-08-21",
+                                                      "latest_asof_operating_date":  "2026-08-21",
+                                                      "row_count":  2405
+                                                  },
+                               "FRED::M2SL":  {
+                                                  "latest_any_date":  "2026-07-01",
+                                                  "latest_asof_operating_date":  "2026-07-01",
+                                                  "row_count":  115
+                                              },
+                               "FRED::T10YIE":  {
+                                                    "latest_any_date":  "2026-08-28",
+                                                    "latest_asof_operating_date":  "2026-08-28",
+                                                    "row_count":  2415
+                                                },
+                               "FRED::UNRATE":  {
+                                                    "latest_any_date":  "2026-07-01",
+                                                    "latest_asof_operating_date":  "2026-07-01",
+                                                    "row_count":  114
+                                                },
+                               "FRED::VIXCLS":  {
+                                                    "latest_any_date":  "2026-08-27",
+                                                    "latest_asof_operating_date":  "2026-08-27",
+                                                    "row_count":  2458
+                                                }
+                           },
+    "macro_series_updated":  [
+                                 "FRED::BAMLH0A0HYM2",
+                                 "FRED::DFF",
+                                 "FRED::DFII10",
+                                 "FRED::DGS10",
+                                 "FRED::DTWEXBGS",
+                                 "FRED::M2SL",
+                                 "FRED::T10YIE",
+                                 "FRED::VIXCLS"
+                             ],
+    "forecast_blend_performed":  false,
+    "production_forecast_change_authorized":  false,
+    "autonomous_execution_authorized":  false,
+    "next_gate":  "AUDIT_REFRESHED_BTC_MACRO_AUTHORITY_ASOF_2026_08_28"
+}

@@ -1,0 +1,156 @@
+{
+  "all_required_series_fresh_asof": false,
+  "all_required_series_present": true,
+  "artifact_id": "BITCOIN_36M_OFFLINE_MACRO_REGIME_RECONSTRUCTION_AUDIT_2026_08_28",
+  "component_scores": {
+    "liquidity_components": {
+      "dollar_90d": 57.36161901595742,
+      "m2_yoy": 62.874965244066495,
+      "real_yield": 16.249999999999996
+    },
+    "risk_components": {
+      "high_yield_spread": 95.45454545454545,
+      "unemployment_6m_change": 100.0,
+      "vix": 85.67857142857143
+    }
+  },
+  "current_asof_series": [
+    "breakeven"
+  ],
+  "forecast_blend_performed": false,
+  "formula_reconstructable": true,
+  "macro_authority_status": "RECONSTRUCTABLE_BUT_STALE_INPUTS",
+  "macro_blocker_closed_offline": false,
+  "method": "EXACT_EXISTING_MODULE2_MACRO_FORMULA_READ_ONLY_RECONSTRUCTION",
+  "missing_series": [],
+  "module2_asof_inputs": {
+    "breakeven_inflation": 2.34,
+    "dollar_90d_change_pct": -1.1778590425531865,
+    "dollar_index": 118.9028,
+    "fed_funds_rate": 3.63,
+    "high_yield_spread": 2.75,
+    "m2_yoy_pct": 5.54499582928798,
+    "nominal_yield": 4.69,
+    "real_yield": 2.35,
+    "unemployment_6m_change": -0.20000000000000018,
+    "unemployment_rate": 4.1,
+    "vix": 16.01
+  },
+  "module2_execution_performed": false,
+  "module42_rerun_performed": false,
+  "network_refresh_performed": false,
+  "next_gate": "AUTHORIZE_BOUNDED_INCREMENTAL_MACRO_REFRESH",
+  "operating_date": "2026-08-28",
+  "previous_derived_regime": {
+    "confidence": 100.0,
+    "liquidity_score": 43.92430124135151,
+    "macro_score": 63.98278126715891,
+    "observation_date": "2026-07-28",
+    "regime_label": "SUPPORTIVE",
+    "risk_appetite_score": 88.49870129870129
+  },
+  "production_forecast_change_authorized": false,
+  "reconstructed_regime": {
+    "liquidity_score": 47.50913911381928,
+    "liquidity_weight_available": 1.0,
+    "macro_score": 67.83626027883437,
+    "module2_confidence": 100.0,
+    "regime_label": "SUPPORTIVE",
+    "risk_appetite_score": 92.68051948051948,
+    "risk_weight_available": 1.0
+  },
+  "reconstruction_written_to_database": false,
+  "series_inventory": {
+    "breakeven": {
+      "age_days_at_operating_date": 7,
+      "freshness_max_age_days": 7,
+      "freshness_status": "CURRENT_ASOF",
+      "latest_observation_date": "2026-08-21",
+      "latest_value": 2.34,
+      "row_count_asof": 2410,
+      "series_key": "FRED::T10YIE"
+    },
+    "dollar": {
+      "age_days_at_operating_date": 14,
+      "freshness_max_age_days": 7,
+      "freshness_status": "STALE",
+      "latest_observation_date": "2026-08-14",
+      "latest_value": 118.9028,
+      "row_count_asof": 2400,
+      "series_key": "FRED::DTWEXBGS"
+    },
+    "fed": {
+      "age_days_at_operating_date": 8,
+      "freshness_max_age_days": 7,
+      "freshness_status": "STALE",
+      "latest_observation_date": "2026-08-20",
+      "latest_value": 3.63,
+      "row_count_asof": 3519,
+      "series_key": "FRED::DFF"
+    },
+    "hy": {
+      "age_days_at_operating_date": 8,
+      "freshness_max_age_days": 7,
+      "freshness_status": "STALE",
+      "latest_observation_date": "2026-08-20",
+      "latest_value": 2.75,
+      "row_count_asof": 813,
+      "series_key": "FRED::BAMLH0A0HYM2"
+    },
+    "m2": {
+      "age_days_at_operating_date": 88,
+      "freshness_max_age_days": 50,
+      "freshness_status": "STALE",
+      "latest_observation_date": "2026-06-01",
+      "latest_value": 23155.2,
+      "row_count_asof": 114,
+      "series_key": "FRED::M2SL"
+    },
+    "nominal": {
+      "age_days_at_operating_date": 8,
+      "freshness_max_age_days": 7,
+      "freshness_status": "STALE",
+      "latest_observation_date": "2026-08-20",
+      "latest_value": 4.69,
+      "row_count_asof": 2409,
+      "series_key": "FRED::DGS10"
+    },
+    "real": {
+      "age_days_at_operating_date": 8,
+      "freshness_max_age_days": 7,
+      "freshness_status": "STALE",
+      "latest_observation_date": "2026-08-20",
+      "latest_value": 2.35,
+      "row_count_asof": 2409,
+      "series_key": "FRED::DFII10"
+    },
+    "unemployment": {
+      "age_days_at_operating_date": 58,
+      "freshness_max_age_days": 50,
+      "freshness_status": "STALE",
+      "latest_observation_date": "2026-07-01",
+      "latest_value": 4.1,
+      "row_count_asof": 114,
+      "series_key": "FRED::UNRATE"
+    },
+    "vix": {
+      "age_days_at_operating_date": 8,
+      "freshness_max_age_days": 7,
+      "freshness_status": "STALE",
+      "latest_observation_date": "2026-08-20",
+      "latest_value": 16.01,
+      "row_count_asof": 2453,
+      "series_key": "FRED::VIXCLS"
+    }
+  },
+  "stale_series": [
+    "fed",
+    "nominal",
+    "real",
+    "m2",
+    "dollar",
+    "vix",
+    "hy",
+    "unemployment"
+  ]
+}

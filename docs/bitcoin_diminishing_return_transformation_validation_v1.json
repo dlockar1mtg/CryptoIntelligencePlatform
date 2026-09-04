@@ -1,0 +1,283 @@
+{
+  "candidate_summary": {
+    "WEALTH_POWER_033": {
+      "bear_median_capture_rate": 1.0,
+      "bull_median_capture_rate": 0.5,
+      "gamma": 0.3333333333333333,
+      "mean_absolute_base_error_pct_points": 185.0560265408652,
+      "mean_heldout_band_coverage": 0.2708333333333333,
+      "median_absolute_base_error_pct_points": 147.9023684691519,
+      "walkforward_phase_test_count": 4
+    },
+    "WEALTH_POWER_050": {
+      "bear_median_capture_rate": 0.75,
+      "bull_median_capture_rate": 0.5,
+      "gamma": 0.5,
+      "mean_absolute_base_error_pct_points": 226.23645951171852,
+      "mean_heldout_band_coverage": 0.3541666666666667,
+      "median_absolute_base_error_pct_points": 217.1967944166339,
+      "walkforward_phase_test_count": 4
+    },
+    "WEALTH_POWER_067": {
+      "bear_median_capture_rate": 0.75,
+      "bull_median_capture_rate": 0.75,
+      "gamma": 0.6666666666666666,
+      "mean_absolute_base_error_pct_points": 342.3455800254923,
+      "mean_heldout_band_coverage": 0.375,
+      "median_absolute_base_error_pct_points": 298.60353548973524,
+      "walkforward_phase_test_count": 4
+    }
+  },
+  "candidate_transformations": {
+    "WEALTH_POWER_033": {
+      "formula": "(1 + historical_return) ** gamma - 1",
+      "gamma": 0.3333333333333333
+    },
+    "WEALTH_POWER_050": {
+      "formula": "(1 + historical_return) ** gamma - 1",
+      "gamma": 0.5
+    },
+    "WEALTH_POWER_067": {
+      "formula": "(1 + historical_return) ** gamma - 1",
+      "gamma": 0.6666666666666666
+    }
+  },
+  "completed_cycle_count": 3,
+  "current_2024_2028_cycle_used": false,
+  "current_cycle_outcomes_used_for_selection": false,
+  "cycle_summaries": [
+    {
+      "cycle_number": 1,
+      "cycle_start_halving": "2012-11-28",
+      "next_halving": "2016-07-09",
+      "phase_observations": {
+        "POST_HALVING_YEAR_2": 12,
+        "PRE_HALVING_YEAR": 12
+      },
+      "post_halving_peak_date": "2013-12-04",
+      "post_halving_peak_price": 1134.93223088837
+    },
+    {
+      "cycle_number": 2,
+      "cycle_start_halving": "2016-07-09",
+      "next_halving": "2020-05-11",
+      "phase_observations": {
+        "POST_HALVING_YEAR_2": 12,
+        "PRE_HALVING_YEAR": 12
+      },
+      "post_halving_peak_date": "2017-12-16",
+      "post_halving_peak_price": 19640.5138834015
+    },
+    {
+      "cycle_number": 3,
+      "cycle_start_halving": "2020-05-11",
+      "next_halving": "2024-04-20",
+      "phase_observations": {
+        "POST_HALVING_YEAR_2": 12,
+        "PRE_HALVING_YEAR": 8
+      },
+      "post_halving_peak_date": "2021-11-08",
+      "post_halving_peak_price": 67541.7555081824
+    }
+  ],
+  "diagnostic_leader": "WEALTH_POWER_033",
+  "diagnostic_ranking": [
+    "WEALTH_POWER_033",
+    "WEALTH_POWER_050",
+    "WEALTH_POWER_067"
+  ],
+  "independent_walkforward_heldout_cycles": 2,
+  "leader_relative_error_improvement_vs_second": 0.182023857072959,
+  "module42_changed": false,
+  "monthly_rows_treated_as_independent_cycles": false,
+  "production_forecast_change_authorized": false,
+  "recommended_next_gate": "REVIEW_BTC_DIMINISHING_RETURN_VALIDATION_AND_SELECT_RESEARCH_TRANSFORMATION",
+  "research_selection_status": "INSUFFICIENT_EVIDENCE_TO_SELECT_SINGLE_TRANSFORMATION",
+  "single_transformation_production_certified": false,
+  "study_id": "BITCOIN_DIMINISHING_RETURN_TRANSFORMATION_V1",
+  "walkforward_results": [
+    {
+      "heldout_cycle_number": 2,
+      "heldout_cycle_start_halving": "2016-07-09",
+      "phases": {
+        "POST_HALVING_YEAR_2": {
+          "candidates": {
+            "WEALTH_POWER_033": {
+              "absolute_base_error_pct_points": 438.739516846795,
+              "bear_at_or_below_heldout_median": true,
+              "bull_at_or_above_heldout_median": false,
+              "heldout_band_coverage": 0.08333333333333333,
+              "heldout_median_return_pct": 493.8450880400965,
+              "heldout_observations": 12,
+              "strategic_base_return_pct": 55.10557119330149,
+              "strategic_lower_return_pct": 30.38227006514852,
+              "strategic_upper_return_pct": 117.65871435675987
+            },
+            "WEALTH_POWER_050": {
+              "absolute_base_error_pct_points": 400.6705104617465,
+              "bear_at_or_below_heldout_median": true,
+              "bull_at_or_above_heldout_median": false,
+              "heldout_band_coverage": 0.08333333333333333,
+              "heldout_median_return_pct": 493.8450880400965,
+              "heldout_observations": 12,
+              "strategic_base_return_pct": 93.17457757835002,
+              "strategic_lower_return_pct": 48.88363693429821,
+              "strategic_upper_return_pct": 221.15749902889857
+            },
+            "WEALTH_POWER_067": {
+              "absolute_base_error_pct_points": 353.2545954463196,
+              "bear_at_or_below_heldout_median": true,
+              "bull_at_or_above_heldout_median": false,
+              "heldout_band_coverage": 0.25,
+              "heldout_median_return_pct": 493.8450880400965,
+              "heldout_observations": 12,
+              "strategic_base_return_pct": 140.59049259377684,
+              "strategic_lower_return_pct": 70.01532333958909,
+              "strategic_upper_return_pct": 373.9107336003283
+            }
+          },
+          "heldout_median_return_pct": 493.8450880400965,
+          "heldout_observations": 12,
+          "raw_training_median_return_pct": 273.20992782555334,
+          "training_observations": 12
+        },
+        "PRE_HALVING_YEAR": {
+          "candidates": {
+            "WEALTH_POWER_033": {
+              "absolute_base_error_pct_points": 5.679852378361971,
+              "bear_at_or_below_heldout_median": true,
+              "bull_at_or_above_heldout_median": true,
+              "heldout_band_coverage": 0.0,
+              "heldout_median_return_pct": 202.91857244301605,
+              "heldout_observations": 12,
+              "strategic_base_return_pct": 208.598424821378,
+              "strategic_lower_return_pct": 198.99202822538004,
+              "strategic_upper_return_pct": 240.7662571584258
+            },
+            "WEALTH_POWER_050": {
+              "absolute_base_error_pct_points": 239.24709862569352,
+              "bear_at_or_below_heldout_median": false,
+              "bull_at_or_above_heldout_median": true,
+              "heldout_band_coverage": 0.0,
+              "heldout_median_return_pct": 202.91857244301605,
+              "heldout_observations": 12,
+              "strategic_base_return_pct": 442.16567106870957,
+              "strategic_lower_return_pct": 417.0420421733695,
+              "strategic_upper_return_pct": 529.0496159368549
+            },
+            "WEALTH_POWER_067": {
+              "absolute_base_error_pct_points": 649.6537395070518,
+              "bear_at_or_below_heldout_median": false,
+              "bull_at_or_above_heldout_median": true,
+              "heldout_band_coverage": 0.25,
+              "heldout_median_return_pct": 202.91857244301605,
+              "heldout_observations": 12,
+              "strategic_base_return_pct": 852.5723119500678,
+              "strategic_lower_return_pct": 794.1618058427954,
+              "strategic_upper_return_pct": 1061.2166003948396
+            }
+          },
+          "heldout_median_return_pct": 202.91857244301605,
+          "heldout_observations": 12,
+          "raw_training_median_return_pct": 2841.119444526789,
+          "training_observations": 12
+        }
+      },
+      "training_cycle_numbers": [
+        1
+      ]
+    },
+    {
+      "heldout_cycle_number": 3,
+      "heldout_cycle_start_halving": "2020-05-11",
+      "phases": {
+        "POST_HALVING_YEAR_2": {
+          "candidates": {
+            "WEALTH_POWER_033": {
+              "absolute_base_error_pct_points": 250.25195518144966,
+              "bear_at_or_below_heldout_median": true,
+              "bull_at_or_above_heldout_median": false,
+              "heldout_band_coverage": 0.25,
+              "heldout_median_return_pct": 323.80004889912317,
+              "heldout_observations": 12,
+              "strategic_base_return_pct": 73.5480937176735,
+              "strategic_lower_return_pct": 51.53860384906614,
+              "strategic_upper_return_pct": 107.18843525277046
+            },
+            "WEALTH_POWER_050": {
+              "absolute_base_error_pct_points": 195.1464902075743,
+              "bear_at_or_below_heldout_median": true,
+              "bull_at_or_above_heldout_median": false,
+              "heldout_band_coverage": 0.3333333333333333,
+              "heldout_median_return_pct": 323.80004889912317,
+              "heldout_observations": 12,
+              "strategic_base_return_pct": 128.6535586915489,
+              "strategic_lower_return_pct": 86.59946156352557,
+              "strategic_upper_return_pct": 198.25875133795483
+            },
+            "WEALTH_POWER_067": {
+              "absolute_base_error_pct_points": 122.5215096154471,
+              "bear_at_or_below_heldout_median": true,
+              "bull_at_or_above_heldout_median": true,
+              "heldout_band_coverage": 0.25,
+              "heldout_median_return_pct": 323.80004889912317,
+              "heldout_observations": 12,
+              "strategic_base_return_pct": 201.27853928367608,
+              "strategic_lower_return_pct": 129.81546112279403,
+              "strategic_upper_return_pct": 329.38928504487035
+            }
+          },
+          "heldout_median_return_pct": 323.80004889912317,
+          "heldout_observations": 12,
+          "raw_training_median_return_pct": 423.1725318479742,
+          "training_observations": 24
+        },
+        "PRE_HALVING_YEAR": {
+          "candidates": {
+            "WEALTH_POWER_033": {
+              "absolute_base_error_pct_points": 45.55278175685411,
+              "bear_at_or_below_heldout_median": true,
+              "bull_at_or_above_heldout_median": true,
+              "heldout_band_coverage": 0.75,
+              "heldout_median_return_pct": 172.87497750705944,
+              "heldout_observations": 8,
+              "strategic_base_return_pct": 127.32219575020534,
+              "strategic_lower_return_pct": 49.39732013696484,
+              "strategic_upper_return_pct": 206.13654582500783
+            },
+            "WEALTH_POWER_050": {
+              "absolute_base_error_pct_points": 69.88173875185981,
+              "bear_at_or_below_heldout_median": true,
+              "bull_at_or_above_heldout_median": true,
+              "heldout_band_coverage": 1.0,
+              "heldout_median_return_pct": 172.87497750705944,
+              "heldout_observations": 8,
+              "strategic_base_return_pct": 242.75671625891925,
+              "strategic_lower_return_pct": 82.89400972549473,
+              "strategic_upper_return_pct": 435.6785768175317
+            },
+            "WEALTH_POWER_067": {
+              "absolute_base_error_pct_points": 243.95247553315085,
+              "bear_at_or_below_heldout_median": true,
+              "bull_at_or_above_heldout_median": true,
+              "heldout_band_coverage": 0.75,
+              "heldout_median_return_pct": 172.87497750705944,
+              "heldout_observations": 8,
+              "strategic_base_return_pct": 416.8274530402103,
+              "strategic_lower_return_pct": 124.12337150181148,
+              "strategic_upper_return_pct": 837.3776723424543
+            }
+          },
+          "heldout_median_return_pct": 172.87497750705944,
+          "heldout_observations": 8,
+          "raw_training_median_return_pct": 1075.1983429599516,
+          "training_observations": 24
+        }
+      },
+      "training_cycle_numbers": [
+        1,
+        2
+      ]
+    }
+  ]
+}

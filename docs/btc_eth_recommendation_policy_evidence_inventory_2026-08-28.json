@@ -1,0 +1,1311 @@
+{
+  "btc_eth_recommendation_rows": 24,
+  "by_asset": {
+    "bitcoin": {
+      "action_counts": {
+        "HOLD": 7,
+        "WAIT": 5
+      },
+      "conviction_counts": {
+        "LOW": 12
+      },
+      "current_portfolio_weight_present_rows": 12,
+      "distinct_recommendation_dates": 2,
+      "duplicate_recommendation_date_rows": 10,
+      "entry_strategy_present_rows": 12,
+      "evidence_status_counts": {
+        "ACCUMULATING_EVIDENCE": 12
+      },
+      "exact_outcome_coverage": {
+        "180": {
+          "eligible_rows": 12,
+          "exact_outcome_rows": 0,
+          "missing_exact_outcome_rows": 12
+        },
+        "30": {
+          "eligible_rows": 12,
+          "exact_outcome_rows": 12,
+          "missing_exact_outcome_rows": 0
+        },
+        "7": {
+          "eligible_rows": 12,
+          "exact_outcome_rows": 12,
+          "missing_exact_outcome_rows": 0
+        },
+        "90": {
+          "eligible_rows": 12,
+          "exact_outcome_rows": 0,
+          "missing_exact_outcome_rows": 12
+        }
+      },
+      "first_recommendation_date": "2026-07-14",
+      "forecast_confidence_present_rows": 12,
+      "investment_score_present_rows": 12,
+      "last_recommendation_date": "2026-07-28",
+      "recommendation_rows": 12,
+      "successful_source_run_rows": 12,
+      "target_portfolio_pct_present_rows": 12
+    },
+    "ethereum": {
+      "action_counts": {
+        "WAIT": 12
+      },
+      "conviction_counts": {
+        "LOW": 12
+      },
+      "current_portfolio_weight_present_rows": 12,
+      "distinct_recommendation_dates": 2,
+      "duplicate_recommendation_date_rows": 10,
+      "entry_strategy_present_rows": 12,
+      "evidence_status_counts": {
+        "ACCUMULATING_EVIDENCE": 12
+      },
+      "exact_outcome_coverage": {
+        "180": {
+          "eligible_rows": 12,
+          "exact_outcome_rows": 0,
+          "missing_exact_outcome_rows": 12
+        },
+        "30": {
+          "eligible_rows": 12,
+          "exact_outcome_rows": 12,
+          "missing_exact_outcome_rows": 0
+        },
+        "7": {
+          "eligible_rows": 12,
+          "exact_outcome_rows": 12,
+          "missing_exact_outcome_rows": 0
+        },
+        "90": {
+          "eligible_rows": 12,
+          "exact_outcome_rows": 0,
+          "missing_exact_outcome_rows": 12
+        }
+      },
+      "first_recommendation_date": "2026-07-14",
+      "forecast_confidence_present_rows": 12,
+      "investment_score_present_rows": 12,
+      "last_recommendation_date": "2026-07-28",
+      "recommendation_rows": 12,
+      "successful_source_run_rows": 12,
+      "target_portfolio_pct_present_rows": 12
+    }
+  },
+  "evidence_class": "HISTORICAL_RECONSTRUCTION_NOT_STRICT_VINTAGE_POINT_IN_TIME",
+  "exact_outcome_horizons_days": [
+    7,
+    30,
+    90,
+    180
+  ],
+  "experiment_id": "CRYPTO_BTC_ETH_RECOMMENDATION_POLICY_VALIDATION_V1",
+  "governed_source_hashes_before": {
+    "database": "586fcc96f25dc54c8809fb13ae716b2108b661e2bd4f58c668189a9ad60eeb03",
+    "design": "6fd51aff0f8e4fa0e6a377b494e806d20989e973bb59fecf5547fc9311eb7c9d",
+    "v4_365d_aux_results": "f6a57ac6adefe5a0b187d9a3310b6d1cb4a7af20068c1eea779ca9b9d1b97735",
+    "v4_7d_final_results": "fe82f2b8cdfe817bfbb825cd2d97eb7d02711c8d1a2d3e5b3daf6c17fe756a48"
+  },
+  "inventory_only": true,
+  "inventory_scope": "BTC_ETH_RECOMMENDATION_POLICY_EVIDENCE_INVENTORY",
+  "module42_lineage": [
+    {
+      "completed_at_utc": "2026-07-15 15:31:38.519511-05:00",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "recommendation_rows": 6,
+      "run_id": "738cfd48-b892-4227-8c86-2fd469206779",
+      "source_module30_run_id": "cd9d6f4c-ef24-4545-aad1-408b00ee5c4a",
+      "source_module37_run_id": "35422f74-95d8-4ffe-8407-f202207110a5",
+      "source_module38_run_id": "6d0b42fe-1d63-4e2a-b9d2-56f67cf68097",
+      "source_module39_run_id": "167d9f1b-556c-4263-aa4c-689bb0e94f6d",
+      "source_module40_run_id": "24d6bbdf-241b-401c-9838-39f093c12cc9",
+      "source_module41_run_id": "bfa7a8f6-80b4-4823-9dfd-2bd86468cc55",
+      "started_at_utc": "2026-07-15 15:31:38.258697-05:00",
+      "status": "SUCCESS"
+    },
+    {
+      "completed_at_utc": "2026-07-15 15:45:45.476922-05:00",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "recommendation_rows": 6,
+      "run_id": "2e097afe-7173-4359-83bc-bf5124b1f6db",
+      "source_module30_run_id": "cd9d6f4c-ef24-4545-aad1-408b00ee5c4a",
+      "source_module37_run_id": "35422f74-95d8-4ffe-8407-f202207110a5",
+      "source_module38_run_id": "6d0b42fe-1d63-4e2a-b9d2-56f67cf68097",
+      "source_module39_run_id": "167d9f1b-556c-4263-aa4c-689bb0e94f6d",
+      "source_module40_run_id": "24d6bbdf-241b-401c-9838-39f093c12cc9",
+      "source_module41_run_id": "bfa7a8f6-80b4-4823-9dfd-2bd86468cc55",
+      "started_at_utc": "2026-07-15 15:45:45.235368-05:00",
+      "status": "SUCCESS"
+    },
+    {
+      "completed_at_utc": "2026-07-16 08:22:55.402059-05:00",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "recommendation_rows": 6,
+      "run_id": "ef4c4095-f86f-4ee4-94ac-537f0b297059",
+      "source_module30_run_id": "cd9d6f4c-ef24-4545-aad1-408b00ee5c4a",
+      "source_module37_run_id": "35422f74-95d8-4ffe-8407-f202207110a5",
+      "source_module38_run_id": "7f957012-d481-4fe4-bf85-366d394bb66a",
+      "source_module39_run_id": "5f7a5f48-6649-483c-9064-60e117114af6",
+      "source_module40_run_id": "93f7b29b-3754-49e9-9e59-b6c41bf6325f",
+      "source_module41_run_id": "85956258-0b5d-454d-a585-999d97b4e277",
+      "started_at_utc": "2026-07-16 08:22:55.216333-05:00",
+      "status": "SUCCESS"
+    },
+    {
+      "completed_at_utc": "2026-07-16 08:37:44.858031-05:00",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "recommendation_rows": 6,
+      "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+      "source_module30_run_id": "cd9d6f4c-ef24-4545-aad1-408b00ee5c4a",
+      "source_module37_run_id": "35422f74-95d8-4ffe-8407-f202207110a5",
+      "source_module38_run_id": "04cee77d-ed74-4e0b-8446-e518c71a5f11",
+      "source_module39_run_id": "9bf04e6d-4897-4f6a-9e87-e41ed942cc6c",
+      "source_module40_run_id": "62476a9b-8324-4ea7-838e-d70e6f5f2e0e",
+      "source_module41_run_id": "72389b58-ec1b-4ef2-a685-bdbcd12a5a04",
+      "started_at_utc": "2026-07-16 08:37:44.680221-05:00",
+      "status": "SUCCESS"
+    },
+    {
+      "completed_at_utc": "2026-07-26 07:57:02.899904-05:00",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "recommendation_rows": 6,
+      "run_id": "25f76808-8f8b-4c9a-822b-bff8941321ad",
+      "source_module30_run_id": "3e950f08-8391-4ae8-93d2-7794cca54e7f",
+      "source_module37_run_id": "fc59b410-e78b-4baf-8861-70b532836c82",
+      "source_module38_run_id": "74d684e0-a8d8-4935-8b7f-fb56d9a932ca",
+      "source_module39_run_id": "e87324c5-8dab-42b3-b660-6649bc5d866e",
+      "source_module40_run_id": "f53b8353-0398-427d-85b9-c391ef3c324a",
+      "source_module41_run_id": "9a2c45a6-af0a-4a8f-bbdb-940736a85090",
+      "started_at_utc": "2026-07-26 07:57:02.709338-05:00",
+      "status": "SUCCESS"
+    },
+    {
+      "completed_at_utc": "2026-07-26 08:48:28.451499-05:00",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "recommendation_rows": 6,
+      "run_id": "4e85715d-6c34-4046-9ad1-6c38626795eb",
+      "source_module30_run_id": "3e950f08-8391-4ae8-93d2-7794cca54e7f",
+      "source_module37_run_id": "fc59b410-e78b-4baf-8861-70b532836c82",
+      "source_module38_run_id": "74d684e0-a8d8-4935-8b7f-fb56d9a932ca",
+      "source_module39_run_id": "e87324c5-8dab-42b3-b660-6649bc5d866e",
+      "source_module40_run_id": "d62212ce-803d-47aa-a720-e302c291297b",
+      "source_module41_run_id": "55b45f89-5534-41cb-b12b-379a92ff0e42",
+      "started_at_utc": "2026-07-26 08:48:28.228601-05:00",
+      "status": "SUCCESS"
+    },
+    {
+      "completed_at_utc": "2026-07-26 12:23:34.060056-05:00",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "recommendation_rows": 6,
+      "run_id": "ba24e47a-bece-4ee6-83c1-4ad8c264149f",
+      "source_module30_run_id": "3e950f08-8391-4ae8-93d2-7794cca54e7f",
+      "source_module37_run_id": "a275b6c6-b80d-429e-846c-e3be8be757fc",
+      "source_module38_run_id": "c2294bdc-b2db-4284-b6d2-b4063d5e12a6",
+      "source_module39_run_id": "cac3174f-08f5-453e-8613-aef3d505cbb8",
+      "source_module40_run_id": "89e95f7e-0535-4d06-87a7-f5bd33d88073",
+      "source_module41_run_id": "b0953a39-223f-441b-86af-fa0deeee75fa",
+      "started_at_utc": "2026-07-26 12:23:33.903071-05:00",
+      "status": "SUCCESS"
+    },
+    {
+      "completed_at_utc": "2026-07-28 11:06:59.919866-05:00",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "recommendation_rows": 6,
+      "run_id": "a3d89e3e-e7de-4a46-8ccd-34d30725e9ff",
+      "source_module30_run_id": "05fbccb0-e708-429f-a96d-d7f15bfd9863",
+      "source_module37_run_id": "b7c2332b-ffe5-4498-91ff-b70a4a15d736",
+      "source_module38_run_id": "b24826ed-cd18-4fa1-948a-603950f267d1",
+      "source_module39_run_id": "a38cd471-394e-4406-b64c-71a731540bf6",
+      "source_module40_run_id": "b342d8c8-6364-4008-995f-57d8be5c3207",
+      "source_module41_run_id": "779a7955-ba86-4dc4-bd9c-b3c3295e12e8",
+      "started_at_utc": "2026-07-28 11:06:59.764888-05:00",
+      "status": "SUCCESS"
+    },
+    {
+      "completed_at_utc": "2026-07-28 12:04:54.683274-05:00",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "recommendation_rows": 6,
+      "run_id": "a65878d9-02b1-4188-bf65-5abeae29ee52",
+      "source_module30_run_id": "328f5313-ff40-4d77-9f50-3f4bf56bb33e",
+      "source_module37_run_id": "eb0c19d5-3041-4b3c-b9b1-258ba0ee818b",
+      "source_module38_run_id": "7723c7f6-1237-4139-a47e-5cbe74240da5",
+      "source_module39_run_id": "90928c08-ea52-4635-8859-61bcf95e773e",
+      "source_module40_run_id": "0ef4dde4-42f5-4f49-98ad-63180417c7e2",
+      "source_module41_run_id": "7df21b71-68c3-41d4-a8a0-281dd0502a19",
+      "started_at_utc": "2026-07-28 12:04:54.529093-05:00",
+      "status": "SUCCESS"
+    },
+    {
+      "completed_at_utc": "2026-07-28 12:28:20.144073-05:00",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "recommendation_rows": 6,
+      "run_id": "b992d7e3-d926-4f42-a2f5-0670b10f1b03",
+      "source_module30_run_id": "a18e22bd-46fb-410a-aee5-ff6888940626",
+      "source_module37_run_id": "9d04112d-0749-461b-ac97-43d42b6ef95c",
+      "source_module38_run_id": "4557fa34-276f-4dae-bc5d-6d5b8e1dc33f",
+      "source_module39_run_id": "4af4af8a-3f0a-4f89-b464-74677374aa48",
+      "source_module40_run_id": "66e36d5c-4056-4165-8be1-ae4ad815ed58",
+      "source_module41_run_id": "55d5bfd2-4204-490f-80e2-e40c2f4b8a6d",
+      "started_at_utc": "2026-07-28 12:28:19.989143-05:00",
+      "status": "SUCCESS"
+    },
+    {
+      "completed_at_utc": "2026-07-28 13:20:08.322274-05:00",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "recommendation_rows": 6,
+      "run_id": "a10dfd7e-c6f3-4baf-b426-6ef45ee3c5eb",
+      "source_module30_run_id": "3f339fd8-f51e-42c8-b967-cd633db18dff",
+      "source_module37_run_id": "5a9c492c-5331-42b0-a32a-d3186e424b3b",
+      "source_module38_run_id": "cd63ef6f-f602-4bd4-b19c-ea0718301202",
+      "source_module39_run_id": "760ed55c-1e6a-4fad-9efc-dad019e431d1",
+      "source_module40_run_id": "da161623-9c0f-4fce-8517-2b4077a5a91f",
+      "source_module41_run_id": "9a149bd3-1ef4-421a-bb47-f56e99f18404",
+      "started_at_utc": "2026-07-28 13:20:08.166684-05:00",
+      "status": "SUCCESS"
+    },
+    {
+      "completed_at_utc": "2026-07-28 13:41:53.815243-05:00",
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "recommendation_rows": 6,
+      "run_id": "514e1646-e18f-444e-8fa4-4888960e6596",
+      "source_module30_run_id": "670194bb-6d1f-4116-b4d2-d1968d449870",
+      "source_module37_run_id": "b52ab1c2-8c7a-481e-9352-eaa184728ac5",
+      "source_module38_run_id": "ff6f8a0c-9ecf-4364-9900-8f68d5c5e9a8",
+      "source_module39_run_id": "671b709f-5659-419f-b864-7700f12b0aba",
+      "source_module40_run_id": "9b7ccb8e-a423-4b50-87b7-3297082bc6b1",
+      "source_module41_run_id": "722c9250-8f14-4804-83c2-4531f89b9213",
+      "started_at_utc": "2026-07-28 13:41:53.659889-05:00",
+      "status": "SUCCESS"
+    }
+  ],
+  "module42_recommendations_table_present": true,
+  "module42_run_rows": 12,
+  "module42_run_status_counts": {
+    "SUCCESS": 12
+  },
+  "module42_runs_table_present": true,
+  "module42_successful_run_rows": 12,
+  "module44_diagnostic_inventory": {
+    "bitcoin": {
+      "certification_authority": false,
+      "horizon_rows": {
+        "180": 10,
+        "30": 10,
+        "7": 10,
+        "90": 10
+      },
+      "matured_rows": {},
+      "reason": "Existing Module44 action-position and date-lookup semantics are diagnostic only for this experiment.",
+      "rows": 40
+    },
+    "ethereum": {
+      "certification_authority": false,
+      "horizon_rows": {
+        "180": 10,
+        "30": 10,
+        "7": 10,
+        "90": 10
+      },
+      "matured_rows": {},
+      "reason": "Existing Module44 action-position and date-lookup semantics are diagnostic only for this experiment.",
+      "rows": 40
+    }
+  },
+  "module44_outcomes_table_present": true,
+  "next_gate": "REVIEW_BTC_ETH_RECOMMENDATION_POLICY_EVIDENCE_INVENTORY_AND_DECIDE_SCORING_FEASIBILITY",
+  "policy_scoring_performed": false,
+  "policy_winner_selected": false,
+  "primary_assets": [
+    "bitcoin",
+    "ethereum"
+  ],
+  "production_policy_changed": false,
+  "recommendation_rows": [
+    {
+      "asset_id": "bitcoin",
+      "best_action": "HOLD",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-10"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-13"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-07-21"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-12"
+        }
+      },
+      "forecast_confidence": 0.430529480819992,
+      "investment_score": 47.244851603485074,
+      "long_term_signal": 50.365872187673844,
+      "medium_term_signal": 50.382290727746266,
+      "recommendation_date": "2026-07-14",
+      "regime_alignment_score": 68.58588877130596,
+      "reliability_score": 21.971379302109685,
+      "risk_score": 70.12767854081761,
+      "run_id": "25f76808-8f8b-4c9a-822b-bff8941321ad",
+      "short_term_signal": 32.49020014151659,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "bitcoin",
+      "best_action": "HOLD",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-10"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-13"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-07-21"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-12"
+        }
+      },
+      "forecast_confidence": 0.4305294808199919,
+      "investment_score": 47.244851603485074,
+      "long_term_signal": 50.365872187673844,
+      "medium_term_signal": 50.382290727746266,
+      "recommendation_date": "2026-07-14",
+      "regime_alignment_score": 68.58588877130596,
+      "reliability_score": 21.971379302109685,
+      "risk_score": 70.12767854081761,
+      "run_id": "2e097afe-7173-4359-83bc-bf5124b1f6db",
+      "short_term_signal": 32.49020014151659,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "bitcoin",
+      "best_action": "HOLD",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-10"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-13"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-07-21"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-12"
+        }
+      },
+      "forecast_confidence": 0.430529480819992,
+      "investment_score": 47.244851603485074,
+      "long_term_signal": 50.365872187673844,
+      "medium_term_signal": 50.382290727746266,
+      "recommendation_date": "2026-07-14",
+      "regime_alignment_score": 68.58588877130596,
+      "reliability_score": 21.971379302109685,
+      "risk_score": 70.12767854081761,
+      "run_id": "4e85715d-6c34-4046-9ad1-6c38626795eb",
+      "short_term_signal": 32.49020014151659,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "bitcoin",
+      "best_action": "HOLD",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-10"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-13"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-07-21"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-12"
+        }
+      },
+      "forecast_confidence": 0.4305294808199919,
+      "investment_score": 47.244851603485074,
+      "long_term_signal": 50.365872187673844,
+      "medium_term_signal": 50.382290727746266,
+      "recommendation_date": "2026-07-14",
+      "regime_alignment_score": 68.58588877130596,
+      "reliability_score": 21.971379302109685,
+      "risk_score": 70.12767854081761,
+      "run_id": "738cfd48-b892-4227-8c86-2fd469206779",
+      "short_term_signal": 32.49020014151659,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "bitcoin",
+      "best_action": "HOLD",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-10"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-13"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-07-21"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-12"
+        }
+      },
+      "forecast_confidence": 0.4305294808199919,
+      "investment_score": 47.244851603485074,
+      "long_term_signal": 50.365872187673844,
+      "medium_term_signal": 50.382290727746266,
+      "recommendation_date": "2026-07-14",
+      "regime_alignment_score": 68.58588877130596,
+      "reliability_score": 21.971379302109685,
+      "risk_score": 70.12767854081761,
+      "run_id": "ba24e47a-bece-4ee6-83c1-4ad8c264149f",
+      "short_term_signal": 32.49020014151659,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "bitcoin",
+      "best_action": "HOLD",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-10"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-13"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-07-21"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-12"
+        }
+      },
+      "forecast_confidence": 0.430529480819992,
+      "investment_score": 47.244851603485074,
+      "long_term_signal": 50.365872187673844,
+      "medium_term_signal": 50.382290727746266,
+      "recommendation_date": "2026-07-14",
+      "regime_alignment_score": 68.58588877130596,
+      "reliability_score": 21.971379302109685,
+      "risk_score": 70.12767854081761,
+      "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+      "short_term_signal": 32.490200141516596,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "bitcoin",
+      "best_action": "HOLD",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-10"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-13"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-07-21"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-12"
+        }
+      },
+      "forecast_confidence": 0.430529480819992,
+      "investment_score": 47.244851603485074,
+      "long_term_signal": 50.365872187673844,
+      "medium_term_signal": 50.382290727746266,
+      "recommendation_date": "2026-07-14",
+      "regime_alignment_score": 68.58588877130596,
+      "reliability_score": 21.971379302109685,
+      "risk_score": 70.12767854081761,
+      "run_id": "ef4c4095-f86f-4ee4-94ac-537f0b297059",
+      "short_term_signal": 32.490200141516596,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "ethereum",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-10"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-13"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-07-21"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-12"
+        }
+      },
+      "forecast_confidence": 0.44209785650460626,
+      "investment_score": 39.865734376993686,
+      "long_term_signal": 48.28195069017311,
+      "medium_term_signal": 48.03284624892076,
+      "recommendation_date": "2026-07-14",
+      "regime_alignment_score": 68.58588877130596,
+      "reliability_score": 22.387151099417213,
+      "risk_score": 54.06793939222887,
+      "run_id": "25f76808-8f8b-4c9a-822b-bff8941321ad",
+      "short_term_signal": 7.812401457030816,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "ethereum",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-10"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-13"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-07-21"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-12"
+        }
+      },
+      "forecast_confidence": 0.44209785650460626,
+      "investment_score": 39.865734376993686,
+      "long_term_signal": 48.28195069017311,
+      "medium_term_signal": 48.03284624892076,
+      "recommendation_date": "2026-07-14",
+      "regime_alignment_score": 68.58588877130596,
+      "reliability_score": 22.387151099417213,
+      "risk_score": 54.06793939222887,
+      "run_id": "2e097afe-7173-4359-83bc-bf5124b1f6db",
+      "short_term_signal": 7.812401457030816,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "ethereum",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-10"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-13"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-07-21"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-12"
+        }
+      },
+      "forecast_confidence": 0.44209785650460626,
+      "investment_score": 39.865734376993686,
+      "long_term_signal": 48.28195069017311,
+      "medium_term_signal": 48.03284624892076,
+      "recommendation_date": "2026-07-14",
+      "regime_alignment_score": 68.58588877130596,
+      "reliability_score": 22.387151099417213,
+      "risk_score": 54.06793939222887,
+      "run_id": "4e85715d-6c34-4046-9ad1-6c38626795eb",
+      "short_term_signal": 7.812401457030816,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "ethereum",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-10"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-13"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-07-21"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-12"
+        }
+      },
+      "forecast_confidence": 0.44209785650460626,
+      "investment_score": 39.865734376993686,
+      "long_term_signal": 48.28195069017311,
+      "medium_term_signal": 48.03284624892076,
+      "recommendation_date": "2026-07-14",
+      "regime_alignment_score": 68.58588877130596,
+      "reliability_score": 22.387151099417213,
+      "risk_score": 54.06793939222887,
+      "run_id": "738cfd48-b892-4227-8c86-2fd469206779",
+      "short_term_signal": 7.812401457030816,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "ethereum",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-10"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-13"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-07-21"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-12"
+        }
+      },
+      "forecast_confidence": 0.44209785650460626,
+      "investment_score": 39.865734376993686,
+      "long_term_signal": 48.28195069017311,
+      "medium_term_signal": 48.03284624892076,
+      "recommendation_date": "2026-07-14",
+      "regime_alignment_score": 68.58588877130596,
+      "reliability_score": 22.387151099417213,
+      "risk_score": 54.06793939222887,
+      "run_id": "ba24e47a-bece-4ee6-83c1-4ad8c264149f",
+      "short_term_signal": 7.812401457030816,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "ethereum",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-10"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-13"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-07-21"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-12"
+        }
+      },
+      "forecast_confidence": 0.44209785650460626,
+      "investment_score": 39.865734376993686,
+      "long_term_signal": 48.28195069017311,
+      "medium_term_signal": 48.03284624892076,
+      "recommendation_date": "2026-07-14",
+      "regime_alignment_score": 68.58588877130596,
+      "reliability_score": 22.387151099417213,
+      "risk_score": 54.06793939222887,
+      "run_id": "dcfc42b0-c6f6-44c2-ab48-a0216b97d240",
+      "short_term_signal": 7.812401457030816,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "ethereum",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-10"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-13"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-07-21"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-12"
+        }
+      },
+      "forecast_confidence": 0.44209785650460626,
+      "investment_score": 39.865734376993686,
+      "long_term_signal": 48.28195069017311,
+      "medium_term_signal": 48.03284624892076,
+      "recommendation_date": "2026-07-14",
+      "regime_alignment_score": 68.58588877130596,
+      "reliability_score": 22.387151099417213,
+      "risk_score": 54.06793939222887,
+      "run_id": "ef4c4095-f86f-4ee4-94ac-537f0b297059",
+      "short_term_signal": 7.812401457030816,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "bitcoin",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-24"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-27"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-04"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-26"
+        }
+      },
+      "forecast_confidence": 0.4329801786892958,
+      "investment_score": 40.25626518551726,
+      "long_term_signal": 48.05018774957147,
+      "medium_term_signal": 47.74212779109891,
+      "recommendation_date": "2026-07-28",
+      "regime_alignment_score": 49.879242576367375,
+      "reliability_score": 21.61123154480556,
+      "risk_score": 70.13227615274914,
+      "run_id": "514e1646-e18f-444e-8fa4-4888960e6596",
+      "short_term_signal": 16.88203170927979,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "bitcoin",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-24"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-27"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-04"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-26"
+        }
+      },
+      "forecast_confidence": 0.4309210223733979,
+      "investment_score": 38.97759615137742,
+      "long_term_signal": 47.437667652085146,
+      "medium_term_signal": 46.93894427473306,
+      "recommendation_date": "2026-07-28",
+      "regime_alignment_score": 40.54324664204602,
+      "reliability_score": 21.67349816181376,
+      "risk_score": 70.22424981051104,
+      "run_id": "a10dfd7e-c6f3-4baf-b426-6ef45ee3c5eb",
+      "short_term_signal": 18.861366166256566,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "bitcoin",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-24"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-27"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-04"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-26"
+        }
+      },
+      "forecast_confidence": 0.4314709745399108,
+      "investment_score": 34.37609872888737,
+      "long_term_signal": 46.035875080049706,
+      "medium_term_signal": 44.870541291745674,
+      "recommendation_date": "2026-07-28",
+      "regime_alignment_score": 24.956459025380227,
+      "reliability_score": 21.673236318620035,
+      "risk_score": 70.23231093509145,
+      "run_id": "a3d89e3e-e7de-4a46-8ccd-34d30725e9ff",
+      "short_term_signal": 11.176983744171554,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "bitcoin",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-24"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-27"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-04"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-26"
+        }
+      },
+      "forecast_confidence": 0.4313603627117524,
+      "investment_score": 38.99949520124203,
+      "long_term_signal": 47.45812562596056,
+      "medium_term_signal": 46.96664097086173,
+      "recommendation_date": "2026-07-28",
+      "regime_alignment_score": 40.83087578021104,
+      "reliability_score": 21.673291757732713,
+      "risk_score": 70.2307348463273,
+      "run_id": "a65878d9-02b1-4188-bf65-5abeae29ee52",
+      "short_term_signal": 18.702087496541065,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "bitcoin",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-24"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-27"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-04"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-26"
+        }
+      },
+      "forecast_confidence": 0.4312779416433872,
+      "investment_score": 38.99201861827139,
+      "long_term_signal": 47.45294052440942,
+      "medium_term_signal": 46.95962717513672,
+      "recommendation_date": "2026-07-28",
+      "regime_alignment_score": 40.76288407776648,
+      "reliability_score": 21.67334719684539,
+      "risk_score": 70.22908855539605,
+      "run_id": "b992d7e3-d926-4f42-a2f5-0670b10f1b03",
+      "short_term_signal": 18.729135995472074,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "ethereum",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-24"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-27"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-04"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-26"
+        }
+      },
+      "forecast_confidence": 0.3350874257696783,
+      "investment_score": 33.39768874695304,
+      "long_term_signal": 47.60625710678426,
+      "medium_term_signal": 47.16532714726432,
+      "recommendation_date": "2026-07-28",
+      "regime_alignment_score": 49.879242576367375,
+      "reliability_score": 0.0,
+      "risk_score": 54.11053643324269,
+      "run_id": "514e1646-e18f-444e-8fa4-4888960e6596",
+      "short_term_signal": 7.862391821699738,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "ethereum",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-24"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-27"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-04"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-26"
+        }
+      },
+      "forecast_confidence": 0.3344688803908013,
+      "investment_score": 32.11708298432546,
+      "long_term_signal": 46.92444733583652,
+      "medium_term_signal": 46.222535362987685,
+      "recommendation_date": "2026-07-28",
+      "regime_alignment_score": 40.54324664204602,
+      "reliability_score": 0.0,
+      "risk_score": 54.10467721680116,
+      "run_id": "a10dfd7e-c6f3-4baf-b426-6ef45ee3c5eb",
+      "short_term_signal": 10.154136626080195,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "ethereum",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-24"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-27"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-04"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-26"
+        }
+      },
+      "forecast_confidence": 0.33606315671270687,
+      "investment_score": 27.566892579462234,
+      "long_term_signal": 45.749416979554205,
+      "medium_term_signal": 44.3993433101186,
+      "recommendation_date": "2026-07-28",
+      "regime_alignment_score": 24.956459025380227,
+      "reliability_score": 0.0,
+      "risk_score": 54.115037064779095,
+      "run_id": "a3d89e3e-e7de-4a46-8ccd-34d30725e9ff",
+      "short_term_signal": 2.248358223572552,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "ethereum",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-24"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-27"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-04"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-26"
+        }
+      },
+      "forecast_confidence": 0.34184735562038093,
+      "investment_score": 31.601751177663047,
+      "long_term_signal": 46.97478552047233,
+      "medium_term_signal": 46.294717083188694,
+      "recommendation_date": "2026-07-28",
+      "regime_alignment_score": 40.83087578021104,
+      "reliability_score": 0.0,
+      "risk_score": 54.115724053823804,
+      "run_id": "a65878d9-02b1-4188-bf65-5abeae29ee52",
+      "short_term_signal": 7.228251531904945,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    },
+    {
+      "asset_id": "ethereum",
+      "best_action": "WAIT",
+      "conviction": "LOW",
+      "current_portfolio_weight_present": true,
+      "current_price_present": true,
+      "entry_strategy_present": true,
+      "evidence_status": "ACCUMULATING_EVIDENCE",
+      "exact_outcome_coverage": {
+        "180": {
+          "exact_price_available": false,
+          "outcome_due_date": "2027-01-24"
+        },
+        "30": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-27"
+        },
+        "7": {
+          "exact_price_available": true,
+          "outcome_due_date": "2026-08-04"
+        },
+        "90": {
+          "exact_price_available": false,
+          "outcome_due_date": "2026-10-26"
+        }
+      },
+      "forecast_confidence": 0.33575037236685734,
+      "investment_score": 32.080661058534865,
+      "long_term_signal": 46.96379858302954,
+      "medium_term_signal": 46.27899951366366,
+      "recommendation_date": "2026-07-28",
+      "regime_alignment_score": 40.76288407776648,
+      "reliability_score": 0.0,
+      "risk_score": 54.113296514987844,
+      "run_id": "b992d7e3-d926-4f42-a2f5-0670b10f1b03",
+      "short_term_signal": 9.70289564750382,
+      "source_module42_run_successful": true,
+      "suggested_timeline_present": true,
+      "target_portfolio_pct_present": true,
+      "weight_change_pct_present": true
+    }
+  ],
+  "source_database_modified": false,
+  "strict_point_in_time_claim_allowed": false,
+  "threshold_optimization_performed": false
+}

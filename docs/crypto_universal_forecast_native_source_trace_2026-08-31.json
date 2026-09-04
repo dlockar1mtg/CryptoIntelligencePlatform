@@ -1,0 +1,3689 @@
+{
+  "adjudication": {
+    "point_forecast_contract_authority_determined": false,
+    "reason": "Static source trace identifies candidate mappings between universal forecast keys and native forecast fields. Candidate lineage must be explicitly adjudicated before a single governed point-forecast authority may be selected.",
+    "repair_authorized": false,
+    "trace_status": "STATIC_CONTRACT_TO_NATIVE_MAPPING_CANDIDATES_FOUND"
+  },
+  "artifact_id": "CRYPTO_UNIVERSAL_FORECAST_NATIVE_SOURCE_TRACE_2026_08_31",
+  "database_authorities": {
+    "error": null,
+    "latest_native_examples": {
+      "AVAX": {
+        "latest_m40_forecast_memory": [
+          {
+            "asset_id": "avalanche",
+            "forecast_confidence": 0.23242446368200698,
+            "predicted_price": 6.490467010941627,
+            "predicted_return_pct": -0.4529599548830192,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "avalanche",
+            "forecast_confidence": 0.10690904279275087,
+            "predicted_price": 5.856297930110407,
+            "predicted_return_pct": -10.179479599533627,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "avalanche",
+            "forecast_confidence": 0.6722137604638339,
+            "predicted_price": 4.5574412898703445,
+            "predicted_return_pct": -30.10059371364501,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "avalanche",
+            "forecast_confidence": 0.9402063806579939,
+            "predicted_price": 3.328681536957923,
+            "predicted_return_pct": -48.94660219389688,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "avalanche",
+            "forecast_confidence": 0.3777760494660449,
+            "predicted_price": 6.732680279975659,
+            "predicted_return_pct": 0.9397343324686592,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "avalanche",
+            "forecast_confidence": 0.6300394494826207,
+            "predicted_price": 5.068826138445399,
+            "predicted_return_pct": -24.00560512075864,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "avalanche",
+            "forecast_confidence": 0.8418906323584074,
+            "predicted_price": 3.9317459072140086,
+            "predicted_return_pct": -41.05328474941516,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "avalanche",
+            "forecast_confidence": 0.13546200089241905,
+            "predicted_price": 6.042081415117467,
+            "predicted_return_pct": -9.414071737369316,
+            "record_date": "2026-07-14"
+          }
+        ],
+        "latest_m40_pending_forecasts": [
+          {
+            "asset_id": "avalanche",
+            "forecast_confidence": 0.23242446368200698,
+            "predicted_price": 6.490467010941627,
+            "predicted_return_pct": -0.4529599548830192,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "avalanche",
+            "forecast_confidence": 0.9402063806579939,
+            "predicted_price": 3.328681536957923,
+            "predicted_return_pct": -48.94660219389688,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "avalanche",
+            "forecast_confidence": 0.6722137604638339,
+            "predicted_price": 4.5574412898703445,
+            "predicted_return_pct": -30.10059371364501,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "avalanche",
+            "forecast_confidence": 0.10690904279275087,
+            "predicted_price": 5.856297930110407,
+            "predicted_return_pct": -10.179479599533627,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "avalanche",
+            "forecast_confidence": 0.13546200089241905,
+            "predicted_price": 6.042081415117467,
+            "predicted_return_pct": -9.414071737369316,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "avalanche",
+            "forecast_confidence": 0.6300394494826207,
+            "predicted_price": 5.068826138445399,
+            "predicted_return_pct": -24.00560512075864,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "avalanche",
+            "forecast_confidence": 0.8418906323584074,
+            "predicted_price": 3.9317459072140086,
+            "predicted_return_pct": -41.05328474941516,
+            "record_date": "2026-07-14"
+          }
+        ],
+        "latest_m42_asset_recommendations": [
+          {
+            "asset_id": "avalanche",
+            "evidence_status": "ACCUMULATING_EVIDENCE",
+            "forecast_confidence": 0.16390904338994358,
+            "record_date": "2026-07-28"
+          }
+        ],
+        "latest_m42_price_projections": [
+          {
+            "asset_id": "avalanche",
+            "evidence_status": "MODEL_VALIDATED",
+            "projection_confidence": 0.14157805501713894,
+            "projection_method": "CALIBRATED_ENSEMBLE",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 28.327467810495587
+          },
+          {
+            "asset_id": "avalanche",
+            "evidence_status": "MODEL_VALIDATED",
+            "projection_confidence": 0.07260097418096768,
+            "projection_method": "CALIBRATED_ENSEMBLE",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 61.15766929303291
+          },
+          {
+            "asset_id": "avalanche",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.27754810097172417,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 84.79859829017784
+          },
+          {
+            "asset_id": "avalanche",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.24468382275500597,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 117.46310117974481
+          },
+          {
+            "asset_id": "avalanche",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.21600667791806158,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 140.38147248778012
+          },
+          {
+            "asset_id": "avalanche",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.19069051799111064,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 158.19240907343394
+          },
+          {
+            "asset_id": "avalanche",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.16811098595825258,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 172.7175560544618
+          },
+          {
+            "asset_id": "avalanche",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.14840824043660283,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 184.5350728212128
+          },
+          {
+            "asset_id": "avalanche",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.13101467285997623,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 194.36134488610685
+          },
+          {
+            "asset_id": "avalanche",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.11565964567809213,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 202.5613683865231
+          }
+        ],
+        "latest_scenario_projections": [
+          {
+            "asset_id": "avalanche",
+            "projected_multiple": 0.08997803336304432,
+            "projected_price_usd": 0.5866567775270489,
+            "record_date": null,
+            "scenario": "BEAR"
+          },
+          {
+            "asset_id": "avalanche",
+            "projected_multiple": 0.7975973562426203,
+            "projected_price_usd": 5.200334762701884,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "avalanche",
+            "projected_multiple": 0.01806733765513631,
+            "projected_price_usd": 0.11779904151148873,
+            "record_date": null,
+            "scenario": "BEAR"
+          },
+          {
+            "asset_id": "avalanche",
+            "projected_multiple": 1.9860436750419188,
+            "projected_price_usd": 12.94900476127331,
+            "record_date": null,
+            "scenario": "BULL"
+          },
+          {
+            "asset_id": "avalanche",
+            "projected_multiple": 1.5093615307698334,
+            "projected_price_usd": 9.841037180619313,
+            "record_date": null,
+            "scenario": "BULL"
+          },
+          {
+            "asset_id": "avalanche",
+            "projected_multiple": 0.5074007645889562,
+            "projected_price_usd": 3.3082529851199944,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "avalanche",
+            "projected_multiple": 0.4481040119145344,
+            "projected_price_usd": 2.9216381576827644,
+            "record_date": null,
+            "scenario": "BEAR"
+          },
+          {
+            "asset_id": "avalanche",
+            "projected_multiple": 0.32278885316056916,
+            "projected_price_usd": 2.104583322606911,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "avalanche",
+            "projected_multiple": 1.1470907005707063,
+            "projected_price_usd": 7.479031367721005,
+            "record_date": null,
+            "scenario": "BULL"
+          }
+        ]
+      },
+      "BTC": {
+        "latest_m40_forecast_memory": [
+          {
+            "asset_id": "bitcoin",
+            "forecast_confidence": 0.6988904825976734,
+            "predicted_price": 60427.48445398881,
+            "predicted_return_pct": -5.071816554623584,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "bitcoin",
+            "forecast_confidence": 0.8688277732102729,
+            "predicted_price": 47618.89095100199,
+            "predicted_return_pct": -25.193397400084848,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "bitcoin",
+            "forecast_confidence": 0.8185830459085,
+            "predicted_price": 49104.8761330409,
+            "predicted_return_pct": -22.85899815721864,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "bitcoin",
+            "forecast_confidence": 0.9427009893045799,
+            "predicted_price": 44189.2512032065,
+            "predicted_return_pct": -30.58116877716712,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "bitcoin",
+            "forecast_confidence": 0.6143499224457311,
+            "predicted_price": 64955.536502494244,
+            "predicted_return_pct": 0.3561784511305365,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "bitcoin",
+            "forecast_confidence": 0.8099560886614972,
+            "predicted_price": 51943.470602973706,
+            "predicted_return_pct": -19.74743823410783,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "bitcoin",
+            "forecast_confidence": 0.9082521255835768,
+            "predicted_price": 49762.77510491406,
+            "predicted_return_pct": -23.116608567147065,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "bitcoin",
+            "forecast_confidence": 0.8574625022375792,
+            "predicted_price": 52302.984816255645,
+            "predicted_return_pct": -19.191989468898196,
+            "record_date": "2026-07-14"
+          }
+        ],
+        "latest_m40_pending_forecasts": [
+          {
+            "asset_id": "bitcoin",
+            "forecast_confidence": 0.6988904825976734,
+            "predicted_price": 60427.48445398881,
+            "predicted_return_pct": -5.071816554623584,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "bitcoin",
+            "forecast_confidence": 0.9427009893045799,
+            "predicted_price": 44189.2512032065,
+            "predicted_return_pct": -30.58116877716712,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "bitcoin",
+            "forecast_confidence": 0.8185830459085,
+            "predicted_price": 49104.8761330409,
+            "predicted_return_pct": -22.85899815721864,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "bitcoin",
+            "forecast_confidence": 0.8688277732102729,
+            "predicted_price": 47618.89095100199,
+            "predicted_return_pct": -25.193397400084848,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "bitcoin",
+            "forecast_confidence": 0.8574625022375792,
+            "predicted_price": 52302.984816255645,
+            "predicted_return_pct": -19.191989468898196,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "bitcoin",
+            "forecast_confidence": 0.8099560886614972,
+            "predicted_price": 51943.470602973706,
+            "predicted_return_pct": -19.74743823410783,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "bitcoin",
+            "forecast_confidence": 0.9082521255835768,
+            "predicted_price": 49762.77510491406,
+            "predicted_return_pct": -23.116608567147065,
+            "record_date": "2026-07-14"
+          }
+        ],
+        "latest_m42_asset_recommendations": [
+          {
+            "asset_id": "bitcoin",
+            "evidence_status": "ACCUMULATING_EVIDENCE",
+            "forecast_confidence": 0.4329801786892958,
+            "record_date": "2026-07-28"
+          }
+        ],
+        "latest_m42_price_projections": [
+          {
+            "asset_id": "bitcoin",
+            "evidence_status": "MODEL_VALIDATED",
+            "projection_confidence": 0.4281333882592451,
+            "projection_method": "CALIBRATED_ENSEMBLE",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 20.77736291220473
+          },
+          {
+            "asset_id": "bitcoin",
+            "evidence_status": "MODEL_VALIDATED",
+            "projection_confidence": 0.5988554245890972,
+            "projection_method": "CALIBRATED_ENSEMBLE",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 33.75519615948656
+          },
+          {
+            "asset_id": "bitcoin",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.2719517232195453,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 45.66986094827528
+          },
+          {
+            "asset_id": "bitcoin",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.23975010821258977,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 64.4518021760429
+          },
+          {
+            "asset_id": "bitcoin",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.21165119876907662,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 78.48650141605235
+          },
+          {
+            "asset_id": "bitcoin",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.18684550457289364,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 90.14949790101741
+          },
+          {
+            "asset_id": "bitcoin",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.16472125791320474,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 100.37741334842529
+          },
+          {
+            "asset_id": "bitcoin",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.1454157913003573,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 109.38043700417559
+          },
+          {
+            "asset_id": "bitcoin",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.12837294121837775,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 117.53269036986669
+          },
+          {
+            "asset_id": "bitcoin",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.11332752715293706,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 125.00174380307499
+          }
+        ],
+        "latest_scenario_projections": [
+          {
+            "asset_id": "bitcoin",
+            "projected_multiple": 0.27890530467146685,
+            "projected_price_usd": 17753.996074166895,
+            "record_date": null,
+            "scenario": "BEAR"
+          },
+          {
+            "asset_id": "bitcoin",
+            "projected_multiple": 0.9024561691696723,
+            "projected_price_usd": 57446.74990466466,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "bitcoin",
+            "projected_multiple": 0.7746247248449343,
+            "projected_price_usd": 49309.51148472913,
+            "record_date": null,
+            "scenario": "BEAR"
+          },
+          {
+            "asset_id": "bitcoin",
+            "projected_multiple": 2.083278194864039,
+            "projected_price_usd": 132613.15677226527,
+            "record_date": null,
+            "scenario": "BULL"
+          },
+          {
+            "asset_id": "bitcoin",
+            "projected_multiple": 1.1581090453113823,
+            "projected_price_usd": 73720.58938834135,
+            "record_date": null,
+            "scenario": "BULL"
+          },
+          {
+            "asset_id": "bitcoin",
+            "projected_multiple": 0.46480850346021807,
+            "projected_price_usd": 29587.850096263643,
+            "record_date": null,
+            "scenario": "BEAR"
+          },
+          {
+            "asset_id": "bitcoin",
+            "projected_multiple": 0.9663668850781582,
+            "projected_price_usd": 61515.05043653524,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "bitcoin",
+            "projected_multiple": 0.8427721912330747,
+            "projected_price_usd": 53647.5066051326,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "bitcoin",
+            "projected_multiple": 1.5532750308210108,
+            "projected_price_usd": 98875.27536194226,
+            "record_date": null,
+            "scenario": "BULL"
+          }
+        ]
+      },
+      "ETH": {
+        "latest_m40_forecast_memory": [
+          {
+            "asset_id": "ethereum",
+            "forecast_confidence": 0.5749819632724404,
+            "predicted_price": 1766.0799028316887,
+            "predicted_return_pct": -7.4546515384214045,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "ethereum",
+            "forecast_confidence": 0.6988480250930711,
+            "predicted_price": 1258.5113907209925,
+            "predicted_return_pct": -34.05203523895152,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "ethereum",
+            "forecast_confidence": 0.6681368956371891,
+            "predicted_price": 1362.0023644921846,
+            "predicted_return_pct": -28.62894638836976,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "ethereum",
+            "forecast_confidence": 0.9325196408230596,
+            "predicted_price": 1040.7388513132798,
+            "predicted_return_pct": -45.46365682670385,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "ethereum",
+            "forecast_confidence": 0.7304173137084455,
+            "predicted_price": 1765.2191031091322,
+            "predicted_return_pct": -6.0498963159561185,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "ethereum",
+            "forecast_confidence": 0.8111292471296216,
+            "predicted_price": 1479.7136408726064,
+            "predicted_return_pct": -21.245328844551505,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "ethereum",
+            "forecast_confidence": 0.8968960214851732,
+            "predicted_price": 1173.0626478271531,
+            "predicted_return_pct": -37.566188130909566,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "ethereum",
+            "forecast_confidence": 0.7923486187838258,
+            "predicted_price": 1260.518500427127,
+            "predicted_return_pct": -32.91153285039961,
+            "record_date": "2026-07-14"
+          }
+        ],
+        "latest_m40_pending_forecasts": [
+          {
+            "asset_id": "ethereum",
+            "forecast_confidence": 0.5749819632724404,
+            "predicted_price": 1766.0799028316887,
+            "predicted_return_pct": -7.4546515384214045,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "ethereum",
+            "forecast_confidence": 0.9325196408230596,
+            "predicted_price": 1040.7388513132798,
+            "predicted_return_pct": -45.46365682670385,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "ethereum",
+            "forecast_confidence": 0.6681368956371891,
+            "predicted_price": 1362.0023644921846,
+            "predicted_return_pct": -28.62894638836976,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "ethereum",
+            "forecast_confidence": 0.6988480250930711,
+            "predicted_price": 1258.5113907209925,
+            "predicted_return_pct": -34.05203523895152,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "ethereum",
+            "forecast_confidence": 0.7923486187838258,
+            "predicted_price": 1260.518500427127,
+            "predicted_return_pct": -32.91153285039961,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "ethereum",
+            "forecast_confidence": 0.8111292471296216,
+            "predicted_price": 1479.7136408726064,
+            "predicted_return_pct": -21.245328844551505,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "ethereum",
+            "forecast_confidence": 0.8968960214851732,
+            "predicted_price": 1173.0626478271531,
+            "predicted_return_pct": -37.566188130909566,
+            "record_date": "2026-07-14"
+          }
+        ],
+        "latest_m42_asset_recommendations": [
+          {
+            "asset_id": "ethereum",
+            "evidence_status": "ACCUMULATING_EVIDENCE",
+            "forecast_confidence": 0.3350874257696783,
+            "record_date": "2026-07-28"
+          }
+        ],
+        "latest_m42_price_projections": [
+          {
+            "asset_id": "ethereum",
+            "evidence_status": "MODEL_VALIDATED",
+            "projection_confidence": 0.35014715976188426,
+            "projection_method": "CALIBRATED_ENSEMBLE",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 35.73036408250553
+          },
+          {
+            "asset_id": "ethereum",
+            "evidence_status": "MODEL_VALIDATED",
+            "projection_confidence": 0.4785552816855523,
+            "projection_method": "CALIBRATED_ENSEMBLE",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 68.8658906151474
+          },
+          {
+            "asset_id": "ethereum",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.1765598358615985,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 70.75548326855447
+          },
+          {
+            "asset_id": "ethereum",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.15565350810313616,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 100.68488621494805
+          },
+          {
+            "asset_id": "ethereum",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.13741078920985855,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 123.60201730067257
+          },
+          {
+            "asset_id": "ethereum",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.1213061319425267,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 143.0997109865712
+          },
+          {
+            "asset_id": "ethereum",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.10694235695867525,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 160.59727097133134
+          },
+          {
+            "asset_id": "ethereum",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.0944086249563809,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 176.35073895455773
+          },
+          {
+            "asset_id": "ethereum",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.08334385663108912,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 190.93229717346009
+          },
+          {
+            "asset_id": "ethereum",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.07357588823428847,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 204.582640744784
+          }
+        ],
+        "latest_scenario_projections": [
+          {
+            "asset_id": "ethereum",
+            "projected_multiple": 0.3787436391177803,
+            "projected_price_usd": 722.7716362740248,
+            "record_date": null,
+            "scenario": "BEAR"
+          },
+          {
+            "asset_id": "ethereum",
+            "projected_multiple": 0.1982632615090184,
+            "projected_price_usd": 378.3537124681202,
+            "record_date": null,
+            "scenario": "BEAR"
+          },
+          {
+            "asset_id": "ethereum",
+            "projected_multiple": 2.2860614225891087,
+            "projected_price_usd": 4362.5824551836995,
+            "record_date": null,
+            "scenario": "BULL"
+          },
+          {
+            "asset_id": "ethereum",
+            "projected_multiple": 1.0204253549647802,
+            "projected_price_usd": 1947.3185218934884,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "ethereum",
+            "projected_multiple": 3.967160991508203,
+            "projected_price_usd": 7570.692006534764,
+            "record_date": null,
+            "scenario": "BULL"
+          },
+          {
+            "asset_id": "ethereum",
+            "projected_multiple": 1.1063848134774723,
+            "projected_price_usd": 2111.3583949515996,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "ethereum",
+            "projected_multiple": 1.3173341941596708,
+            "projected_price_usd": 2513.921536082666,
+            "record_date": null,
+            "scenario": "BULL"
+          },
+          {
+            "asset_id": "ethereum",
+            "projected_multiple": 1.0625361716291788,
+            "projected_price_usd": 2027.680277766827,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "ethereum",
+            "projected_multiple": 0.7235165157698893,
+            "projected_price_usd": 1380.7155077043105,
+            "record_date": null,
+            "scenario": "BEAR"
+          }
+        ]
+      },
+      "LINK": {
+        "latest_m40_forecast_memory": [
+          {
+            "asset_id": "chainlink",
+            "forecast_confidence": 0.3976849038771422,
+            "predicted_price": 7.834832801748457,
+            "predicted_return_pct": -5.9443841326715745,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "chainlink",
+            "forecast_confidence": 0.5954195673243192,
+            "predicted_price": 6.1820517766190655,
+            "predicted_return_pct": -25.785692957754314,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "chainlink",
+            "forecast_confidence": 0.553451076248286,
+            "predicted_price": 5.499517148538409,
+            "predicted_return_pct": -33.979385971927876,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "chainlink",
+            "forecast_confidence": 0.8997914813604209,
+            "predicted_price": 4.777669036069575,
+            "predicted_return_pct": -42.64502957899669,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "chainlink",
+            "forecast_confidence": 0.47145252730026665,
+            "predicted_price": 7.821698446386911,
+            "predicted_return_pct": -6.102059467143923,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "chainlink",
+            "forecast_confidence": 0.6768118749119124,
+            "predicted_price": 6.574975651740424,
+            "predicted_return_pct": -21.068719666981703,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "chainlink",
+            "forecast_confidence": 0.9098120819896496,
+            "predicted_price": 4.9399700184207544,
+            "predicted_return_pct": -40.69663843432467,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "chainlink",
+            "forecast_confidence": 0.6056400772306438,
+            "predicted_price": 5.20802109232824,
+            "predicted_return_pct": -37.47873838741608,
+            "record_date": "2026-07-14"
+          }
+        ],
+        "latest_m40_pending_forecasts": [
+          {
+            "asset_id": "chainlink",
+            "forecast_confidence": 0.3976849038771422,
+            "predicted_price": 7.834832801748457,
+            "predicted_return_pct": -5.9443841326715745,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "chainlink",
+            "forecast_confidence": 0.8997914813604209,
+            "predicted_price": 4.777669036069575,
+            "predicted_return_pct": -42.64502957899669,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "chainlink",
+            "forecast_confidence": 0.553451076248286,
+            "predicted_price": 5.499517148538409,
+            "predicted_return_pct": -33.979385971927876,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "chainlink",
+            "forecast_confidence": 0.5954195673243192,
+            "predicted_price": 6.1820517766190655,
+            "predicted_return_pct": -25.785692957754314,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "chainlink",
+            "forecast_confidence": 0.6056400772306438,
+            "predicted_price": 5.20802109232824,
+            "predicted_return_pct": -37.47873838741608,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "chainlink",
+            "forecast_confidence": 0.6768118749119124,
+            "predicted_price": 6.574975651740424,
+            "predicted_return_pct": -21.068719666981703,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "chainlink",
+            "forecast_confidence": 0.9098120819896496,
+            "predicted_price": 4.9399700184207544,
+            "predicted_return_pct": -40.69663843432467,
+            "record_date": "2026-07-14"
+          }
+        ],
+        "latest_m42_asset_recommendations": [
+          {
+            "asset_id": "chainlink",
+            "evidence_status": "ACCUMULATING_EVIDENCE",
+            "forecast_confidence": 0.30253209466976266,
+            "record_date": "2026-07-28"
+          }
+        ],
+        "latest_m42_price_projections": [
+          {
+            "asset_id": "chainlink",
+            "evidence_status": "MODEL_VALIDATED",
+            "projection_confidence": 0.24214569667563124,
+            "projection_method": "CALIBRATED_ENSEMBLE",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 34.58702587617584
+          },
+          {
+            "asset_id": "chainlink",
+            "evidence_status": "MODEL_VALIDATED",
+            "projection_confidence": 0.4056988494086256,
+            "projection_method": "CALIBRATED_ENSEMBLE",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 60.57153428447559
+          },
+          {
+            "asset_id": "chainlink",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.25975173792503126,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 91.49913383246759
+          },
+          {
+            "asset_id": "chainlink",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.22899471471875832,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 132.56512194689103
+          },
+          {
+            "asset_id": "chainlink",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.20215634621958772,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 165.61680570536873
+          },
+          {
+            "asset_id": "chainlink",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.17846345653455445,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 195.0866124749764
+          },
+          {
+            "asset_id": "chainlink",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.15733172237195495,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 222.75021662091922
+          },
+          {
+            "asset_id": "chainlink",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.13889231538907476,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 248.7547132598056
+          },
+          {
+            "asset_id": "chainlink",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.12261402203766207,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 273.8395786648406
+          },
+          {
+            "asset_id": "chainlink",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.1082435580265002,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 298.27773857558884
+          }
+        ],
+        "latest_scenario_projections": [
+          {
+            "asset_id": "chainlink",
+            "projected_multiple": 1.3060779252085981,
+            "projected_price_usd": 10.879629116987623,
+            "record_date": null,
+            "scenario": "BULL"
+          },
+          {
+            "asset_id": "chainlink",
+            "projected_multiple": 0.8529524944733127,
+            "projected_price_usd": 7.105094278962695,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "chainlink",
+            "projected_multiple": 0.5906495861946306,
+            "projected_price_usd": 4.920111053001273,
+            "record_date": null,
+            "scenario": "BEAR"
+          },
+          {
+            "asset_id": "chainlink",
+            "projected_multiple": 0.7671401964217938,
+            "projected_price_usd": 6.390277836193542,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "chainlink",
+            "projected_multiple": 3.800541211915464,
+            "projected_price_usd": 31.658508295255814,
+            "record_date": null,
+            "scenario": "BULL"
+          },
+          {
+            "asset_id": "chainlink",
+            "projected_multiple": 2.2279593759151712,
+            "projected_price_usd": 18.55890160137338,
+            "record_date": null,
+            "scenario": "BULL"
+          },
+          {
+            "asset_id": "chainlink",
+            "projected_multiple": 0.9483637557016142,
+            "projected_price_usd": 7.899870084994447,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "chainlink",
+            "projected_multiple": 0.07188686099751469,
+            "projected_price_usd": 0.5988175521092974,
+            "record_date": null,
+            "scenario": "BEAR"
+          },
+          {
+            "asset_id": "chainlink",
+            "projected_multiple": 0.2060581100102905,
+            "projected_price_usd": 1.7164640563857199,
+            "record_date": null,
+            "scenario": "BEAR"
+          }
+        ]
+      },
+      "SOL": {
+        "latest_m40_forecast_memory": [
+          {
+            "asset_id": "solana",
+            "forecast_confidence": 0.5188848939071351,
+            "predicted_price": 66.8972258170124,
+            "predicted_return_pct": -9.41472468921813,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "solana",
+            "forecast_confidence": 0.5384828619059583,
+            "predicted_price": 52.041725123866456,
+            "predicted_return_pct": -29.530500847845005,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "solana",
+            "forecast_confidence": 0.7118112387386702,
+            "predicted_price": 48.67811205298942,
+            "predicted_return_pct": -34.0851563263515,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "solana",
+            "forecast_confidence": 0.8857350342833206,
+            "predicted_price": 41.76649849625317,
+            "predicted_return_pct": -43.4441455704087,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "solana",
+            "forecast_confidence": 0.48318002516824576,
+            "predicted_price": 72.77728048451112,
+            "predicted_return_pct": -5.984652519685929,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "solana",
+            "forecast_confidence": 0.7240630018357713,
+            "predicted_price": 55.06433578767049,
+            "predicted_return_pct": -28.866637659642823,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "solana",
+            "forecast_confidence": 0.901885890286322,
+            "predicted_price": 45.42098509670939,
+            "predicted_return_pct": -41.324137583375034,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "solana",
+            "forecast_confidence": 0.4544452919414965,
+            "predicted_price": 59.292904616552974,
+            "predicted_return_pct": -23.404076196159444,
+            "record_date": "2026-07-14"
+          }
+        ],
+        "latest_m40_pending_forecasts": [
+          {
+            "asset_id": "solana",
+            "forecast_confidence": 0.5188848939071351,
+            "predicted_price": 66.8972258170124,
+            "predicted_return_pct": -9.41472468921813,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "solana",
+            "forecast_confidence": 0.8857350342833206,
+            "predicted_price": 41.76649849625317,
+            "predicted_return_pct": -43.4441455704087,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "solana",
+            "forecast_confidence": 0.7118112387386702,
+            "predicted_price": 48.67811205298942,
+            "predicted_return_pct": -34.0851563263515,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "solana",
+            "forecast_confidence": 0.5384828619059583,
+            "predicted_price": 52.041725123866456,
+            "predicted_return_pct": -29.530500847845005,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "solana",
+            "forecast_confidence": 0.4544452919414965,
+            "predicted_price": 59.292904616552974,
+            "predicted_return_pct": -23.404076196159444,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "solana",
+            "forecast_confidence": 0.7240630018357713,
+            "predicted_price": 55.06433578767049,
+            "predicted_return_pct": -28.866637659642823,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "solana",
+            "forecast_confidence": 0.901885890286322,
+            "predicted_price": 45.42098509670939,
+            "predicted_return_pct": -41.324137583375034,
+            "record_date": "2026-07-14"
+          }
+        ],
+        "latest_m42_asset_recommendations": [
+          {
+            "asset_id": "solana",
+            "evidence_status": "ACCUMULATING_EVIDENCE",
+            "forecast_confidence": 0.3191428891547683,
+            "record_date": "2026-07-28"
+          }
+        ],
+        "latest_m42_price_projections": [
+          {
+            "asset_id": "solana",
+            "evidence_status": "MODEL_VALIDATED",
+            "projection_confidence": 0.31598330588292384,
+            "projection_method": "CALIBRATED_ENSEMBLE",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 43.34535382747472
+          },
+          {
+            "asset_id": "solana",
+            "evidence_status": "MODEL_VALIDATED",
+            "projection_confidence": 0.3669207654404054,
+            "projection_method": "CALIBRATED_ENSEMBLE",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 66.29597319308735
+          },
+          {
+            "asset_id": "solana",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.27452459614097574,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 76.92538459077042
+          },
+          {
+            "asset_id": "solana",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.24201832903512238,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 107.32916073476491
+          },
+          {
+            "asset_id": "solana",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.21365358224969772,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 129.2053684132777
+          },
+          {
+            "asset_id": "solana",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.18861320706624585,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 146.6768225777869
+          },
+          {
+            "asset_id": "solana",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.16627964797983694,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 161.36218762051192
+          },
+          {
+            "asset_id": "solana",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.14679153677222195,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 173.7178096342466
+          },
+          {
+            "asset_id": "solana",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.12958744819187656,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 184.38248322525718
+          },
+          {
+            "asset_id": "solana",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.11439969291240562,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 193.66585676890406
+          }
+        ],
+        "latest_scenario_projections": [
+          {
+            "asset_id": "solana",
+            "projected_multiple": 0.06836776534866883,
+            "projected_price_usd": 5.0489594709991925,
+            "record_date": null,
+            "scenario": "BEAR"
+          },
+          {
+            "asset_id": "solana",
+            "projected_multiple": 1.218951321290364,
+            "projected_price_usd": 90.01955507729338,
+            "record_date": null,
+            "scenario": "BULL"
+          },
+          {
+            "asset_id": "solana",
+            "projected_multiple": 1.8111694636734246,
+            "projected_price_usd": 133.7548648922824,
+            "record_date": null,
+            "scenario": "BULL"
+          },
+          {
+            "asset_id": "solana",
+            "projected_multiple": 0.5847500626059311,
+            "projected_price_usd": 43.18379212344801,
+            "record_date": null,
+            "scenario": "BEAR"
+          },
+          {
+            "asset_id": "solana",
+            "projected_multiple": 0.19994513014290122,
+            "projected_price_usd": 14.765947861053254,
+            "record_date": null,
+            "scenario": "BEAR"
+          },
+          {
+            "asset_id": "solana",
+            "projected_multiple": 2.6911122444746747,
+            "projected_price_usd": 198.7386392544547,
+            "record_date": null,
+            "scenario": "BULL"
+          },
+          {
+            "asset_id": "solana",
+            "projected_multiple": 0.5965862150248481,
+            "projected_price_usd": 44.05789197958503,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "solana",
+            "projected_multiple": 0.9018506919481475,
+            "projected_price_usd": 66.60167360037069,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "solana",
+            "projected_multiple": 0.7335064354365853,
+            "projected_price_usd": 54.16945025699182,
+            "record_date": null,
+            "scenario": "BASE"
+          }
+        ]
+      },
+      "XRP": {
+        "latest_m40_forecast_memory": [
+          {
+            "asset_id": "xrp",
+            "forecast_confidence": 0.6652009812888195,
+            "predicted_price": 0.9825568186243998,
+            "predicted_return_pct": -7.042874302327348,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "xrp",
+            "forecast_confidence": 0.649164748276547,
+            "predicted_price": 0.8143249196470975,
+            "predicted_return_pct": -22.958853391949134,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "xrp",
+            "forecast_confidence": 0.8019274617629787,
+            "predicted_price": 0.6271791855556699,
+            "predicted_return_pct": -40.664220855660375,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "xrp",
+            "forecast_confidence": 0.8476293448324304,
+            "predicted_price": 0.6914161361666956,
+            "predicted_return_pct": -34.58693129927194,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "xrp",
+            "forecast_confidence": 0.7819914654350527,
+            "predicted_price": 1.0677602191139246,
+            "predicted_return_pct": -3.8053856654121962,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "xrp",
+            "forecast_confidence": 0.8182623886773897,
+            "predicted_price": 0.6822064602190518,
+            "predicted_return_pct": -38.53995853882416,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "xrp",
+            "forecast_confidence": 0.8505283030679978,
+            "predicted_price": 0.768657299933849,
+            "predicted_return_pct": -30.75159460055415,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "xrp",
+            "forecast_confidence": 0.6588671983396263,
+            "predicted_price": 0.9116496509704645,
+            "predicted_return_pct": -17.869400813471675,
+            "record_date": "2026-07-14"
+          }
+        ],
+        "latest_m40_pending_forecasts": [
+          {
+            "asset_id": "xrp",
+            "forecast_confidence": 0.6652009812888195,
+            "predicted_price": 0.9825568186243998,
+            "predicted_return_pct": -7.042874302327348,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "xrp",
+            "forecast_confidence": 0.8476293448324304,
+            "predicted_price": 0.6914161361666956,
+            "predicted_return_pct": -34.58693129927194,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "xrp",
+            "forecast_confidence": 0.8019274617629787,
+            "predicted_price": 0.6271791855556699,
+            "predicted_return_pct": -40.664220855660375,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "xrp",
+            "forecast_confidence": 0.649164748276547,
+            "predicted_price": 0.8143249196470975,
+            "predicted_return_pct": -22.958853391949134,
+            "record_date": "2026-07-28"
+          },
+          {
+            "asset_id": "xrp",
+            "forecast_confidence": 0.6588671983396263,
+            "predicted_price": 0.9116496509704645,
+            "predicted_return_pct": -17.869400813471675,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "xrp",
+            "forecast_confidence": 0.8182623886773897,
+            "predicted_price": 0.6822064602190518,
+            "predicted_return_pct": -38.53995853882416,
+            "record_date": "2026-07-14"
+          },
+          {
+            "asset_id": "xrp",
+            "forecast_confidence": 0.8505283030679978,
+            "predicted_price": 0.768657299933849,
+            "predicted_return_pct": -30.75159460055415,
+            "record_date": "2026-07-14"
+          }
+        ],
+        "latest_m42_asset_recommendations": [
+          {
+            "asset_id": "xrp",
+            "evidence_status": "ACCUMULATING_EVIDENCE",
+            "forecast_confidence": 0.37820095140836535,
+            "record_date": "2026-07-28"
+          }
+        ],
+        "latest_m42_price_projections": [
+          {
+            "asset_id": "xrp",
+            "evidence_status": "MODEL_VALIDATED",
+            "projection_confidence": 0.40520399625341363,
+            "projection_method": "CALIBRATED_ENSEMBLE",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 21.533302445236245
+          },
+          {
+            "asset_id": "xrp",
+            "evidence_status": "MODEL_VALIDATED",
+            "projection_confidence": 0.4480166867549515,
+            "projection_method": "CALIBRATED_ENSEMBLE",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 26.720044870560177
+          },
+          {
+            "asset_id": "xrp",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.2813821712167311,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 87.2346029090891
+          },
+          {
+            "asset_id": "xrp",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.24806390340039683,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 128.91752142516202
+          },
+          {
+            "asset_id": "xrp",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.21899061033780745,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 164.26525867324443
+          },
+          {
+            "asset_id": "xrp",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.1933247310823728,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 197.36335996861226
+          },
+          {
+            "asset_id": "xrp",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.1704332837036332,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 229.92554540539274
+          },
+          {
+            "asset_id": "xrp",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.15045836298033366,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 261.94562227231967
+          },
+          {
+            "asset_id": "xrp",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.1328245193590626,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 294.1985463959891
+          },
+          {
+            "asset_id": "xrp",
+            "evidence_status": "SCENARIO_ONLY",
+            "projection_confidence": 0.11725737668215903,
+            "projection_method": "LONG_RANGE_SCENARIO_MODEL",
+            "record_date": "2026-07-28",
+            "scenario_width_pct": 326.9654149774578
+          }
+        ],
+        "latest_scenario_projections": [
+          {
+            "asset_id": "xrp",
+            "projected_multiple": 0.5379041514773554,
+            "projected_price_usd": 0.5685646881115646,
+            "record_date": null,
+            "scenario": "BEAR"
+          },
+          {
+            "asset_id": "xrp",
+            "projected_multiple": 1.4497191787033927,
+            "projected_price_usd": 1.532353171889486,
+            "record_date": null,
+            "scenario": "BULL"
+          },
+          {
+            "asset_id": "xrp",
+            "projected_multiple": 1.1317781227579364,
+            "projected_price_usd": 1.1962894757551388,
+            "record_date": null,
+            "scenario": "BULL"
+          },
+          {
+            "asset_id": "xrp",
+            "projected_multiple": 0.1556376584874744,
+            "projected_price_usd": 0.16450900502126045,
+            "record_date": null,
+            "scenario": "BEAR"
+          },
+          {
+            "asset_id": "xrp",
+            "projected_multiple": 0.4055264676548393,
+            "projected_price_usd": 0.4286414763111651,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "xrp",
+            "projected_multiple": 1.856976782674519,
+            "projected_price_usd": 1.9628244592869664,
+            "record_date": null,
+            "scenario": "BULL"
+          },
+          {
+            "asset_id": "xrp",
+            "projected_multiple": 0.834841137117646,
+            "projected_price_usd": 0.8824270819333517,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "xrp",
+            "projected_multiple": 0.5818506486962683,
+            "projected_price_usd": 0.6150161356719556,
+            "record_date": null,
+            "scenario": "BASE"
+          },
+          {
+            "asset_id": "xrp",
+            "projected_multiple": 0.04503233647283619,
+            "projected_price_usd": 0.04759917965178785,
+            "record_date": null,
+            "scenario": "BEAR"
+          }
+        ]
+      }
+    },
+    "target_tables": {
+      "latest_m40_forecast_memory": {
+        "columns": [
+          {
+            "data_type": "VARCHAR",
+            "name": "forecast_memory_id",
+            "ordinal_position": 1
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "source_module38_run_id",
+            "ordinal_position": 2
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "source_module39_run_id",
+            "ordinal_position": 3
+          },
+          {
+            "data_type": "DATE",
+            "name": "forecast_date",
+            "ordinal_position": 4
+          },
+          {
+            "data_type": "DATE",
+            "name": "outcome_due_date",
+            "ordinal_position": 5
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "asset_id",
+            "ordinal_position": 6
+          },
+          {
+            "data_type": "INTEGER",
+            "name": "horizon_days",
+            "ordinal_position": 7
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "current_price",
+            "ordinal_position": 8
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "predicted_return_pct",
+            "ordinal_position": 9
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "predicted_price",
+            "ordinal_position": 10
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "raw_probability_positive",
+            "ordinal_position": 11
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "calibrated_probability_positive",
+            "ordinal_position": 12
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "raw_lower_return_pct",
+            "ordinal_position": 13
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "raw_upper_return_pct",
+            "ordinal_position": 14
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "calibrated_lower_return_pct",
+            "ordinal_position": 15
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "calibrated_upper_return_pct",
+            "ordinal_position": 16
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "forecast_confidence",
+            "ordinal_position": 17
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "model_agreement",
+            "ordinal_position": 18
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "predictive_regime",
+            "ordinal_position": 19
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "predictive_regime_confidence",
+            "ordinal_position": 20
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "forecast_status",
+            "ordinal_position": 21
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "model_version",
+            "ordinal_position": 22
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "outcome_status",
+            "ordinal_position": 23
+          },
+          {
+            "data_type": "DATE",
+            "name": "realized_date",
+            "ordinal_position": 24
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "realized_price",
+            "ordinal_position": 25
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "realized_return_pct",
+            "ordinal_position": 26
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "forecast_error_pct",
+            "ordinal_position": 27
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "absolute_error_pct",
+            "ordinal_position": 28
+          },
+          {
+            "data_type": "BOOLEAN",
+            "name": "direction_correct",
+            "ordinal_position": 29
+          },
+          {
+            "data_type": "BOOLEAN",
+            "name": "interval_covered",
+            "ordinal_position": 30
+          },
+          {
+            "data_type": "INTEGER",
+            "name": "probability_outcome",
+            "ordinal_position": 31
+          },
+          {
+            "data_type": "TIMESTAMP WITH TIME ZONE",
+            "name": "matured_at_utc",
+            "ordinal_position": 32
+          },
+          {
+            "data_type": "TIMESTAMP WITH TIME ZONE",
+            "name": "created_at_utc",
+            "ordinal_position": 33
+          }
+        ],
+        "exists": true,
+        "native_forecast_fields": [
+          "predicted_return_pct",
+          "predicted_price",
+          "forecast_confidence"
+        ]
+      },
+      "latest_m40_pending_forecasts": {
+        "columns": [
+          {
+            "data_type": "VARCHAR",
+            "name": "forecast_memory_id",
+            "ordinal_position": 1
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "source_module38_run_id",
+            "ordinal_position": 2
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "source_module39_run_id",
+            "ordinal_position": 3
+          },
+          {
+            "data_type": "DATE",
+            "name": "forecast_date",
+            "ordinal_position": 4
+          },
+          {
+            "data_type": "DATE",
+            "name": "outcome_due_date",
+            "ordinal_position": 5
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "asset_id",
+            "ordinal_position": 6
+          },
+          {
+            "data_type": "INTEGER",
+            "name": "horizon_days",
+            "ordinal_position": 7
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "current_price",
+            "ordinal_position": 8
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "predicted_return_pct",
+            "ordinal_position": 9
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "predicted_price",
+            "ordinal_position": 10
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "raw_probability_positive",
+            "ordinal_position": 11
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "calibrated_probability_positive",
+            "ordinal_position": 12
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "raw_lower_return_pct",
+            "ordinal_position": 13
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "raw_upper_return_pct",
+            "ordinal_position": 14
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "calibrated_lower_return_pct",
+            "ordinal_position": 15
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "calibrated_upper_return_pct",
+            "ordinal_position": 16
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "forecast_confidence",
+            "ordinal_position": 17
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "model_agreement",
+            "ordinal_position": 18
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "predictive_regime",
+            "ordinal_position": 19
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "predictive_regime_confidence",
+            "ordinal_position": 20
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "forecast_status",
+            "ordinal_position": 21
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "model_version",
+            "ordinal_position": 22
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "outcome_status",
+            "ordinal_position": 23
+          },
+          {
+            "data_type": "DATE",
+            "name": "realized_date",
+            "ordinal_position": 24
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "realized_price",
+            "ordinal_position": 25
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "realized_return_pct",
+            "ordinal_position": 26
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "forecast_error_pct",
+            "ordinal_position": 27
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "absolute_error_pct",
+            "ordinal_position": 28
+          },
+          {
+            "data_type": "BOOLEAN",
+            "name": "direction_correct",
+            "ordinal_position": 29
+          },
+          {
+            "data_type": "BOOLEAN",
+            "name": "interval_covered",
+            "ordinal_position": 30
+          },
+          {
+            "data_type": "INTEGER",
+            "name": "probability_outcome",
+            "ordinal_position": 31
+          },
+          {
+            "data_type": "TIMESTAMP WITH TIME ZONE",
+            "name": "matured_at_utc",
+            "ordinal_position": 32
+          },
+          {
+            "data_type": "TIMESTAMP WITH TIME ZONE",
+            "name": "created_at_utc",
+            "ordinal_position": 33
+          }
+        ],
+        "exists": true,
+        "native_forecast_fields": [
+          "predicted_return_pct",
+          "predicted_price",
+          "forecast_confidence"
+        ]
+      },
+      "latest_m42_asset_recommendations": {
+        "columns": [
+          {
+            "data_type": "VARCHAR",
+            "name": "run_id",
+            "ordinal_position": 1
+          },
+          {
+            "data_type": "DATE",
+            "name": "recommendation_date",
+            "ordinal_position": 2
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "asset_id",
+            "ordinal_position": 3
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "current_price",
+            "ordinal_position": 4
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "investment_score",
+            "ordinal_position": 5
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "best_action",
+            "ordinal_position": 6
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "current_portfolio_weight",
+            "ordinal_position": 7
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "best_current_portfolio_pct",
+            "ordinal_position": 8
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "weight_change_pct",
+            "ordinal_position": 9
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "suggested_timeline",
+            "ordinal_position": 10
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "entry_strategy",
+            "ordinal_position": 11
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "conviction",
+            "ordinal_position": 12
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "forecast_confidence",
+            "ordinal_position": 13
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "reliability_score",
+            "ordinal_position": 14
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "regime_alignment_score",
+            "ordinal_position": 15
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "risk_score",
+            "ordinal_position": 16
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "short_term_signal",
+            "ordinal_position": 17
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "medium_term_signal",
+            "ordinal_position": 18
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "long_term_signal",
+            "ordinal_position": 19
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "primary_reason",
+            "ordinal_position": 20
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "risk_warning",
+            "ordinal_position": 21
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "evidence_status",
+            "ordinal_position": 22
+          },
+          {
+            "data_type": "TIMESTAMP WITH TIME ZONE",
+            "name": "calculated_at_utc",
+            "ordinal_position": 23
+          }
+        ],
+        "exists": true,
+        "native_forecast_fields": [
+          "forecast_confidence",
+          "evidence_status"
+        ]
+      },
+      "latest_m42_price_projections": {
+        "columns": [
+          {
+            "data_type": "VARCHAR",
+            "name": "run_id",
+            "ordinal_position": 1
+          },
+          {
+            "data_type": "DATE",
+            "name": "recommendation_date",
+            "ordinal_position": 2
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "asset_id",
+            "ordinal_position": 3
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "horizon_label",
+            "ordinal_position": 4
+          },
+          {
+            "data_type": "INTEGER",
+            "name": "horizon_days",
+            "ordinal_position": 5
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "horizon_months",
+            "ordinal_position": 6
+          },
+          {
+            "data_type": "DATE",
+            "name": "projection_date",
+            "ordinal_position": 7
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "current_price",
+            "ordinal_position": 8
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "bear_price",
+            "ordinal_position": 9
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "median_price",
+            "ordinal_position": 10
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "bull_price",
+            "ordinal_position": 11
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "bear_return_pct",
+            "ordinal_position": 12
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "median_return_pct",
+            "ordinal_position": 13
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "bull_return_pct",
+            "ordinal_position": 14
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "annualized_median_return_pct",
+            "ordinal_position": 15
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "scenario_width_pct",
+            "ordinal_position": 16
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "projection_confidence",
+            "ordinal_position": 17
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "projection_method",
+            "ordinal_position": 18
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "evidence_status",
+            "ordinal_position": 19
+          },
+          {
+            "data_type": "TIMESTAMP WITH TIME ZONE",
+            "name": "calculated_at_utc",
+            "ordinal_position": 20
+          }
+        ],
+        "exists": true,
+        "native_forecast_fields": [
+          "scenario_width_pct",
+          "projection_confidence",
+          "projection_method",
+          "evidence_status"
+        ]
+      },
+      "latest_scenario_projections": {
+        "columns": [
+          {
+            "data_type": "VARCHAR",
+            "name": "run_id",
+            "ordinal_position": 1
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "asset_id",
+            "ordinal_position": 2
+          },
+          {
+            "data_type": "DATE",
+            "name": "observation_date",
+            "ordinal_position": 3
+          },
+          {
+            "data_type": "INTEGER",
+            "name": "horizon_years",
+            "ordinal_position": 4
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "scenario",
+            "ordinal_position": 5
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "annual_return_assumption_pct",
+            "ordinal_position": 6
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "projected_price_usd",
+            "ordinal_position": 7
+          },
+          {
+            "data_type": "DOUBLE",
+            "name": "projected_multiple",
+            "ordinal_position": 8
+          },
+          {
+            "data_type": "VARCHAR",
+            "name": "methodology",
+            "ordinal_position": 9
+          },
+          {
+            "data_type": "TIMESTAMP WITH TIME ZONE",
+            "name": "calculated_at_utc",
+            "ordinal_position": 10
+          }
+        ],
+        "exists": true,
+        "native_forecast_fields": [
+          "scenario",
+          "projected_price_usd",
+          "projected_multiple"
+        ]
+      }
+    }
+  },
+  "governance": {
+    "btc_strategic_forecast_reopened": false,
+    "database_opened_read_only": true,
+    "database_write_performed": false,
+    "forecast_execution_performed": false,
+    "forecast_synthesis_performed": false,
+    "module42_modified": false,
+    "network_call_performed": false,
+    "output_mapping_changed": false,
+    "production_promotion_authorized": false,
+    "repair_performed": false
+  },
+  "identity_authority": {
+    "all_six_assets_have_native_target_coverage": true,
+    "identity_mismatch_confirmed": true
+  },
+  "next_gate": "ADJUDICATE_UNIVERSAL_FORECAST_NATIVE_SOURCE_AUTHORITY",
+  "source_trace": {
+    "mapping_candidate_count": 6,
+    "mapping_candidate_paths": [
+      "apply_v12_0_0_config.py",
+      "apply_v12_0_1_config.py",
+      "crypto_platform/integration/universal/forecasts.py"
+    ],
+    "mapping_candidates": [
+      {
+        "context": [
+          "                source.median_return_pct",
+          "            )",
+          "        ),",
+          "        expected_cagr=(",
+          "            percentage_points_to_decimal(",
+          "                source.annualized_median_return_pct",
+          "            )",
+          "        ),",
+          "        probability_positive_return=None,",
+          "        forecast_confidence=(",
+          "            _confidence_to_score(",
+          "                source.projection_confidence",
+          "            )",
+          "        ),",
+          "        forecast_method=(",
+          "            source.projection_method",
+          "            or \"price_projection\"",
+          "        ),",
+          "        scenario_name=source.horizon_label,",
+          "        model_version=source.model_version,"
+        ],
+        "contract_keys": [
+          "price_projection"
+        ],
+        "line_number": 244,
+        "native_fields": [
+          "forecast_confidence",
+          "projection_confidence",
+          "projection_method",
+          "scenario"
+        ],
+        "path": "crypto_platform/integration/universal/forecasts.py",
+        "priority_score": 21
+      },
+      {
+        "context": [
+          "        ),",
+          "        expected_cagr=(",
+          "            percentage_points_to_decimal(",
+          "                source.annualized_median_return_pct",
+          "            )",
+          "        ),",
+          "        probability_positive_return=None,",
+          "        forecast_confidence=(",
+          "            _confidence_to_score(",
+          "                source.projection_confidence",
+          "            )",
+          "        ),",
+          "        forecast_method=(",
+          "            source.projection_method",
+          "            or \"price_projection\"",
+          "        ),",
+          "        scenario_name=source.horizon_label,",
+          "        model_version=source.model_version,",
+          "        generated_at_utc=context.generated_at_iso,",
+          "    )"
+        ],
+        "contract_keys": [
+          "price_projection"
+        ],
+        "line_number": 246,
+        "native_fields": [
+          "forecast_confidence",
+          "projection_confidence",
+          "projection_method",
+          "scenario"
+        ],
+        "path": "crypto_platform/integration/universal/forecasts.py",
+        "priority_score": 21
+      },
+      {
+        "context": [
+          "            )",
+          "        ),",
+          "        probability_positive_return=None,",
+          "        forecast_confidence=(",
+          "            _confidence_to_score(",
+          "                source.projection_confidence",
+          "            )",
+          "        ),",
+          "        forecast_method=(",
+          "            source.projection_method",
+          "            or \"price_projection\"",
+          "        ),",
+          "        scenario_name=source.horizon_label,",
+          "        model_version=source.model_version,",
+          "        generated_at_utc=context.generated_at_iso,",
+          "    )",
+          "",
+          "",
+          "def build_forecasts(",
+          "    calibrated: list[SourceCalibratedForecast],"
+        ],
+        "contract_keys": [
+          "price_projection"
+        ],
+        "line_number": 250,
+        "native_fields": [
+          "forecast_confidence",
+          "projection_confidence",
+          "projection_method",
+          "scenario"
+        ],
+        "path": "crypto_platform/integration/universal/forecasts.py",
+        "priority_score": 21
+      },
+      {
+        "context": [
+          "        ),",
+          "        probability_positive_return=None,",
+          "        forecast_confidence=(",
+          "            _confidence_to_score(",
+          "                source.projection_confidence",
+          "            )",
+          "        ),",
+          "        forecast_method=(",
+          "            source.projection_method",
+          "            or \"price_projection\"",
+          "        ),",
+          "        scenario_name=source.horizon_label,",
+          "        model_version=source.model_version,",
+          "        generated_at_utc=context.generated_at_iso,",
+          "    )",
+          "",
+          "",
+          "def build_forecasts(",
+          "    calibrated: list[SourceCalibratedForecast],",
+          "    projections: list[SourcePriceProjection],"
+        ],
+        "contract_keys": [
+          "price_projection"
+        ],
+        "line_number": 251,
+        "native_fields": [
+          "forecast_confidence",
+          "projection_confidence",
+          "projection_method",
+          "scenario"
+        ],
+        "path": "crypto_platform/integration/universal/forecasts.py",
+        "priority_score": 21
+      },
+      {
+        "context": [
+          "",
+          "",
+          "MODULE42 = {",
+          "    \"historical_lookback_days\": 730,",
+          "    \"minimum_matured_for_live\": 30,",
+          "    \"minimum_cash_portfolio_pct\": 75.0,",
+          "    \"maximum_asset_portfolio_pct\": 8.0,",
+          "    \"long_range_neutral_annual_return\": 0.08,",
+          "    \"long_range_weights\": {",
+          "        \"forecast\": 0.35,",
+          "        \"historical\": 0.25,",
+          "        \"neutral_prior\": 0.40,",
+          "    },",
+          "    \"maximum_regime_annual_adjustment\": 0.12,",
+          "    \"minimum_long_range_annual_return\": -0.35,",
+          "    \"maximum_long_range_annual_return\": 0.60,",
+          "    \"maximum_projection_volatility\": 1.25,",
+          "    \"scenario_standard_deviations\": 1.0,",
+          "    \"confidence_half_life_days\": 730,",
+          "}"
+        ],
+        "contract_keys": [
+          "forecast"
+        ],
+        "line_number": 17,
+        "native_fields": [
+          "scenario"
+        ],
+        "path": "apply_v12_0_0_config.py",
+        "priority_score": 16
+      },
+      {
+        "context": [
+          "    \"maximum_asset_portfolio_pct\": 8.0,",
+          "    \"minimum_buy_score\": 52.0,",
+          "    \"accumulating_evidence_multiplier\": 0.35,",
+          "    \"minimum_confidence_multiplier\": 0.20,",
+          "    \"reduce_target_fraction\": 0.50,",
+          "    \"material_trade_weight_pct\": 0.50,",
+          "    \"weight_change_tolerance_pct\": 0.05,",
+          "    \"long_range_neutral_annual_return\": 0.08,",
+          "    \"long_range_weights\": {",
+          "        \"forecast\": 0.35,",
+          "        \"historical\": 0.25,",
+          "        \"neutral_prior\": 0.40,",
+          "    },",
+          "    \"maximum_regime_annual_adjustment\": 0.12,",
+          "    \"minimum_long_range_annual_return\": -0.35,",
+          "    \"maximum_long_range_annual_return\": 0.60,",
+          "    \"maximum_projection_volatility\": 1.25,",
+          "    \"scenario_standard_deviations\": 1.0,",
+          "    \"confidence_half_life_days\": 730,",
+          "}"
+        ],
+        "contract_keys": [
+          "forecast"
+        ],
+        "line_number": 24,
+        "native_fields": [
+          "scenario"
+        ],
+        "path": "apply_v12_0_1_config.py",
+        "priority_score": 16
+      }
+    ],
+    "production_reference_count": 308,
+    "target_file_sections": [
+      {
+        "exists": true,
+        "path": "crypto_platform/module42.py",
+        "relevant_section_count": 36,
+        "relevant_sections": [
+          {
+            "context": [
+              "    started_at_utc TIMESTAMPTZ,",
+              "    completed_at_utc TIMESTAMPTZ,",
+              "    status VARCHAR,",
+              "    recommendation_rows INTEGER,",
+              "    projection_rows INTEGER,",
+              "    assets_covered INTEGER,",
+              "    horizons_covered INTEGER,",
+              "    total_target_risk_weight DOUBLE,",
+              "    target_cash_weight DOUBLE,",
+              "    overall_action VARCHAR,",
+              "    overall_timeline VARCHAR,",
+              "    evidence_status VARCHAR,",
+              "    recommendation VARCHAR,",
+              "    notes VARCHAR,",
+              "    platform_version VARCHAR",
+              ");",
+              "",
+              "CREATE TABLE IF NOT EXISTS m42_asset_recommendations(",
+              "    run_id VARCHAR,",
+              "    recommendation_date DATE,",
+              "    asset_id VARCHAR,",
+              "    current_price DOUBLE,",
+              "    investment_score DOUBLE,",
+              "    best_action VARCHAR,"
+            ],
+            "line": "evidence_status VARCHAR,",
+            "line_number": 40
+          },
+          {
+            "context": [
+              "    recommendation_date DATE,",
+              "    asset_id VARCHAR,",
+              "    current_price DOUBLE,",
+              "    investment_score DOUBLE,",
+              "    best_action VARCHAR,",
+              "    current_portfolio_weight DOUBLE,",
+              "    best_current_portfolio_pct DOUBLE,",
+              "    weight_change_pct DOUBLE,",
+              "    suggested_timeline VARCHAR,",
+              "    entry_strategy VARCHAR,",
+              "    conviction VARCHAR,",
+              "    forecast_confidence DOUBLE,",
+              "    reliability_score DOUBLE,",
+              "    regime_alignment_score DOUBLE,",
+              "    risk_score DOUBLE,",
+              "    short_term_signal DOUBLE,",
+              "    medium_term_signal DOUBLE,",
+              "    long_term_signal DOUBLE,",
+              "    primary_reason VARCHAR,",
+              "    risk_warning VARCHAR,",
+              "    evidence_status VARCHAR,",
+              "    calculated_at_utc TIMESTAMPTZ,",
+              "    PRIMARY KEY(run_id, recommendation_date, asset_id)",
+              ");"
+            ],
+            "line": "forecast_confidence DOUBLE,",
+            "line_number": 59
+          },
+          {
+            "context": [
+              "    entry_strategy VARCHAR,",
+              "    conviction VARCHAR,",
+              "    forecast_confidence DOUBLE,",
+              "    reliability_score DOUBLE,",
+              "    regime_alignment_score DOUBLE,",
+              "    risk_score DOUBLE,",
+              "    short_term_signal DOUBLE,",
+              "    medium_term_signal DOUBLE,",
+              "    long_term_signal DOUBLE,",
+              "    primary_reason VARCHAR,",
+              "    risk_warning VARCHAR,",
+              "    evidence_status VARCHAR,",
+              "    calculated_at_utc TIMESTAMPTZ,",
+              "    PRIMARY KEY(run_id, recommendation_date, asset_id)",
+              ");",
+              "",
+              "CREATE TABLE IF NOT EXISTS m42_price_projections(",
+              "    run_id VARCHAR,",
+              "    recommendation_date DATE,",
+              "    asset_id VARCHAR,",
+              "    horizon_label VARCHAR,",
+              "    horizon_days INTEGER,",
+              "    horizon_months DOUBLE,",
+              "    projection_date DATE,"
+            ],
+            "line": "evidence_status VARCHAR,",
+            "line_number": 68
+          },
+          {
+            "context": [
+              "    horizon_days INTEGER,",
+              "    horizon_months DOUBLE,",
+              "    projection_date DATE,",
+              "    current_price DOUBLE,",
+              "    bear_price DOUBLE,",
+              "    median_price DOUBLE,",
+              "    bull_price DOUBLE,",
+              "    bear_return_pct DOUBLE,",
+              "    median_return_pct DOUBLE,",
+              "    bull_return_pct DOUBLE,",
+              "    annualized_median_return_pct DOUBLE,",
+              "    scenario_width_pct DOUBLE,",
+              "    projection_confidence DOUBLE,",
+              "    projection_method VARCHAR,",
+              "    evidence_status VARCHAR,",
+              "    calculated_at_utc TIMESTAMPTZ,",
+              "    PRIMARY KEY(",
+              "        run_id,",
+              "        recommendation_date,",
+              "        asset_id,",
+              "        horizon_label",
+              "    )",
+              ");",
+              ""
+            ],
+            "line": "scenario_width_pct DOUBLE,",
+            "line_number": 89
+          },
+          {
+            "context": [
+              "    horizon_months DOUBLE,",
+              "    projection_date DATE,",
+              "    current_price DOUBLE,",
+              "    bear_price DOUBLE,",
+              "    median_price DOUBLE,",
+              "    bull_price DOUBLE,",
+              "    bear_return_pct DOUBLE,",
+              "    median_return_pct DOUBLE,",
+              "    bull_return_pct DOUBLE,",
+              "    annualized_median_return_pct DOUBLE,",
+              "    scenario_width_pct DOUBLE,",
+              "    projection_confidence DOUBLE,",
+              "    projection_method VARCHAR,",
+              "    evidence_status VARCHAR,",
+              "    calculated_at_utc TIMESTAMPTZ,",
+              "    PRIMARY KEY(",
+              "        run_id,",
+              "        recommendation_date,",
+              "        asset_id,",
+              "        horizon_label",
+              "    )",
+              ");",
+              "",
+              "CREATE TABLE IF NOT EXISTS m42_portfolio_plan("
+            ],
+            "line": "projection_confidence DOUBLE,",
+            "line_number": 90
+          },
+          {
+            "context": [
+              "    projection_date DATE,",
+              "    current_price DOUBLE,",
+              "    bear_price DOUBLE,",
+              "    median_price DOUBLE,",
+              "    bull_price DOUBLE,",
+              "    bear_return_pct DOUBLE,",
+              "    median_return_pct DOUBLE,",
+              "    bull_return_pct DOUBLE,",
+              "    annualized_median_return_pct DOUBLE,",
+              "    scenario_width_pct DOUBLE,",
+              "    projection_confidence DOUBLE,",
+              "    projection_method VARCHAR,",
+              "    evidence_status VARCHAR,",
+              "    calculated_at_utc TIMESTAMPTZ,",
+              "    PRIMARY KEY(",
+              "        run_id,",
+              "        recommendation_date,",
+              "        asset_id,",
+              "        horizon_label",
+              "    )",
+              ");",
+              "",
+              "CREATE TABLE IF NOT EXISTS m42_portfolio_plan(",
+              "    run_id VARCHAR,"
+            ],
+            "line": "projection_method VARCHAR,",
+            "line_number": 91
+          },
+          {
+            "context": [
+              "    current_price DOUBLE,",
+              "    bear_price DOUBLE,",
+              "    median_price DOUBLE,",
+              "    bull_price DOUBLE,",
+              "    bear_return_pct DOUBLE,",
+              "    median_return_pct DOUBLE,",
+              "    bull_return_pct DOUBLE,",
+              "    annualized_median_return_pct DOUBLE,",
+              "    scenario_width_pct DOUBLE,",
+              "    projection_confidence DOUBLE,",
+              "    projection_method VARCHAR,",
+              "    evidence_status VARCHAR,",
+              "    calculated_at_utc TIMESTAMPTZ,",
+              "    PRIMARY KEY(",
+              "        run_id,",
+              "        recommendation_date,",
+              "        asset_id,",
+              "        horizon_label",
+              "    )",
+              ");",
+              "",
+              "CREATE TABLE IF NOT EXISTS m42_portfolio_plan(",
+              "    run_id VARCHAR,",
+              "    recommendation_date DATE,"
+            ],
+            "line": "evidence_status VARCHAR,",
+            "line_number": 92
+          },
+          {
+            "context": [
+              "    run_id VARCHAR PRIMARY KEY,",
+              "    recommendation_date DATE,",
+              "    overall_action VARCHAR,",
+              "    overall_timeline VARCHAR,",
+              "    target_cash_weight DOUBLE,",
+              "    target_risk_weight DOUBLE,",
+              "    highest_conviction_asset VARCHAR,",
+              "    highest_conviction_score DOUBLE,",
+              "    positive_assets INTEGER,",
+              "    wait_assets INTEGER,",
+              "    reduce_assets INTEGER,",
+              "    evidence_status VARCHAR,",
+              "    decision_status VARCHAR,",
+              "    calculated_at_utc TIMESTAMPTZ",
+              ");",
+              "",
+              "CREATE OR REPLACE VIEW latest_m42_asset_recommendations AS",
+              "SELECT *",
+              "FROM m42_asset_recommendations",
+              "WHERE run_id=(",
+              "    SELECT run_id",
+              "    FROM module42_runs",
+              "    ORDER BY started_at_utc DESC",
+              "    LIMIT 1"
+            ],
+            "line": "evidence_status VARCHAR,",
+            "line_number": 135
+          },
+          {
+            "context": [
+              "                )",
+              "                continue",
+              "",
+              "            forecast = self.forecast_for(",
+              "                forecast_frame,",
+              "                asset,",
+              "                horizon,",
+              "            )",
+              "            if forecast is not None:",
+              "                total_return = safe_float(",
+              "                    forecast[",
+              "                        \"predicted_return_pct\"",
+              "                    ]",
+              "                ) / 100",
+              "                annualized = annualize_return(",
+              "                    total_return,",
+              "                    horizon,",
+              "                )",
+              "                short_inputs.append(",
+              "                    clip(annualized, -0.80, 1.50)",
+              "                )",
+              "",
+              "        forecast_anchor = (",
+              "            float(np.median(short_inputs))"
+            ],
+            "line": "\"predicted_return_pct\"",
+            "line_number": 548
+          },
+          {
+            "context": [
+              "        )",
+              "",
+              "        evidence_ratio = clip(",
+              "            reliability_score / 100,",
+              "            0,",
+              "            1,",
+              "        )",
+              "        forecast_weight = (",
+              "            float(",
+              "                self.cfg[",
+              "                    \"long_range_weights\"",
+              "                ][\"forecast\"]",
+              "            )",
+              "            * (",
+              "                0.35",
+              "                + 0.65 * evidence_ratio",
+              "            )",
+              "        )",
+              "        historical_weight = float(",
+              "            self.cfg[",
+              "                \"long_range_weights\"",
+              "            ][\"historical\"]",
+              "        )",
+              "        prior_weight = float("
+            ],
+            "line": "][\"forecast\"]",
+            "line_number": 589
+          },
+          {
+            "context": [
+              "                days,",
+              "            )",
+              "",
+              "            if exact is not None and days in {",
+              "                7,",
+              "                30,",
+              "                90,",
+              "                180,",
+              "            }:",
+              "                median_return = safe_float(",
+              "                    exact[",
+              "                        \"predicted_return_pct\"",
+              "                    ]",
+              "                ) / 100",
+              "                lower_return = safe_float(",
+              "                    exact[",
+              "                        \"conformal_lower_return_pct\"",
+              "                    ]",
+              "                ) / 100",
+              "                upper_return = safe_float(",
+              "                    exact[",
+              "                        \"conformal_upper_return_pct\"",
+              "                    ]",
+              "                ) / 100"
+            ],
+            "line": "\"predicted_return_pct\"",
+            "line_number": 713
+          },
+          {
+            "context": [
+              "                    ) / 100",
+              "                    median_return = (",
+              "                        0.70 * median_return",
+              "                        + 0.30 * adaptive_return",
+              "                    )",
+              "                method = (",
+              "                    \"CALIBRATED_ENSEMBLE\"",
+              "                )",
+              "                confidence = clip(",
+              "                    safe_float(",
+              "                        exact[",
+              "                            \"forecast_confidence\"",
+              "                        ]",
+              "                    )",
+              "                    * (",
+              "                        0.60",
+              "                        + 0.40",
+              "                        * clip(",
+              "                            reliability[\"score\"]",
+              "                            / 100,",
+              "                            0,",
+              "                            1,",
+              "                        )",
+              "                    ),"
+            ],
+            "line": "\"forecast_confidence\"",
+            "line_number": 742
+          },
+          {
+            "context": [
+              "                ),",
+              "                \"bull_return_pct\": (",
+              "                    upper_return * 100",
+              "                ),",
+              "                \"annualized_median_return_pct\": (",
+              "                    annualize_return(",
+              "                        median_return,",
+              "                        days,",
+              "                    )",
+              "                    * 100",
+              "                ),",
+              "                \"scenario_width_pct\": (",
+              "                    (",
+              "                        upper_return",
+              "                        - lower_return",
+              "                    )",
+              "                    * 100",
+              "                ),",
+              "                \"projection_confidence\": (",
+              "                    confidence",
+              "                ),",
+              "                \"projection_method\": method,",
+              "                \"evidence_status\": evidence,",
+              "                \"calculated_at_utc\": utcnow(),"
+            ],
+            "line": "\"scenario_width_pct\": (",
+            "line_number": 895
+          },
+          {
+            "context": [
+              "                        days,",
+              "                    )",
+              "                    * 100",
+              "                ),",
+              "                \"scenario_width_pct\": (",
+              "                    (",
+              "                        upper_return",
+              "                        - lower_return",
+              "                    )",
+              "                    * 100",
+              "                ),",
+              "                \"projection_confidence\": (",
+              "                    confidence",
+              "                ),",
+              "                \"projection_method\": method,",
+              "                \"evidence_status\": evidence,",
+              "                \"calculated_at_utc\": utcnow(),",
+              "            })",
+              "        return rows",
+              "",
+              "    def recommendation_for(",
+              "        self,",
+              "        asset,",
+              "        projections,"
+            ],
+            "line": "\"projection_confidence\": (",
+            "line_number": 902
+          },
+          {
+            "context": [
+              "                ),",
+              "                \"scenario_width_pct\": (",
+              "                    (",
+              "                        upper_return",
+              "                        - lower_return",
+              "                    )",
+              "                    * 100",
+              "                ),",
+              "                \"projection_confidence\": (",
+              "                    confidence",
+              "                ),",
+              "                \"projection_method\": method,",
+              "                \"evidence_status\": evidence,",
+              "                \"calculated_at_utc\": utcnow(),",
+              "            })",
+              "        return rows",
+              "",
+              "    def recommendation_for(",
+              "        self,",
+              "        asset,",
+              "        projections,",
+              "        current_weight,",
+              "        reliability,",
+              "        regime_score,"
+            ],
+            "line": "\"projection_method\": method,",
+            "line_number": 905
+          },
+          {
+            "context": [
+              "                \"scenario_width_pct\": (",
+              "                    (",
+              "                        upper_return",
+              "                        - lower_return",
+              "                    )",
+              "                    * 100",
+              "                ),",
+              "                \"projection_confidence\": (",
+              "                    confidence",
+              "                ),",
+              "                \"projection_method\": method,",
+              "                \"evidence_status\": evidence,",
+              "                \"calculated_at_utc\": utcnow(),",
+              "            })",
+              "        return rows",
+              "",
+              "    def recommendation_for(",
+              "        self,",
+              "        asset,",
+              "        projections,",
+              "        current_weight,",
+              "        reliability,",
+              "        regime_score,",
+              "        annual_volatility,"
+            ],
+            "line": "\"evidence_status\": evidence,",
+            "line_number": 906
+          },
+          {
+            "context": [
+              "                    current,",
+              "                    max_asset,",
+              "                )",
+              "                action_multiplier = {",
+              "                    \"STRONG_BUY\": 1.00,",
+              "                    \"BUY\": 0.75,",
+              "                    \"SCALE_IN\": 0.45,",
+              "                }[action]",
+              "                evidence_multiplier = (",
+              "                    1.00",
+              "                    if rec.get(",
+              "                        \"evidence_status\"",
+              "                    )",
+              "                    == \"LIVE_VALIDATED\"",
+              "                    else float(",
+              "                        self.cfg[",
+              "                            \"accumulating_evidence_multiplier\"",
+              "                        ]",
+              "                    )",
+              "                )",
+              "                confidence_multiplier = clip(",
+              "                    rec.get(",
+              "                        \"forecast_confidence\",",
+              "                        0.0,"
+            ],
+            "line": "\"evidence_status\"",
+            "line_number": 1143
+          },
+          {
+            "context": [
+              "                        \"evidence_status\"",
+              "                    )",
+              "                    == \"LIVE_VALIDATED\"",
+              "                    else float(",
+              "                        self.cfg[",
+              "                            \"accumulating_evidence_multiplier\"",
+              "                        ]",
+              "                    )",
+              "                )",
+              "                confidence_multiplier = clip(",
+              "                    rec.get(",
+              "                        \"forecast_confidence\",",
+              "                        0.0,",
+              "                    ),",
+              "                    float(",
+              "                        self.cfg[",
+              "                            \"minimum_confidence_multiplier\"",
+              "                        ]",
+              "                    ),",
+              "                    1.0,",
+              "                )",
+              "                deployable_scores[asset] = (",
+              "                    max(",
+              "                        rec[\"score\"]"
+            ],
+            "line": "\"forecast_confidence\",",
+            "line_number": 1154
+          },
+          {
+            "context": [
+              "                started_at_utc,",
+              "                completed_at_utc,",
+              "                status,",
+              "                recommendation_rows,",
+              "                projection_rows,",
+              "                assets_covered,",
+              "                horizons_covered,",
+              "                total_target_risk_weight,",
+              "                target_cash_weight,",
+              "                overall_action,",
+              "                overall_timeline,",
+              "                evidence_status,",
+              "                recommendation,",
+              "                notes,",
+              "                platform_version",
+              "            )",
+              "            VALUES(",
+              "                ?,?,?,?,?,?,?,?,",
+              "                NULL,'RUNNING',",
+              "                0,0,0,0,",
+              "                NULL,NULL,NULL,NULL,NULL,NULL,NULL,",
+              "                '12.0.1'",
+              "            )",
+              "            \"\"\","
+            ],
+            "line": "evidence_status,",
+            "line_number": 1567
+          },
+          {
+            "context": [
+              "                    current_weight,",
+              "                    reliability,",
+              "                    regime_score,",
+              "                    safe_float(",
+              "                        historical.loc[",
+              "                            asset,",
+              "                            \"annual_volatility\",",
+              "                        ],",
+              "                        0.75,",
+              "                    ),",
+              "                )",
+              "                rec[\"forecast_confidence\"] = float(",
+              "                    np.mean([",
+              "                        row[",
+              "                            \"projection_confidence\"",
+              "                        ]",
+              "                        for row in asset_projections",
+              "                        if row[",
+              "                            \"horizon_label\"",
+              "                        ] in {",
+              "                            \"7D\",",
+              "                            \"30D\",",
+              "                            \"M03\",",
+              "                        }"
+            ],
+            "line": "rec[\"forecast_confidence\"] = float(",
+            "line_number": 1667
+          },
+          {
+            "context": [
+              "                    safe_float(",
+              "                        historical.loc[",
+              "                            asset,",
+              "                            \"annual_volatility\",",
+              "                        ],",
+              "                        0.75,",
+              "                    ),",
+              "                )",
+              "                rec[\"forecast_confidence\"] = float(",
+              "                    np.mean([",
+              "                        row[",
+              "                            \"projection_confidence\"",
+              "                        ]",
+              "                        for row in asset_projections",
+              "                        if row[",
+              "                            \"horizon_label\"",
+              "                        ] in {",
+              "                            \"7D\",",
+              "                            \"30D\",",
+              "                            \"M03\",",
+              "                        }",
+              "                    ])",
+              "                )",
+              "                rec[\"evidence_status\"] = ("
+            ],
+            "line": "\"projection_confidence\"",
+            "line_number": 1670
+          },
+          {
+            "context": [
+              "                        ]",
+              "                        for row in asset_projections",
+              "                        if row[",
+              "                            \"horizon_label\"",
+              "                        ] in {",
+              "                            \"7D\",",
+              "                            \"30D\",",
+              "                            \"M03\",",
+              "                        }",
+              "                    ])",
+              "                )",
+              "                rec[\"evidence_status\"] = (",
+              "                    \"LIVE_VALIDATED\"",
+              "                    if reliability[\"matured\"]",
+              "                    >= int(",
+              "                        self.cfg[",
+              "                            \"minimum_matured_for_live\"",
+              "                        ]",
+              "                    )",
+              "                    else \"ACCUMULATING_EVIDENCE\"",
+              "                )",
+              "                recommendation_inputs[",
+              "                    asset",
+              "                ] = rec"
+            ],
+            "line": "rec[\"evidence_status\"] = (",
+            "line_number": 1682
+          },
+          {
+            "context": [
+              "                    )",
+              "                )",
+              "                current_weight = safe_float(",
+              "                    signals[\"allocations\"].get(",
+              "                        asset,",
+              "                        0.0,",
+              "                    )",
+              "                )",
+              "                target_weight = safe_float(",
+              "                    targets.get(asset, 0.0)",
+              "                )",
+              "                evidence_status = rec[",
+              "                    \"evidence_status\"",
+              "                ]",
+              "                primary_reason = (",
+              "                    f\"7D {rec['return_7d']:.1f}%, \"",
+              "                    f\"30D {rec['return_30d']:.1f}%, \"",
+              "                    f\"3M {rec['return_90d']:.1f}%, \"",
+              "                    f\"12M {rec['return_12m']:.1f}%; \"",
+              "                    f\"regime={regime}.\"",
+              "                )",
+              "                risk_warning = (",
+              "                    \"Long-range prices are scenario estimates \"",
+              "                    \"with declining confidence.\""
+            ],
+            "line": "evidence_status = rec[",
+            "line_number": 1721
+          },
+          {
+            "context": [
+              "                )",
+              "                current_weight = safe_float(",
+              "                    signals[\"allocations\"].get(",
+              "                        asset,",
+              "                        0.0,",
+              "                    )",
+              "                )",
+              "                target_weight = safe_float(",
+              "                    targets.get(asset, 0.0)",
+              "                )",
+              "                evidence_status = rec[",
+              "                    \"evidence_status\"",
+              "                ]",
+              "                primary_reason = (",
+              "                    f\"7D {rec['return_7d']:.1f}%, \"",
+              "                    f\"30D {rec['return_30d']:.1f}%, \"",
+              "                    f\"3M {rec['return_90d']:.1f}%, \"",
+              "                    f\"12M {rec['return_12m']:.1f}%; \"",
+              "                    f\"regime={regime}.\"",
+              "                )",
+              "                risk_warning = (",
+              "                    \"Long-range prices are scenario estimates \"",
+              "                    \"with declining confidence.\"",
+              "                )"
+            ],
+            "line": "\"evidence_status\"",
+            "line_number": 1722
+          },
+          {
+            "context": [
+              "                evidence_status = rec[",
+              "                    \"evidence_status\"",
+              "                ]",
+              "                primary_reason = (",
+              "                    f\"7D {rec['return_7d']:.1f}%, \"",
+              "                    f\"30D {rec['return_30d']:.1f}%, \"",
+              "                    f\"3M {rec['return_90d']:.1f}%, \"",
+              "                    f\"12M {rec['return_12m']:.1f}%; \"",
+              "                    f\"regime={regime}.\"",
+              "                )",
+              "                risk_warning = (",
+              "                    \"Long-range prices are scenario estimates \"",
+              "                    \"with declining confidence.\"",
+              "                )",
+              "                recommendation_rows.append({",
+              "                    \"run_id\": self.run_id,",
+              "                    \"recommendation_date\": (",
+              "                        recommendation_date",
+              "                    ),",
+              "                    \"asset_id\": asset,",
+              "                    \"current_price\": safe_float(",
+              "                        prices.loc[",
+              "                            asset,",
+              "                            \"current_price\","
+            ],
+            "line": "\"Long-range prices are scenario estimates \"",
+            "line_number": 1732
+          },
+          {
+            "context": [
+              "                        * 100",
+              "                    ),",
+              "                    \"suggested_timeline\": (",
+              "                        rec[\"timeline\"]",
+              "                    ),",
+              "                    \"entry_strategy\": (",
+              "                        rec[\"entry_strategy\"]",
+              "                    ),",
+              "                    \"conviction\": (",
+              "                        rec[\"conviction\"]",
+              "                    ),",
+              "                    \"forecast_confidence\": (",
+              "                        rec[",
+              "                            \"forecast_confidence\"",
+              "                        ]",
+              "                    ),",
+              "                    \"reliability_score\": (",
+              "                        reliability[\"score\"]",
+              "                    ),",
+              "                    \"regime_alignment_score\": (",
+              "                        regime_score",
+              "                    ),",
+              "                    \"risk_score\": (",
+              "                        rec[\"risk_score\"]"
+            ],
+            "line": "\"forecast_confidence\": (",
+            "line_number": 1775
+          },
+          {
+            "context": [
+              "                    \"suggested_timeline\": (",
+              "                        rec[\"timeline\"]",
+              "                    ),",
+              "                    \"entry_strategy\": (",
+              "                        rec[\"entry_strategy\"]",
+              "                    ),",
+              "                    \"conviction\": (",
+              "                        rec[\"conviction\"]",
+              "                    ),",
+              "                    \"forecast_confidence\": (",
+              "                        rec[",
+              "                            \"forecast_confidence\"",
+              "                        ]",
+              "                    ),",
+              "                    \"reliability_score\": (",
+              "                        reliability[\"score\"]",
+              "                    ),",
+              "                    \"regime_alignment_score\": (",
+              "                        regime_score",
+              "                    ),",
+              "                    \"risk_score\": (",
+              "                        rec[\"risk_score\"]",
+              "                    ),",
+              "                    \"short_term_signal\": ("
+            ],
+            "line": "\"forecast_confidence\"",
+            "line_number": 1777
+          },
+          {
+            "context": [
+              "                    ),",
+              "                    \"medium_term_signal\": (",
+              "                        rec[\"medium_signal\"]",
+              "                    ),",
+              "                    \"long_term_signal\": (",
+              "                        rec[\"long_signal\"]",
+              "                    ),",
+              "                    \"primary_reason\": (",
+              "                        primary_reason",
+              "                    ),",
+              "                    \"risk_warning\": risk_warning,",
+              "                    \"evidence_status\": (",
+              "                        evidence_status",
+              "                    ),",
+              "                    \"calculated_at_utc\": (",
+              "                        utcnow()",
+              "                    ),",
+              "                })",
+              "",
+              "            plan_rows = self.plan_rows(",
+              "                recommendation_date,",
+              "                recommendation_inputs,",
+              "                targets,",
+              "                signals[\"allocations\"],"
+            ],
+            "line": "\"evidence_status\": (",
+            "line_number": 1802
+          },
+          {
+            "context": [
+              "                    \"medium_term_signal\": (",
+              "                        rec[\"medium_signal\"]",
+              "                    ),",
+              "                    \"long_term_signal\": (",
+              "                        rec[\"long_signal\"]",
+              "                    ),",
+              "                    \"primary_reason\": (",
+              "                        primary_reason",
+              "                    ),",
+              "                    \"risk_warning\": risk_warning,",
+              "                    \"evidence_status\": (",
+              "                        evidence_status",
+              "                    ),",
+              "                    \"calculated_at_utc\": (",
+              "                        utcnow()",
+              "                    ),",
+              "                })",
+              "",
+              "            plan_rows = self.plan_rows(",
+              "                recommendation_date,",
+              "                recommendation_inputs,",
+              "                targets,",
+              "                signals[\"allocations\"],",
+              "            )"
+            ],
+            "line": "evidence_status",
+            "line_number": 1803
+          },
+          {
+            "context": [
+              "                else \"SELECTIVE_ACCUMULATION\"",
+              "                if positive_assets > 0",
+              "                and net_risk_change > 0",
+              "                else \"REMAIN_DEFENSIVE\"",
+              "            )",
+              "            overall_timeline = (",
+              "                \"NEXT_2_TO_6_WEEKS\"",
+              "                if overall_action",
+              "                != \"REMAIN_DEFENSIVE\"",
+              "                else \"REASSESS_IN_30_DAYS\"",
+              "            )",
+              "            evidence_status = (",
+              "                \"LIVE_VALIDATED\"",
+              "                if (",
+              "                    recommendation_frame[",
+              "                        \"evidence_status\"",
+              "                    ]",
+              "                    == \"LIVE_VALIDATED\"",
+              "                ).all()",
+              "                else \"ACCUMULATING_EVIDENCE\"",
+              "            )",
+              "",
+              "            summary = pd.DataFrame([{",
+              "                \"run_id\": self.run_id,"
+            ],
+            "line": "evidence_status = (",
+            "line_number": 1908
+          },
+          {
+            "context": [
+              "            )",
+              "            overall_timeline = (",
+              "                \"NEXT_2_TO_6_WEEKS\"",
+              "                if overall_action",
+              "                != \"REMAIN_DEFENSIVE\"",
+              "                else \"REASSESS_IN_30_DAYS\"",
+              "            )",
+              "            evidence_status = (",
+              "                \"LIVE_VALIDATED\"",
+              "                if (",
+              "                    recommendation_frame[",
+              "                        \"evidence_status\"",
+              "                    ]",
+              "                    == \"LIVE_VALIDATED\"",
+              "                ).all()",
+              "                else \"ACCUMULATING_EVIDENCE\"",
+              "            )",
+              "",
+              "            summary = pd.DataFrame([{",
+              "                \"run_id\": self.run_id,",
+              "                \"recommendation_date\": (",
+              "                    recommendation_date",
+              "                ),",
+              "                \"overall_action\": overall_action,"
+            ],
+            "line": "\"evidence_status\"",
+            "line_number": 1912
+          },
+          {
+            "context": [
+              "                ),",
+              "                \"highest_conviction_score\": (",
+              "                    highest[",
+              "                        \"investment_score\"",
+              "                    ]",
+              "                ),",
+              "                \"positive_assets\": (",
+              "                    positive_assets",
+              "                ),",
+              "                \"wait_assets\": wait_assets,",
+              "                \"reduce_assets\": reduce_assets,",
+              "                \"evidence_status\": (",
+              "                    evidence_status",
+              "                ),",
+              "                \"decision_status\": (",
+              "                    \"ACTIONABLE_WITH_CAUTION\"",
+              "                    if positive_assets > 0",
+              "                    else \"DEFENSIVE\"",
+              "                ),",
+              "                \"calculated_at_utc\": utcnow(),",
+              "            }])",
+              "",
+              "            consistency = (",
+              "                self.validate_decision_consistency("
+            ],
+            "line": "\"evidence_status\": (",
+            "line_number": 1947
+          },
+          {
+            "context": [
+              "                \"highest_conviction_score\": (",
+              "                    highest[",
+              "                        \"investment_score\"",
+              "                    ]",
+              "                ),",
+              "                \"positive_assets\": (",
+              "                    positive_assets",
+              "                ),",
+              "                \"wait_assets\": wait_assets,",
+              "                \"reduce_assets\": reduce_assets,",
+              "                \"evidence_status\": (",
+              "                    evidence_status",
+              "                ),",
+              "                \"decision_status\": (",
+              "                    \"ACTIONABLE_WITH_CAUTION\"",
+              "                    if positive_assets > 0",
+              "                    else \"DEFENSIVE\"",
+              "                ),",
+              "                \"calculated_at_utc\": utcnow(),",
+              "            }])",
+              "",
+              "            consistency = (",
+              "                self.validate_decision_consistency(",
+              "                    summary,"
+            ],
+            "line": "evidence_status",
+            "line_number": 1948
+          },
+          {
+            "context": [
+              "                plan_frame,",
+              "            )",
+              "            self.upsert(",
+              "                \"m42_decision_summary\",",
+              "                summary,",
+              "            )",
+              "",
+              "            notes = (",
+              "                \"Generated action-consistent asset recommendations, \"",
+              "                \"non-forced target weights, staged execution timelines, \"",
+              "                \"and bear/median/bull projections through month 48. \"",
+              "                \"Long-range scenario influence is confidence-discounted. \"",
+              "                \"Consistency validation=\"",
+              "                + json.dumps(",
+              "                    consistency,",
+              "                    separators=(\",\", \":\"),",
+              "                )",
+              "            )",
+              "            self.conn.execute(",
+              "                \"\"\"",
+              "                UPDATE module42_runs",
+              "                SET completed_at_utc=?,",
+              "                    status='SUCCESS',",
+              "                    recommendation_rows=?,"
+            ],
+            "line": "\"Long-range scenario influence is confidence-discounted. \"",
+            "line_number": 1987
+          },
+          {
+            "context": [
+              "                UPDATE module42_runs",
+              "                SET completed_at_utc=?,",
+              "                    status='SUCCESS',",
+              "                    recommendation_rows=?,",
+              "                    projection_rows=?,",
+              "                    assets_covered=?,",
+              "                    horizons_covered=?,",
+              "                    total_target_risk_weight=?,",
+              "                    target_cash_weight=?,",
+              "                    overall_action=?,",
+              "                    overall_timeline=?,",
+              "                    evidence_status=?,",
+              "                    recommendation=?,",
+              "                    notes=?",
+              "                WHERE run_id=?",
+              "                \"\"\",",
+              "                [",
+              "                    utcnow(),",
+              "                    len(recommendation_frame),",
+              "                    len(projection_frame),",
+              "                    recommendation_frame[",
+              "                        \"asset_id\"",
+              "                    ].nunique(),",
+              "                    projection_frame["
+            ],
+            "line": "evidence_status=?,",
+            "line_number": 2007
+          },
+          {
+            "context": [
+              "                    len(projection_frame),",
+              "                    recommendation_frame[",
+              "                        \"asset_id\"",
+              "                    ].nunique(),",
+              "                    projection_frame[",
+              "                        \"horizon_label\"",
+              "                    ].nunique(),",
+              "                    target_risk,",
+              "                    target_cash,",
+              "                    overall_action,",
+              "                    overall_timeline,",
+              "                    evidence_status,",
+              "                    summary.iloc[0][",
+              "                        \"decision_status\"",
+              "                    ],",
+              "                    notes,",
+              "                    self.run_id,",
+              "                ],",
+              "            )",
+              "            self.conn.close()",
+              "            return summary.iloc[0].to_dict()",
+              "",
+              "        except Exception as exc:",
+              "            self.conn.execute("
+            ],
+            "line": "evidence_status,",
+            "line_number": 2026
+          }
+        ]
+      },
+      {
+        "exists": true,
+        "path": "crypto_platform/module8.py",
+        "relevant_section_count": 0,
+        "relevant_sections": []
+      },
+      {
+        "exists": true,
+        "path": "scripts/integration/audit_universal_contract_compatibility.py",
+        "relevant_section_count": 3,
+        "relevant_sections": [
+          {
+            "context": [
+              "    PLATFORM_ROOT / \"data\" / \"reference\",",
+              "    PLATFORM_ROOT / \"foundation\",",
+              "    PLATFORM_ROOT / \"docs\",",
+              "]",
+              "",
+              "TARGET_TERMS = [",
+              "    \"asset_master\",",
+              "    \"market_price\",",
+              "    \"market_prices\",",
+              "    \"portfolio_position\",",
+              "    \"portfolio_positions\",",
+              "    \"forecast\",",
+              "    \"recommendation\",",
+              "    \"risk_metric\",",
+              "    \"risk_metrics\",",
+              "    \"allocation_target\",",
+              "    \"allocation_targets\",",
+              "    \"platform_status\",",
+              "    \"price_projection\",",
+              "    \"price_projections\",",
+              "]",
+              "",
+              "",
+              "def sha256_file(path: Path) -> str:"
+            ],
+            "line": "\"forecast\",",
+            "line_number": 39
+          },
+          {
+            "context": [
+              "    \"market_price\",",
+              "    \"market_prices\",",
+              "    \"portfolio_position\",",
+              "    \"portfolio_positions\",",
+              "    \"forecast\",",
+              "    \"recommendation\",",
+              "    \"risk_metric\",",
+              "    \"risk_metrics\",",
+              "    \"allocation_target\",",
+              "    \"allocation_targets\",",
+              "    \"platform_status\",",
+              "    \"price_projection\",",
+              "    \"price_projections\",",
+              "]",
+              "",
+              "",
+              "def sha256_file(path: Path) -> str:",
+              "    digest = hashlib.sha256()",
+              "",
+              "    with path.open(\"rb\") as handle:",
+              "        for chunk in iter(",
+              "            lambda: handle.read(1024 * 1024),",
+              "            b\"\",",
+              "        ):"
+            ],
+            "line": "\"price_projection\",",
+            "line_number": 46
+          },
+          {
+            "context": [
+              "    \"market_prices\",",
+              "    \"portfolio_position\",",
+              "    \"portfolio_positions\",",
+              "    \"forecast\",",
+              "    \"recommendation\",",
+              "    \"risk_metric\",",
+              "    \"risk_metrics\",",
+              "    \"allocation_target\",",
+              "    \"allocation_targets\",",
+              "    \"platform_status\",",
+              "    \"price_projection\",",
+              "    \"price_projections\",",
+              "]",
+              "",
+              "",
+              "def sha256_file(path: Path) -> str:",
+              "    digest = hashlib.sha256()",
+              "",
+              "    with path.open(\"rb\") as handle:",
+              "        for chunk in iter(",
+              "            lambda: handle.read(1024 * 1024),",
+              "            b\"\",",
+              "        ):",
+              "            digest.update(chunk)"
+            ],
+            "line": "\"price_projections\",",
+            "line_number": 47
+          }
+        ]
+      }
+    ],
+    "trace_status": "STATIC_CONTRACT_TO_NATIVE_MAPPING_CANDIDATES_FOUND"
+  },
+  "status": "READ_ONLY_CONTRACT_TRACE"
+}

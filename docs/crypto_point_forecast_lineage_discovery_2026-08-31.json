@@ -1,0 +1,91 @@
+{
+  "affected_assets": [
+    "AVAX",
+    "BTC",
+    "ETH",
+    "LINK",
+    "SOL",
+    "XRP"
+  ],
+  "artifact_id": "CRYPTO_POINT_FORECAST_LINEAGE_DISCOVERY_2026_08_31",
+  "coverage_summary": {
+    "affected_assets_with_nonnull_point_forecast": [],
+    "affected_assets_without_nonnull_point_forecast": [
+      "AVAX",
+      "BTC",
+      "ETH",
+      "LINK",
+      "SOL",
+      "XRP"
+    ]
+  },
+  "database": {
+    "affected_asset_coverage": {
+      "AVAX": {
+        "latest_rows": [],
+        "nonnull_point_forecast_rows": 0,
+        "null_point_forecast_rows": 0,
+        "rows_found": 0
+      },
+      "BTC": {
+        "latest_rows": [],
+        "nonnull_point_forecast_rows": 0,
+        "null_point_forecast_rows": 0,
+        "rows_found": 0
+      },
+      "ETH": {
+        "latest_rows": [],
+        "nonnull_point_forecast_rows": 0,
+        "null_point_forecast_rows": 0,
+        "rows_found": 0
+      },
+      "LINK": {
+        "latest_rows": [],
+        "nonnull_point_forecast_rows": 0,
+        "null_point_forecast_rows": 0,
+        "rows_found": 0
+      },
+      "SOL": {
+        "latest_rows": [],
+        "nonnull_point_forecast_rows": 0,
+        "null_point_forecast_rows": 0,
+        "rows_found": 0
+      },
+      "XRP": {
+        "latest_rows": [],
+        "nonnull_point_forecast_rows": 0,
+        "null_point_forecast_rows": 0,
+        "rows_found": 0
+      }
+    },
+    "affected_asset_rows": [],
+    "error": null,
+    "lineage_status": "NO_POINT_FORECAST_COLUMN_FOUND",
+    "nonaffected_examples": [],
+    "opened_read_only": true,
+    "point_forecast_column_inventory": [],
+    "tables_with_point_forecast": []
+  },
+  "governance": {
+    "btc_strategic_forecast_reopened": false,
+    "database_opened_read_only": true,
+    "database_write_performed": false,
+    "forecast_execution_performed": false,
+    "network_call_performed": false,
+    "point_forecast_synthesized": false,
+    "repair_authorized": false
+  },
+  "next_gate": "ADJUDICATE_CRYPTO_POINT_FORECAST_LINEAGE_AND_REPAIR_PATH",
+  "source_repository": {
+    "all_reference_hits": [],
+    "lineage_status": "NO_SOURCE_REFERENCE_FOUND",
+    "point_forecast_reference_count": 0,
+    "possible_model_reference_count": 0,
+    "possible_models": [],
+    "possible_schema_reference_count": 0,
+    "possible_schema_references": [],
+    "possible_writer_reference_count": 0,
+    "possible_writers": []
+  },
+  "status": "READ_ONLY_DISCOVERY"
+}

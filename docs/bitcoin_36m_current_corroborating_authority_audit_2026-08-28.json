@@ -1,0 +1,131 @@
+{
+  "artifact_id": "BITCOIN_36M_CURRENT_CORROBORATING_AUTHORITY_AUDIT_2026_08_28",
+  "database_write_performed": false,
+  "forecast_values_changed": false,
+  "macro_liquidity": {
+    "latest_derived_macro_regime_date": "2026-07-28",
+    "latest_raw_macro_date": "2026-08-21",
+    "network_refresh_performed": false,
+    "status": "STALE",
+    "synthetic_macro_used": false,
+    "tables": {
+      "latest_macro_observations": {
+        "columns": [
+          "series_key",
+          "observation_date",
+          "value",
+          "source",
+          "collected_at_utc"
+        ],
+        "date_column": "observation_date",
+        "exists": true,
+        "latest_date": "2026-08-21"
+      },
+      "latest_macro_regime": {
+        "columns": [
+          "observation_date",
+          "real_yield",
+          "nominal_yield",
+          "fed_funds_rate",
+          "breakeven_inflation",
+          "vix",
+          "high_yield_spread",
+          "dollar_index",
+          "dollar_90d_change_pct",
+          "m2_yoy_pct",
+          "unemployment_rate",
+          "unemployment_6m_change",
+          "liquidity_score",
+          "risk_appetite_score",
+          "macro_score",
+          "regime_label",
+          "confidence",
+          "calculated_at_utc"
+        ],
+        "date_column": "observation_date",
+        "exists": true,
+        "latest_date": "2026-07-28"
+      },
+      "macro_observations": {
+        "columns": [
+          "series_key",
+          "observation_date",
+          "value",
+          "source",
+          "collected_at_utc"
+        ],
+        "date_column": "observation_date",
+        "exists": true,
+        "latest_date": "2026-08-21"
+      },
+      "macro_regime_daily": {
+        "columns": [
+          "observation_date",
+          "real_yield",
+          "nominal_yield",
+          "fed_funds_rate",
+          "breakeven_inflation",
+          "vix",
+          "high_yield_spread",
+          "dollar_index",
+          "dollar_90d_change_pct",
+          "m2_yoy_pct",
+          "unemployment_rate",
+          "unemployment_6m_change",
+          "liquidity_score",
+          "risk_appetite_score",
+          "macro_score",
+          "regime_label",
+          "confidence",
+          "calculated_at_utc"
+        ],
+        "date_column": "observation_date",
+        "exists": true,
+        "latest_date": "2026-07-28"
+      }
+    },
+    "web_macro_used": false
+  },
+  "module42_rerun_performed": false,
+  "network_refresh_performed": false,
+  "next_gate": "RESOLVE_CURRENT_BTC_MACRO_LIQUIDITY_AUTHORITY",
+  "operating_date": "2026-08-28",
+  "production_forecast_change_authorized": false,
+  "ready_for_strategic_blend": false,
+  "required_blend_blockers": [
+    "macro_liquidity"
+  ],
+  "trend_risk": {
+    "distance_sma20": 0.13974435165644228,
+    "distance_sma50": 0.19567701350047373,
+    "drawdown_from_running_high": -0.36341093164534943,
+    "evidence_date": "2026-08-28",
+    "network_refresh_performed": false,
+    "price_usd": 79408.0,
+    "return_30d": 0.24304296211919896,
+    "return_7d": 0.08746879830300869,
+    "running_high_price": 124739.81088811433,
+    "sma20": 69671.76444839823,
+    "sma50": 66412.5839197364,
+    "source": "CANONICAL_MARKET_DAILY_READ_ONLY_RECONSTRUCTION",
+    "status": "CURRENT",
+    "volatility_14d": 0.5349758984672468,
+    "volatility_30d": 0.4192502587337869,
+    "volatility_7d": 0.5277764085252565
+  },
+  "valuation_onchain": {
+    "absence_blocks_blend_under_contract": false,
+    "candidate_tables": [
+      "candidate_evaluation_cache",
+      "latest_m32_performance_drift_evaluation",
+      "latest_valuation_validation_summary",
+      "latest_valuation_zones",
+      "m32_performance_drift_evaluation",
+      "valuation_validation_summary",
+      "valuation_zones"
+    ],
+    "reason": "The strategic contract permits valuation/on-chain evidence when available; missing evidence remains missing and is not synthesized.",
+    "status": "DISCOVERY_REQUIRES_GOVERNANCE_REVIEW"
+  },
+  "valuation_onchain_missing_blocks_blend": false
+}

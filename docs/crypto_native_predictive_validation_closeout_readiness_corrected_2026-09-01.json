@@ -1,0 +1,106 @@
+{
+  "artifact_id": "CRYPTO_NATIVE_PREDICTIVE_VALIDATION_CLOSEOUT_READINESS_CORRECTED_2026_09_01",
+  "candidate_adjudication": {
+    "classified_candidates": [
+      {
+        "classification": "HISTORICAL_REMEDIATION_LINEAGE_NOT_BLOCKER",
+        "path": "docs/bitcoin_36m_strategic_forecast_research_closeout_v1.json",
+        "prior_reason": "EXPLICIT_BLOCKER_FIELD",
+        "rationale": "The field records that a governed remediation artifact was created. It does not state that remediation remains open.",
+        "source": "methodology_lineage.v2_created_as_governed_remediation",
+        "value": "True"
+      },
+      {
+        "classification": "CLOSURE_EVIDENCE_NOT_BLOCKER",
+        "path": "docs/bitcoin_36m_strategic_forecast_research_closeout_v1.json",
+        "prior_reason": "EXPLICIT_BLOCKER_FIELD",
+        "rationale": "A true blocker_closed field is positive closeout evidence, not an active blocker.",
+        "source": "remaining_crypto_validation.bitcoin_36m_strategic_forecast_blocker_closed",
+        "value": "True"
+      },
+      {
+        "classification": "SUPERSEDED_BY_FORMAL_POINT_FORECAST_CLOSEOUT",
+        "path": "docs/bitcoin_36m_strategic_forecast_research_closeout_v1.json",
+        "prior_reason": "EXPLICIT_BLOCKER_FIELD",
+        "rationale": "The older artifact records a point_forecast blocker that existed at that historical checkpoint. The later formal point_forecast closeout governs current state and explicitly closes that blocker.",
+        "source": "remaining_crypto_validation.point_forecast_lineage_blocker_remaining",
+        "value": "True"
+      },
+      {
+        "classification": "RETIREMENT_EVIDENCE_NOT_BLOCKER",
+        "path": "docs/crypto_point_forecast_blocker_closeout_2026-09-01.json",
+        "prior_reason": "EXPLICIT_BLOCKER_FIELD",
+        "rationale": "A true blocker_retirement_warranted field supports retiring a blocker and does not represent an open one.",
+        "source": "blocker.blocker_retirement_warranted",
+        "value": "True"
+      },
+      {
+        "classification": "CLOSEOUT_AUTHORITY_NOT_BLOCKER",
+        "path": "docs/crypto_point_forecast_blocker_closeout_2026-09-01.json",
+        "prior_reason": "EXPLICIT_BLOCKER_FIELD",
+        "rationale": "A true blocker_closeout_authorized field is closeout authority, not unresolved blocker evidence.",
+        "source": "blocker.blocker_closeout_authorized",
+        "value": "True"
+      },
+      {
+        "classification": "CLOSURE_EVIDENCE_NOT_BLOCKER",
+        "path": "docs/crypto_point_forecast_blocker_closeout_2026-09-01.json",
+        "prior_reason": "EXPLICIT_BLOCKER_FIELD",
+        "rationale": "A true blocker_closed field is positive closeout evidence, not an active blocker.",
+        "source": "blocker.blocker_closed",
+        "value": "True"
+      },
+      {
+        "classification": "RETIREMENT_EVIDENCE_NOT_BLOCKER",
+        "path": "docs/crypto_point_forecast_validator_assumption_correction_decision_2026-09-01.json",
+        "prior_reason": "EXPLICIT_BLOCKER_FIELD",
+        "rationale": "A true blocker_retirement_warranted field supports retiring a blocker and does not represent an open one.",
+        "source": "decision.blocker_retirement_warranted",
+        "value": "True"
+      }
+    ],
+    "current_unresolved_blocker_count": 0,
+    "current_unresolved_blockers": [],
+    "prior_candidate_count": 7
+  },
+  "governance": {
+    "btc_strategic_lane_reopened": false,
+    "database_opened": false,
+    "database_write_performed": false,
+    "forecast_execution_performed": false,
+    "forecast_synthesis_performed": false,
+    "model_execution_performed": false,
+    "network_call_performed": false,
+    "point_forecast_lane_reopened": false,
+    "prior_readiness_artifact_modified": false,
+    "production_behavior_modified": false,
+    "recommendation_policy_modified": false
+  },
+  "known_closed_lanes": {
+    "btc_36m_strategic_research_closed": true,
+    "known_closed_lanes_complete": true,
+    "point_forecast_blocker_closed": true,
+    "point_forecast_invalid_investigative_assumption": true,
+    "recommendation_policy_validation_closed": true
+  },
+  "milestone": "CRYPTO_NATIVE_PREDICTIVE_AND_RECOMMENDATION_VALIDATION",
+  "next_gate": "AUTHORIZE_CRYPTO_NATIVE_PREDICTIVE_VALIDATION_CLOSEOUT",
+  "prior_readiness": {
+    "preserved": true,
+    "prior_candidate_count": 7,
+    "prior_phase_closeout_ready": false,
+    "prior_result_superseded": true,
+    "prior_status": "CRYPTO_NATIVE_PREDICTIVE_VALIDATION_CLOSEOUT_NOT_READY",
+    "supersession_reason": "The prior classifier treated any truthy field whose key contained blocker/remediation terminology as an active blocker. This incorrectly elevated closure, retirement, authorization, remediation-lineage, and superseded historical fields."
+  },
+  "readiness": {
+    "closeout_authorization_warranted": true,
+    "database_write_authorized": false,
+    "model_execution_authorized": false,
+    "phase_closeout_authorized": false,
+    "phase_closeout_ready": true,
+    "production_promotion_authorized": false,
+    "status": "CRYPTO_NATIVE_PREDICTIVE_VALIDATION_CLOSEOUT_READY"
+  },
+  "status": "READ_ONLY_PHASE_CLOSEOUT_READINESS_CLASSIFIER_CORRECTION"
+}
