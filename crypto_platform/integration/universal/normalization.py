@@ -22,7 +22,9 @@ _LIQUIDITY_TIER_MAP = {
 }
 
 _RECOMMENDATION_MAP = {
+    "STRONG_BUY": "buy",
     "BUY": "buy",
+    "SCALE_IN": "accumulate",
     "ACCUMULATE": "accumulate",
     "HOLD": "hold",
     "WAIT": "watch",
