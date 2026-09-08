@@ -8,6 +8,9 @@ on:
         required: false
         default: false
         type: boolean
+  schedule:
+    - cron: "15 11 * * 1-6"
+    - cron: "45 10 * * 0"
 
 permissions:
   contents: read
@@ -26,6 +29,7 @@ jobs:
       FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
       COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
       CRYPTO_PRODUCTION_RUN_ID: gha-${{ github.run_id }}-${{ github.run_attempt }}
+      CRYPTO_FULL_REFRESH_REQUESTED: ${{ (github.event_name == 'schedule' && github.event.schedule == '45 10 * * 0') || (github.event_name == 'workflow_dispatch' && inputs.full_refresh == true) }}
     steps:
       - uses: actions/checkout@v4
 
@@ -48,11 +52,20 @@ jobs:
       - name: Validate registry and workflow
         run: python scripts/check_crypto_production_readiness.py --strict
 
+      - name: Classify refresh mode
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "event=${{ github.event_name }}"
+          echo "schedule=${{ github.event.schedule }}"
+          echo "full_refresh=${CRYPTO_FULL_REFRESH_REQUESTED}"
+
       - name: Run production pipeline
         shell: bash
         run: |
+          set -euo pipefail
           EXTRA_ARGS=""
-          if [[ "${{ inputs.full_refresh }}" == "true" ]]; then
+          if [[ "$CRYPTO_FULL_REFRESH_REQUESTED" == "true" ]]; then
             EXTRA_ARGS="--full-refresh"
           fi
           python scripts/run_crypto_production_pipeline.py $EXTRA_ARGS
