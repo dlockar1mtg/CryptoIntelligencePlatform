@@ -30,7 +30,9 @@ def test_universal_crypto_asset_id_rejects_spaces() -> None:
 @pytest.mark.parametrize(
     ("source", "expected"),
     [
+        ("STRONG_BUY", "buy"),
         ("BUY", "buy"),
+        ("SCALE_IN", "accumulate"),
         ("ACCUMULATE", "accumulate"),
         ("HOLD", "hold"),
         ("WAIT", "watch"),
