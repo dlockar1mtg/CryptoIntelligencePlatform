@@ -89,7 +89,8 @@ jobs:
         run: |
           python scripts/prepare_crypto_uip_delivery.py \
             --run-summary "${{ steps.production.outputs.summary }}" \
-            --output-root data/operations/crypto/uip_delivery
+            --output-root data/operations/crypto/uip_delivery \
+            --database "$CRYPTO_DATABASE_PATH"
 
       - name: Run production tests
         run: python -m pytest tests/production -q
