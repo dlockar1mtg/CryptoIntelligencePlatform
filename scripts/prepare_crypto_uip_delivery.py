@@ -20,8 +20,13 @@ def main() -> int:
         type=Path,
         default=ROOT / "data" / "operations" / "crypto" / "uip_delivery",
     )
+    parser.add_argument(
+        "--database",
+        type=Path,
+        default=ROOT / "data" / "crypto_intelligence.duckdb",
+    )
     args = parser.parse_args()
-    result = prepare_uip_delivery(args.run_summary, args.output_root)
+    result = prepare_uip_delivery(args.run_summary, args.output_root, args.database)
     print(json.dumps(result, indent=2))
     return 0
 

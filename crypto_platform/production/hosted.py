@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 from datetime import date, datetime, timezone
+import csv
 import hashlib
 import json
 from pathlib import Path
@@ -14,6 +15,22 @@ import duckdb
 
 
 ONLINE_PROVIDER_STATES = {"ONLINE", "AVAILABLE", "HEALTHY", "PASS"}
+
+CRYPTO_CURRENT_PRICE_AUTHORITY_ID = "CRYPTO_CANONICAL_MARKET_DAILY_CURRENT_PRICE_V1"
+CRYPTO_CURRENT_PRICE_SCHEMA_VERSION = "1.0.0"
+CRYPTO_CURRENT_PRICE_METHODOLOGY_VERSION = "1.0.0"
+CRYPTO_CURRENT_PRICE_SEMANTICS = "DAILY_CANONICAL_MARKET_CLOSE"
+CRYPTO_CURRENT_PRICE_PRESENTATION_SEMANTICS = (
+    "CURRENT_PRICE_FOR_PORTFOLIO_VALUATION_NOT_EXECUTION_QUOTE"
+)
+CRYPTO_CURRENT_PRICE_ASSETS = (
+    "bitcoin",
+    "ethereum",
+    "solana",
+    "chainlink",
+    "xrp",
+    "avalanche",
+)
 
 
 @dataclass(frozen=True)
@@ -228,7 +245,137 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def prepare_uip_delivery(run_summary_path: Path, output_root: Path) -> dict[str, Any]:
+def build_crypto_current_price_sidecar(
+    database_path: Path,
+    output_csv: Path,
+    output_manifest: Path,
+) -> dict[str, Any]:
+    """Export one governed latest daily price for each supported Crypto asset."""
+
+    database = database_path.resolve()
+    if not database.is_file():
+        raise FileNotFoundError(f"Crypto database not found: {database}")
+
+    connection = duckdb.connect(str(database), read_only=True)
+    try:
+        if not _table_exists(connection, "canonical_market_daily"):
+            raise ValueError("canonical_market_daily is missing from the Crypto database.")
+        placeholders = ", ".join("?" for _ in CRYPTO_CURRENT_PRICE_ASSETS)
+        rows = connection.execute(
+            f"""
+            WITH ranked AS (
+                SELECT
+                    asset_id,
+                    observation_date,
+                    price_usd,
+                    price_source,
+                    source_priority,
+                    collected_at_utc,
+                    ROW_NUMBER() OVER (
+                        PARTITION BY asset_id
+                        ORDER BY observation_date DESC
+                    ) AS rn
+                FROM canonical_market_daily
+                WHERE asset_id IN ({placeholders})
+                  AND price_usd IS NOT NULL
+            )
+            SELECT
+                asset_id,
+                observation_date,
+                price_usd,
+                price_source,
+                source_priority,
+                collected_at_utc
+            FROM ranked
+            WHERE rn = 1
+            ORDER BY asset_id
+            """,
+            list(CRYPTO_CURRENT_PRICE_ASSETS),
+        ).fetchall()
+    finally:
+        connection.close()
+
+    by_asset = {str(row[0]): row for row in rows}
+    if set(by_asset) != set(CRYPTO_CURRENT_PRICE_ASSETS):
+        missing = sorted(set(CRYPTO_CURRENT_PRICE_ASSETS) - set(by_asset))
+        extra = sorted(set(by_asset) - set(CRYPTO_CURRENT_PRICE_ASSETS))
+        raise ValueError(
+            f"Crypto current-price authority asset set mismatch; missing={missing}, extra={extra}"
+        )
+
+    output_csv.parent.mkdir(parents=True, exist_ok=True)
+    fieldnames = (
+        "universal_asset_id",
+        "asset_id",
+        "observation_date",
+        "current_price_usd",
+        "price_source",
+        "source_priority",
+        "collected_at_utc",
+        "source_table",
+        "authority_id",
+        "schema_version",
+        "methodology_version",
+        "price_semantics",
+        "presentation_semantics",
+    )
+    written_rows: list[dict[str, object]] = []
+    for asset_id in CRYPTO_CURRENT_PRICE_ASSETS:
+        row = by_asset[asset_id]
+        price = float(row[2])
+        if price <= 0:
+            raise ValueError(f"Crypto current price must be positive: {asset_id}")
+        price_source = str(row[3] or "").strip()
+        if not price_source:
+            raise ValueError(f"Crypto current price is missing price_source: {asset_id}")
+        written_rows.append(
+            {
+                "universal_asset_id": f"crypto:{asset_id}",
+                "asset_id": asset_id,
+                "observation_date": str(row[1]),
+                "current_price_usd": repr(price),
+                "price_source": price_source,
+                "source_priority": "" if row[4] is None else str(row[4]),
+                "collected_at_utc": "" if row[5] is None else str(row[5]),
+                "source_table": "canonical_market_daily",
+                "authority_id": CRYPTO_CURRENT_PRICE_AUTHORITY_ID,
+                "schema_version": CRYPTO_CURRENT_PRICE_SCHEMA_VERSION,
+                "methodology_version": CRYPTO_CURRENT_PRICE_METHODOLOGY_VERSION,
+                "price_semantics": CRYPTO_CURRENT_PRICE_SEMANTICS,
+                "presentation_semantics": CRYPTO_CURRENT_PRICE_PRESENTATION_SEMANTICS,
+            }
+        )
+
+    with output_csv.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(written_rows)
+
+    manifest = {
+        "status": "CRYPTO_CURRENT_PRICE_V1_PASS",
+        "authority_id": CRYPTO_CURRENT_PRICE_AUTHORITY_ID,
+        "schema_version": CRYPTO_CURRENT_PRICE_SCHEMA_VERSION,
+        "methodology_version": CRYPTO_CURRENT_PRICE_METHODOLOGY_VERSION,
+        "scope": "SIX_ASSET_LATEST_DAILY_CANONICAL_MARKET_PRICE",
+        "source_table": "canonical_market_daily",
+        "row_count": len(written_rows),
+        "supported_assets": [f"crypto:{asset}" for asset in CRYPTO_CURRENT_PRICE_ASSETS],
+        "price_semantics": CRYPTO_CURRENT_PRICE_SEMANTICS,
+        "presentation_semantics": CRYPTO_CURRENT_PRICE_PRESENTATION_SEMANTICS,
+        "output_sha256": _sha256(output_csv),
+        "forecast_input_reused_as_price_authority": False,
+        "intraday_quote_claimed": False,
+        "execution_authority_granted": False,
+    }
+    output_manifest.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    return manifest
+
+
+def prepare_uip_delivery(
+    run_summary_path: Path,
+    output_root: Path,
+    database_path: Path | None = None,
+) -> dict[str, Any]:
     """Copy a validated universal package into a stable delivery directory."""
 
     summary_path = run_summary_path.resolve()
@@ -269,6 +416,14 @@ def prepare_uip_delivery(run_summary_path: Path, output_root: Path) -> dict[str,
         shutil.rmtree(delivery_dir)
     shutil.copytree(package_source, delivery_dir)
 
+    current_price_manifest = None
+    if database_path is not None:
+        current_price_manifest = build_crypto_current_price_sidecar(
+            database_path,
+            delivery_dir / "crypto_current_price_v1.csv",
+            delivery_dir / "crypto_current_price_v1_manifest.json",
+        )
+
     files = []
     for path in sorted(delivery_dir.iterdir()):
         if path.is_file():
@@ -288,6 +443,7 @@ def prepare_uip_delivery(run_summary_path: Path, output_root: Path) -> dict[str,
         "source_run_summary": str(summary_path),
         "delivery_directory": str(delivery_dir),
         "files": files,
+        "crypto_current_price_v1": current_price_manifest,
     }
     manifest_path = delivery_dir / "uip_delivery_manifest.json"
     manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")

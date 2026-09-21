@@ -1,0 +1,49 @@
+{
+  "authority_id": "CRYPTO_CANONICAL_MARKET_DAILY_CURRENT_PRICE_V1",
+  "schema_version": "1.0.0",
+  "methodology_version": "1.0.0",
+  "scope": "SIX_ASSET_LATEST_DAILY_CANONICAL_MARKET_PRICE",
+  "supported_assets": [
+    "crypto:bitcoin",
+    "crypto:ethereum",
+    "crypto:solana",
+    "crypto:chainlink",
+    "crypto:xrp",
+    "crypto:avalanche"
+  ],
+  "source": {
+    "database_table": "canonical_market_daily",
+    "source_asset_ids": [
+      "bitcoin",
+      "ethereum",
+      "solana",
+      "chainlink",
+      "xrp",
+      "avalanche"
+    ],
+    "selection": "LATEST_NON_NULL_PRICE_PER_ASSET_BY_OBSERVATION_DATE",
+    "required_fields": [
+      "asset_id",
+      "observation_date",
+      "price_usd",
+      "price_source",
+      "source_priority",
+      "collected_at_utc"
+    ]
+  },
+  "output": {
+    "csv": "crypto_current_price_v1.csv",
+    "manifest": "crypto_current_price_v1_manifest.json",
+    "expected_row_count": 6,
+    "price_semantics": "DAILY_CANONICAL_MARKET_CLOSE",
+    "presentation_semantics": "CURRENT_PRICE_FOR_PORTFOLIO_VALUATION_NOT_EXECUTION_QUOTE"
+  },
+  "prohibitions": {
+    "forecast_current_value_as_price_authority": false,
+    "intraday_quote_claim": false,
+    "execution_authority": false,
+    "recommendation_change": false,
+    "model_change": false,
+    "schedule_change": false
+  }
+}
