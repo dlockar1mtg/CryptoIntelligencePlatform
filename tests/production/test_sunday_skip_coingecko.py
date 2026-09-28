@@ -29,12 +29,19 @@ def test_sunday_schedule_requests_full_refresh_without_coingecko():
     assert 'EXTRA_ARGS="$EXTRA_ARGS --skip-coingecko"' in text
 
 
-def test_weekday_schedule_does_not_unconditionally_skip_coingecko():
+def test_full_refresh_manual_or_sunday_skips_coingecko():
     text = WORKFLOW.read_text(encoding="utf-8")
     assert (
         "CRYPTO_SKIP_COINGECKO_REQUESTED: "
-        "${{ github.event_name == 'schedule' && github.event.schedule == '45 10 * * 0' }}"
+        "${{ (github.event_name == 'schedule' && github.event.schedule == '45 10 * * 0') || "
+        "(github.event_name == 'workflow_dispatch' && inputs.full_refresh == true) }}"
     ) in text
+
+
+def test_normal_manual_refresh_does_not_force_skip_coingecko():
+    text = WORKFLOW.read_text(encoding="utf-8")
+    assert "inputs.full_refresh == true" in text
+    assert "inputs.full_refresh == false" not in text
 
 
 def test_module1_skip_mode_makes_no_coingecko_request():

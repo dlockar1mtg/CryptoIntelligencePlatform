@@ -30,7 +30,7 @@ jobs:
       COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
       CRYPTO_PRODUCTION_RUN_ID: gha-${{ github.run_id }}-${{ github.run_attempt }}
       CRYPTO_FULL_REFRESH_REQUESTED: ${{ (github.event_name == 'schedule' && github.event.schedule == '45 10 * * 0') || (github.event_name == 'workflow_dispatch' && inputs.full_refresh == true) }}
-      CRYPTO_SKIP_COINGECKO_REQUESTED: ${{ github.event_name == 'schedule' && github.event.schedule == '45 10 * * 0' }}
+      CRYPTO_SKIP_COINGECKO_REQUESTED: ${{ (github.event_name == 'schedule' && github.event.schedule == '45 10 * * 0') || (github.event_name == 'workflow_dispatch' && inputs.full_refresh == true) }}
     steps:
       - uses: actions/checkout@v4
 
