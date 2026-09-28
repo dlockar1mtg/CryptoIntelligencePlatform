@@ -5,11 +5,12 @@ from crypto_platform.platform import run_module1
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--full-refresh", action="store_true")
+    parser.add_argument("--skip-coingecko", action="store_true")
     args = parser.parse_args()
 
     print("Crypto Intelligence Platform — Module 1 v2.0")
     print("Provider-aware data collection\n")
-    result = run_module1(args.full_refresh)
+    result = run_module1(args.full_refresh, skip_coingecko=args.skip_coingecko)
 
     print("\nCollection summary")
     print("------------------")
