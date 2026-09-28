@@ -26,6 +26,7 @@ class PipelineOptions:
     continue_on_optional_failure: bool = True
     resume: bool = False
     full_refresh: bool = False
+    skip_coingecko: bool = False
     export_universal: bool = True
     source_database: Path | None = None
 
@@ -117,6 +118,8 @@ class ProductionOrchestrator:
         command = [sys.executable, str(runner)]
         if spec.number == 1 and self.options.full_refresh:
             command.append("--full-refresh")
+        if spec.number == 1 and self.options.skip_coingecko:
+            command.append("--skip-coingecko")
 
         env = os.environ.copy()
         env["CRYPTO_PRODUCTION_RUN_ID"] = self.run_id
