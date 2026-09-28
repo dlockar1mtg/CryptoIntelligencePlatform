@@ -908,9 +908,10 @@ class MacroProvider:
 
 
 class Module1Runner:
-    def __init__(self, full_refresh: bool = False):
+    def __init__(self, full_refresh: bool = False, skip_coingecko: bool = False):
         self.settings, self.assets = load_all()
         self.full_refresh = full_refresh
+        self.skip_coingecko = skip_coingecko
         self.log = configure_logger(self.settings)
         self.http = HTTPClient(self.settings)
         self.conn = connect(self.settings)
@@ -1014,6 +1015,9 @@ class Module1Runner:
         upsert(self.conn, "macro_series_catalog", catalog, ["series_key"])
 
     def run_market(self) -> None:
+        if self.skip_coingecko:
+            self.log.info("CoinGecko collection skipped by governed refresh mode.")
+            return
         health = self.coin_gecko.healthcheck()
         self.record_health(health)
         if health.status != "ONLINE":
@@ -1234,5 +1238,11 @@ class Module1Runner:
         self.run_macro()
         return self.finish()
 
-def run_module1(full_refresh: bool = False) -> dict[str, Any]:
-    return Module1Runner(full_refresh=full_refresh).run()
+def run_module1(
+    full_refresh: bool = False,
+    skip_coingecko: bool = False,
+) -> dict[str, Any]:
+    return Module1Runner(
+        full_refresh=full_refresh,
+        skip_coingecko=skip_coingecko,
+    ).run()

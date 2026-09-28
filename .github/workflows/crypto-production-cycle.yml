@@ -30,6 +30,7 @@ jobs:
       COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
       CRYPTO_PRODUCTION_RUN_ID: gha-${{ github.run_id }}-${{ github.run_attempt }}
       CRYPTO_FULL_REFRESH_REQUESTED: ${{ (github.event_name == 'schedule' && github.event.schedule == '45 10 * * 0') || (github.event_name == 'workflow_dispatch' && inputs.full_refresh == true) }}
+      CRYPTO_SKIP_COINGECKO_REQUESTED: ${{ github.event_name == 'schedule' && github.event.schedule == '45 10 * * 0' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -59,6 +60,7 @@ jobs:
           echo "event=${{ github.event_name }}"
           echo "schedule=${{ github.event.schedule }}"
           echo "full_refresh=${CRYPTO_FULL_REFRESH_REQUESTED}"
+          echo "skip_coingecko=${CRYPTO_SKIP_COINGECKO_REQUESTED}"
 
       - name: Run production pipeline
         shell: bash
@@ -67,6 +69,9 @@ jobs:
           EXTRA_ARGS=""
           if [[ "$CRYPTO_FULL_REFRESH_REQUESTED" == "true" ]]; then
             EXTRA_ARGS="--full-refresh"
+          fi
+          if [[ "$CRYPTO_SKIP_COINGECKO_REQUESTED" == "true" ]]; then
+            EXTRA_ARGS="$EXTRA_ARGS --skip-coingecko"
           fi
           python scripts/run_crypto_production_pipeline.py $EXTRA_ARGS
 

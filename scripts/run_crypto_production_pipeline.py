@@ -31,6 +31,7 @@ def main() -> int:
     parser.add_argument("--start-module", type=int)
     parser.add_argument("--end-module", type=int)
     parser.add_argument("--full-refresh", action="store_true")
+    parser.add_argument("--skip-coingecko", action="store_true")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--no-export", action="store_true")
     parser.add_argument("--database", type=Path)
@@ -49,6 +50,7 @@ def main() -> int:
         end_module=args.end_module,
         resume=args.resume,
         full_refresh=args.full_refresh,
+        skip_coingecko=args.skip_coingecko,
         export_universal=not args.no_export,
         source_database=args.database,
     )
