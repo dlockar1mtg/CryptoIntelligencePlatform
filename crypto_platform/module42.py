@@ -203,6 +203,11 @@ QUARTERLY_HORIZONS = [
 
 ALL_HORIZONS = SHORT_HORIZONS + QUARTERLY_HORIZONS
 
+# Upstream modules (m39 forecasts, m41 feedback and reliability) are keyed by
+# 7/30/90/180 days, while M03/M06 projections run 91/183 days. Look them up
+# by the upstream key so the 3- and 6-month rows use the model, not the scenario.
+MODEL_HORIZON_DAYS = {91: 90, 183: 180}
+
 
 def utcnow():
     return datetime.now(timezone.utc)
@@ -686,23 +691,24 @@ class Module42Runner:
 
         rows = []
         for label, days, months in ALL_HORIZONS:
+            model_days = MODEL_HORIZON_DAYS.get(days, days)
             exact = self.forecast_for(
                 forecast_frame,
                 asset,
-                days,
+                model_days,
             )
             adaptive = self.adaptive_for(
                 feedback_frame,
                 asset,
-                days,
+                model_days,
             )
             reliability = self.reliability_for(
                 reliability_frame,
                 asset,
-                days,
+                model_days,
             )
 
-            if exact is not None and days in {
+            if exact is not None and model_days in {
                 7,
                 30,
                 90,
