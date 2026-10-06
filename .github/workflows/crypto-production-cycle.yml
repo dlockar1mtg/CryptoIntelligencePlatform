@@ -136,6 +136,15 @@ jobs:
             --output-root data/operations/crypto/uip_delivery \
             --database "$CRYPTO_DATABASE_PATH"
 
+      - name: Track forecasts (legacy log, scoring, 7-day context)
+        continue-on-error: true # forecast tracking never blocks the production cycle
+        timeout-minutes: 30
+        run: |
+          python scripts/track_crypto_forecasts.py \
+            --database "$CRYPTO_DATABASE_PATH" \
+            --log data/forecast_tracking/forecast_log.csv \
+            --output-dir data/operations/crypto/forecast_tracking
+
       - name: Run production tests
         run: python -m pytest tests/production -q
 
@@ -155,5 +164,41 @@ jobs:
             data/operations/crypto/production_runs/
             data/operations/crypto/hosted_readiness.json
             data/operations/crypto/uip_delivery/
+            data/operations/crypto/forecast_tracking/
           retention-days: 30
           if-no-files-found: warn
+
+  forecast-log:
+    # Commits the extended forecast log so its history outlives the cached database and the
+    # 30-day artifacts. Runs only after a successful cycle on main.
+    needs: crypto-cycle
+    if: ${{ needs.crypto-cycle.result == 'success' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: crypto-production-${{ github.run_id }}-${{ github.run_attempt }}
+          path: evidence
+
+      - name: Commit the forecast log
+        shell: bash
+        run: |
+          set -euo pipefail
+          src="$(find evidence -path '*forecast_tracking/forecast_log.csv' | head -n 1)"
+          if [ -z "$src" ]; then echo "No forecast log in this run's evidence"; exit 0; fi
+          mkdir -p data/forecast_tracking
+          cp "$src" data/forecast_tracking/forecast_log.csv
+          summary="$(dirname "$src")/forecast_tracking_summary.json"
+          if [ -f "$summary" ]; then cp "$summary" data/forecast_tracking/forecast_tracking_summary.json; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/forecast_tracking
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Crypto forecast log $(date -u +%F)"
+          git pull --rebase origin main
+          git push origin HEAD:main
