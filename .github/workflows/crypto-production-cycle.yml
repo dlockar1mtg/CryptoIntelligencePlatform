@@ -29,6 +29,9 @@ jobs:
     # its work successfully in the last 12 hours. Manual runs and the Sunday full refresh always go ahead.
     runs-on: ubuntu-24.04
     timeout-minutes: 5
+    # A failed gate is bookkeeping only: crypto-cycle still runs (see its `if`), and this keeps
+    # the gate's failure from turning the whole run's conclusion into "failure".
+    continue-on-error: true
     permissions:
       actions: read
     outputs:
@@ -171,8 +174,11 @@ jobs:
   forecast-log:
     # Commits the extended forecast log so its history outlives the cached database and the
     # 30-day artifacts. Runs only after a successful cycle on main.
+    # Bookkeeping only: if committing the log fails (for example a git pull/push race), the run's
+    # conclusion stays "success" so the UIP still picks up this run's delivery artifact.
     needs: crypto-cycle
     if: ${{ needs.crypto-cycle.result == 'success' && github.ref == 'refs/heads/main' }}
+    continue-on-error: true
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:

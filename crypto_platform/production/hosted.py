@@ -31,6 +31,11 @@ CRYPTO_CURRENT_PRICE_ASSETS = (
     "xrp",
     "avalanche",
 )
+# A coin whose latest canonical daily price is older than this many days is left
+# out of the current-price sidecar (with the reason recorded in its manifest).
+CRYPTO_CURRENT_PRICE_MAX_AGE_DAYS = 3
+# If any of these is older than the limit, the sidecar build fails instead.
+CRYPTO_CURRENT_PRICE_REQUIRED_FRESH_ASSETS = ("bitcoin", "ethereum")
 
 
 @dataclass(frozen=True)
@@ -303,6 +308,40 @@ def build_crypto_current_price_sidecar(
             f"Crypto current-price authority asset set mismatch; missing={missing}, extra={extra}"
         )
 
+    today = _utc_now().date()
+    excluded_assets: list[dict[str, object]] = []
+    for asset_id in CRYPTO_CURRENT_PRICE_ASSETS:
+        observed = _as_utc_datetime(by_asset[asset_id][1])
+        age_days = (today - observed.date()).days
+        if age_days > CRYPTO_CURRENT_PRICE_MAX_AGE_DAYS:
+            excluded_assets.append(
+                {
+                    "universal_asset_id": f"crypto:{asset_id}",
+                    "asset_id": asset_id,
+                    "observation_date": str(by_asset[asset_id][1]),
+                    "age_days": age_days,
+                    "reason": (
+                        f"Latest canonical price is {age_days} days old; "
+                        f"maximum is {CRYPTO_CURRENT_PRICE_MAX_AGE_DAYS} days."
+                    ),
+                }
+            )
+    stale_required = sorted(
+        item["asset_id"]
+        for item in excluded_assets
+        if item["asset_id"] in CRYPTO_CURRENT_PRICE_REQUIRED_FRESH_ASSETS
+    )
+    if stale_required:
+        raise ValueError(
+            "Crypto current price is stale for required assets "
+            f"{stale_required}: " + "; ".join(
+                f"{item['asset_id']} {item['reason']}"
+                for item in excluded_assets
+                if item["asset_id"] in stale_required
+            )
+        )
+    excluded_ids = {str(item["asset_id"]) for item in excluded_assets}
+
     output_csv.parent.mkdir(parents=True, exist_ok=True)
     fieldnames = (
         "universal_asset_id",
@@ -321,6 +360,8 @@ def build_crypto_current_price_sidecar(
     )
     written_rows: list[dict[str, object]] = []
     for asset_id in CRYPTO_CURRENT_PRICE_ASSETS:
+        if asset_id in excluded_ids:
+            continue
         row = by_asset[asset_id]
         price = float(row[2])
         if price <= 0:
@@ -362,6 +403,8 @@ def build_crypto_current_price_sidecar(
         "supported_assets": [f"crypto:{asset}" for asset in CRYPTO_CURRENT_PRICE_ASSETS],
         "price_semantics": CRYPTO_CURRENT_PRICE_SEMANTICS,
         "presentation_semantics": CRYPTO_CURRENT_PRICE_PRESENTATION_SEMANTICS,
+        "max_price_age_days": CRYPTO_CURRENT_PRICE_MAX_AGE_DAYS,
+        "excluded_assets": excluded_assets,
         "output_sha256": _sha256(output_csv),
         "forecast_input_reused_as_price_authority": False,
         "intraday_quote_claimed": False,

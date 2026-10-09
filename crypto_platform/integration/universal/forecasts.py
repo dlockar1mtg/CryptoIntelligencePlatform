@@ -42,6 +42,18 @@ FORECAST_COLUMNS = [
 ]
 
 
+# Guard for exported lower bounds: a price cannot fall by 100% or more, so a
+# lower-bound return at or below -100% is raised to this floor before it is
+# turned into a bear-case price.
+LOWER_BOUND_RETURN_FLOOR_PCT = -99.0
+
+# When a row's predicted return points one way and its probability of a
+# positive return points the other way, its exported confidence is capped at
+# this value. The contract has no spare column for a flag, so the lowered
+# confidence is the marker downstream readers see.
+DIRECTION_INCONSISTENT_CONFIDENCE_CAP = 0.0
+
+
 @dataclass(frozen=True)
 class UniversalForecastRecord:
     contract_version: str
@@ -99,6 +111,63 @@ def _apply_return(
     )
 
 
+def _floor_lower_return(
+    return_pct: float | None,
+) -> float | None:
+    if return_pct is None:
+        return None
+
+    return max(
+        return_pct,
+        LOWER_BOUND_RETURN_FLOOR_PCT,
+    )
+
+
+def _floor_bear_price(
+    current_value: float | None,
+    bear_price: float | None,
+) -> float | None:
+    if current_value is None or bear_price is None:
+        return bear_price
+
+    floor = _apply_return(
+        current_value,
+        LOWER_BOUND_RETURN_FLOOR_PCT,
+    )
+
+    return max(bear_price, floor)
+
+
+def direction_consistent(
+    predicted_return_pct: float | None,
+    probability_positive: float | None,
+) -> bool:
+    """False when the predicted return's sign contradicts P(up) vs 0.5.
+
+    A zero return, a probability of exactly 0.5, or a missing value is
+    treated as consistent.
+    """
+    if (
+        predicted_return_pct is None
+        or probability_positive is None
+        or not math.isfinite(predicted_return_pct)
+        or not math.isfinite(probability_positive)
+    ):
+        return True
+
+    probability = normalize_probability(
+        probability_positive
+    )
+
+    if predicted_return_pct > 0.0:
+        return probability >= 0.5
+
+    if predicted_return_pct < 0.0:
+        return probability <= 0.5
+
+    return True
+
+
 def _expected_cagr(
     total_return: float | None,
     horizon_months: int,
@@ -140,6 +209,19 @@ def transform_calibrated_forecast(
         )
     )
 
+    confidence = _confidence_to_score(
+        source.forecast_confidence
+    )
+
+    if confidence is not None and not direction_consistent(
+        source.predicted_return_pct,
+        source.probability_positive,
+    ):
+        confidence = min(
+            confidence,
+            DIRECTION_INCONSISTENT_CONFIDENCE_CAP,
+        )
+
     return UniversalForecastRecord(
         contract_version=context.contract_version,
         platform_id=context.platform_id,
@@ -164,7 +246,9 @@ def transform_calibrated_forecast(
         ),
         forecast_value_bear=_apply_return(
             source.current_price,
-            source.lower_return_pct,
+            _floor_lower_return(
+                source.lower_return_pct
+            ),
         ),
         forecast_value_bull=_apply_return(
             source.current_price,
@@ -176,11 +260,7 @@ def transform_calibrated_forecast(
             months,
         ),
         probability_positive_return=probability,
-        forecast_confidence=(
-            _confidence_to_score(
-                source.forecast_confidence
-            )
-        ),
+        forecast_confidence=confidence,
         forecast_method=(
             source.calibration_method
             or "calibrated_forecast"
@@ -228,7 +308,10 @@ def transform_price_projection(
         forecast_date=source.projection_date,
         current_value=source.current_price,
         forecast_value_base=source.median_price,
-        forecast_value_bear=source.bear_price,
+        forecast_value_bear=_floor_bear_price(
+            source.current_price,
+            source.bear_price,
+        ),
         forecast_value_bull=source.bull_price,
         expected_total_return=(
             percentage_points_to_decimal(
