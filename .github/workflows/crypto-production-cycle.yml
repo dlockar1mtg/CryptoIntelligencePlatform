@@ -10,9 +10,7 @@ on:
         type: boolean
   schedule:
     - cron: "15 11 * * 1-6"
-    - cron: "15 14 * * *" # backup: skipped unless the last run that did the work is over 12 hours old (see the gate job)
-    - cron: "15 17 * * *"
-    - cron: "15 20 * * *"
+    - cron: "15 17 * * *" # backup: skipped unless the last run that did the work is over 12 hours old (see the gate job). One backup only: each gate run bills a full minute.
     - cron: "45 10 * * 0"
 
 permissions:
@@ -116,6 +114,21 @@ jobs:
             EXTRA_ARGS="$EXTRA_ARGS --skip-coingecko"
           fi
           python scripts/run_crypto_production_pipeline.py $EXTRA_ARGS
+
+      - name: Report the slowest modules
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, pathlib, os
+          p = pathlib.Path("data/operations/crypto/production_runs") / os.environ["CRYPTO_PRODUCTION_RUN_ID"] / "run_summary.json"
+          if p.is_file():
+              rows = sorted(json.loads(p.read_text()).get("module_results", []), key=lambda r: -float(r.get("duration_seconds") or 0))
+              total = sum(float(r.get("duration_seconds") or 0) for r in rows)
+              text = "%0A".join(f"module {r['module']}: {float(r['duration_seconds']) / 60:.1f} min ({r['status']})" for r in rows[:12])
+              print(f"::notice title=Crypto module timings ({total / 60:.1f} min in modules)::{text}")
+          PY
 
       - name: Resolve production run summary
         id: production
