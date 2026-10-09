@@ -16,6 +16,10 @@ import uuid
 from .registry import MODULE_REGISTRY, ModuleSpec, ProductionStage, validate_registry
 
 
+# Longest a single module runner may take before it is stopped and recorded as FAIL.
+MODULE_TIMEOUT_SECONDS = 40 * 60
+
+
 @dataclass(frozen=True)
 class PipelineOptions:
     repository_root: Path
@@ -126,20 +130,33 @@ class ProductionOrchestrator:
         env["CRYPTO_PRODUCTION_STAGE"] = spec.stage.value
         env["CRYPTO_PRODUCTION_MODULE"] = str(spec.number)
 
+        timed_out = False
         with stdout_path.open("w", encoding="utf-8") as stdout_handle, stderr_path.open(
             "w", encoding="utf-8"
         ) as stderr_handle:
-            completed = subprocess.run(
-                command,
-                cwd=self.root,
-                env=env,
-                stdout=stdout_handle,
-                stderr=stderr_handle,
-                text=True,
-                check=False,
-            )
+            try:
+                completed = subprocess.run(
+                    command,
+                    cwd=self.root,
+                    env=env,
+                    stdout=stdout_handle,
+                    stderr=stderr_handle,
+                    text=True,
+                    check=False,
+                    timeout=MODULE_TIMEOUT_SECONDS,
+                )
+                return_code = completed.returncode
+            except subprocess.TimeoutExpired:
+                timed_out = True
+                return_code = None
 
-        status = "PASS" if completed.returncode == 0 else "FAIL"
+        status = "PASS" if return_code == 0 else "FAIL"
+        if timed_out:
+            error = f"Runner timed out after {MODULE_TIMEOUT_SECONDS} seconds."
+        elif status == "PASS":
+            error = ""
+        else:
+            error = f"Runner exited with code {return_code}."
         return ModuleRunResult(
             module=spec.number,
             stage=spec.stage.value,
@@ -149,19 +166,22 @@ class ProductionOrchestrator:
             started_at_utc=started,
             completed_at_utc=self._iso_now(),
             duration_seconds=round(time.monotonic() - started_clock, 3),
-            return_code=completed.returncode,
+            return_code=return_code,
             stdout_log=str(stdout_path.relative_to(self.run_directory)),
             stderr_log=str(stderr_path.relative_to(self.run_directory)),
-            error="" if status == "PASS" else f"Runner exited with code {completed.returncode}.",
+            error=error,
         )
 
     def _run_universal_export(self) -> dict:
         if not self.options.export_universal:
             return {"status": "SKIPPED", "reason": "Disabled by command option."}
 
+        # An unset or empty CRYPTO_DATABASE_PATH falls back to the default path.
+        # (Path("") is truthy, so it must not be built from an empty value.)
+        env_database = os.getenv("CRYPTO_DATABASE_PATH", "").strip()
         source_database = (
             self.options.source_database
-            or Path(os.getenv("CRYPTO_DATABASE_PATH", "").strip())
+            or (Path(env_database) if env_database else None)
             or self.root / "data" / "crypto_intelligence.duckdb"
         )
         if not source_database.is_absolute():
@@ -173,6 +193,7 @@ class ProductionOrchestrator:
             }
 
         from crypto_platform.integration.universal import ExportContext, UniversalPackageBuilder
+        from crypto_platform.integration.universal.package_builder import PackageValidationError
 
         package_dir = self.run_directory / "universal_package"
         context = ExportContext.create(
@@ -181,7 +202,15 @@ class ProductionOrchestrator:
             run_id=self.run_id,
             generated_at_utc=datetime.now(timezone.utc),
         )
-        result = UniversalPackageBuilder(context).build()
+        try:
+            result = UniversalPackageBuilder(context).build()
+        except PackageValidationError as exc:
+            return {
+                "status": "FAIL",
+                "reason": str(exc),
+                "failed_checks": exc.failed_checks,
+                "output_directory": str(exc.output_directory),
+            }
         return {
             "status": result.validation_status,
             "output_directory": str(result.output_directory),

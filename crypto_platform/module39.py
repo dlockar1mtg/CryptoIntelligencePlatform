@@ -254,6 +254,27 @@ def clip_probability(values):
     return np.clip(np.asarray(values,dtype=float),1e-4,1-1e-4)
 
 
+# A predicted return at or below -100% has no log; treat it as this floor.
+MIN_LOG_SPACE_RETURN_PCT = -99.99
+
+
+def log_space_return_interval(predicted_return_pct, half_width_pct):
+    """Return (lower_pct, upper_pct) for a band applied in log-return space.
+
+    The predicted percent return is converted to a log return, the band
+    half-width (percent) is converted to a log half-width, the band is
+    applied, and both bounds are converted back to percent. Because the
+    bounds are exp(...) - 1, the lower bound is always above -100%.
+    For small widths this matches the old symmetric percent band.
+    """
+    predicted = max(float(predicted_return_pct), MIN_LOG_SPACE_RETURN_PCT)
+    centre = math.log1p(predicted / 100.0)
+    half = math.log1p(max(float(half_width_pct), 0.0) / 100.0)
+    lower = math.expm1(centre - half) * 100.0
+    upper = math.expm1(centre + half) * 100.0
+    return lower, upper
+
+
 class Module39Runner:
     def __init__(self):
         self.settings,_=load_all()
@@ -417,8 +438,9 @@ class Module39Runner:
             alpha = float(self.cfg["conformal_alpha"])
             multiplier = 1.645 if alpha <= 0.10 else 1.282
             half_width = max(residual_scale * multiplier, 1.0)
-            lower = float(forecast["predicted_return_pct"] - half_width)
-            upper = float(forecast["predicted_return_pct"] + half_width)
+            lower, upper = log_space_return_interval(
+                forecast["predicted_return_pct"], half_width
+            )
             calibrated.append({
                 "run_id": self.run_id,
                 "forecast_date": forecast["forecast_date"],

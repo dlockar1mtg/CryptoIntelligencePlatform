@@ -21,6 +21,7 @@ from .context import ExportContext
 from .forecasts import (
     FORECAST_COLUMNS,
     build_forecasts,
+    direction_consistent,
 )
 from .manifest import (
     EXPORT_MANIFEST_COLUMNS,
@@ -49,6 +50,39 @@ from .writers import (
     write_csv,
     write_json,
 )
+
+
+# Checks whose passing value is False; every other check must be True.
+CHECKS_EXPECTED_FALSE = frozenset(
+    {"portfolio_positions_inferred"}
+)
+
+
+class PackageValidationError(RuntimeError):
+    """Raised when a built package fails one or more validation checks."""
+
+    def __init__(
+        self,
+        failed_checks: list[str],
+        output_directory: Path,
+    ) -> None:
+        self.failed_checks = list(failed_checks)
+        self.output_directory = output_directory
+        super().__init__(
+            "Universal package validation FAILED: "
+            + ", ".join(self.failed_checks)
+        )
+
+
+def failed_validation_checks(
+    checks: dict[str, bool],
+) -> list[str]:
+    return sorted(
+        name
+        for name, value in checks.items()
+        if bool(value)
+        != (name not in CHECKS_EXPECTED_FALSE)
+    )
 
 
 @dataclass(frozen=True)
@@ -104,11 +138,33 @@ class UniversalPackageBuilder:
             self._context,
         )
 
+        calibrated_source = (
+            self._analytics.load_calibrated_forecasts()
+        )
+
         forecasts = build_forecasts(
-            self._analytics.load_calibrated_forecasts(),
+            calibrated_source,
             self._analytics.load_price_projections(),
             self._context,
         )
+
+        direction_inconsistent = [
+            {
+                "asset_id": item.asset_id,
+                "horizon_days": item.horizon_days,
+                "predicted_return_pct": (
+                    item.predicted_return_pct
+                ),
+                "probability_positive": (
+                    item.probability_positive
+                ),
+            }
+            for item in calibrated_source
+            if not direction_consistent(
+                item.predicted_return_pct,
+                item.probability_positive,
+            )
+        ]
 
         native_recommendations = (
             self._analytics.load_recommendations()
@@ -144,12 +200,76 @@ class UniversalPackageBuilder:
             + len(portfolio_positions)
         )
 
+        warnings = [
+            (
+                "No validated holdings input was "
+                "provided. portfolio_positions.csv "
+                "contains its canonical header and "
+                "zero records."
+            )
+        ]
+
+        if direction_inconsistent:
+            warnings.append(
+                f"{len(direction_inconsistent)} calibrated "
+                "forecast row(s) have a predicted return "
+                "whose sign contradicts their probability "
+                "of a positive return; their "
+                "forecast_confidence was lowered."
+            )
+
+        checks = {
+            "asset_master_nonempty": (
+                len(assets) > 0
+            ),
+            "forecasts_nonempty": (
+                len(forecasts) > 0
+            ),
+            "recommendations_nonempty": (
+                len(recommendations) > 0
+            ),
+            "btc_eth_strategic_overlay_exactly_two": (
+                len(btc_eth_strategic_overlay) == 2
+            ),
+            "btc_eth_strategic_overlay_preferred": (
+                True
+            ),
+            "legacy_recommendations_preserved": (
+                True
+            ),
+            "risk_metrics_nonempty": (
+                len(risk_metrics) > 0
+            ),
+            "portfolio_positions_inferred": (
+                False
+            ),
+            "source_database_read_only": (
+                True
+            ),
+            "manifest_checksums_created": (
+                True
+            ),
+        }
+
+        failed_checks = failed_validation_checks(
+            checks
+        )
+        validation_status = (
+            "FAIL" if failed_checks else "PASS"
+        )
+        errors = [
+            f"Validation check failed: {name}"
+            for name in failed_checks
+        ]
+
         platform_status = build_platform_status(
             context=self._context,
             source_runs=source_runs,
             exported_record_count=analytical_count,
+            # Kept at the long-standing holdings warning so the published
+            # platform_status row is unchanged for the UIP importer.
             warning_count=1,
-            error_count=0,
+            error_count=len(errors),
         )
 
         datasets = [
@@ -260,7 +380,7 @@ class UniversalPackageBuilder:
                         self._context.source_database
                     )
                 ),
-                "status": "PASS",
+                "status": validation_status,
                 "platform_status": "RESEARCH ONLY",
                 "holdings_available": False,
                 "btc_eth_strategic_overlay_preferred": True,
@@ -284,53 +404,19 @@ class UniversalPackageBuilder:
             )
 
             validation_report = {
-                "status": "PASS",
+                "status": validation_status,
                 "run_id": self._context.run_id,
                 "contract_version": (
                     self._context.contract_version
                 ),
                 "holdings_available": False,
-                "warnings": [
-                    (
-                        "No validated holdings input was "
-                        "provided. portfolio_positions.csv "
-                        "contains its canonical header and "
-                        "zero records."
-                    )
-                ],
-                "errors": [],
-                "checks": {
-                    "asset_master_nonempty": (
-                        len(assets) > 0
-                    ),
-                    "forecasts_nonempty": (
-                        len(forecasts) > 0
-                    ),
-                    "recommendations_nonempty": (
-                        len(recommendations) > 0
-                    ),
-                    "btc_eth_strategic_overlay_exactly_two": (
-                        len(btc_eth_strategic_overlay) == 2
-                    ),
-                    "btc_eth_strategic_overlay_preferred": (
-                        True
-                    ),
-                    "legacy_recommendations_preserved": (
-                        True
-                    ),
-                    "risk_metrics_nonempty": (
-                        len(risk_metrics) > 0
-                    ),
-                    "portfolio_positions_inferred": (
-                        False
-                    ),
-                    "source_database_read_only": (
-                        True
-                    ),
-                    "manifest_checksums_created": (
-                        True
-                    ),
-                },
+                "warnings": warnings,
+                "errors": errors,
+                "failed_checks": failed_checks,
+                "direction_inconsistent_forecasts": (
+                    direction_inconsistent
+                ),
+                "checks": checks,
             }
 
             write_json(
@@ -349,10 +435,18 @@ class UniversalPackageBuilder:
 
             raise
 
+        if failed_checks:
+            # The package and its FAIL validation report stay on disk
+            # for diagnosis; raising makes the production run fail.
+            raise PackageValidationError(
+                failed_checks,
+                output,
+            )
+
         return PackageBuildResult(
             output_directory=output,
             run_id=self._context.run_id,
             dataset_counts=counts,
             manifest_count=manifest_count,
-            validation_status="PASS",
+            validation_status=validation_status,
         )

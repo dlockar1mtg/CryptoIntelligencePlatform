@@ -10,9 +10,7 @@ on:
         type: boolean
   schedule:
     - cron: "15 11 * * 1-6"
-    - cron: "15 14 * * *" # backup: skipped unless the last run that did the work is over 12 hours old (see the gate job)
-    - cron: "15 17 * * *"
-    - cron: "15 20 * * *"
+    - cron: "15 17 * * *" # backup: skipped unless the last run that did the work is over 12 hours old (see the gate job). One backup only: each gate run bills a full minute.
     - cron: "45 10 * * 0"
 
 permissions:
@@ -29,6 +27,9 @@ jobs:
     # its work successfully in the last 12 hours. Manual runs and the Sunday full refresh always go ahead.
     runs-on: ubuntu-24.04
     timeout-minutes: 5
+    # A failed gate is bookkeeping only: crypto-cycle still runs (see its `if`), and this keeps
+    # the gate's failure from turning the whole run's conclusion into "failure".
+    continue-on-error: true
     permissions:
       actions: read
     outputs:
@@ -114,6 +115,21 @@ jobs:
           fi
           python scripts/run_crypto_production_pipeline.py $EXTRA_ARGS
 
+      - name: Report the slowest modules
+        if: always()
+        continue-on-error: true
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, pathlib, os
+          p = pathlib.Path("data/operations/crypto/production_runs") / os.environ["CRYPTO_PRODUCTION_RUN_ID"] / "run_summary.json"
+          if p.is_file():
+              rows = sorted(json.loads(p.read_text()).get("module_results", []), key=lambda r: -float(r.get("duration_seconds") or 0))
+              total = sum(float(r.get("duration_seconds") or 0) for r in rows)
+              text = "%0A".join(f"module {r['module']}: {float(r['duration_seconds']) / 60:.1f} min ({r['status']})" for r in rows[:12])
+              print(f"::notice title=Crypto module timings ({total / 60:.1f} min in modules)::{text}")
+          PY
+
       - name: Resolve production run summary
         id: production
         shell: bash
@@ -171,8 +187,11 @@ jobs:
   forecast-log:
     # Commits the extended forecast log so its history outlives the cached database and the
     # 30-day artifacts. Runs only after a successful cycle on main.
+    # Bookkeeping only: if committing the log fails (for example a git pull/push race), the run's
+    # conclusion stays "success" so the UIP still picks up this run's delivery artifact.
     needs: crypto-cycle
     if: ${{ needs.crypto-cycle.result == 'success' && github.ref == 'refs/heads/main' }}
+    continue-on-error: true
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
