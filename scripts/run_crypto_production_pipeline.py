@@ -36,6 +36,15 @@ def main() -> int:
     parser.add_argument("--no-export", action="store_true")
     parser.add_argument("--database", type=Path)
     parser.add_argument(
+        "--weekly-research",
+        action="store_true",
+        help=(
+            "Run research-only modules (which the UIP delivery does not read) only on a "
+            "full refresh, or when their last successful run is missing or over 7 days old. "
+            "Skipped modules are recorded as SKIPPED_WEEKLY."
+        ),
+    )
+    parser.add_argument(
         "--output-root",
         type=Path,
         default=ROOT / "data" / "operations" / "crypto" / "production_runs",
@@ -53,6 +62,7 @@ def main() -> int:
         skip_coingecko=args.skip_coingecko,
         export_universal=not args.no_export,
         source_database=args.database,
+        weekly_research=args.weekly_research,
     )
     summary = ProductionOrchestrator(options).run()
     print(json.dumps({
@@ -60,6 +70,10 @@ def main() -> int:
         "status": summary.status,
         "run_directory": summary.run_directory,
         "modules_recorded": len(summary.module_results),
+        "modules_skipped_weekly": [
+            item["module"] for item in summary.module_results
+            if item.get("status") == "SKIPPED_WEEKLY"
+        ],
         "universal_export": summary.universal_export,
     }, indent=2))
     return 0 if summary.status == "PASS" else 1

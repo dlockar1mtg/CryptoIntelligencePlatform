@@ -8,6 +8,11 @@ on:
         required: false
         default: false
         type: boolean
+      all_modules:
+        description: "Also run the research-only modules today (they normally run weekly, on the Sunday full refresh)"
+        required: false
+        default: false
+        type: boolean
   schedule:
     - cron: "15 11 * * 1-6"
     - cron: "15 17 * * *" # backup: skipped unless the last run that did the work is over 12 hours old (see the gate job). One backup only: each gate run bills a full minute.
@@ -71,6 +76,9 @@ jobs:
       CRYPTO_PRODUCTION_RUN_ID: gha-${{ github.run_id }}-${{ github.run_attempt }}
       CRYPTO_FULL_REFRESH_REQUESTED: ${{ (github.event_name == 'schedule' && github.event.schedule == '45 10 * * 0') || (github.event_name == 'workflow_dispatch' && inputs.full_refresh == true) }}
       CRYPTO_SKIP_COINGECKO_REQUESTED: ${{ (github.event_name == 'schedule' && github.event.schedule == '45 10 * * 0') || (github.event_name == 'workflow_dispatch' && inputs.full_refresh == true) }}
+      # Research-only modules (nothing the UIP delivery reads depends on them) run on the
+      # Sunday full refresh, or when their last successful run is over 7 days old.
+      CRYPTO_ALL_MODULES_REQUESTED: ${{ github.event_name == 'workflow_dispatch' && inputs.all_modules == true }}
     steps:
       - uses: actions/checkout@v4
 
@@ -101,6 +109,7 @@ jobs:
           echo "schedule=${{ github.event.schedule }}"
           echo "full_refresh=${CRYPTO_FULL_REFRESH_REQUESTED}"
           echo "skip_coingecko=${CRYPTO_SKIP_COINGECKO_REQUESTED}"
+          echo "all_modules=${CRYPTO_ALL_MODULES_REQUESTED}"
 
       - name: Run production pipeline
         shell: bash
@@ -112,6 +121,9 @@ jobs:
           fi
           if [[ "$CRYPTO_SKIP_COINGECKO_REQUESTED" == "true" ]]; then
             EXTRA_ARGS="$EXTRA_ARGS --skip-coingecko"
+          fi
+          if [[ "$CRYPTO_ALL_MODULES_REQUESTED" != "true" ]]; then
+            EXTRA_ARGS="$EXTRA_ARGS --weekly-research"
           fi
           python scripts/run_crypto_production_pipeline.py $EXTRA_ARGS
 
@@ -126,7 +138,11 @@ jobs:
           if p.is_file():
               rows = sorted(json.loads(p.read_text()).get("module_results", []), key=lambda r: -float(r.get("duration_seconds") or 0))
               total = sum(float(r.get("duration_seconds") or 0) for r in rows)
-              text = "%0A".join(f"module {r['module']}: {float(r['duration_seconds']) / 60:.1f} min ({r['status']})" for r in rows[:12])
+              ran = [r for r in rows if r.get("status") != "SKIPPED_WEEKLY"]
+              skipped = sorted(int(r["module"]) for r in rows if r.get("status") == "SKIPPED_WEEKLY")
+              text = "%0A".join(f"module {r['module']}: {float(r.get('duration_seconds') or 0) / 60:.1f} min ({r['status']})" for r in ran[:12])
+              if skipped:
+                  text += "%0A" + f"skipped (weekly research): {', '.join(map(str, skipped))}"
               print(f"::notice title=Crypto module timings ({total / 60:.1f} min in modules)::{text}")
           PY
 

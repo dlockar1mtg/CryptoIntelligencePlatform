@@ -19,6 +19,12 @@ from .registry import MODULE_REGISTRY, ModuleSpec, ProductionStage, validate_reg
 # Longest a single module runner may take before it is stopped and recorded as FAIL.
 MODULE_TIMEOUT_SECONDS = 40 * 60
 
+# With the weekly-research option, a research-only module runs again once its last
+# successful run is older than this.
+WEEKLY_MAX_AGE_DAYS = 7.0
+
+SKIPPED_WEEKLY = "SKIPPED_WEEKLY"
+
 
 @dataclass(frozen=True)
 class PipelineOptions:
@@ -33,6 +39,10 @@ class PipelineOptions:
     skip_coingecko: bool = False
     export_universal: bool = True
     source_database: Path | None = None
+    # Run research-only (weekly-cadence) modules only on a full refresh, or when their
+    # last successful run is missing or older than weekly_max_age_days.
+    weekly_research: bool = False
+    weekly_max_age_days: float = WEEKLY_MAX_AGE_DAYS
 
 
 @dataclass
@@ -62,6 +72,7 @@ class PipelineSummary:
     requested_stages: list[str]
     full_refresh: bool
     resume: bool
+    weekly_research: bool = False
     module_results: list[dict] = field(default_factory=list)
     retired_modules: list[dict] = field(default_factory=list)
     universal_export: dict = field(default_factory=dict)
@@ -103,6 +114,76 @@ class ProductionOrchestrator:
             int(item["module"])
             for item in payload.get("module_results", [])
             if item.get("status") == "PASS"
+        }
+
+    def _database_path(self) -> Path:
+        # An unset or empty CRYPTO_DATABASE_PATH falls back to the default path.
+        # (Path("") is truthy, so it must not be built from an empty value.)
+        env_database = os.getenv("CRYPTO_DATABASE_PATH", "").strip()
+        source_database = (
+            self.options.source_database
+            or (Path(env_database) if env_database else None)
+            or self.root / "data" / "crypto_intelligence.duckdb"
+        )
+        if not source_database.is_absolute():
+            source_database = (self.root / source_database).resolve()
+        return source_database
+
+    def _last_success_epoch(self, spec: ModuleSpec) -> float | None:
+        """Seconds since the epoch of the module's last successful run, or None."""
+        database = self._database_path()
+        if not spec.run_table or not database.is_file():
+            return None
+        import duckdb
+
+        connection = duckdb.connect(str(database), read_only=True)
+        try:
+            exists = connection.execute(
+                "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = ?",
+                [spec.run_table],
+            ).fetchone()[0]
+            if not exists:
+                return None
+            value = connection.execute(
+                f'SELECT epoch(MAX(completed_at_utc)) FROM "{spec.run_table}" '
+                "WHERE UPPER(status) = 'SUCCESS' AND completed_at_utc IS NOT NULL"
+            ).fetchone()[0]
+        finally:
+            connection.close()
+        return None if value is None else float(value)
+
+    def _weekly_skip(self, spec: ModuleSpec) -> dict | None:
+        """Return the skip record for a weekly module that is not due, else None (run it)."""
+        if not (self.options.weekly_research and spec.weekly) or self.options.full_refresh:
+            return None
+        try:
+            last_success = self._last_success_epoch(spec)
+        except Exception as exc:  # Unknown state: run the module, as before this option.
+            print(f"Module {spec.number}: could not read its last run ({exc}); running it.")
+            return None
+        if last_success is None:
+            return None
+        age_days = (time.time() - last_success) / 86400.0
+        if age_days >= self.options.weekly_max_age_days:
+            return None
+        last_iso = datetime.fromtimestamp(last_success, timezone.utc).isoformat().replace("+00:00", "Z")
+        now = self._iso_now()
+        return {
+            "module": spec.number,
+            "stage": spec.stage.value,
+            "runner": spec.runner,
+            "required": spec.required,
+            "status": SKIPPED_WEEKLY,
+            "started_at_utc": now,
+            "completed_at_utc": now,
+            "duration_seconds": 0.0,
+            "return_code": None,
+            "last_success_at_utc": last_iso,
+            "last_success_age_days": round(age_days, 3),
+            "reason": (
+                "Research-only module; runs weekly (Sunday full refresh, or when its last "
+                f"successful run is older than {self.options.weekly_max_age_days:g} days)."
+            ),
         }
 
     def _write_summary(self, summary: PipelineSummary) -> None:
@@ -176,16 +257,7 @@ class ProductionOrchestrator:
         if not self.options.export_universal:
             return {"status": "SKIPPED", "reason": "Disabled by command option."}
 
-        # An unset or empty CRYPTO_DATABASE_PATH falls back to the default path.
-        # (Path("") is truthy, so it must not be built from an empty value.)
-        env_database = os.getenv("CRYPTO_DATABASE_PATH", "").strip()
-        source_database = (
-            self.options.source_database
-            or (Path(env_database) if env_database else None)
-            or self.root / "data" / "crypto_intelligence.duckdb"
-        )
-        if not source_database.is_absolute():
-            source_database = (self.root / source_database).resolve()
+        source_database = self._database_path()
         if not source_database.is_file():
             return {
                 "status": "FAIL",
@@ -235,6 +307,7 @@ class ProductionOrchestrator:
             requested_stages=[stage.value for stage in self.options.stages],
             full_refresh=self.options.full_refresh,
             resume=self.options.resume,
+            weekly_research=self.options.weekly_research,
             retired_modules=[
                 {"module": spec.number, "reason": spec.reason}
                 for spec in MODULE_REGISTRY
@@ -255,6 +328,12 @@ class ProductionOrchestrator:
                         "status": "RESUMED_PASS",
                     }
                 )
+                continue
+
+            skipped = self._weekly_skip(spec)
+            if skipped is not None:
+                summary.module_results.append(skipped)
+                self._write_summary(summary)
                 continue
 
             result = self._run_module(spec)
