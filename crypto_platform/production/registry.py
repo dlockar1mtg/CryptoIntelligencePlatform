@@ -26,6 +26,17 @@ class ModuleSpec:
     authoritative_outputs: tuple[str, ...] = ()
     required: bool = True
     reason: str = ""
+    # "daily": on the UIP delivery chain, runs every cycle.
+    # "weekly": research only (nothing the UIP delivery reads depends on it), so with the
+    # weekly-research option it runs on the Sunday full refresh, or when its last
+    # successful run is missing or older than seven days.
+    cadence: str = "daily"
+    # The module's own run table, used to find its last successful run.
+    run_table: str | None = None
+
+    @property
+    def weekly(self) -> bool:
+        return self.cadence == "weekly"
 
     @property
     def runnable(self) -> bool:
@@ -35,6 +46,25 @@ class ModuleSpec:
         if self.runner is None:
             return None
         return repository_root / self.runner
+
+
+# Modules that the UIP delivery does not depend on. Verified from the table reads and
+# writes in each module: the delivery reads m36_asset_risk, m39_calibrated_forecasts,
+# m42_price_projections, m42_asset_recommendations, the module 36/39/42 run tables,
+# assets, asset_market_daily, asset_ohlcv and canonical_market_daily (plus the module 1
+# collection and provider-health tables for the hosted readiness check). Those come only
+# from modules 1, 6, 17, 25, 27-42. Module 18 writes STABLECOIN_SUPPLY_USD rows into
+# external_feature_observations, which module 17 reads, but module 17 only uses the
+# FEAR_GREED_INDEX and US_SPOT_CRYPTO_ETF_NET_FLOW_USD keys from that table, so module 18
+# does not change crypto_features_daily.
+RESEARCH_ONLY_MODULES: frozenset[int] = frozenset(
+    {2, 3, 5, *range(7, 17), *range(18, 25), 26, 43, 44}
+)
+
+# The modules the UIP delivery depends on, in run order. Every one runs every cycle.
+UIP_DELIVERY_MODULES: tuple[int, ...] = (1, 6, 17, 25, *range(27, 43))
+
+_RUN_TABLES: dict[int, str] = {16: "optimization_runs"}
 
 
 def _module(
@@ -50,6 +80,8 @@ def _module(
         runner=f"run_module{number}.py",
         authoritative_outputs=outputs,
         required=required,
+        cadence="weekly" if number in RESEARCH_ONLY_MODULES else "daily",
+        run_table=_RUN_TABLES.get(number, f"module{number}_runs"),
     )
 
 
@@ -84,6 +116,10 @@ def active_modules() -> tuple[ModuleSpec, ...]:
     return tuple(spec for spec in MODULE_REGISTRY if spec.runnable)
 
 
+def weekly_modules() -> tuple[ModuleSpec, ...]:
+    return tuple(spec for spec in MODULE_REGISTRY if spec.runnable and spec.weekly)
+
+
 def retired_modules() -> tuple[ModuleSpec, ...]:
     return tuple(spec for spec in MODULE_REGISTRY if spec.status == "retired")
 
@@ -102,5 +138,13 @@ def validate_registry(repository_root: Path) -> list[str]:
     module4 = MODULE_REGISTRY[3]
     if module4.number != 4 or module4.status != "retired":
         errors.append("Module 4 must remain explicitly retired unless formally implemented.")
+
+    for spec in active_modules():
+        if spec.cadence not in {"daily", "weekly"}:
+            errors.append(f"Module {spec.number} has an unknown cadence: {spec.cadence}")
+    for number in UIP_DELIVERY_MODULES:
+        spec = next((item for item in MODULE_REGISTRY if item.number == number), None)
+        if spec is None or spec.weekly or not spec.runnable:
+            errors.append(f"Module {number} feeds the UIP delivery and must run daily.")
 
     return errors

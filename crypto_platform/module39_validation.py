@@ -1,10 +1,17 @@
 from __future__ import annotations
 
+import hashlib
+import inspect
+import json
 import math
+import platform as _platform
 from dataclasses import dataclass
+from datetime import datetime, timedelta, timezone
 
 import numpy as np
 import pandas as pd
+import scipy
+import sklearn
 from sklearn.isotonic import IsotonicRegression
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import brier_score_loss, log_loss
@@ -183,6 +190,269 @@ def point_in_time_prediction(
     }
 
 
+# ---------------------------------------------------------------------------
+# Replay origin cache
+#
+# Each replay origin is an independent fit that depends only on: the feature rows that
+# were due (matured) before the origin, the origin row itself, the horizon, the Module 38
+# configuration, conformal_alpha, and the code and library versions that do the fit.
+# About half of the ~900 daily origins are the same as the day before, so their results
+# are stored and reused when every one of those inputs is unchanged. A changed input row,
+# setting, code line or library version gives a different key, and the origin is
+# recomputed. A cache hit returns the stored values exactly (DuckDB DOUBLE, DATE,
+# INTEGER and BOOLEAN round-trip Python values without loss).
+# ---------------------------------------------------------------------------
+
+REPLAY_CACHE_VERSION = "m39-replay-origin-cache-v1"
+REPLAY_CACHE_TABLE = "m39_replay_origin_cache"
+# Entries not used for this many days are deleted.
+REPLAY_CACHE_RETENTION_DAYS = 45
+
+# Field order of point_in_time_prediction's result; replay frames keep this column order.
+REPLAY_RESULT_FIELDS = (
+    "forecast_date",
+    "training_end_date",
+    "predicted_return_pct",
+    "actual_return_pct",
+    "raw_probability_positive",
+    "observed_positive",
+    "training_rows",
+    "internal_validation_rows",
+    "lower_return_pct",
+    "upper_return_pct",
+    "interval_covered",
+)
+
+REPLAY_CACHE_SCHEMA = f"""
+CREATE TABLE IF NOT EXISTS {REPLAY_CACHE_TABLE}(
+    asset_id VARCHAR,
+    horizon_days INTEGER,
+    origin_date DATE,
+    input_hash VARCHAR,
+    config_hash VARCHAR,
+    forecast_date DATE,
+    training_end_date DATE,
+    predicted_return_pct DOUBLE,
+    actual_return_pct DOUBLE,
+    raw_probability_positive DOUBLE,
+    observed_positive INTEGER,
+    training_rows INTEGER,
+    internal_validation_rows INTEGER,
+    lower_return_pct DOUBLE,
+    upper_return_pct DOUBLE,
+    interval_covered BOOLEAN,
+    created_at_utc TIMESTAMPTZ,
+    last_used_at_utc TIMESTAMPTZ,
+    PRIMARY KEY(asset_id, horizon_days, origin_date, input_hash, config_hash)
+);
+"""
+
+
+def _hash_frame(digest, frame: pd.DataFrame) -> None:
+    digest.update(json.dumps([str(c) for c in frame.columns]).encode())
+    digest.update(str(len(frame)).encode())
+    for column in frame.columns:
+        values = frame[column].to_numpy()
+        digest.update(str(values.dtype).encode())
+        if values.dtype.kind in "biufcmM":
+            digest.update(np.ascontiguousarray(values).tobytes())
+        else:
+            digest.update(repr(values.tolist()).encode())
+
+
+def replay_input_hash(features: pd.DataFrame, origin_idx: int, horizon: int) -> str:
+    """Hash of exactly the rows point_in_time_prediction reads for this origin."""
+    origin_date = pd.Timestamp(features.iloc[origin_idx]["observation_date"])
+    dates = pd.to_datetime(features["observation_date"])
+    due_mask = (
+        dates + pd.to_timedelta(horizon, unit="D") <= origin_date
+    ) & (dates < origin_date)
+    digest = hashlib.sha256()
+    digest.update(f"horizon={int(horizon)};origin={origin_date.isoformat()}".encode())
+    _hash_frame(digest, features.loc[due_mask])
+    digest.update(b"|origin-row|")
+    _hash_frame(digest, features.iloc[[origin_idx]])
+    return digest.hexdigest()
+
+
+def replay_config_hash(m38_cfg: dict, conformal_alpha: float) -> str:
+    """Hash of the settings, code and library versions that determine a replay fit."""
+    code = [
+        inspect.getsource(function)
+        for function in (
+            point_in_time_prediction,
+            split_capacity,
+            clip_probability,
+            Module38Runner.model_suite,
+        )
+    ]
+    payload = {
+        "cache_version": REPLAY_CACHE_VERSION,
+        "module38_config": m38_cfg,
+        "conformal_alpha": float(conformal_alpha),
+        "code": code,
+        "versions": {
+            "python": _platform.python_version(),
+            "numpy": np.__version__,
+            "pandas": pd.__version__,
+            "scikit_learn": sklearn.__version__,
+            "scipy": scipy.__version__,
+        },
+    }
+    return hashlib.sha256(
+        json.dumps(payload, sort_keys=True, default=str).encode()
+    ).hexdigest()
+
+
+def _utc_timestamp(value) -> pd.Timestamp:
+    stamp = pd.Timestamp(value)
+    return stamp.tz_localize("UTC") if stamp.tzinfo is None else stamp.tz_convert("UTC")
+
+
+class ReplayOriginCache:
+    """Stores replay origin results in DuckDB. Any cache error falls back to computing."""
+
+    def __init__(self, conn, config_hash: str):
+        self.conn = conn
+        self.config_hash = config_hash
+        self.enabled = True
+        self.hits = 0
+        self.misses = 0
+        self._entries: dict[tuple, dict] = {}
+        self._created: dict[tuple, object] = {}
+        self._used: dict[tuple, dict] = {}
+        try:
+            conn.execute(REPLAY_CACHE_SCHEMA)
+            rows = conn.execute(
+                f"""
+                SELECT asset_id, horizon_days, origin_date, input_hash, created_at_utc,
+                       {", ".join(REPLAY_RESULT_FIELDS)}
+                FROM {REPLAY_CACHE_TABLE}
+                WHERE config_hash = ?
+                """,
+                [config_hash],
+            ).fetchall()
+        except Exception as exc:
+            print(f"Module 39 replay cache unavailable ({exc}); computing every origin.")
+            self.enabled = False
+            return
+        for row in rows:
+            key = (str(row[0]), int(row[1]), row[2], str(row[3]))
+            self._created[key] = row[4]
+            self._entries[key] = dict(zip(REPLAY_RESULT_FIELDS, row[5:]))
+
+    @staticmethod
+    def key(asset_id, horizon, features, origin_idx) -> tuple:
+        origin_date = pd.Timestamp(features.iloc[origin_idx]["observation_date"]).date()
+        return (
+            str(asset_id),
+            int(horizon),
+            origin_date,
+            replay_input_hash(features, origin_idx, horizon),
+        )
+
+    def get(self, key: tuple) -> dict | None:
+        if not self.enabled:
+            return None
+        entry = self._entries.get(key)
+        if entry is None:
+            return None
+        self.hits += 1
+        self._used[key] = entry
+        return dict(entry)
+
+    def put(self, key: tuple, result: dict) -> None:
+        self.misses += 1
+        if not self.enabled:
+            return
+        entry = {field: result[field] for field in REPLAY_RESULT_FIELDS}
+        self._entries[key] = entry
+        self._used[key] = entry
+
+    def flush(self) -> None:
+        if not self.enabled or not self._used:
+            return
+        now = datetime.now(timezone.utc)
+        records = []
+        for key, entry in self._used.items():
+            record = {
+                "asset_id": key[0],
+                "horizon_days": key[1],
+                "origin_date": pd.Timestamp(key[2]),
+                "input_hash": key[3],
+                "config_hash": self.config_hash,
+            }
+            for field in REPLAY_RESULT_FIELDS:
+                value = entry[field]
+                if field in {"forecast_date", "training_end_date"}:
+                    value = pd.Timestamp(value)
+                record[field] = value
+            created = self._created.get(key)
+            record["created_at_utc"] = _utc_timestamp(created if created is not None else now)
+            record["last_used_at_utc"] = _utc_timestamp(now)
+            records.append(record)
+        frame = pd.DataFrame.from_records(records)
+        for field in ("predicted_return_pct", "actual_return_pct", "raw_probability_positive",
+                      "lower_return_pct", "upper_return_pct"):
+            frame[field] = frame[field].astype("float64")
+        frame["interval_covered"] = frame["interval_covered"].astype(bool)
+        try:
+            self.conn.register("_m39_replay_cache_stage", frame)
+            self.conn.execute(
+                f"""
+                INSERT OR REPLACE INTO {REPLAY_CACHE_TABLE}
+                SELECT asset_id, CAST(horizon_days AS INTEGER), CAST(origin_date AS DATE),
+                       input_hash, config_hash,
+                       CAST(forecast_date AS DATE), CAST(training_end_date AS DATE),
+                       predicted_return_pct, actual_return_pct, raw_probability_positive,
+                       CAST(observed_positive AS INTEGER), CAST(training_rows AS INTEGER),
+                       CAST(internal_validation_rows AS INTEGER),
+                       lower_return_pct, upper_return_pct, interval_covered,
+                       CAST(created_at_utc AS TIMESTAMPTZ), CAST(last_used_at_utc AS TIMESTAMPTZ)
+                FROM _m39_replay_cache_stage
+                """
+            )
+            self.conn.unregister("_m39_replay_cache_stage")
+            cutoff = now - timedelta(days=REPLAY_CACHE_RETENTION_DAYS)
+            self.conn.execute(
+                f"DELETE FROM {REPLAY_CACHE_TABLE} WHERE config_hash <> ? OR last_used_at_utc < ?",
+                [self.config_hash, cutoff],
+            )
+        except Exception as exc:
+            print(f"Module 39 replay cache could not be saved ({exc}); results are unaffected.")
+
+
+def cached_point_in_time_prediction(
+    cache: ReplayOriginCache | None,
+    asset_id: str,
+    runner: Module38Runner,
+    features: pd.DataFrame,
+    origin_idx: int,
+    horizon: int,
+    conformal_alpha: float,
+) -> dict:
+    if cache is None:
+        return point_in_time_prediction(runner, features, origin_idx, horizon, conformal_alpha)
+    key = cache.key(asset_id, horizon, features, origin_idx)
+    cached = cache.get(key)
+    if cached is not None:
+        return cached
+    result = point_in_time_prediction(runner, features, origin_idx, horizon, conformal_alpha)
+    cache.put(key, result)
+    return result
+
+
+def _replay_cache(conn, m38_cfg: dict, m39_cfg: dict, conformal_alpha: float):
+    if not bool(m39_cfg.get("replay_cache_enabled", True)):
+        return None
+    try:
+        config_hash = replay_config_hash(m38_cfg, conformal_alpha)
+    except Exception as exc:  # e.g. source code not available to hash
+        print(f"Module 39 replay cache disabled ({exc}).")
+        return None
+    return ReplayOriginCache(conn, config_hash)
+
+
 @dataclass
 class CalibrationSpec:
     method: str
@@ -304,6 +574,7 @@ def build_true_replay_evidence(conn, settings) -> dict:
     conformal_alpha = float(m39_cfg["conformal_alpha"])
     horizons = [int(v) for v in m38_cfg["horizons_days"]]
     required_candidates = folds * TEST_ORIGINS_PER_FOLD
+    cache = _replay_cache(conn, m38_cfg, m39_cfg, conformal_alpha)
 
     prices = conn.execute(
         """
@@ -349,7 +620,9 @@ def build_true_replay_evidence(conn, settings) -> dict:
             group_predictions = []
             for fold_number, indices in enumerate(groups, start=1):
                 fold_predictions = [
-                    point_in_time_prediction(
+                    cached_point_in_time_prediction(
+                        cache,
+                        asset,
                         runner,
                         features,
                         idx,
@@ -398,6 +671,19 @@ def build_true_replay_evidence(conn, settings) -> dict:
             calibration_rows.append(calibration)
             calibration_specs[(asset, horizon)] = spec
 
+    replay_cache_stats = {"enabled": False, "reused": 0, "computed": 0}
+    if cache is not None:
+        cache.flush()
+        replay_cache_stats = {
+            "enabled": cache.enabled,
+            "reused": cache.hits,
+            "computed": cache.misses,
+        }
+        print(
+            f"Module 39 replay cache: {cache.hits} origins reused, "
+            f"{cache.misses} computed."
+        )
+
     replay = pd.DataFrame(replay_rows)
     folds_frame = pd.DataFrame(fold_rows)
     calibration_frame = pd.DataFrame(calibration_rows)
@@ -421,4 +707,5 @@ def build_true_replay_evidence(conn, settings) -> dict:
         "model_directional_accuracy_pct": model_accuracy,
         "majority_directional_accuracy_pct": majority_accuracy,
         "model_minus_majority_accuracy_pct_points": model_accuracy - majority_accuracy,
+        "replay_cache": replay_cache_stats,
     }

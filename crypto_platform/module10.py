@@ -222,7 +222,37 @@ def signal_from_score(score: float) -> str:
         return "REDUCE"
     return "AVOID"
 
+# One cheap call per Binance host decides whether the rest of the run calls that host.
+# From some regions (including the hosted runners) every Binance call fails, and each of
+# the ~150 per-asset calls used to retry with sleeps before falling back.
+BINANCE_PROBES = {
+    "spot": "https://api.binance.com/api/v3/ping",
+    "futures": "https://fapi.binance.com/fapi/v1/ping",
+}
+
+
 class Module10Runner:
+    def binance_available(self, market: str) -> bool:
+        """Probe a Binance host once per run; False if disabled or the probe fails.
+
+        When this is False the per-asset Binance calls are skipped, and the module writes
+        exactly what it wrote before when every one of those calls failed: the CoinGecko
+        snapshot row per asset for history, and no derivatives rows.
+        """
+        status = self.__dict__.setdefault("_binance_status", {})
+        if market not in status:
+            if not bool(self.config.get("binance", {}).get("enabled", True)):
+                print(f"Binance {market} calls skipped: disabled in config.")
+                status[market] = False
+            else:
+                try:
+                    self.get_json(BINANCE_PROBES[market], retries=2)
+                    status[market] = True
+                except Exception as exc:
+                    print(f"Binance {market} calls skipped for this run: probe failed ({exc}).")
+                    status[market] = False
+        return status[market]
+
     def __init__(self):
         self.settings, self.core_assets = load_all()
         self.conn = connect(self.settings)
@@ -418,12 +448,13 @@ class Module10Runner:
             (now.timestamp() - days * 86400) * 1000
         )
 
+        binance_ok = self.binance_available("spot")
         for _, asset in universe.head(max_assets).iterrows():
             symbol = self.binance_symbol(asset["symbol"])
             cursor = start_ms
             asset_rows = []
             try:
-                while cursor < end_ms:
+                while binance_ok and cursor < end_ms:
                     payload = self.get_json(
                         "https://api.binance.com/api/v3/klines",
                         params={
@@ -489,6 +520,9 @@ class Module10Runner:
             self.config["derivatives"]["funding_history_limit"]
         )
 
+        if not self.binance_available("futures"):
+            # Same result as every funding and open-interest call failing.
+            universe = universe.iloc[0:0]
         for _, asset in universe.iterrows():
             symbol = self.binance_symbol(asset["symbol"])
             try:
