@@ -1218,6 +1218,8 @@ module39:
   minimum_calibration_rows: 30
   minimum_total_calibration_rows: 180
   minimum_stability_snapshots: 5
+  # Reuse replay-origin fits whose inputs, settings and code are unchanged (exact results).
+  replay_cache_enabled: true
 module40:
   minimum_matured_forecasts: 30
   retraining_mae_multiplier: 1.25
