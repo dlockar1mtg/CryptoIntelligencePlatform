@@ -1,5 +1,5 @@
 from __future__ import annotations
-import json, math, uuid
+import hashlib, inspect, json, math, uuid
 from datetime import datetime, timezone
 from typing import Any
 import numpy as np
@@ -90,7 +90,28 @@ SELECT p.* FROM parameter_importance p JOIN
  USING(experiment_id) ORDER BY importance_score DESC;
 """
 
+MODULE16_CACHE_MIGRATION="ALTER TABLE candidate_evaluation_cache ADD COLUMN IF NOT EXISTS data_fingerprint VARCHAR"
+
 def utcnow(): return datetime.now(timezone.utc)
+
+EVALUATOR_VERSION="4.2.0"
+
+def data_fingerprint(histories,dates,module15_config):
+    """Hash of everything a full-sample evaluation reads besides the candidate's parameters:
+    the price histories, the rebalance dates, the Module 15 settings and evaluator code.
+    The evaluation cache is keyed by parameter hash AND this, so new prices are evaluated."""
+    h=hashlib.sha256()
+    h.update(EVALUATOR_VERSION.encode())
+    h.update(json.dumps(module15_config,sort_keys=True,default=str).encode())
+    try:h.update(inspect.getsource(Module15Runner).encode())
+    except (OSError,TypeError):h.update(b"module15-source-unavailable")
+    for asset in sorted(histories):
+        series=histories[asset]
+        h.update(f"|{asset}|{len(series)}|".encode())
+        h.update(np.ascontiguousarray(pd.DatetimeIndex(series.index).as_unit("ns").asi8).tobytes())
+        h.update(np.ascontiguousarray(series.to_numpy(dtype="float64")).tobytes())
+    h.update(json.dumps([pd.Timestamp(d).isoformat() for d in dates]).encode())
+    return h.hexdigest()
 
 class Module16Runner:
     def __init__(self):
@@ -99,9 +120,12 @@ class Module16Runner:
           MODULE7_SCHEMA,MODULE8_SCHEMA,MODULE9_SCHEMA,MODULE10_SCHEMA,MODULE11_SCHEMA,
           MODULE12_SCHEMA,MODULE13_SCHEMA,MODULE14_SCHEMA,MODULE15_SCHEMA,MODULE16_SCHEMA]:
             self.conn.execute(schema)
+        # Kept out of MODULE16_SCHEMA, which other modules also execute.
+        self.conn.execute(MODULE16_CACHE_MIGRATION)
         self.config=self.settings["module16"]
         self.experiment_id=f"EXP-{utcnow().strftime('%Y%m%d-%H%M%S')}-{uuid.uuid4().hex[:6].upper()}"
         self.started=utcnow()
+        self.data_fingerprint=None
         self.evaluator=Module15Runner(); self.evaluator.conn.close()
         self.evaluator.settings=self.settings; self.evaluator.assets=self.assets
         self.evaluator.config=self.settings["module15"]
@@ -129,7 +153,7 @@ class Module16Runner:
           "calculated_at_utc":utcnow()}
 
     def cache_lookup(self,parameter_hash):
-        row=self.conn.execute("SELECT * FROM candidate_evaluation_cache WHERE parameter_hash=?",[parameter_hash]).fetchdf()
+        row=self.conn.execute("SELECT * FROM candidate_evaluation_cache WHERE parameter_hash=? AND data_fingerprint=?",[parameter_hash,self.data_fingerprint]).fetchdf()
         return None if row.empty else row.iloc[0]
 
     def cache_metrics(self,row):
@@ -154,7 +178,8 @@ class Module16Runner:
           "average_turnover_pct":metrics["average_turnover"]*100,
           "transaction_cost_drag_pct":metrics["transaction_cost_drag"]*100,
           "objective_score":composite_objective(metrics),"periods":metrics["periods"],
-          "evaluated_at_utc":utcnow(),"evaluator_version":"4.2.0"}])
+          "evaluated_at_utc":utcnow(),"evaluator_version":EVALUATOR_VERSION,
+          "data_fingerprint":self.data_fingerprint}])
         self.upsert('candidate_evaluation_cache',frame)
 
     def aggregate_oos(self,fold_rows):
@@ -191,6 +216,7 @@ class Module16Runner:
         self.conn.execute("INSERT INTO optimization_runs VALUES (?,?,NULL,'RUNNING',0,0,0,0,0,NULL,NULL,NULL,'4.2.0')",[self.experiment_id,self.started])
         try:
             histories=self.evaluator.histories(); dates=self.evaluator.rebalance_dates(histories)
+            self.data_fingerprint=data_fingerprint(histories,dates,self.evaluator.config)
             space=ParameterSpace.from_settings(self.settings)
             generator=CandidateGenerator(space,int(cfg["random_seed"]))
             candidates=generator.generate(int(cfg["candidate_count"]))
