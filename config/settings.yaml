@@ -362,6 +362,10 @@ module10:
     incremental_overlap_days: 5
     binance_page_limit: 1000
     max_assets_per_run: 50
+  binance:
+    # false skips every Binance call (history falls back to the CoinGecko snapshot row,
+    # no derivatives rows). When true, one probe call per host decides for the run.
+    enabled: true
   derivatives:
     enabled: true
     funding_history_limit: 100
