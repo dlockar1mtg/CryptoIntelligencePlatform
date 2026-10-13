@@ -76,9 +76,12 @@ jobs:
       CRYPTO_PRODUCTION_RUN_ID: gha-${{ github.run_id }}-${{ github.run_attempt }}
       CRYPTO_FULL_REFRESH_REQUESTED: ${{ (github.event_name == 'schedule' && github.event.schedule == '45 10 * * 0') || (github.event_name == 'workflow_dispatch' && inputs.full_refresh == true) }}
       CRYPTO_SKIP_COINGECKO_REQUESTED: ${{ (github.event_name == 'schedule' && github.event.schedule == '45 10 * * 0') || (github.event_name == 'workflow_dispatch' && inputs.full_refresh == true) }}
-      # Research-only modules (nothing the UIP delivery reads depends on them) run on the
-      # Sunday full refresh, or when their last successful run is over 7 days old.
       CRYPTO_ALL_MODULES_REQUESTED: ${{ github.event_name == 'workflow_dispatch' && inputs.all_modules == true }}
+      # Weekly research cadence (research-only modules on Sunday or when over 7 days old) is OFF:
+      # the first two weekday runs with it on (Oct 12) failed at module 25, which needs something a
+      # skipped module provides. Every module runs every cycle until that dependency is found and the
+      # module moves to the daily list. Set to "true" to turn the cadence back on.
+      CRYPTO_WEEKLY_RESEARCH_ENABLED: "false"
     steps:
       - uses: actions/checkout@v4
 
@@ -122,7 +125,7 @@ jobs:
           if [[ "$CRYPTO_SKIP_COINGECKO_REQUESTED" == "true" ]]; then
             EXTRA_ARGS="$EXTRA_ARGS --skip-coingecko"
           fi
-          if [[ "$CRYPTO_ALL_MODULES_REQUESTED" != "true" ]]; then
+          if [[ "$CRYPTO_WEEKLY_RESEARCH_ENABLED" == "true" && "$CRYPTO_ALL_MODULES_REQUESTED" != "true" ]]; then
             EXTRA_ARGS="$EXTRA_ARGS --weekly-research"
           fi
           python scripts/run_crypto_production_pipeline.py $EXTRA_ARGS
@@ -144,6 +147,21 @@ jobs:
               if skipped:
                   text += "%0A" + f"skipped (weekly research): {', '.join(map(str, skipped))}"
               print(f"::notice title=Crypto module timings ({total / 60:.1f} min in modules)::{text}")
+              # A failed module's error, so it can be read without downloading the evidence artifact.
+              # The logs are public: secrets and URL keys are blanked out first.
+              import re
+              secrets = [v for k, v in os.environ.items() if k.endswith(("_API_KEY", "_TOKEN", "_SECRET")) and len(v) >= 6]
+              for r in rows:
+                  if r.get("status") != "FAIL":
+                      continue
+                  log = p.parent / str(r.get("stderr_log") or "")
+                  tail = log.read_text(errors="replace").strip().splitlines()[-12:] if log.is_file() else []
+                  body = "\n".join(tail) or str(r.get("error") or "no stderr")
+                  for v in secrets:
+                      body = body.replace(v, "***")
+                  body = re.sub(r"(?i)((?:api_?key|key|token|secret)=)[^&\s]+", r"\1***", body)
+                  body = body.replace("%", "%25").replace("\r", "").replace("\n", "%0A")
+                  print(f"::error title=Crypto module {r['module']} failed::{body}")
           PY
 
       - name: Resolve production run summary

@@ -316,10 +316,13 @@ def test_strict_production_readiness_check_passes() -> None:
 # --- workflow -----------------------------------------------------------------------------
 
 
-def test_workflow_uses_weekly_research_and_sunday_full_refresh_runs_everything() -> None:
+def test_workflow_weekly_research_is_off_until_module_25s_dependency_is_found() -> None:
+    # Oct 12: the first weekday runs with the cadence on failed at module 25, so every module runs
+    # every cycle again; the switch stays in the workflow to turn it back on.
     text = WORKFLOW.read_text(encoding="utf-8")
+    assert 'CRYPTO_WEEKLY_RESEARCH_ENABLED: "false"' in text
     assert 'EXTRA_ARGS="$EXTRA_ARGS --weekly-research"' in text
-    assert 'if [[ "$CRYPTO_ALL_MODULES_REQUESTED" != "true" ]]; then' in text
+    assert 'if [[ "$CRYPTO_WEEKLY_RESEARCH_ENABLED" == "true" && "$CRYPTO_ALL_MODULES_REQUESTED" != "true" ]]; then' in text
     # The Sunday schedule still passes --full-refresh, which runs every module.
     assert "github.event.schedule == '45 10 * * 0'" in text
     assert 'EXTRA_ARGS="--full-refresh"' in text
@@ -348,3 +351,24 @@ def test_report_the_slowest_modules_step_handles_skipped_modules(tmp_path, monke
     assert completed.returncode == 0, completed.stderr
     assert "::notice title=Crypto module timings (6.7 min in modules)::module 39: 6.7 min (PASS)" in completed.stdout
     assert "skipped (weekly research): 10, 24" in completed.stdout
+
+
+def test_a_failed_module_reports_its_error_with_secrets_blanked(tmp_path, monkeypatch, capsys) -> None:
+    text = WORKFLOW.read_text(encoding="utf-8")
+    step = text.split("- name: Report the slowest modules", 1)[1]
+    script = textwrap.dedent(step.split("python - <<'PY'\n", 1)[1].split("\n          PY", 1)[0])
+    run_id = "gha-test-2"
+    run_dir = tmp_path / "data/operations/crypto/production_runs" / run_id
+    (run_dir / "logs").mkdir(parents=True)
+    (run_dir / "logs" / "m25.err").write_text(
+        "Traceback (most recent call last):\nRuntimeError: GET https://x.test/a?api_key=abc123def456 failed 50% hunter22secret\n")
+    (run_dir / "run_summary.json").write_text(json.dumps({"module_results": [
+        {"module": 25, "status": "FAIL", "duration_seconds": 1, "stderr_log": "logs/m25.err", "error": "Runner exited with code 1."}]}))
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setenv("CRYPTO_PRODUCTION_RUN_ID", run_id)
+    monkeypatch.setenv("FRED_API_KEY", "hunter22secret")
+    exec(compile(script, "report", "exec"), {})
+    out = capsys.readouterr().out
+    line = next(l for l in out.splitlines() if l.startswith("::error title=Crypto module 25 failed::"))
+    assert "RuntimeError" in line and "%0A" in line and "50%25" in line
+    assert "abc123def456" not in line and "hunter22secret" not in line and "api_key=***" in line
