@@ -77,11 +77,11 @@ jobs:
       CRYPTO_FULL_REFRESH_REQUESTED: ${{ (github.event_name == 'schedule' && github.event.schedule == '45 10 * * 0') || (github.event_name == 'workflow_dispatch' && inputs.full_refresh == true) }}
       CRYPTO_SKIP_COINGECKO_REQUESTED: ${{ (github.event_name == 'schedule' && github.event.schedule == '45 10 * * 0') || (github.event_name == 'workflow_dispatch' && inputs.full_refresh == true) }}
       CRYPTO_ALL_MODULES_REQUESTED: ${{ github.event_name == 'workflow_dispatch' && inputs.all_modules == true }}
-      # Weekly research cadence (research-only modules on Sunday or when over 7 days old) is OFF:
-      # the first two weekday runs with it on (Oct 12) failed at module 25, which needs something a
-      # skipped module provides. Every module runs every cycle until that dependency is found and the
-      # module moves to the daily list. Set to "true" to turn the cadence back on.
-      CRYPTO_WEEKLY_RESEARCH_ENABLED: "false"
+      # Research-only modules (nothing the daily path reads is written by them) run on the Sunday
+      # full refresh, or when their last successful run is over 7 days old. Oct 12 showed module 18
+      # was not research-only (module 25 needs its stablecoin history); it now runs daily. If a
+      # weekday run still fails with research modules skipped, the step below runs them and resumes.
+      CRYPTO_WEEKLY_RESEARCH_ENABLED: "true"
     steps:
       - uses: actions/checkout@v4
 
@@ -128,7 +128,18 @@ jobs:
           if [[ "$CRYPTO_WEEKLY_RESEARCH_ENABLED" == "true" && "$CRYPTO_ALL_MODULES_REQUESTED" != "true" ]]; then
             EXTRA_ARGS="$EXTRA_ARGS --weekly-research"
           fi
-          python scripts/run_crypto_production_pipeline.py $EXTRA_ARGS
+          if python scripts/run_crypto_production_pipeline.py $EXTRA_ARGS; then exit 0; fi
+          if [[ "$EXTRA_ARGS" != *--weekly-research* ]]; then exit 1; fi
+          # A module failed with research modules skipped: say which, then run every module, resuming
+          # after the ones that already passed in this run.
+          python - <<'PY'
+          import json, os, pathlib
+          p = pathlib.Path("data/operations/crypto/production_runs") / os.environ["CRYPTO_PRODUCTION_RUN_ID"] / "run_summary.json"
+          rows = json.loads(p.read_text()).get("module_results", []) if p.is_file() else []
+          failed = ", ".join(str(r["module"]) for r in rows if r.get("status") == "FAIL") or "the export"
+          print(f"::warning title=Weekly research fallback::Module {failed} failed with research modules skipped; running every module and resuming.")
+          PY
+          python scripts/run_crypto_production_pipeline.py ${EXTRA_ARGS/--weekly-research/} --resume
 
       - name: Report the slowest modules
         if: always()

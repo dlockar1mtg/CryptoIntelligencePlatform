@@ -314,8 +314,8 @@ class ProductionOrchestrator:
                 if spec.status == "retired"
             ],
         )
+        prior_successes = self._existing_successes()   # read before the new summary replaces the old one
         self._write_summary(summary)
-        prior_successes = self._existing_successes()
 
         for spec in self._selected_modules():
             if spec.number in prior_successes:
