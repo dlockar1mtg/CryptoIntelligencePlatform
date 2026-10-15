@@ -34,7 +34,7 @@ from tests.production.test_hosted import _build_database
 
 ROOT = Path(__file__).resolve().parents[2]
 WORKFLOW = ROOT / ".github" / "workflows" / "crypto-production-cycle.yml"
-EXPECTED_WEEKLY = {2, 3, 5, *range(7, 17), *range(18, 25), 26, 43, 44}
+EXPECTED_WEEKLY = {2, 3, 5, *range(7, 17), *range(19, 25), 26, 43, 44}
 
 STUB_RUNNER = """
 import os, pathlib, sys
@@ -56,7 +56,7 @@ def test_weekly_set_is_exactly_the_research_only_modules() -> None:
 
 def test_delivery_chain_runs_daily() -> None:
     by_number = {spec.number: spec for spec in MODULE_REGISTRY}
-    assert UIP_DELIVERY_MODULES == (1, 6, 17, 25, *range(27, 43))
+    assert UIP_DELIVERY_MODULES == (1, 6, 17, 18, 25, *range(27, 43))
     for number in UIP_DELIVERY_MODULES:
         assert by_number[number].cadence == "daily"
         assert by_number[number].required is True
@@ -126,17 +126,32 @@ def test_no_daily_module_or_delivery_code_reads_a_research_only_table() -> None:
     assert found == []
 
 
-def test_module17_ignores_the_external_rows_module18_adds() -> None:
-    """Module 18 adds STABLECOIN_SUPPLY_USD rows to external_feature_observations; module 17
-    reads only its own two keys from that table, so module 18 can run weekly."""
-    module17 = (ROOT / "crypto_platform" / "module17.py").read_text(encoding="utf-8")
+def test_no_research_module_writes_a_table_the_daily_path_reads() -> None:
+    """Oct 12: module 18 (then weekly) rewrites crypto_features_daily after module 17, and module 25
+    needs those rows, so skipping module 18 broke module 25. A table the daily path reads may only
+    be written by daily modules."""
+    daily_sources = {number: _module_source(number) for number in UIP_DELIVERY_MODULES}
+    consumers = dict(daily_sources)
+    for path in sorted((ROOT / "crypto_platform" / "integration" / "universal").glob("*.py")):
+        consumers[f"universal/{path.name}"] = path.read_text(encoding="utf-8")
+    consumers["hosted.py"] = (ROOT / "crypto_platform" / "production" / "hosted.py").read_text()
+    read_tables: set[str] = set()
+    for source in consumers.values():
+        read_tables |= {t.lower() for t in re.findall(r"(?i)\b(?:FROM|JOIN)\s+([a-z][a-z0-9_]+)", source)}
+    found = []
+    for number in sorted(EXPECTED_WEEKLY):
+        source = _module_source(number)
+        own = {t for t in _written_tables(source) if t.startswith((f"m{number}_", f"module{number}_"))}
+        shared = (_written_tables(source) - own) & read_tables
+        found += [f"module {number} writes {t}" for t in sorted(shared)]
+    assert found == []
+
+
+def test_module18_runs_daily_because_module25_needs_its_stablecoin_history() -> None:
+    by_number = {spec.number: spec for spec in MODULE_REGISTRY}
+    assert by_number[18].cadence == "daily" and 18 in UIP_DELIVERY_MODULES
     module18 = (ROOT / "crypto_platform" / "module18.py").read_text(encoding="utf-8")
-    assert re.findall(r"'feature_key':'([A-Z_]+)'", module18) == ["STABLECOIN_SUPPLY_USD"]
-    assert set(re.findall(r'ext\.get\(\s*"([A-Z_]+)"', module17)) == {
-        "FEAR_GREED_INDEX",
-        "US_SPOT_CRYPTO_ETF_NET_FLOW_USD",
-    }
-    assert "STABLECOIN_SUPPLY_USD" not in module17
+    assert "self.upsert('crypto_features_daily',frame)" in module18
 
 
 # --- orchestrator ------------------------------------------------------------------------
@@ -210,7 +225,7 @@ def test_recent_research_modules_are_skipped_weekly(stub_repo) -> None:
         assert by_module[number]["status"] == "PASS"
     written = json.loads(Path(summary.run_directory, "run_summary.json").read_text())
     assert written["status"] == "PASS"
-    assert sum(item["status"] == SKIPPED_WEEKLY for item in written["module_results"]) == 23
+    assert sum(item["status"] == SKIPPED_WEEKLY for item in written["module_results"]) == 22
 
 
 def test_stale_missing_or_never_successful_research_modules_run(stub_repo) -> None:
@@ -316,13 +331,14 @@ def test_strict_production_readiness_check_passes() -> None:
 # --- workflow -----------------------------------------------------------------------------
 
 
-def test_workflow_weekly_research_is_off_until_module_25s_dependency_is_found() -> None:
-    # Oct 12: the first weekday runs with the cadence on failed at module 25, so every module runs
-    # every cycle again; the switch stays in the workflow to turn it back on.
+def test_workflow_uses_weekly_research_with_a_full_fallback() -> None:
     text = WORKFLOW.read_text(encoding="utf-8")
-    assert 'CRYPTO_WEEKLY_RESEARCH_ENABLED: "false"' in text
+    assert 'CRYPTO_WEEKLY_RESEARCH_ENABLED: "true"' in text
     assert 'EXTRA_ARGS="$EXTRA_ARGS --weekly-research"' in text
     assert 'if [[ "$CRYPTO_WEEKLY_RESEARCH_ENABLED" == "true" && "$CRYPTO_ALL_MODULES_REQUESTED" != "true" ]]; then' in text
+    # a weekday failure with modules skipped runs every module and resumes after the ones that passed
+    assert 'python scripts/run_crypto_production_pipeline.py ${EXTRA_ARGS/--weekly-research/} --resume' in text
+    assert "::warning title=Weekly research fallback::" in text
     # The Sunday schedule still passes --full-refresh, which runs every module.
     assert "github.event.schedule == '45 10 * * 0'" in text
     assert 'EXTRA_ARGS="--full-refresh"' in text
@@ -372,3 +388,22 @@ def test_a_failed_module_reports_its_error_with_secrets_blanked(tmp_path, monkey
     line = next(l for l in out.splitlines() if l.startswith("::error title=Crypto module 25 failed::"))
     assert "RuntimeError" in line and "%0A" in line and "50%25" in line
     assert "abc123def456" not in line and "hunter22secret" not in line and "api_key=***" in line
+
+
+def test_the_fallback_runs_the_skipped_modules_and_resumes(stub_repo, monkeypatch) -> None:
+    """The workflow's fallback: a weekly run fails, then the same run id runs again without
+    --weekly-research and with --resume; only the modules that did not pass run."""
+    _record_runs(stub_repo["database"], {number: 1.0 for number in EXPECTED_WEEKLY})
+    monkeypatch.setenv("CRYPTO_PRODUCTION_RUN_ID", "gha-fallback-1")
+    monkeypatch.setenv("STUB_FAIL_MODULES", "25")
+    first, ran_first = _run(stub_repo, weekly_research=True)
+    assert first.status == "FAIL" and ran_first[-1] == 25
+    monkeypatch.delenv("STUB_FAIL_MODULES")
+    stub_repo["log"].unlink()
+    second, ran_second = _run(stub_repo, resume=True)
+    assert second.status == "PASS"
+    passed_first = {1, 6, 17, 18}
+    assert set(ran_second) == {spec.number for spec in active_modules()} - passed_first
+    statuses = {item["module"]: item["status"] for item in second.module_results}
+    assert all(statuses[n] == "RESUMED_PASS" for n in passed_first)
+    assert statuses[25] == "PASS" and statuses[24] == "PASS"

@@ -53,16 +53,18 @@ class ModuleSpec:
 # m42_price_projections, m42_asset_recommendations, the module 36/39/42 run tables,
 # assets, asset_market_daily, asset_ohlcv and canonical_market_daily (plus the module 1
 # collection and provider-health tables for the hosted readiness check). Those come only
-# from modules 1, 6, 17, 25, 27-42. Module 18 writes STABLECOIN_SUPPLY_USD rows into
-# external_feature_observations, which module 17 reads, but module 17 only uses the
-# FEAR_GREED_INDEX and US_SPOT_CRYPTO_ETF_NET_FLOW_USD keys from that table, so module 18
-# does not change crypto_features_daily.
+# from modules 1, 6, 17, 18, 25, 27-42.
+# Module 18 is daily: after module 17 rebuilds crypto_features_daily, module 18 rewrites its
+# stablecoin columns from the DefiLlama history (module 1 keeps only recent snapshots), and
+# module 25's regime models need that history. With module 18 skipped (Oct 12) module 25 found
+# too few complete rows and failed. A research module must never write a table the daily
+# path reads (tests/production/test_weekly_research_cadence.py checks this).
 RESEARCH_ONLY_MODULES: frozenset[int] = frozenset(
-    {2, 3, 5, *range(7, 17), *range(18, 25), 26, 43, 44}
+    {2, 3, 5, *range(7, 17), *range(19, 25), 26, 43, 44}
 )
 
 # The modules the UIP delivery depends on, in run order. Every one runs every cycle.
-UIP_DELIVERY_MODULES: tuple[int, ...] = (1, 6, 17, 25, *range(27, 43))
+UIP_DELIVERY_MODULES: tuple[int, ...] = (1, 6, 17, 18, 25, *range(27, 43))
 
 _RUN_TABLES: dict[int, str] = {16: "optimization_runs"}
 
