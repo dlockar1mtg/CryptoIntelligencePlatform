@@ -152,3 +152,33 @@ def test_crypto_current_price_sidecar_rejects_nonpositive_price(tmp_path: Path) 
         assert "must be positive" in str(exc)
     else:
         raise AssertionError("nonpositive governed Crypto price must fail closed")
+
+
+def test_failed_collection_names_each_failed_collector_with_keys_blanked(tmp_path: Path) -> None:
+    path = tmp_path / "crypto.duckdb"
+    _build_database(path)
+    conn = duckdb.connect(str(path))
+    now = datetime.now(timezone.utc)
+    conn.execute("INSERT INTO collection_runs VALUES ('run-2', ?, 'PARTIAL_SUCCESS', 3, 2)", [now])
+    conn.execute("CREATE TABLE collection_results(result_id VARCHAR, run_id VARCHAR, collector_name VARCHAR, provider_name VARCHAR, entity_key VARCHAR, status VARCHAR, error_type VARCHAR, error_message VARCHAR)")
+    conn.execute("INSERT INTO collection_results VALUES ('r1', 'run-2', 'market_history', 'coingecko', 'solana', 'FAILED', 'HTTPError', '429 Too Many Requests for url: https://example.test/coins?x_cg_demo_api_key=SYNTHKEY1&days=30')")
+    conn.execute("INSERT INTO collection_results VALUES ('r2', 'run-2', 'macro', 'fred_api', 'DGS10', 'FAILED', 'HTTPError', 'bad request ?series_id=DGS10&api_key=SYNTHKEY2')")
+    conn.execute("INSERT INTO collection_results VALUES ('r3', 'run-2', 'macro', 'fred_api', 'M2SL', 'SUCCESS', NULL, NULL)")
+    conn.execute("INSERT INTO collection_results VALUES ('r4', 'run-1', 'macro', 'fred_api', 'OLD', 'FAILED', 'X', 'older run')")
+    conn.close()
+
+    result = evaluate_hosted_database(path, HostedThresholds())
+    check = next(c for c in result["checks"] if c["name"] == "latest_collection")
+    assert check["status"] == "FAIL"
+    failures = check["details"]["failures"]
+    assert [(f["collector"], f["entity"]) for f in failures] == [("macro", "DGS10"), ("market_history", "solana")]
+    text = json.dumps(failures)
+    assert "SYNTHKEY1" not in text and "SYNTHKEY2" not in text
+    assert "429 Too Many Requests" in text and "series_id=DGS10" in text
+
+
+def test_passing_collection_has_no_failures_field(tmp_path: Path) -> None:
+    path = tmp_path / "crypto.duckdb"
+    _build_database(path)
+    check = next(c for c in evaluate_hosted_database(path, HostedThresholds())["checks"] if c["name"] == "latest_collection")
+    assert check["status"] == "PASS" and "failures" not in check["details"]
