@@ -182,3 +182,33 @@ def test_passing_collection_has_no_failures_field(tmp_path: Path) -> None:
     _build_database(path)
     check = next(c for c in evaluate_hosted_database(path, HostedThresholds())["checks"] if c["name"] == "latest_collection")
     assert check["status"] == "PASS" and "failures" not in check["details"]
+
+
+def _macro_only_failure_db(path: Path, macro_days_old: int) -> None:
+    _build_database(path)
+    conn = duckdb.connect(str(path))
+    now = datetime.now(timezone.utc)
+    conn.execute("DELETE FROM macro_observations")
+    conn.execute(f"INSERT INTO macro_observations VALUES (CURRENT_DATE - INTERVAL {macro_days_old} DAY)")
+    conn.execute("INSERT INTO collection_runs VALUES ('run-3', ?, 'PARTIAL_SUCCESS', 15, 2)", [now])
+    conn.execute("CREATE TABLE collection_results(result_id VARCHAR, run_id VARCHAR, collector_name VARCHAR, provider_name VARCHAR, entity_key VARCHAR, status VARCHAR, error_type VARCHAR, error_message VARCHAR)")
+    for i, sid in enumerate(("DGS10", "VIXCLS")):
+        conn.execute("INSERT INTO collection_results VALUES (?, 'run-3', 'macro', 'fred_api', ?, 'FAILED', 'RuntimeError', 'GET failed after 3 attempts')", [f"m{i}", sid])
+    conn.close()
+
+
+def test_macro_only_outage_is_tolerated_while_macro_data_is_fresh(tmp_path: Path) -> None:
+    path = tmp_path / "crypto.duckdb"
+    _macro_only_failure_db(path, macro_days_old=3)
+    result = evaluate_hosted_database(path, HostedThresholds())
+    check = next(c for c in result["checks"] if c["name"] == "latest_collection")
+    assert check["status"] == "PASS"
+    assert check["details"]["tolerated_macro_failures"] == 2
+    assert len(check["details"]["failures"]) == 2
+
+
+def test_macro_only_outage_fails_once_macro_data_is_stale(tmp_path: Path) -> None:
+    path = tmp_path / "crypto.duckdb"
+    _macro_only_failure_db(path, macro_days_old=90)
+    check = next(c for c in evaluate_hosted_database(path, HostedThresholds())["checks"] if c["name"] == "latest_collection")
+    assert check["status"] == "FAIL" and "tolerated_macro_failures" not in check["details"]
