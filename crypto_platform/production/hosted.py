@@ -26,6 +26,27 @@ def _redact(text: Any, limit: int = 240) -> str:
     return cleaned[:limit]
 
 
+def _failure_split(connection, run_id: Any, failed_count: int) -> tuple[int, int]:
+    """(blocking, macro) failed-collector counts for a run. Without per-collector results, all are blocking."""
+    if not failed_count:
+        return 0, 0
+    if not _table_exists(connection, "collection_results"):
+        return failed_count, 0
+    macro = int(connection.execute(
+        "SELECT COUNT(*) FROM collection_results WHERE run_id = ? AND upper(status) = 'FAILED' AND collector_name = 'macro'",
+        [run_id],
+    ).fetchone()[0])
+    macro = min(macro, failed_count)
+    return failed_count - macro, macro
+
+
+def _macro_age_days(connection) -> float | None:
+    if not _table_exists(connection, "macro_observations"):
+        return None
+    hours = _age_hours(connection.execute("SELECT MAX(observation_date) FROM macro_observations").fetchone()[0])
+    return None if hours is None else hours / 24.0
+
+
 def _failed_collectors(connection, run_id: Any, limit: int = 30) -> list[dict[str, Any]]:
     """Which collectors failed in a collection run, and why (redacted). Empty when the table is absent."""
     if not _table_exists(connection, "collection_results"):
@@ -172,9 +193,16 @@ def evaluate_hosted_database(
                 checks.append(HostedCheck("latest_collection", "FAIL", {"reason": "No collection run."}))
             else:
                 age = _age_hours(collection[1])
+                # Macro series (FRED) move weekly or monthly and have their own freshness limit, so a macro-only
+                # outage is tolerated while that data is still within macro_max_age_days.
+                blocking_failures, macro_failures = _failure_split(connection, collection[0], int(collection[4]))
+                macro_fresh = _macro_age_days(connection) is not None and _macro_age_days(connection) <= limits.macro_max_age_days
+                tolerated = macro_failures if (macro_fresh and blocking_failures == 0) else 0
+                status_ok = str(collection[2]).upper() in {"PASS", "SUCCESS", "COMPLETED"} or (
+                    str(collection[2]).upper() == "PARTIAL_SUCCESS" and tolerated == int(collection[4]))
                 collection_ok = (
-                    str(collection[2]).upper() in {"PASS", "SUCCESS", "COMPLETED"}
-                    and int(collection[4]) <= limits.max_failed_collectors
+                    status_ok
+                    and int(collection[4]) - tolerated <= limits.max_failed_collectors
                     and age is not None
                     and age <= limits.collection_max_age_hours
                 )
@@ -192,6 +220,9 @@ def evaluate_hosted_database(
                             "maximum_age_hours": limits.collection_max_age_hours,
                             **({"failures": _failed_collectors(connection, collection[0])}
                                if int(collection[4]) else {}),
+                            **({"tolerated_macro_failures": tolerated,
+                                "tolerated_reason": "macro data is still within its freshness limit"}
+                               if tolerated else {}),
                         },
                     )
                 )

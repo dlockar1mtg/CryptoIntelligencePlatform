@@ -4,6 +4,7 @@ import hashlib
 import json
 import logging
 import os
+import re
 import shutil
 import time
 import uuid
@@ -388,7 +389,7 @@ class HTTPClient:
                 last_error = exc
                 if attempt + 1 < attempts:
                     time.sleep(self.backoff * 2**attempt)
-        raise RuntimeError(f"GET failed after {attempts} attempts: {url}") from last_error
+        raise RuntimeError(f"GET failed after {attempts} attempts: {url} ({describe_http_error(last_error)})") from last_error
 
 def connect(settings: dict[str, Any]) -> duckdb.DuckDBPyConnection:
     path = path_for(settings, "database_path")
@@ -399,6 +400,26 @@ def connect(settings: dict[str, Any]) -> duckdb.DuckDBPyConnection:
         conn.execute(sql)
     conn.execute(VIEWS)
     return conn
+
+def describe_http_error(exc: Exception | None) -> str:
+    """Status code and the provider's own message, without query strings (they can carry API keys)."""
+    if exc is None:
+        return "no response"
+    response = getattr(exc, "response", None)
+    if response is not None:
+        detail = ""
+        try:
+            body = response.json()
+            if isinstance(body, dict):
+                detail = str(body.get("error_message") or body.get("error") or body.get("message") or "")
+        except Exception:  # noqa: BLE001 - not JSON
+            detail = (getattr(response, "text", "") or "")[:200]
+        text = f"HTTP {response.status_code}" + (f": {detail}" if detail else "")
+    else:
+        text = f"{type(exc).__name__}: {exc}"
+    text = re.sub(r"\?[^\s'\"]*", "?...", " ".join(text.split()))
+    return text[:240]
+
 
 def upsert(
     conn: duckdb.DuckDBPyConnection,
