@@ -8,6 +8,7 @@ import csv
 import hashlib
 import json
 from pathlib import Path
+import re
 import shutil
 from typing import Any
 
@@ -15,6 +16,34 @@ import duckdb
 
 
 ONLINE_PROVIDER_STATES = {"ONLINE", "AVAILABLE", "HEALTHY", "PASS"}
+
+# The readiness report lands in public workflow logs, so key-like values in error text are blanked.
+_SECRET_QUERY = re.compile(r"(?i)\b(api_?key|apikey|x_cg_(?:demo|pro)_api_key|token|access_token|key|password)=[^&\s'\"]+")
+
+
+def _redact(text: Any, limit: int = 240) -> str:
+    cleaned = _SECRET_QUERY.sub(lambda m: f"{m.group(1)}=***", " ".join(str(text or "").split()))
+    return cleaned[:limit]
+
+
+def _failed_collectors(connection, run_id: Any, limit: int = 30) -> list[dict[str, Any]]:
+    """Which collectors failed in a collection run, and why (redacted). Empty when the table is absent."""
+    if not _table_exists(connection, "collection_results"):
+        return []
+    rows = connection.execute(
+        """
+        SELECT collector_name, provider_name, entity_key, error_type, error_message
+        FROM collection_results
+        WHERE run_id = ? AND upper(status) = 'FAILED'
+        ORDER BY collector_name, entity_key
+        LIMIT ?
+        """,
+        [run_id, limit],
+    ).fetchall()
+    return [
+        {"collector": r[0], "provider": r[1], "entity": r[2], "error_type": r[3], "error": _redact(r[4])}
+        for r in rows
+    ]
 
 CRYPTO_CURRENT_PRICE_AUTHORITY_ID = "CRYPTO_CANONICAL_MARKET_DAILY_CURRENT_PRICE_V1"
 CRYPTO_CURRENT_PRICE_SCHEMA_VERSION = "1.0.0"
@@ -161,6 +190,8 @@ def evaluate_hosted_database(
                             "successful_collectors": int(collection[3]),
                             "failed_collectors": int(collection[4]),
                             "maximum_age_hours": limits.collection_max_age_hours,
+                            **({"failures": _failed_collectors(connection, collection[0])}
+                               if int(collection[4]) else {}),
                         },
                     )
                 )
