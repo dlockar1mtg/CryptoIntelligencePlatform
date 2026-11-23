@@ -87,9 +87,9 @@ jobs:
       # weekday run still fails with research modules skipped, the step below runs them and resumes.
       CRYPTO_WEEKLY_RESEARCH_ENABLED: "true"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.14"
           cache: pip
@@ -98,7 +98,7 @@ jobs:
 
       - name: Restore hosted Crypto database
         id: restore-db
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: data/crypto_intelligence.duckdb
           key: crypto-db-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
@@ -215,14 +215,14 @@ jobs:
 
       - name: Save hosted Crypto database
         if: success()
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: data/crypto_intelligence.duckdb
           key: crypto-db-${{ runner.os }}-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Upload Crypto production evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: crypto-production-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
@@ -246,9 +246,9 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: crypto-production-${{ github.run_id }}-${{ github.run_attempt }}
           path: evidence
