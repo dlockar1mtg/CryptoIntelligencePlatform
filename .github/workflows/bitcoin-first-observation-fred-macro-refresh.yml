@@ -30,11 +30,11 @@ jobs:
       EVIDENCE_ROOT: data/operations/crypto/bitcoin_first_observation_macro_refresh
       SUMMARY_PATH: data/research/bitcoin_strategic_regime_forward_evidence_v1/github_fred_macro_refresh_result_v1.json
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: phase-native-predictive-validation
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.14"
           cache: pip
@@ -42,7 +42,7 @@ jobs:
       - run: pip install -r requirements.txt -r requirements-dev.txt
 
       - name: Restore hosted Crypto database
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: data/crypto_intelligence.duckdb
           key: crypto-db-${{ runner.os }}-bitcoin-fred-${{ github.run_id }}-${{ github.run_attempt }}
@@ -150,7 +150,7 @@ jobs:
 
       - name: Upload macro refresh evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: bitcoin-first-observation-fred-macro-refresh-${{ github.run_id }}-${{ github.run_attempt }}
           path: data/operations/crypto/bitcoin_first_observation_macro_refresh/
