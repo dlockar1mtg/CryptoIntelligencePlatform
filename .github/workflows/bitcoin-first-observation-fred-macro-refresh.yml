@@ -14,6 +14,10 @@ concurrency:
   group: bitcoin-first-observation-fred-macro-refresh
   cancel-in-progress: false
 
+env:
+  # Install the exact versions in requirements-lock.txt (see that file); Dependabot proposes updates monthly.
+  PIP_CONSTRAINT: requirements-lock.txt
+
 jobs:
   fred-macro-refresh:
     runs-on: ubuntu-24.04
